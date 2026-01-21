@@ -1,6 +1,6 @@
 /*
  * Hero Gateway Block - Luo Medical Gateway Style
- * Second part of the gateway: label and CTA button
+ * Age verification form with location and date of birth
  */
 
 .hero-gateway-container {
@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: flex-start;
   padding: var(--spacing-l) var(--spacing-m);
-  padding-bottom: 20vh;
+  padding-bottom: 15vh;
   background: var(--gradient-primary);
   text-align: center;
   min-height: auto;
@@ -30,23 +30,153 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-m);
-  max-width: 600px;
+  gap: var(--spacing-s);
+  max-width: 400px;
   width: 100%;
 }
 
 /* Label text */
-.hero-gateway .hero-gateway-label,
-.hero-gateway p {
+.hero-gateway .hero-gateway-label {
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
+  font-size: var(--body-font-size-xs);
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--text-color-inverted);
   margin: 0 0 var(--spacing-s);
 }
 
-/* CTA Button */
+/* Age Verification Form */
+.hero-gateway .age-verification-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  width: 100%;
+}
+
+/* Form groups */
+.hero-gateway .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.hero-gateway .form-group label {
+  color: var(--text-color-inverted);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  margin-bottom: var(--spacing-xs);
+  text-align: left;
+}
+
+/* Select dropdowns */
+.hero-gateway select {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-white);
+  border-radius: var(--border-radius-s);
+  color: var(--text-color-inverted);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  padding: 16px 40px 16px 20px;
+  width: 100%;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='white' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.hero-gateway select:focus {
+  outline: none;
+  border-color: var(--color-white);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.hero-gateway select option {
+  background-color: var(--color-purple);
+  color: var(--text-color-inverted);
+}
+
+/* Date row - three dropdowns side by side */
+.hero-gateway .date-row {
+  display: flex;
+  gap: var(--spacing-s);
+  width: 100%;
+}
+
+.hero-gateway .date-row select {
+  flex: 1;
+  padding: 16px 30px 16px 16px;
+  background-position: right 10px center;
+}
+
+/* Checkbox group */
+.hero-gateway .checkbox-group {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+}
+
+.hero-gateway input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 1px solid var(--color-white);
+  border-radius: var(--border-radius-s);
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.hero-gateway input[type="checkbox"]:checked {
+  background-color: var(--color-white);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%235B21B6' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-gateway .checkbox-label {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-inverted);
+  text-align: left;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+/* Submit button */
+.hero-gateway button.button,
+.hero-gateway button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 18px 48px;
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: var(--border-radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: var(--spacing-s);
+}
+
+.hero-gateway button.button:hover:not(:disabled),
+.hero-gateway button[type="submit"]:hover:not(:disabled) {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
+.hero-gateway button.button:disabled,
+.hero-gateway button[type="submit"]:disabled {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: rgba(0, 10, 119, 0.6);
+  cursor: not-allowed;
+}
+
+/* Legacy link button styling */
 .hero-gateway a.button,
 .hero-gateway a {
   display: inline-block;
@@ -73,25 +203,33 @@
 
 @media (width >= 900px) {
   .hero-gateway {
-    padding: var(--spacing-l) var(--spacing-l);
-    padding-bottom: 25vh;
+    padding: var(--spacing-xl) var(--spacing-l);
+    padding-bottom: 20vh;
   }
 
-  .hero-gateway a.button,
-  .hero-gateway a {
-    padding: 18px 56px;
-    font-size: 22px;
+  .hero-gateway .hero-gateway-content {
+    max-width: 450px;
   }
 }
 
 @media (width < 600px) {
   .hero-gateway {
-    padding-bottom: 15vh;
+    padding: var(--spacing-m) var(--spacing-s);
+    padding-bottom: 10vh;
   }
 
-  .hero-gateway a.button,
-  .hero-gateway a {
-    padding: 14px 36px;
+  .hero-gateway select {
+    padding: 14px 36px 14px 16px;
+    font-size: var(--body-font-size-xs);
+  }
+
+  .hero-gateway .date-row select {
+    padding: 14px 24px 14px 12px;
+  }
+
+  .hero-gateway button.button,
+  .hero-gateway button[type="submit"] {
+    padding: 16px 36px;
     font-size: 18px;
   }
 }

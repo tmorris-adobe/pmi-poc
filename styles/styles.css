@@ -7,8 +7,9 @@
   /* Luo Medical Colors */
   --color-white: #fff;
   --color-dark-blue: #000a77;
-  --color-teal: #0fa5a5;
-  --color-mint: #7dd8c7;
+  --color-purple: #5B21B6;
+  --color-blue: #3B5DB8;
+  --color-violet: #6B3FA0;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
 
   /* Semantic colors */
@@ -21,8 +22,8 @@
   --link-hover-color: #000a77;
   --accent-color: var(--color-dark-blue);
 
-  /* Gradient - Teal to Mint (matching original Luo branding) */
-  --gradient-primary: linear-gradient(135deg, var(--color-teal) 0%, var(--color-mint) 100%);
+  /* Gradient - Purple to Blue (matching original Luo branding) */
+  --gradient-primary: linear-gradient(135deg, var(--color-purple) 0%, var(--color-blue) 100%);
 
   /* Fonts */
   --body-font-family: "DM Sans", dm-sans-fallback, sans-serif;
@@ -442,8 +443,8 @@ main .section.center > div {
 .gradient select:focus,
 .dark select:focus {
   outline: none;
-  border-color: var(--color-teal);
-  box-shadow: 0 0 0 2px rgba(15, 165, 165, 0.3);
+  border-color: var(--color-purple);
+  box-shadow: 0 0 0 2px rgba(91, 33, 182, 0.3);
 }
 
 /* Date picker row - side by side */
@@ -472,7 +473,7 @@ main .section.center > div {
 
 .form-gateway input[type="checkbox"]:checked {
   background-color: var(--color-white);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%230FA5A5' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%235B21B6' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
 }
