@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="white">
+  <!-- Main cross/star shape -->
+  <path d="M100 0 L102 95 L200 100 L102 105 L100 200 L98 105 L0 100 L98 95 Z" fill="white"/>
+
+  <!-- Diagonal rays -->
+  <path d="M100 100 L130 30 L100 100 L170 70 Z" fill="white" opacity="0.8"/>
+  <path d="M100 100 L170 130 L100 100 L130 170 Z" fill="white" opacity="0.8"/>
+  <path d="M100 100 L70 170 L100 100 L30 130 Z" fill="white" opacity="0.8"/>
+  <path d="M100 100 L30 70 L100 100 L70 30 Z" fill="white" opacity="0.8"/>
+
+  <!-- Inner fine rays -->
+  <line x1="100" y1="100" x2="115" y2="15" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="85" y2="15" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="185" y2="85" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="185" y2="115" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="115" y2="185" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="85" y2="185" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="15" y2="85" stroke="white" stroke-width="0.5" opacity="0.6"/>
+  <line x1="100" y1="100" x2="15" y2="115" stroke="white" stroke-width="0.5" opacity="0.6"/>
+</svg>

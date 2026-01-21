@@ -4,26 +4,32 @@
  */
 
 :root {
-  /* Luo Medical Colors */
+  /* Luo Medical Colors - Teal Theme */
   --color-white: #fff;
-  --color-dark-blue: #000a77;
-  --color-purple: #5B21B6;
-  --color-blue: #3B5DB8;
-  --color-violet: #6B3FA0;
+  --color-teal: #40BFB4;
+  --color-teal-dark: #2A9D8F;
+  --color-teal-light: #4ECDC4;
+  --color-dark-navy: #2C3E50;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
+
+  /* Legacy colors (kept for compatibility) */
+  --color-dark-blue: #2C3E50;
+  --color-purple: #40BFB4;
+  --color-blue: #2A9D8F;
+  --color-violet: #35A99A;
 
   /* Semantic colors */
   --background-color: var(--color-white);
   --light-color: #f8f8f8;
-  --dark-color: var(--color-dark-blue);
+  --dark-color: var(--color-dark-navy);
   --text-color: #131313;
   --text-color-inverted: var(--color-white);
-  --link-color: var(--color-dark-blue);
-  --link-hover-color: #000a77;
-  --accent-color: var(--color-dark-blue);
+  --link-color: var(--color-teal-dark);
+  --link-hover-color: var(--color-teal);
+  --accent-color: var(--color-teal);
 
-  /* Gradient - Purple to Blue (matching original Luo branding) */
-  --gradient-primary: linear-gradient(135deg, var(--color-purple) 0%, var(--color-blue) 100%);
+  /* Gradient - Teal (matching original Luo branding) */
+  --gradient-primary: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-dark) 50%, var(--color-teal-light) 100%);
 
   /* Fonts */
   --body-font-family: "DM Sans", dm-sans-fallback, sans-serif;
@@ -120,6 +126,12 @@ header {
   height: var(--nav-height);
 }
 
+/* Hide default header on gateway pages (age verification) - but not gateway-header */
+body:has(.hero-gateway) header:not(.gateway-header) {
+  height: 0;
+  overflow: hidden;
+}
+
 header .header,
 footer .footer {
   visibility: hidden;
@@ -205,6 +217,37 @@ a:any-link {
 a:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
+}
+
+/* Accessibility - Focus Indicators */
+*:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: white;
+  color: var(--color-dark-navy);
+  padding: 8px 16px;
+  text-decoration: none;
+  z-index: 10000;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 /* Buttons - Primary */
@@ -322,6 +365,30 @@ main > .section.hero-container {
 
 main > .section.hero-gateway-container {
   margin: 0;
+}
+
+/* Gateway pages - seamless gradient sections */
+body:has(.hero-gateway) {
+  background: var(--gradient-primary);
+  min-height: 100vh;
+}
+
+body:has(.hero-gateway) main > .section {
+  margin: 0;
+}
+
+body:has(.hero-gateway) main {
+  background: transparent;
+}
+
+body:has(.hero-gateway) header,
+body:has(.hero-gateway) footer {
+  background: transparent;
+}
+
+/* Hide empty footer on gateway pages */
+body:has(.hero-gateway) footer:empty {
+  display: none;
 }
 
 /* Hide metadata block from display */
@@ -443,8 +510,8 @@ main .section.center > div {
 .gradient select:focus,
 .dark select:focus {
   outline: none;
-  border-color: var(--color-purple);
-  box-shadow: 0 0 0 2px rgba(91, 33, 182, 0.3);
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 2px rgba(64, 191, 180, 0.3);
 }
 
 /* Date picker row - side by side */
@@ -473,7 +540,7 @@ main .section.center > div {
 
 .form-gateway input[type="checkbox"]:checked {
   background-color: var(--color-white);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%235B21B6' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%232A9D8F' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -518,28 +585,75 @@ main .section.center > div {
   cursor: not-allowed;
 }
 
-/* Language selector */
-.language-selector {
-  display: flex;
+/* Language selector - pill style like original */
+.language-selector,
+main > .section > div > p:has(a[href*="/ca/"]):has(a[href*="/fr/"]) {
+  display: inline-flex;
   justify-content: center;
-  gap: var(--spacing-s);
-  padding: var(--spacing-m);
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 12px 24px;
   background-color: var(--color-white);
+  border-radius: var(--border-radius-pill);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  margin: 0 auto;
 }
 
-.language-selector a {
+/* Center the language selector in its container */
+main > .section:has(> div > p > a[href*="/ca/"]):has(> div > p > a[href*="/fr/"]) > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: var(--spacing-xl);
+}
+
+.language-selector a,
+main > .section > div > p:has(a[href*="/ca/"]) a {
   color: var(--color-dark-blue);
   text-decoration: none;
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
 }
 
-.language-selector a:hover {
+.language-selector a:hover,
+main > .section > div > p:has(a[href*="/ca/"]) a:hover {
   text-decoration: underline;
 }
 
 .language-selector span {
   color: var(--color-dark-blue);
+}
+
+/* Gateway footer section - continues gradient with starburst */
+main .section.gateway-footer {
+  background: var(--gradient-primary);
+  margin: 0;
+  padding: 0 0 var(--spacing-xl);
+}
+
+main .section.gateway-footer > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+/* Bottom starburst decoration */
+main .section.gateway-footer picture,
+main .section.gateway-footer img {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  opacity: 0.4;
+  margin-bottom: var(--spacing-l);
+}
+
+@media (width >= 900px) {
+  main .section.gateway-footer picture,
+  main .section.gateway-footer img {
+    max-width: 400px;
+  }
 }
 
 /* ==========================================================================

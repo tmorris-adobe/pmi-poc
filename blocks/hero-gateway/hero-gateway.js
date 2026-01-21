@@ -4,6 +4,118 @@
  * Migrated from: https://www.luomedical.com/
  */
 
+function createGatewayFooter() {
+  const footer = document.createElement('footer');
+  footer.className = 'gateway-footer';
+
+  footer.innerHTML = `
+    <div class="gateway-footer-content">
+      <div class="footer-links-row">
+        <div class="footer-links-group">
+          <a href="/content/ca/patient/index.html" class="footer-link">Patient</a>
+          <a href="/content/ca/health-care-professionals/index.html" class="footer-link">HCP</a>
+        </div>
+        <div class="footer-links-group">
+          <a href="/content/ca/terms-of-use/index.html" class="footer-link">Terms of Use</a>
+          <a href="/content/ca/privacy-policy/index.html" class="footer-link">Privacy Policy</a>
+          <button class="footer-link-btn" id="cookie-prefs-btn">Cookie Preferences</button>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p class="copyright-main">&copy; Luo ${new Date().getFullYear()}</p>
+        <p class="copyright-secondary">&copy; ${new Date().getFullYear()} Verdeya S.A. LUO is a trademark of Verdeya S.A. All rights reserved.</p>
+      </div>
+    </div>
+  `;
+
+  // Cookie preferences button handler
+  const cookieBtn = footer.querySelector('#cookie-prefs-btn');
+  cookieBtn?.addEventListener('click', () => {
+    // eslint-disable-next-line no-undef
+    if (typeof OneTrust !== 'undefined' && OneTrust.ToggleInfoDisplay) {
+      // eslint-disable-next-line no-undef
+      OneTrust.ToggleInfoDisplay();
+    }
+  });
+
+  return footer;
+}
+
+function createGatewayHeader() {
+  const header = document.createElement('header');
+  header.className = 'gateway-header';
+
+  header.innerHTML = `
+    <div class="gateway-header-inner">
+      <div class="gateway-header-left">
+        <div class="language-dropdown">
+          <button class="language-btn" aria-expanded="false" aria-haspopup="true">
+            <span>English</span>
+            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="language-menu" hidden>
+            <li><a href="/content/ca/index.html">English</a></li>
+            <li><a href="/content/ca/fr/index.html">Français</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="gateway-header-center">
+        <a href="/" class="logo-link" aria-label="Luo Home">
+          <span class="logo-text">Luo</span>
+        </a>
+      </div>
+
+      <div class="gateway-header-right">
+        <nav class="gateway-nav-primary" aria-label="Primary navigation">
+          <a href="/" class="nav-link">Home</a>
+          <a href="/content/ca/patient/index.html" class="nav-link">Get Luo</a>
+        </nav>
+
+        <nav class="gateway-nav-pills" aria-label="User type">
+          <a href="/content/ca/patient/index.html" class="nav-pill active">Patient</a>
+          <a href="/content/ca/health-care-professionals/index.html" class="nav-pill">HCP</a>
+        </nav>
+
+        <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Add language dropdown toggle
+  const langBtn = header.querySelector('.language-btn');
+  const langMenu = header.querySelector('.language-menu');
+  langBtn?.addEventListener('click', () => {
+    const expanded = langBtn.getAttribute('aria-expanded') === 'true';
+    langBtn.setAttribute('aria-expanded', !expanded);
+    langMenu.hidden = expanded;
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!header.querySelector('.language-dropdown')?.contains(e.target)) {
+      langBtn?.setAttribute('aria-expanded', 'false');
+      if (langMenu) langMenu.hidden = true;
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileBtn = header.querySelector('.mobile-menu-btn');
+  mobileBtn?.addEventListener('click', () => {
+    const expanded = mobileBtn.getAttribute('aria-expanded') === 'true';
+    mobileBtn.setAttribute('aria-expanded', !expanded);
+    header.classList.toggle('mobile-open', !expanded);
+  });
+
+  return header;
+}
+
 const CANADIAN_PROVINCES = [
   'Alberta',
   'British Columbia',
@@ -170,24 +282,43 @@ export default function decorate(block) {
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'hero-gateway-content';
 
-  // Find target URL from any link in the block
+  // Find target URL from first link (the Enter button destination)
   let targetUrl = '/ca/patient/';
-  const link = block.querySelector('a');
-  if (link) {
-    targetUrl = link.href;
-  }
-
-  // Find label text (e.g., "Enter Your Details")
   const rows = [...block.children];
-  rows.forEach((row) => {
-    const cell = row.querySelector('div');
-    if (!cell) return;
+  let starburstPicture = null;
+  let languageLinks = null;
 
-    const cellLink = cell.querySelector('a');
-    if (cellLink) return; // Skip link rows
+  rows.forEach((row, index) => {
+    const cells = row.querySelectorAll(':scope > div');
+    const firstCell = cells[0];
+    if (!firstCell) return;
 
-    const text = cell.textContent.trim();
-    if (text && !cell.querySelector('img')) {
+    // Check for starburst image
+    const img = firstCell.querySelector('picture, img');
+    if (img && index > 0) {
+      starburstPicture = img.cloneNode(true);
+      return;
+    }
+
+    // Check for language links - look at ALL cells in the row
+    const allLinksInRow = row.querySelectorAll('a');
+    const rowText = row.textContent;
+    if (allLinksInRow.length >= 2 && (rowText.includes('English') || rowText.includes('Français'))) {
+      // This is the language links row
+      languageLinks = row.cloneNode(true);
+      return;
+    }
+
+    // Single link in first cell is the Enter button destination
+    const cellLink = firstCell.querySelector('a');
+    if (cellLink && !rowText.includes('English') && !rowText.includes('Français')) {
+      targetUrl = cellLink.href;
+      return;
+    }
+
+    // Text without image is the label
+    const text = firstCell.textContent.trim();
+    if (text && !firstCell.querySelector('img') && !firstCell.querySelector('a')) {
       const p = document.createElement('p');
       p.className = 'hero-gateway-label';
       p.textContent = text;
@@ -199,7 +330,51 @@ export default function decorate(block) {
   const form = createAgeVerificationForm(targetUrl);
   contentWrapper.appendChild(form);
 
+  // Add starburst decoration if present
+  if (starburstPicture) {
+    const starburstWrapper = document.createElement('div');
+    starburstWrapper.className = 'hero-gateway-starburst';
+    starburstWrapper.appendChild(starburstPicture);
+    contentWrapper.appendChild(starburstWrapper);
+  }
+
+  // Add language links if present
+  if (languageLinks) {
+    const langWrapper = document.createElement('div');
+    langWrapper.className = 'hero-gateway-languages';
+    // Extract just the links from the language row
+    const links = languageLinks.querySelectorAll('a');
+    links.forEach((link, i) => {
+      const newLink = document.createElement('a');
+      newLink.href = link.href;
+      newLink.textContent = link.textContent;
+      langWrapper.appendChild(newLink);
+      // Add separator between links
+      if (i < links.length - 1) {
+        const sep = document.createElement('span');
+        sep.textContent = ' | ';
+        sep.className = 'lang-separator';
+        langWrapper.appendChild(sep);
+      }
+    });
+    contentWrapper.appendChild(langWrapper);
+  }
+
   // Clear block and add wrapped content
   block.textContent = '';
   block.appendChild(contentWrapper);
+
+  // Add gateway header to the page
+  const existingHeader = document.querySelector('.gateway-header');
+  if (!existingHeader) {
+    const gatewayHeader = createGatewayHeader();
+    document.body.insertBefore(gatewayHeader, document.body.firstChild);
+  }
+
+  // Add gateway footer to the page
+  const existingFooter = document.querySelector('.gateway-footer');
+  if (!existingFooter) {
+    const gatewayFooter = createGatewayFooter();
+    document.body.appendChild(gatewayFooter);
+  }
 }
