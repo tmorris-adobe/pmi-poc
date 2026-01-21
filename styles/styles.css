@@ -4,19 +4,15 @@
  */
 
 :root {
-  /* Luo Medical Colors - Teal Theme */
+  /* Luo Medical Colors - Blue/Purple/Teal Theme */
   --color-white: #fff;
-  --color-teal: #40BFB4;
-  --color-teal-dark: #2A9D8F;
-  --color-teal-light: #4ECDC4;
-  --color-dark-navy: #2C3E50;
+  --color-deep-blue: #000A77;
+  --color-navy: #0D1B4C;
+  --color-purple: #9333EA;
+  --color-violet: #7C3AED;
+  --color-teal: #00C4E8;
+  --color-dark-navy: #1a1a2e;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
-
-  /* Legacy colors (kept for compatibility) */
-  --color-dark-blue: #2C3E50;
-  --color-purple: #40BFB4;
-  --color-blue: #2A9D8F;
-  --color-violet: #35A99A;
 
   /* Semantic colors */
   --background-color: var(--color-white);
@@ -24,12 +20,18 @@
   --dark-color: var(--color-dark-navy);
   --text-color: #131313;
   --text-color-inverted: var(--color-white);
-  --link-color: var(--color-teal-dark);
-  --link-hover-color: var(--color-teal);
-  --accent-color: var(--color-teal);
+  --link-color: var(--color-purple);
+  --link-hover-color: var(--color-violet);
+  --accent-color: var(--color-purple);
 
-  /* Gradient - Teal (matching original Luo branding) */
-  --gradient-primary: linear-gradient(135deg, var(--color-teal) 0%, var(--color-teal-dark) 50%, var(--color-teal-light) 100%);
+  /* Gradient - Using original Luo background image for accurate branding */
+  --gradient-primary: url('/styles/login-background.jpg');
+
+  /* CSS fallback gradient (used when image not available) */
+  --gradient-fallback:
+    radial-gradient(ellipse 80% 70% at 100% 0%, var(--color-teal) 0%, transparent 70%),
+    radial-gradient(ellipse 90% 90% at 0% 100%, var(--color-purple) 0%, transparent 70%),
+    linear-gradient(135deg, var(--color-deep-blue) 0%, var(--color-navy) 100%);
 
   /* Fonts */
   --body-font-family: "DM Sans", dm-sans-fallback, sans-serif;
@@ -221,7 +223,7 @@ a:hover {
 
 /* Accessibility - Focus Indicators */
 *:focus-visible {
-  outline: 3px solid var(--color-teal);
+  outline: 3px solid var(--color-violet);
   outline-offset: 2px;
 }
 
@@ -229,7 +231,7 @@ button:focus-visible,
 a:focus-visible,
 select:focus-visible,
 input:focus-visible {
-  outline: 3px solid var(--color-teal);
+  outline: 3px solid var(--color-violet);
   outline-offset: 2px;
 }
 
@@ -370,6 +372,10 @@ main > .section.hero-gateway-container {
 /* Gateway pages - seamless gradient sections */
 body:has(.hero-gateway) {
   background: var(--gradient-primary);
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
   min-height: 100vh;
 }
 
@@ -424,6 +430,9 @@ main .section.highlight {
 main .section.dark,
 main .section.gradient {
   background: var(--gradient-primary);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--text-color-inverted);
   margin: 0;
   padding: var(--spacing-xl) 0;
@@ -510,8 +519,8 @@ main .section.center > div {
 .gradient select:focus,
 .dark select:focus {
   outline: none;
-  border-color: var(--color-teal);
-  box-shadow: 0 0 0 2px rgba(64, 191, 180, 0.3);
+  border-color: var(--color-violet);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.3);
 }
 
 /* Date picker row - side by side */
@@ -628,6 +637,9 @@ main > .section > div > p:has(a[href*="/ca/"]) a:hover {
 /* Gateway footer section - continues gradient with starburst */
 main .section.gateway-footer {
   background: var(--gradient-primary);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   margin: 0;
   padding: 0 0 var(--spacing-xl);
 }

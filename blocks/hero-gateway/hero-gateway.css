@@ -87,8 +87,8 @@
 }
 
 .language-menu li a:hover {
-  background-color: rgba(64, 191, 180, 0.1);
-  color: var(--color-teal-dark);
+  background-color: rgba(107, 33, 168, 0.1);
+  color: var(--color-purple);
 }
 
 /* Center section - Logo */
@@ -109,7 +109,7 @@
   font-size: 1.75rem;
   font-weight: 600;
   font-style: italic;
-  color: var(--color-teal);
+  color: var(--color-purple);
   letter-spacing: -0.02em;
 }
 
@@ -136,7 +136,7 @@
 }
 
 .gateway-nav-primary .nav-link:hover {
-  color: var(--color-teal);
+  color: var(--color-purple);
 }
 
 .gateway-nav-pills {
@@ -161,7 +161,7 @@
 }
 
 .gateway-nav-pills .nav-pill.active {
-  background: var(--color-teal);
+  background: var(--color-purple);
   color: white;
 }
 
@@ -261,6 +261,13 @@ body:has(.gateway-header) main {
 .hero-gateway-container .hero-gateway-wrapper {
   max-width: unset;
   padding: 0;
+  /* Starburst decoration as background - matching original site */
+  background-image: url('/styles/login-footer-mark.svg');
+  background-position: 50% calc(100% - 36px);
+  background-size: 1280px;
+  background-repeat: no-repeat;
+  /* Ensure enough height for starburst to display properly */
+  min-height: calc(100vh - 60px);
 }
 
 .hero-gateway {
@@ -344,7 +351,7 @@ body:has(.gateway-header) main {
 }
 
 .hero-gateway select option {
-  background-color: var(--color-teal-dark);
+  background-color: var(--color-purple);
   color: var(--text-color-inverted);
 }
 
@@ -485,24 +492,10 @@ body:has(.gateway-header) main {
   }
 }
 
-/* Starburst decoration at bottom */
+/* Starburst decoration - now implemented as CSS background on wrapper */
+/* Hide the element-based starburst since we use background-image instead */
 .hero-gateway .hero-gateway-starburst {
-  margin-top: var(--spacing-xl);
-  opacity: 0.4;
-}
-
-.hero-gateway .hero-gateway-starburst picture,
-.hero-gateway .hero-gateway-starburst img {
-  max-width: 300px;
-  width: 100%;
-  height: auto;
-}
-
-@media (width >= 900px) {
-  .hero-gateway .hero-gateway-starburst picture,
-  .hero-gateway .hero-gateway-starburst img {
-    max-width: 400px;
-  }
+  display: none;
 }
 
 /* Language selector pill at bottom */
@@ -585,7 +578,7 @@ body:has(.gateway-header) main {
 
 .footer-link:hover,
 .footer-link-btn:hover {
-  color: var(--color-teal);
+  color: var(--color-violet);
   text-decoration: none;
 }
 
