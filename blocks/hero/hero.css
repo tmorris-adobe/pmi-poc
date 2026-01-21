@@ -20,9 +20,14 @@
   justify-content: flex-end;
   padding: var(--spacing-xl) var(--spacing-m) 0;
   padding-top: 15vh;
-  background: var(--gradient-primary);
+  background: transparent;
   text-align: center;
   min-height: auto;
+}
+
+/* Fallback gradient for pages without hero-gateway */
+body:not(:has(.hero-gateway)) .hero {
+  background: var(--gradient-primary);
 }
 
 /* Logo image - displayed normally, not as background */
