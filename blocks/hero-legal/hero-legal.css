@@ -1,0 +1,39 @@
+/*
+ * Hero Legal Block Styles
+ * Gradient banner for legal page titles
+ */
+
+.hero-legal {
+  background: var(--gradient-primary);
+  padding: 80px 20px;
+  text-align: center;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-legal-title,
+.hero-legal h1,
+.hero-legal h2 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xl);
+  font-weight: var(--font-weight-regular);
+  font-style: italic;
+  color: var(--text-color-inverted);
+  margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero-legal {
+    padding: 60px 16px;
+    min-height: 150px;
+  }
+
+  .hero-legal-title,
+  .hero-legal h1,
+  .hero-legal h2 {
+    font-size: var(--heading-font-size-l);
+  }
+}

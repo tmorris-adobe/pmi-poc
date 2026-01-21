@@ -1,3 +1,12 @@
+/*
+ * Hero Block - Luo Medical Gateway Style
+ * First part of the gateway: logo and heading
+ */
+
+.hero-container {
+  margin: 0 !important;
+}
+
 .hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,33 +14,65 @@
 
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--spacing-xl) var(--spacing-m) 0;
+  padding-top: 15vh;
+  background: var(--gradient-primary);
+  text-align: center;
+  min-height: auto;
 }
 
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
+/* Logo image - displayed normally, not as background */
 .hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-bottom: var(--spacing-l);
 }
 
 .hero img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  width: auto;
+}
+
+/* Heading */
+.hero h1 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--text-color-inverted);
+  margin: 0;
+  max-width: 800px;
+}
+
+.hero h1 em {
+  font-style: italic;
 }
 
 @media (width >= 900px) {
   .hero {
-    padding: 40px 32px;
+    padding: var(--spacing-xl) var(--spacing-l) var(--spacing-m);
+    padding-top: 20vh;
+  }
+
+  .hero img {
+    max-width: 220px;
+  }
+}
+
+@media (width < 600px) {
+  .hero {
+    padding-top: 10vh;
+  }
+
+  .hero h1 {
+    font-size: var(--heading-font-size-xl);
   }
 }

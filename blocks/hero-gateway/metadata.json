@@ -1,0 +1,43 @@
+{
+  "variantName": "hero-gateway",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-01-16T17:50:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.luomedical.com/",
+    "originPage": "Luo Medical gateway landing page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "gateway-landing",
+    "imagePattern": "gradient-background",
+    "structure": "eyebrow + heading + CTA"
+  },
+  "contentPattern": {
+    "structure": "eyebrow text + large heading + call-to-action button",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "landing pages with gradient backgrounds",
+      "gateway/login pages",
+      "age verification gates",
+      "promotional landing pages",
+      "medical/healthcare portals"
+    ],
+    "notSuitableFor": [
+      "content-heavy pages",
+      "product detail pages",
+      "blog article pages",
+      "pages requiring multiple CTAs"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/index", "/content/ca/index", "/content/ca/patient/index", "/content/ca/health-care-professionals/index", "/content/ca/health-care-professionals/a-guide-for-hcps/index"],
+    "reuseCount": 5,
+    "lastUsed": "2026-01-16T23:31:00.000Z"
+  }
+}

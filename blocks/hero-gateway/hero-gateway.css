@@ -1,0 +1,97 @@
+/*
+ * Hero Gateway Block - Luo Medical Gateway Style
+ * Second part of the gateway: label and CTA button
+ */
+
+.hero-gateway-container {
+  margin: 0 !important;
+}
+
+.hero-gateway-container .hero-gateway-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-gateway {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--spacing-l) var(--spacing-m);
+  padding-bottom: 20vh;
+  background: var(--gradient-primary);
+  text-align: center;
+  min-height: auto;
+}
+
+/* Content wrapper */
+.hero-gateway .hero-gateway-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-m);
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Label text */
+.hero-gateway .hero-gateway-label,
+.hero-gateway p {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-color-inverted);
+  margin: 0 0 var(--spacing-s);
+}
+
+/* CTA Button */
+.hero-gateway a.button,
+.hero-gateway a {
+  display: inline-block;
+  padding: 16px 48px;
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: var(--border-radius-pill);
+  border: 2px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.hero-gateway a.button:hover,
+.hero-gateway a.button:focus,
+.hero-gateway a:hover,
+.hero-gateway a:focus {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .hero-gateway {
+    padding: var(--spacing-l) var(--spacing-l);
+    padding-bottom: 25vh;
+  }
+
+  .hero-gateway a.button,
+  .hero-gateway a {
+    padding: 18px 56px;
+    font-size: 22px;
+  }
+}
+
+@media (width < 600px) {
+  .hero-gateway {
+    padding-bottom: 15vh;
+  }
+
+  .hero-gateway a.button,
+  .hero-gateway a {
+    padding: 14px 36px;
+    font-size: 18px;
+  }
+}

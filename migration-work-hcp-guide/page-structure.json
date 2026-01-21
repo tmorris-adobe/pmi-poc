@@ -1,0 +1,35 @@
+{
+  "url": "https://www.luomedical.com/ca/health-care-professionals/a-guide-for-hcps/",
+  "pageType": "gateway-landing",
+  "note": "Same gateway template - shows verification form before guide content",
+  "sections": [
+    {
+      "id": "hero-section",
+      "type": "main-content",
+      "styling": "gradient (purple to cyan)",
+      "contentSequences": [
+        {"type": "image", "description": "Luo star logo"},
+        {"type": "heading", "content": "Illuminate Possibilities"}
+      ]
+    },
+    {
+      "id": "gateway-form-section",
+      "type": "main-content",
+      "styling": "gradient continuation",
+      "contentSequences": [
+        {"type": "text", "content": "Enter Your Details"},
+        {"type": "button", "content": "Enter Luo", "link": "/ca/health-care-professionals/a-guide-for-hcps/"}
+      ]
+    },
+    {
+      "id": "language-selector",
+      "type": "default-content",
+      "contentSequences": [
+        {"type": "links", "content": "English | Français"}
+      ]
+    }
+  ],
+  "blockInventory": {
+    "reuse": ["hero", "hero-gateway"]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "url": "https://www.luomedical.com/ca/health-care-professionals/a-guide-for-hcps/",
+  "analysisDate": "2026-01-16",
+  "sections": [
+    {
+      "id": "hero-section",
+      "authoringApproach": "block",
+      "blockName": "hero",
+      "reasoning": "Logo image + main heading with gradient background - reuse existing hero block",
+      "content": [
+        {"type": "image", "src": "./images/a2c5fba43c1a23a40f86157eb6eaeaea.png", "alt": "Luo logo"},
+        {"type": "heading", "level": 1, "text": "Illuminate Possibilities", "emphasis": true}
+      ]
+    },
+    {
+      "id": "gateway-form-section",
+      "authoringApproach": "block",
+      "blockName": "hero-gateway",
+      "reasoning": "Form label + CTA button over gradient - reuse existing hero-gateway block",
+      "content": [
+        {"type": "text", "text": "Enter Your Details"},
+        {"type": "link", "text": "Enter Luo", "href": "/ca/health-care-professionals/a-guide-for-hcps/"}
+      ]
+    },
+    {
+      "id": "language-selector",
+      "authoringApproach": "default-content",
+      "reasoning": "Simple language toggle links",
+      "content": [
+        {"type": "paragraph", "links": [
+          {"text": "English", "href": "/ca/"},
+          {"text": "Français", "href": "/ca/fr/"}
+        ]}
+      ]
+    }
+  ],
+  "blockInventory": {
+    "blocksToUse": ["hero", "hero-gateway"],
+    "note": "Reuses existing gateway blocks"
+  }
+}

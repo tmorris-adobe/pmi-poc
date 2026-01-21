@@ -1,0 +1,109 @@
+{
+  "url": "https://www.luomedical.com/ca/",
+  "pageType": "gateway-landing",
+  "sections": [
+    {
+      "id": "header",
+      "type": "header",
+      "skip": true,
+      "reason": "Handled by dedicated header block",
+      "elements": ["language-selector", "logo", "navigation"]
+    },
+    {
+      "id": "hero-gateway",
+      "type": "main-content",
+      "styling": {
+        "background": "gradient (purple to cyan)",
+        "layout": "full-viewport centered"
+      },
+      "contentSequences": [
+        {
+          "id": "decorative-mark",
+          "type": "image",
+          "description": "Star/sparkle decorative mark",
+          "image": "./images/a2c5fba43c1a23a40f86157eb6eaeaea.png"
+        },
+        {
+          "id": "label",
+          "type": "text",
+          "tag": "h3",
+          "content": "Enter Your Details"
+        },
+        {
+          "id": "heading",
+          "type": "heading",
+          "tag": "h1",
+          "content": "Illuminate Possibilities",
+          "style": "italic"
+        },
+        {
+          "id": "location-form",
+          "type": "form-element",
+          "description": "Location dropdown with Canadian provinces",
+          "note": "Requires custom JavaScript - content only migration will show placeholder"
+        },
+        {
+          "id": "age-verification",
+          "type": "form-element",
+          "description": "Date of birth selectors (DD/MM/YYYY)",
+          "note": "Requires custom JavaScript - content only migration will show placeholder"
+        },
+        {
+          "id": "remember-checkbox",
+          "type": "form-element",
+          "description": "Remember me checkbox",
+          "note": "Requires custom JavaScript"
+        },
+        {
+          "id": "cta-button",
+          "type": "button",
+          "content": "Enter Luo",
+          "link": "/ca/patient/",
+          "style": "white pill-shaped"
+        }
+      ]
+    },
+    {
+      "id": "language-selector-footer",
+      "type": "navigation",
+      "description": "Language toggle: English | Français",
+      "links": [
+        {"label": "English", "href": "/ca/"},
+        {"label": "Français", "href": "/ca/fr/"}
+      ]
+    },
+    {
+      "id": "footer",
+      "type": "footer",
+      "skip": true,
+      "reason": "Handled by dedicated footer block"
+    },
+    {
+      "id": "cookie-consent",
+      "type": "third-party-widget",
+      "skip": true,
+      "reason": "OneTrust cookie consent - not migrated"
+    }
+  ],
+  "blockInventory": {
+    "existing": [
+      {
+        "name": "hero",
+        "location": "blocks/hero/",
+        "purpose": "Full-screen hero with gradient background, logo, heading"
+      },
+      {
+        "name": "hero-gateway",
+        "location": "blocks/hero-gateway/",
+        "purpose": "Gateway form section with CTA button"
+      }
+    ],
+    "recommendation": "Reuse existing hero and hero-gateway blocks from homepage migration"
+  },
+  "notes": [
+    "Page is nearly identical to homepage (luomedical.com) but with Canadian content",
+    "Form elements (location dropdown, age verification) require custom JavaScript",
+    "For content migration, will show static text with CTA button",
+    "Language selector can be added as default content below hero"
+  ]
+}

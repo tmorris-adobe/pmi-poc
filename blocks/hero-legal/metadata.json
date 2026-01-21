@@ -1,0 +1,39 @@
+{
+  "variantName": "hero-legal",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-01-16T23:35:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.luomedical.com/ca/terms-of-use/",
+    "originPage": "Luo Medical legal pages",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "minimal",
+    "purpose": "legal-page-header",
+    "imagePattern": "gradient-background",
+    "structure": "centered title"
+  },
+  "contentPattern": {
+    "structure": "page title only",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "legal pages (terms, privacy, etc.)",
+      "policy pages",
+      "simple title banners"
+    ],
+    "notSuitableFor": [
+      "pages with hero images",
+      "pages needing CTAs in hero"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/ca/terms-of-use/index", "/content/ca/privacy-policy/index"],
+    "reuseCount": 2,
+    "lastUsed": "2026-01-16T23:35:00.000Z"
+  }
+}

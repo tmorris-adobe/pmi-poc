@@ -1,0 +1,37 @@
+{
+  "templates": [
+    {
+      "name": "luo-gateway",
+      "urls": ["https://www.luomedical.com/", "https://www.luomedical.com/ca/", "https://www.luomedical.com/ca/patient/", "https://www.luomedical.com/ca/health-care-professionals/", "https://www.luomedical.com/ca/health-care-professionals/a-guide-for-hcps/"],
+      "description": "Luo Medical gateway landing page with age/location verification",
+      "blocks": [
+        {
+          "name": "hero-gateway",
+          "instances": [".login-surround"]
+        }
+      ]
+    },
+    {
+      "name": "luo-hcp-gateway",
+      "urls": ["https://www.luomedical.com/ca/?request=hcp"],
+      "description": "Healthcare Professional verification gateway with disclaimer content",
+      "blocks": [
+        {
+          "name": "hero-gateway-hcp",
+          "instances": [".hcp-login-surround"]
+        }
+      ]
+    },
+    {
+      "name": "luo-legal",
+      "urls": ["https://www.luomedical.com/ca/terms-of-use/", "https://www.luomedical.com/ca/privacy-policy/"],
+      "description": "Legal content pages (Terms of Use, Privacy Policy)",
+      "blocks": [
+        {
+          "name": "hero-legal",
+          "instances": [".entry-title"]
+        }
+      ]
+    }
+  ]
+}

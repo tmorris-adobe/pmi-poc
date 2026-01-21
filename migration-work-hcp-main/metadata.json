@@ -1,0 +1,43 @@
+{
+  "url": "https://www.luomedical.com/ca/health-care-professionals/",
+  "timestamp": "2026-01-16T23:26:47.183Z",
+  "paths": {
+    "documentPath": "/ca/health-care-professionals/index",
+    "htmlFilePath": "/ca/health-care-professionals/index.plain.html",
+    "mdFilePath": "/ca/health-care-professionals/index.md",
+    "dirPath": "/ca/health-care-professionals",
+    "filename": "index"
+  },
+  "screenshot": "migration-work-hcp-main/screenshot.png",
+  "html": {
+    "filePath": "migration-work-hcp-main/cleaned.html",
+    "size": 60517
+  },
+  "metadata": {
+    "title": "Luo",
+    "viewport": "width=device-width, initial-scale=1",
+    "robots": "max-image-preview:large",
+    "generator": "WPML ver:4.8.6 stt:1,4;",
+    "msapplication-TileImage": "https://www.luomedical.com/ca/wp-content/uploads/2024/07/LuoFavIcon.png"
+  },
+  "images": {
+    "count": 7,
+    "mapping": {
+      "https://www.luomedical.com/ca/wp-content/uploads/2024/06/logo.svg": "./images/565b3a1f1f9a757c0ab250f307950f07.png",
+      "https://www.luomedical.com/ca/wp-content/themes/luo/img/login-background-min.jpg": "./images/4e95d94c9e510a8c934484ad51347a54.jpg",
+      "https://www.luomedical.com/ca/wp-content/themes/luo/img/login-luo-logo.svg": "./images/cd078ddf3e37ff639959b99d3a786ed6.png",
+      "https://cdn.cookielaw.org/logos/cd93bdd5-56f7-4ced-86ea-6cba906d98bb/019198da-284b-7bd6-969c-ddd4f4acd2e0/c01ea37d-74ae-4263-853b-37a131f2a1d9/VFP_Luo.png": "./images/72cadbf84c7b91723a77d8e45f602c5d.png",
+      "https://cdn.cookielaw.org/logos/static/ot_close.svg": "./images/cec4a77b663a079574d478e06d310304.png",
+      "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
+      "https://www.luomedical.com/ca/wp-content/themes/luo/img/login-footer-mark.svg": "./images/a2c5fba43c1a23a40f86157eb6eaeaea.png"
+    },
+    "stats": {
+      "total": 7,
+      "converted": 5,
+      "skipped": 2,
+      "failed": 0,
+      "tooLarge": 0,
+      "limitReached": 0
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "url": "https://www.luomedical.com/ca/",
+  "pageType": "gateway-landing",
+  "authoringDecisions": [
+    {
+      "sequence": "hero-section",
+      "decision": "block",
+      "blockName": "hero",
+      "variantName": "hero",
+      "reason": "Full-viewport section with logo and main heading - matches existing hero block pattern",
+      "content": {
+        "logo": "./images/a2c5fba43c1a23a40f86157eb6eaeaea.png",
+        "heading": "Illuminate Possibilities"
+      }
+    },
+    {
+      "sequence": "gateway-form-section",
+      "decision": "block",
+      "blockName": "hero-gateway",
+      "variantName": "hero-gateway",
+      "reason": "Form/CTA section with gradient background - matches existing hero-gateway block",
+      "content": {
+        "label": "Enter Your Details",
+        "cta": {
+          "text": "Enter Luo",
+          "link": "/ca/patient/"
+        }
+      },
+      "notes": "Form elements (location dropdown, age verification) require custom JavaScript implementation beyond content migration"
+    },
+    {
+      "sequence": "language-selector",
+      "decision": "default-content",
+      "reason": "Simple text links can be default content below hero blocks",
+      "content": {
+        "links": [
+          {"text": "English", "href": "/ca/"},
+          {"text": "Français", "href": "/ca/fr/"}
+        ]
+      }
+    }
+  ],
+  "sectionStyling": [
+    {
+      "section": "hero-section",
+      "styling": "gradient (purple to blue midpoint)",
+      "metadata": null
+    },
+    {
+      "section": "gateway-form-section",
+      "styling": "gradient (blue midpoint to cyan)",
+      "metadata": null
+    }
+  ],
+  "blockStructure": {
+    "hero": {
+      "row1": "Logo image",
+      "row2": "H1 heading (italic)"
+    },
+    "hero-gateway": {
+      "row1": "Label text",
+      "row2": "CTA link"
+    }
+  },
+  "metadata": {
+    "title": "Luo",
+    "description": "Luo Medical Canada - Illuminate Possibilities"
+  }
+}

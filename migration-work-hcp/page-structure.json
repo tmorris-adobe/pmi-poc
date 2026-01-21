@@ -1,0 +1,45 @@
+{
+  "url": "https://www.luomedical.com/ca/?request=hcp",
+  "pageType": "hcp-gateway",
+  "note": "Healthcare Professional verification gateway - different from patient gateway, has disclaimer/confirmation content",
+  "sections": [
+    {
+      "id": "hero-section",
+      "type": "main-content",
+      "styling": "gradient (purple to cyan)",
+      "contentSequences": [
+        {"type": "image", "description": "Luo star logo"},
+        {"type": "heading", "level": 2, "content": "For Healthcare Professionals Only"}
+      ]
+    },
+    {
+      "id": "hcp-disclaimer-section",
+      "type": "main-content",
+      "styling": "white card on gradient background",
+      "contentSequences": [
+        {"type": "paragraph", "content": "To access this webpage, please confirm..."},
+        {"type": "paragraph", "content": "By clicking 'I Confirm,' you verify that:"},
+        {"type": "list", "items": [
+          "You are a licensed physician or nurse practitioner regulated by Health Canada.",
+          "You are authorized to access information and make decisions regarding medical cannabis...",
+          "You understand that the information provided on this webpage is intended for professional use only..."
+        ]},
+        {"type": "paragraph", "content": "If you are not an appropriate licensed medical professional, please click 'Cancel'..."},
+        {"type": "checkbox", "label": "I am a healthcare professional and agree to the above terms."},
+        {"type": "button", "content": "Enter Luo HCP"},
+        {"type": "link", "content": "Cancel"}
+      ]
+    },
+    {
+      "id": "language-selector",
+      "type": "default-content",
+      "contentSequences": [
+        {"type": "links", "content": "English | Français"}
+      ]
+    }
+  ],
+  "blockInventory": {
+    "existing": ["hero", "hero-gateway"],
+    "newRequired": ["hero-gateway-hcp"]
+  }
+}

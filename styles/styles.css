@@ -1,72 +1,102 @@
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * Luo Medical Design System
+ * Migrated from https://www.luomedical.com/
  */
 
 :root {
-  /* colors */
-  --background-color: white;
+  /* Luo Medical Colors */
+  --color-white: #fff;
+  --color-dark-blue: #000a77;
+  --color-teal: #0fa5a5;
+  --color-mint: #7dd8c7;
+  --color-transparent-white: rgba(255, 255, 255, 0.1);
+
+  /* Semantic colors */
+  --background-color: var(--color-white);
   --light-color: #f8f8f8;
-  --dark-color: #505050;
+  --dark-color: var(--color-dark-blue);
   --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --text-color-inverted: var(--color-white);
+  --link-color: var(--color-dark-blue);
+  --link-hover-color: #000a77;
+  --accent-color: var(--color-dark-blue);
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* Gradient - Teal to Mint (matching original Luo branding) */
+  --gradient-primary: linear-gradient(135deg, var(--color-teal) 0%, var(--color-mint) 100%);
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* Fonts */
+  --body-font-family: "DM Sans", dm-sans-fallback, sans-serif;
+  --heading-font-family: degular-display, degular-fallback, sans-serif;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* Body sizes */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
 
-  /* nav height */
+  /* Heading sizes */
+  --heading-font-size-xxl: 64px;
+  --heading-font-size-xl: 48px;
+  --heading-font-size-l: 36px;
+  --heading-font-size-m: 28px;
+  --heading-font-size-s: 22px;
+  --heading-font-size-xs: 18px;
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 40px;
+  --spacing-xl: 64px;
+
+  /* Border radius */
+  --border-radius-s: 3px;
+  --border-radius-m: 8px;
+  --border-radius-l: 16px;
+  --border-radius-pill: 50px;
+
+  /* Nav height */
   --nav-height: 64px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease;
+  --transition-slow: 0.3s ease;
 }
 
-/* fallback fonts */
+/* Fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
+  font-family: degular-fallback;
+  size-adjust: 100%;
   src: local('Arial');
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
+  font-family: dm-sans-fallback;
+  size-adjust: 100%;
   src: local('Arial');
 }
 
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
+    /* Heading sizes - desktop */
+    --heading-font-size-xxl: 64px;
+    --heading-font-size-xl: 48px;
+    --heading-font-size-l: 36px;
+    --heading-font-size-m: 28px;
+    --heading-font-size-s: 22px;
     --heading-font-size-xs: 18px;
+  }
+}
+
+@media (width < 600px) {
+  :root {
+    /* Heading sizes - mobile */
+    --heading-font-size-xxl: 40px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 26px;
+    --heading-font-size-m: 22px;
+    --heading-font-size-s: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
 
@@ -78,6 +108,7 @@ body {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  letter-spacing: 0.1px;
 }
 
 body.appear {
@@ -98,6 +129,7 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
+/* Headings */
 h1,
 h2,
 h3,
@@ -107,8 +139,9 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.1px;
   scroll-margin: 40px;
 }
 
@@ -118,6 +151,13 @@ h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
+
+/* Italic headings (display style) */
+h1 em,
+h2 em,
+h3 em {
+  font-style: italic;
+}
 
 p,
 dl,
@@ -136,7 +176,7 @@ pre {
 
 pre {
   padding: 16px;
-  border-radius: 8px;
+  border-radius: var(--border-radius-m);
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
@@ -153,11 +193,12 @@ button {
   font: inherit;
 }
 
-/* links */
+/* Links */
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
   overflow-wrap: break-word;
+  transition: color var(--transition-base);
 }
 
 a:hover {
@@ -165,7 +206,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+/* Buttons - Primary */
 a.button:any-link,
 button {
   box-sizing: border-box;
@@ -173,41 +214,82 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
+  border-radius: var(--border-radius-pill);
+  padding: 16px 32px;
+  font-family: var(--heading-font-family);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: all var(--transition-base);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
   cursor: pointer;
 }
 
 button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
-  cursor: unset;
+  color: var(--dark-color);
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
+/* Buttons - Secondary (outline) */
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  background-color: transparent;
+  border: 2px solid var(--color-white);
+  color: var(--color-white);
+}
+
+a.button.secondary:hover,
+button.secondary:hover {
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
+}
+
+/* Form elements */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+  padding: 20px 25px;
+  border: 1px solid var(--color-white);
+  border-radius: var(--border-radius-s);
+  background-color: var(--color-transparent-white);
+  color: var(--color-white);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  transition: border-color var(--transition-base);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-white);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 main img {
@@ -227,9 +309,23 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* Sections */
 main > .section {
   margin: 40px 0;
+}
+
+/* Hero + Hero-Gateway seamless connection */
+main > .section.hero-container {
+  margin: 0;
+}
+
+main > .section.hero-gateway-container {
+  margin: 0;
+}
+
+/* Hide metadata block from display */
+main > .section.metadata-container {
+  display: none;
 }
 
 main > .section > div {
@@ -248,10 +344,282 @@ main > .section:first-of-type {
   }
 }
 
-/* section metadata */
+/* Section variants */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Dark section with gradient background */
+main .section.dark,
+main .section.gradient {
+  background: var(--gradient-primary);
+  color: var(--text-color-inverted);
+  margin: 0;
+  padding: var(--spacing-xl) 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6,
+main .section.dark p,
+main .section.gradient h1,
+main .section.gradient h2,
+main .section.gradient h3,
+main .section.gradient h4,
+main .section.gradient h5,
+main .section.gradient h6,
+main .section.gradient p {
+  color: var(--text-color-inverted);
+}
+
+main .section.dark a:any-link,
+main .section.gradient a:any-link {
+  color: var(--text-color-inverted);
+}
+
+/* Centered content */
+main .section.center {
+  text-align: center;
+}
+
+main .section.center > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================================================
+   Form Elements - Luo Medical Style
+   ========================================================================== */
+
+/* Form container on gradient backgrounds */
+.form-gateway {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Form labels */
+.form-gateway label,
+.gradient label,
+.dark label {
+  color: var(--text-color-inverted);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Select dropdowns - transparent white style */
+.form-gateway select,
+.gradient select,
+.dark select {
+  appearance: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--color-white);
+  border-radius: 3px;
+  color: var(--text-color-inverted);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  padding: 20px 25px;
+  padding-right: 45px;
+  width: 100%;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='white' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 20px center;
+}
+
+.form-gateway select:focus,
+.gradient select:focus,
+.dark select:focus {
+  outline: none;
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 2px rgba(15, 165, 165, 0.3);
+}
+
+/* Date picker row - side by side */
+.form-gateway .date-row {
+  display: flex;
+  gap: var(--spacing-s);
+}
+
+.form-gateway .date-row select {
+  flex: 1;
+  padding: 20px 15px;
+}
+
+/* Checkbox styling */
+.form-gateway input[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--color-white);
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-right: var(--spacing-xs);
+}
+
+.form-gateway input[type="checkbox"]:checked {
+  background-color: var(--color-white);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%230FA5A5' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Checkbox label */
+.form-gateway .checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color-inverted);
+  line-height: 1.4;
+}
+
+/* Full-width submit button on gradient */
+.form-gateway .button-submit,
+.form-gateway button[type="submit"] {
+  width: 100%;
+  padding: 20px 40px;
+  background-color: var(--color-white);
+  color: var(--color-dark-blue);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  border-radius: var(--border-radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  margin-top: var(--spacing-m);
+}
+
+.form-gateway .button-submit:hover,
+.form-gateway button[type="submit"]:hover {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+}
+
+.form-gateway .button-submit:disabled,
+.form-gateway button[type="submit"]:disabled {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.6);
+  cursor: not-allowed;
+}
+
+/* Language selector */
+.language-selector {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-s);
+  padding: var(--spacing-m);
+  background-color: var(--color-white);
+}
+
+.language-selector a {
+  color: var(--color-dark-blue);
+  text-decoration: none;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+}
+
+.language-selector a:hover {
+  text-decoration: underline;
+}
+
+.language-selector span {
+  color: var(--color-dark-blue);
+}
+
+/* ==========================================================================
+   Legal Content Pages (Terms of Use, Privacy Policy)
+   ========================================================================== */
+
+/* Hero-Legal section - no margin for seamless gradient */
+main > .section.hero-legal-container {
+  margin: 0;
+}
+
+/* Legal content area styling */
+.legal-content,
+main > .section:has(> div > p:first-child > em) {
+  padding: var(--spacing-xl) 0;
+}
+
+.legal-content > div,
+main > .section:has(> div > p:first-child > em) > div {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+/* Legal page h4 - section headings */
+main h4 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-m);
+  font-weight: 400;
+  color: var(--color-dark-blue);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-m);
+  line-height: 1;
+}
+
+main h4:first-of-type {
+  margin-top: var(--spacing-l);
+}
+
+/* Legal page body text */
+main p {
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  color: var(--color-dark-blue);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-m);
+}
+
+/* Italic text (Last Updated date) */
+main p em {
+  font-style: italic;
+  color: var(--color-dark-blue);
+}
+
+/* Legal page lists */
+main ul,
+main ol {
+  margin-left: 30px;
+  padding-left: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
+  color: var(--color-dark-blue);
+}
+
+main ul {
+  list-style-type: disc;
+}
+
+main ol {
+  list-style-type: decimal;
+}
+
+main li {
+  font-family: var(--heading-font-family);
+  font-size: var(--body-font-size-s);
+  color: var(--color-dark-blue);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-xs);
+}
+
+/* Strong text in legal content */
+main strong {
+  font-weight: 600;
 }

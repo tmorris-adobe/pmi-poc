@@ -1,0 +1,35 @@
+{
+  "url": "https://www.luomedical.com/ca/patient/",
+  "pageType": "gateway-landing",
+  "note": "Same template as /ca/ gateway page - reuses hero and hero-gateway blocks",
+  "sections": [
+    {
+      "id": "hero-section",
+      "type": "main-content",
+      "styling": "gradient (purple to cyan)",
+      "contentSequences": [
+        {"type": "image", "description": "Luo star logo"},
+        {"type": "heading", "content": "Illuminate Possibilities"}
+      ]
+    },
+    {
+      "id": "gateway-form-section",
+      "type": "main-content",
+      "styling": "gradient continuation",
+      "contentSequences": [
+        {"type": "text", "content": "Enter Your Details"},
+        {"type": "button", "content": "Enter Luo", "link": "/ca/patient/"}
+      ]
+    },
+    {
+      "id": "language-selector",
+      "type": "default-content",
+      "contentSequences": [
+        {"type": "links", "content": "English | Français"}
+      ]
+    }
+  ],
+  "blockInventory": {
+    "reuse": ["hero", "hero-gateway"]
+  }
+}

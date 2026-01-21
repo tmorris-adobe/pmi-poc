@@ -1,0 +1,87 @@
+{
+  "url": "https://www.luomedical.com/",
+  "pageType": "landing-gateway",
+  "description": "Landing page with age/location gate before entering the main Luo Medical site",
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "name": "Hero Gateway",
+      "styling": {
+        "background": "gradient (purple #5B21B6 to blue #0891B2)",
+        "layout": "centered, full-viewport",
+        "textColor": "white"
+      },
+      "contentSequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Logo image at top center",
+          "htmlSelector": ".site-branding img.custom-logo",
+          "type": "branding"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Eyebrow text 'Enter Your Details' followed by large italic heading 'Illuminate Possibilities'",
+          "htmlSelector": ".login-surround h3, .login-surround h1",
+          "type": "headings"
+        },
+        {
+          "sequenceNumber": 3,
+          "description": "Location dropdown with label 'Where are you located?' and Canadian provinces",
+          "htmlSelector": "label + select#location",
+          "type": "form-field"
+        },
+        {
+          "sequenceNumber": 4,
+          "description": "Age verification with date of birth dropdowns (DD/MM/YYYY)",
+          "htmlSelector": ".how-old-area",
+          "type": "form-field"
+        },
+        {
+          "sequenceNumber": 5,
+          "description": "Remember me checkbox and 'Enter Luo' call-to-action button",
+          "htmlSelector": ".checkbox-surround, #submit-button-wrapper",
+          "type": "form-submit"
+        },
+        {
+          "sequenceNumber": 6,
+          "description": "Decorative starburst/asterisk icon mark",
+          "htmlSelector": ".content-area > img",
+          "type": "decorative"
+        },
+        {
+          "sequenceNumber": 7,
+          "description": "Language selector toggle (English/Français)",
+          "htmlSelector": ".wpml-ls-statics-footer",
+          "type": "language-selector"
+        }
+      ]
+    }
+  ],
+  "excludedElements": [
+    "Cookie consent banner (OneTrust)",
+    "Header navigation (handled by header block)",
+    "Footer (handled by footer block)"
+  ],
+  "blockInventory": {
+    "localBlocks": [
+      { "name": "hero", "path": "/workspace/blocks/hero" },
+      { "name": "cards", "path": "/workspace/blocks/cards" },
+      { "name": "columns", "path": "/workspace/blocks/columns" },
+      { "name": "fragment", "path": "/workspace/blocks/fragment" },
+      { "name": "header", "path": "/workspace/blocks/header" },
+      { "name": "footer", "path": "/workspace/blocks/footer" }
+    ],
+    "blockCollectionAvailable": [
+      { "name": "Hero", "path": "/block-collection/hero", "purpose": "Large heading, text, and CTA buttons for page introductions" },
+      { "name": "Cards", "path": "/block-collection/cards", "purpose": "Grid of items with images, headings, and descriptions" },
+      { "name": "Columns", "path": "/block-collection/columns", "purpose": "Side-by-side content in 2-3 columns" }
+    ]
+  },
+  "notes": [
+    "This is a gateway/landing page that acts as an age and location verification gate",
+    "The page has interactive form elements (dropdowns, checkbox, submit button)",
+    "The visual design features a striking purple-to-blue gradient background",
+    "Form functionality would require JavaScript implementation beyond markdown",
+    "For migration, focus on content structure; form interactivity is separate concern"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "variantName": "hero-gateway-hcp",
+  "baseBlock": "hero-gateway",
+  "version": "1.0.0",
+  "created": "2026-01-16T23:20:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.luomedical.com/ca/?request=hcp",
+    "originPage": "Luo Medical HCP verification gateway",
+    "blockPosition": "main"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light-card-on-gradient",
+    "density": "content-rich",
+    "purpose": "hcp-verification",
+    "imagePattern": "white-card",
+    "structure": "disclaimer text + list + CTA buttons"
+  },
+  "contentPattern": {
+    "structure": "paragraphs + bullet list + primary CTA + secondary cancel link",
+    "buttonCount": 2,
+    "hasDisclaimer": true
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "healthcare professional verification pages",
+      "legal disclaimer gateways",
+      "age/profession confirmation pages",
+      "terms acceptance pages"
+    ],
+    "notSuitableFor": [
+      "simple login forms",
+      "product pages",
+      "content-light gateways"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/ca/hcp/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-01-16T23:20:00.000Z"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "url": "https://www.luomedical.com/ca/?request=hcp",
+  "analysisDate": "2026-01-16",
+  "sections": [
+    {
+      "id": "hero-section",
+      "authoringApproach": "block",
+      "blockName": "hero",
+      "reasoning": "Logo image + main heading with gradient background - matches existing hero block pattern",
+      "content": [
+        {"type": "image", "src": "./images/a2c5fba43c1a23a40f86157eb6eaeaea.png", "alt": "Luo logo"},
+        {"type": "heading", "level": 2, "text": "For Healthcare Professionals Only"}
+      ]
+    },
+    {
+      "id": "hcp-disclaimer-section",
+      "authoringApproach": "block",
+      "blockName": "hero-gateway-hcp",
+      "reasoning": "HCP-specific disclaimer content with text, bullet points, checkbox and CTAs - needs new variant",
+      "content": [
+        {"type": "paragraph", "text": "To access this webpage, please confirm that you are a licensed physician or nurse practitioner regulated under Health Canada's Cannabis Act and associated regulations. This content is intended for such healthcare providers and may include information related to medical cannabis and patient care."},
+        {"type": "paragraph", "text": "By clicking \"I Confirm,\" you verify that:"},
+        {"type": "list", "items": [
+          "You are a licensed physician or nurse practitioner regulated by Health Canada.",
+          "You are authorized to access information and make decisions regarding medical cannabis in compliance with Canadian regulations.",
+          "You understand that the information provided on this webpage is intended for professional use only and not intended for a consumer audience."
+        ]},
+        {"type": "paragraph", "text": "If you are not an appropriate licensed medical professional, please click \"Cancel\" to return to previous page."},
+        {"type": "link", "text": "Enter Luo HCP", "href": "/ca/health-care-professionals/"},
+        {"type": "link", "text": "Cancel", "href": "/ca/"}
+      ]
+    },
+    {
+      "id": "language-selector",
+      "authoringApproach": "default-content",
+      "reasoning": "Simple language toggle links - standard paragraph with links",
+      "content": [
+        {"type": "paragraph", "text": "English | Français", "links": [
+          {"text": "English", "href": "/ca/"},
+          {"text": "Français", "href": "/ca/fr/"}
+        ]}
+      ]
+    }
+  ],
+  "blockInventory": {
+    "blocksToUse": ["hero", "hero-gateway-hcp"],
+    "newVariantRequired": true,
+    "note": "hero-gateway-hcp is a new variant for HCP disclaimer content"
+  }
+}
