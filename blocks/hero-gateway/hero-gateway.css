@@ -264,7 +264,7 @@ body:has(.gateway-header) main {
   /* Starburst decoration as background - matching original site */
   background-image: url('/styles/login-footer-mark.svg');
   background-position: 50% calc(100% - 36px);
-  background-size: 1280px;
+  background-size: 120vw;
   background-repeat: no-repeat;
   /* Ensure enough height for starburst to display properly */
   min-height: calc(100vh - 60px);
