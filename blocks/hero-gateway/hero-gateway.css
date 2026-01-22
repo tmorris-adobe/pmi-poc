@@ -250,6 +250,11 @@ body:has(.gateway-header) main {
   padding-top: 60px;
 }
 
+/* Hide default site header on gateway pages */
+body:has(.hero-gateway) header:not(.gateway-header) {
+  display: none;
+}
+
 /* ==========================================================================
    End Gateway Header
    ==========================================================================*/
@@ -261,10 +266,10 @@ body:has(.gateway-header) main {
 .hero-gateway-container .hero-gateway-wrapper {
   max-width: unset;
   padding: 0;
-  /* Starburst decoration as background - matching original site */
+  /* Starburst decoration as background - positioned below Enter Luo button */
   background-image: url('/styles/login-footer-mark.svg');
-  background-position: 50% calc(100% - 36px);
-  background-size: 120vw;
+  background-position: 50% calc(100% + 80px);
+  background-size: 100vw;
   background-repeat: no-repeat;
   /* Ensure enough height for starburst to display properly */
   min-height: calc(100vh - 60px);
@@ -293,14 +298,12 @@ body:has(.gateway-header) main {
   width: 100%;
 }
 
-/* Label text */
+/* Label text - Title case to match original */
 .hero-gateway .hero-gateway-label {
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xs);
-  text-transform: uppercase;
-  letter-spacing: 2px;
+  font-size: var(--body-font-size-s);
   color: var(--text-color-inverted);
-  margin: 0 0 var(--spacing-s);
+  margin: 0 0 var(--spacing-xs);
 }
 
 /* Age Verification Form */
@@ -614,7 +617,7 @@ body:has(.gateway-header) main {
   }
 }
 
-/* Hide default footer on gateway pages */
-body:has(.hero-gateway) footer:not(.gateway-footer) {
+/* Hide all footers on gateway pages - original only shows language selector */
+body:has(.hero-gateway) footer {
   display: none;
 }

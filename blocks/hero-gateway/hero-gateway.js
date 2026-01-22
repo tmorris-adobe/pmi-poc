@@ -364,17 +364,17 @@ export default function decorate(block) {
   block.textContent = '';
   block.appendChild(contentWrapper);
 
-  // Add gateway header to the page
-  const existingHeader = document.querySelector('.gateway-header');
-  if (!existingHeader) {
-    const gatewayHeader = createGatewayHeader();
-    document.body.insertBefore(gatewayHeader, document.body.firstChild);
+  // Move the "Enter Your Details" label to appear before the heading in the hero block
+  // This matches the original site layout
+  const heroBlock = document.querySelector('.hero');
+  const label = contentWrapper.querySelector('.hero-gateway-label');
+  if (heroBlock && label) {
+    const heroH1 = heroBlock.querySelector('h1');
+    if (heroH1) {
+      // Insert label before the heading
+      heroH1.parentElement.insertBefore(label, heroH1);
+    }
   }
 
-  // Add gateway footer to the page
-  const existingFooter = document.querySelector('.gateway-footer');
-  if (!existingFooter) {
-    const gatewayFooter = createGatewayFooter();
-    document.body.appendChild(gatewayFooter);
-  }
+  // Gateway footer removed - original site only shows language selector on gateway page
 }

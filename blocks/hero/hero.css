@@ -45,6 +45,25 @@ body:not(:has(.hero-gateway)) .hero {
   width: auto;
 }
 
+/* Hide starburst image on gateway pages - only show the heading */
+body:has(.hero-gateway) .hero picture {
+  display: none;
+}
+
+/* Add Luo logo at top of gateway pages */
+body:has(.hero-gateway) .hero::before {
+  content: '';
+  display: block;
+  width: 135px;
+  height: 71px;
+  background-image: url('/icons/luo-logo-white.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto var(--spacing-m);
+}
+
+
 /* Heading */
 .hero h1 {
   font-family: var(--heading-font-family);
@@ -55,6 +74,11 @@ body:not(:has(.hero-gateway)) .hero {
   color: var(--text-color-inverted);
   margin: 0;
   max-width: 800px;
+}
+
+/* Force two-line display on gateway pages to match original */
+body:has(.hero-gateway) .hero h1 {
+  max-width: 500px;
 }
 
 .hero h1 em {
