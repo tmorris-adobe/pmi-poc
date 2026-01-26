@@ -393,7 +393,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 }
 
 .hero-gateway .checkbox-label {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-color-inverted);
   text-align: left;
   line-height: 1.4;
