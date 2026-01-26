@@ -491,21 +491,22 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 }
 
 /* Starburst decoration - fixed at bottom of viewport, behind content */
+/* SVG has starburst center at bottom, so position bottom of SVG near language selector */
 body:has(.hero-gateway)::after {
   content: '';
   position: fixed;
-  bottom: 25px;
+  bottom: -50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1400px;
-  height: 700px;
+  width: 2000px;
+  height: 1073px;
   background-image: url('/styles/login-footer-mark.svg');
-  background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center bottom;
   pointer-events: none;
   z-index: 0; /* Behind content */
-  opacity: 0.8;
+  opacity: 1;
 }
 
 /* Hide the element-based starburst */
