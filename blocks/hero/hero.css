@@ -60,7 +60,7 @@ body:has(.hero-gateway) .hero::before {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 0 auto var(--spacing-l);
+  margin: 0 auto var(--spacing-xl);
 }
 
 
