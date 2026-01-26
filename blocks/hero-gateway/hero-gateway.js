@@ -279,6 +279,15 @@ function createAgeVerificationForm(targetUrl) {
 }
 
 export default function decorate(block) {
+  // Check if user already passed age verification (cookie exists)
+  const isVerified = document.cookie.split(';').some((c) => c.trim().startsWith('luo_age_verified='));
+
+  if (isVerified) {
+    // User already verified - hide the gateway block entirely
+    block.style.display = 'none';
+    return;
+  }
+
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'hero-gateway-content';
 
