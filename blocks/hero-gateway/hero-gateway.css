@@ -494,7 +494,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 body:has(.hero-gateway)::after {
   content: '';
   position: fixed;
-  bottom: 60px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   width: 1150px;
@@ -513,25 +513,25 @@ body:has(.hero-gateway)::after {
   display: none;
 }
 
-/* Language selector pill - fixed at bottom of viewport */
+/* Language selector - fixed at very bottom of viewport, below starburst */
 .hero-gateway .hero-gateway-languages {
   position: fixed;
-  bottom: 20px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
-  gap: 24px;
-  padding: 12px 24px;
+  gap: 12px;
+  padding: 6px 12px;
   background-color: var(--color-white);
-  border-radius: var(--border-radius-pill);
+  border-radius: 2px;
   z-index: 10;
 }
 
 .hero-gateway .hero-gateway-languages a {
   color: rgb(68, 68, 68);
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 10px;
   text-decoration: none;
   background: none;
   padding: 5px 10px;
