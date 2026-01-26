@@ -266,13 +266,14 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 .hero-gateway-container .hero-gateway-wrapper {
   max-width: unset;
   padding: 0;
-  /* Starburst decoration as background - positioned below Enter Luo button */
+  padding-bottom: 40px;
+  /* Starburst decoration as background - positioned above language selector */
   background-image: url('/styles/login-footer-mark.svg');
-  background-position: 50% calc(100% + 80px);
-  background-size: 100vw;
+  background-position: 50% calc(100% - 80px);
+  background-size: 936px;
   background-repeat: no-repeat;
-  /* Ensure enough height for starburst to display properly */
-  min-height: calc(100vh - 60px);
+  /* Match original: min-height ensures starburst stays at viewport bottom */
+  min-height: 100vh;
 }
 
 .hero-gateway {
@@ -281,8 +282,8 @@ body:has(.hero-gateway) header:not(.gateway-header) {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: var(--spacing-l) var(--spacing-m);
-  padding-bottom: 15vh;
+  padding: var(--spacing-m) var(--spacing-m);
+  padding-bottom: 0;
   background: transparent;
   text-align: center;
   min-height: auto;
@@ -464,8 +465,8 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 
 @media (width >= 900px) {
   .hero-gateway {
-    padding: var(--spacing-xl) var(--spacing-l);
-    padding-bottom: 20vh;
+    padding: var(--spacing-m) var(--spacing-l);
+    padding-bottom: 0;
   }
 
   .hero-gateway .hero-gateway-content {
@@ -476,7 +477,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 @media (width < 600px) {
   .hero-gateway {
     padding: var(--spacing-m) var(--spacing-s);
-    padding-bottom: 10vh;
+    padding-bottom: 0;
   }
 
   .hero-gateway select {
@@ -505,20 +506,22 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 .hero-gateway .hero-gateway-languages {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 24px;
   padding: 12px 24px;
   background-color: var(--color-white);
   border-radius: var(--border-radius-pill);
-  margin-top: var(--spacing-l);
+  margin-top: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .hero-gateway .hero-gateway-languages a {
-  color: var(--color-dark-blue);
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
+  color: rgb(68, 68, 68);
+  font-family: var(--heading-font-family);
+  font-size: 16px;
   text-decoration: none;
   background: none;
-  padding: 0;
+  padding: 5px 10px;
   border: none;
   border-radius: 0;
 }
@@ -526,12 +529,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 .hero-gateway .hero-gateway-languages a:hover {
   text-decoration: underline;
   background: none;
-  color: var(--color-dark-blue);
-}
-
-.hero-gateway .hero-gateway-languages .lang-separator {
-  color: var(--color-dark-navy);
-  font-weight: 400;
+  color: rgb(68, 68, 68);
 }
 
 /* ==========================================================================

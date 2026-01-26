@@ -344,18 +344,11 @@ export default function decorate(block) {
     langWrapper.className = 'hero-gateway-languages';
     // Extract just the links from the language row
     const links = languageLinks.querySelectorAll('a');
-    links.forEach((link, i) => {
+    links.forEach((link) => {
       const newLink = document.createElement('a');
       newLink.href = link.href;
       newLink.textContent = link.textContent;
       langWrapper.appendChild(newLink);
-      // Add separator between links
-      if (i < links.length - 1) {
-        const sep = document.createElement('span');
-        sep.textContent = ' | ';
-        sep.className = 'lang-separator';
-        langWrapper.appendChild(sep);
-      }
     });
     contentWrapper.appendChild(langWrapper);
   }

@@ -18,8 +18,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding: var(--spacing-xl) var(--spacing-m) 0;
-  padding-top: 15vh;
+  padding: var(--spacing-m) var(--spacing-m) 0;
+  padding-top: 50px;
   background: transparent;
   text-align: center;
   min-height: auto;
@@ -85,10 +85,20 @@ body:has(.hero-gateway) .hero h1 {
   font-style: italic;
 }
 
+/* Label text - "Enter Your Details" */
+.hero .hero-gateway-label {
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-color-inverted);
+  letter-spacing: 0.1px;
+  margin-bottom: var(--spacing-xs);
+}
+
 @media (width >= 900px) {
   .hero {
-    padding: var(--spacing-xl) var(--spacing-l) var(--spacing-m);
-    padding-top: 20vh;
+    padding: var(--spacing-m) var(--spacing-l) var(--spacing-m);
+    padding-top: 60px;
   }
 
   .hero img {
