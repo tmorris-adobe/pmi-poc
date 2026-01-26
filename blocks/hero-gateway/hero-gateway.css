@@ -392,8 +392,8 @@ body:has(.hero-gateway) header:not(.gateway-header) {
   background-position: center;
 }
 
-.hero-gateway .checkbox-label {
-  font-size: 11px;
+.hero-gateway .form-group label.checkbox-label {
+  font-size: 9px;
   color: var(--text-color-inverted);
   text-align: left;
   line-height: 1.4;
