@@ -516,7 +516,7 @@ body:has(.hero-gateway)::after {
 /* Language selector - fixed at very bottom of viewport, below starburst */
 .hero-gateway .hero-gateway-languages {
   position: fixed;
-  bottom: 0;
+  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
