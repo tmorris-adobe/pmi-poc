@@ -266,14 +266,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 .hero-gateway-container .hero-gateway-wrapper {
   max-width: unset;
   padding: 0;
-  padding-bottom: 40px;
-  /* Starburst decoration as background - positioned above language selector */
-  background-image: url('/styles/login-footer-mark.svg');
-  background-position: 50% calc(100% - 80px);
-  background-size: 936px;
-  background-repeat: no-repeat;
-  /* Match original: min-height ensures starburst stays at viewport bottom */
-  min-height: 100vh;
+  padding-bottom: 100px; /* Space for fixed language selector */
 }
 
 .hero-gateway {
@@ -287,6 +280,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
   background: transparent;
   text-align: center;
   min-height: auto;
+  z-index: 2; /* Above starburst */
 }
 
 /* Content wrapper */
@@ -496,22 +490,41 @@ body:has(.hero-gateway) header:not(.gateway-header) {
   }
 }
 
-/* Starburst decoration - now implemented as CSS background on wrapper */
-/* Hide the element-based starburst since we use background-image instead */
+/* Starburst decoration - fixed at bottom of viewport, behind content */
+body:has(.hero-gateway)::after {
+  content: '';
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background-image: url('/styles/login-footer-mark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0; /* Behind content */
+  opacity: 0.5;
+}
+
+/* Hide the element-based starburst */
 .hero-gateway .hero-gateway-starburst {
   display: none;
 }
 
-/* Language selector pill at bottom */
+/* Language selector pill - fixed at bottom of viewport */
 .hero-gateway .hero-gateway-languages {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
   gap: 24px;
   padding: 12px 24px;
   background-color: var(--color-white);
   border-radius: var(--border-radius-pill);
-  margin-top: auto;
-  position: relative;
   z-index: 10;
 }
 

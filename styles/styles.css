@@ -375,8 +375,9 @@ body:has(.hero-gateway) {
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  background-attachment: scroll;
-  min-height: 100vh;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body:has(.hero-gateway) main > .section {
