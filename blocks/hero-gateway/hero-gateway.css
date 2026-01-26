@@ -497,8 +497,8 @@ body:has(.hero-gateway)::after {
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1000px;
-  height: 500px;
+  width: 1150px;
+  height: 575px;
   background-image: url('/styles/login-footer-mark.svg');
   background-size: contain;
   background-repeat: no-repeat;
