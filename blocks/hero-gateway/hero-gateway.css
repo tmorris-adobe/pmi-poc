@@ -494,11 +494,11 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 body:has(.hero-gateway)::after {
   content: '';
   position: fixed;
-  bottom: 32px;
+  bottom: 45px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1150px;
-  height: 575px;
+  width: 1400px;
+  height: 700px;
   background-image: url('/styles/login-footer-mark.svg');
   background-size: contain;
   background-repeat: no-repeat;
