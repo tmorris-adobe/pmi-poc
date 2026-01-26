@@ -268,7 +268,7 @@ function createAgeVerificationForm(targetUrl) {
       } else {
         document.cookie = 'luo_age_verified=true; path=/';
       }
-      window.location.href = targetUrl || '/ca/patient/';
+      window.location.href = targetUrl || '/content/ca/patient/index.html';
     } else {
       // eslint-disable-next-line no-alert
       alert('You must be of legal age in your province to access this site.');
@@ -282,8 +282,9 @@ export default function decorate(block) {
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'hero-gateway-content';
 
-  // Find target URL from first link (the Enter button destination)
-  let targetUrl = '/content/ca/patient/index.html';
+  // Hardcode the target URL for age verification redirect
+  // This ensures we always redirect to our local patient page, not the original site
+  const targetUrl = '/content/ca/patient/index.html';
   const rows = [...block.children];
   let starburstPicture = null;
   let languageLinks = null;
@@ -309,11 +310,9 @@ export default function decorate(block) {
       return;
     }
 
-    // Single link in first cell is the Enter button destination
+    // Skip link rows - we use hardcoded targetUrl now
     const cellLink = firstCell.querySelector('a');
     if (cellLink && !rowText.includes('English') && !rowText.includes('Français')) {
-      // Use getAttribute to get the path as written, not the resolved absolute URL
-      targetUrl = cellLink.getAttribute('href') || cellLink.href;
       return;
     }
 
