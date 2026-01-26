@@ -283,7 +283,7 @@ export default function decorate(block) {
   contentWrapper.className = 'hero-gateway-content';
 
   // Find target URL from first link (the Enter button destination)
-  let targetUrl = '/ca/patient/';
+  let targetUrl = '/content/ca/patient/index.html';
   const rows = [...block.children];
   let starburstPicture = null;
   let languageLinks = null;
@@ -312,7 +312,8 @@ export default function decorate(block) {
     // Single link in first cell is the Enter button destination
     const cellLink = firstCell.querySelector('a');
     if (cellLink && !rowText.includes('English') && !rowText.includes('Français')) {
-      targetUrl = cellLink.href;
+      // Use getAttribute to get the path as written, not the resolved absolute URL
+      targetUrl = cellLink.getAttribute('href') || cellLink.href;
       return;
     }
 
