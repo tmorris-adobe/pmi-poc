@@ -281,10 +281,17 @@ function createAgeVerificationForm(targetUrl) {
 export default function decorate(block) {
   // Check if user already passed age verification (cookie exists)
   const isVerified = document.cookie.split(';').some((c) => c.trim().startsWith('luo_age_verified='));
+  const patientPagePath = '/content/ca/patient/index.html';
+  const isOnPatientPage = window.location.pathname.includes('/patient/');
 
   if (isVerified) {
-    // User already verified - hide the gateway block entirely
-    block.style.display = 'none';
+    if (isOnPatientPage) {
+      // Already on patient page - just hide the gateway block
+      block.style.display = 'none';
+    } else {
+      // On gateway page but already verified - redirect to patient page
+      window.location.href = patientPagePath;
+    }
     return;
   }
 
