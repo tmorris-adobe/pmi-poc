@@ -494,18 +494,18 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 body:has(.hero-gateway)::after {
   content: '';
   position: fixed;
-  bottom: -50px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-  width: 900px;
-  height: 450px;
+  width: 1000px;
+  height: 500px;
   background-image: url('/styles/login-footer-mark.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
   z-index: 0; /* Behind content */
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* Hide the element-based starburst */
