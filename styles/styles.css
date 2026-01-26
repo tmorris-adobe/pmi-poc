@@ -751,3 +751,137 @@ main li {
 main strong {
   font-weight: 600;
 }
+
+/* ==========================================================================
+   Patient Page Styles
+   ========================================================================== */
+
+/* Patient page - detect by first h1 containing "Illuminate Possibilities" */
+main:has(> div:first-child h1#illuminate-possibilities) {
+  background: var(--gradient-primary);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Patient page hero section - first section with gradient */
+main:has(> div:first-child h1#illuminate-possibilities) > div:first-child {
+  background: var(--gradient-primary);
+  background-size: cover;
+  background-position: center top;
+  color: var(--text-color-inverted);
+  padding: 120px 24px 80px;
+  margin: 0;
+  text-align: center;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) > div:first-child h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-style: italic;
+  color: var(--text-color-inverted);
+  margin-bottom: var(--spacing-m);
+  max-width: 600px;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) > div:first-child p {
+  color: var(--text-color-inverted);
+  max-width: 500px;
+  margin: 0 auto var(--spacing-m);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) > div:first-child a {
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  padding: 16px 40px;
+  border-radius: var(--border-radius-pill);
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  transition: all var(--transition-base);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) > div:first-child a:hover {
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
+}
+
+/* Patient page - all other sections reset background */
+main:has(> div:first-child h1#illuminate-possibilities) > div:not(:first-child) {
+  background: var(--background-color);
+  margin: 0;
+  padding: var(--spacing-xl) 24px;
+}
+
+/* Patient page content sections */
+main:has(> div:first-child h1#illuminate-possibilities) > div:nth-child(2),
+main:has(> div:first-child h1#illuminate-possibilities) > div:nth-child(3) {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) > div h2 {
+  font-size: var(--heading-font-size-l);
+  color: var(--color-deep-blue);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-m);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) > div h3 {
+  font-size: var(--heading-font-size-m);
+  color: var(--color-deep-blue);
+  margin-bottom: var(--spacing-s);
+}
+
+/* Patient page - cards styling */
+main:has(> div:first-child h1#illuminate-possibilities) .cards {
+  border: none;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-m);
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-m) 0;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li {
+  background: var(--light-color);
+  border: 1px solid #e0e0e0;
+  border-radius: var(--border-radius-m);
+  padding: var(--spacing-m);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li strong {
+  display: block;
+  font-size: var(--body-font-size-m);
+  color: var(--color-deep-blue);
+  margin-bottom: var(--spacing-xs);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li a {
+  color: var(--color-purple);
+  text-decoration: none;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li a:hover {
+  text-decoration: underline;
+}
+
+/* FAQ sections - gradient bottom */
+main:has(> div:first-child h1#illuminate-possibilities) > div:nth-last-child(2),
+main:has(> div:first-child h1#illuminate-possibilities) > div:nth-last-child(3) {
+  background: linear-gradient(180deg, var(--background-color) 0%, rgba(147, 51, 234, 0.1) 100%);
+}
+
+/* Hide metadata section */
+main:has(> div:first-child h1#illuminate-possibilities) > div:last-child:has(.metadata) {
+  display: none;
+}
