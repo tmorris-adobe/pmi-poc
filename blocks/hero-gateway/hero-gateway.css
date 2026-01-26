@@ -494,7 +494,7 @@ body:has(.hero-gateway) header:not(.gateway-header) {
 body:has(.hero-gateway)::after {
   content: '';
   position: fixed;
-  bottom: 40px;
+  bottom: 32px;
   left: 50%;
   transform: translateX(-50%);
   width: 1150px;
@@ -516,13 +516,13 @@ body:has(.hero-gateway)::after {
 /* Language selector - fixed at very bottom of viewport, below starburst */
 .hero-gateway .hero-gateway-languages {
   position: fixed;
-  bottom: 2px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
   gap: 16px;
-  padding: 8px 16px;
+  padding: 4px 14px;
   background-color: var(--color-white);
   border-radius: 2px;
   z-index: 10;
@@ -534,7 +534,7 @@ body:has(.hero-gateway)::after {
   font-size: 14px;
   text-decoration: none;
   background: none;
-  padding: 4px 8px;
+  padding: 2px 6px;
   border: none;
   border-radius: 0;
 }
