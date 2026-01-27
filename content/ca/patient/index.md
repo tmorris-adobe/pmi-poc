@@ -1,6 +1,6 @@
 <!-- source: https://www.luomedical.com/ca/patient/ -->
 
-# *Illuminate Possibilities*
+# Illuminate<br>*Possibilities*
 
 Luo is committed to supporting people's wellbeing by shining a light on a new way to take medical cannabis.
 

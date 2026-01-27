@@ -847,89 +847,167 @@ main > .section.bg-product a:any-link {
    ========================================================================== */
 
 main > .section.hero-patient {
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  padding-top: 120px;
+  padding-bottom: 200px;
 }
 
 main > .section.hero-patient > div {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  max-width: 550px;
+  padding: 0 var(--spacing-xl);
+  margin-left: 5%;
 }
 
+/* Ensure all text content stays above the image */
+main > .section.hero-patient > div > h1,
+main > .section.hero-patient > div > p:not(:has(img)) {
+  position: relative;
+  z-index: 5;
+}
+
+/* Hero H1 - "Illuminate" bold, "Possibilities" italic/lighter */
 main > .section.hero-patient h1 {
-  font-size: var(--heading-font-size-xxl);
-  font-style: italic;
+  font-size: 80px;
+  font-weight: 700;
+  font-style: normal;
   color: var(--text-color-inverted);
   margin-bottom: var(--spacing-m);
-  max-width: 500px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+main > .section.hero-patient h1 em {
+  font-weight: 400;
+  font-style: italic;
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 main > .section.hero-patient > div > p {
   color: var(--text-color-inverted);
-  max-width: 500px;
-  margin: 0 auto var(--spacing-m);
-  font-size: var(--body-font-size-m);
+  max-width: 450px;
+  margin: 0 0 var(--spacing-m);
+  font-size: 20px;
+  line-height: 1.5;
 }
 
-/* Hero CTA button */
+/* Hero CTA button with arrow */
 main > .section.hero-patient a.button,
-main > .section.hero-patient > div > p > a {
-  display: inline-block;
+main > .section.hero-patient > div > p > a:not(:has(img)) {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 16px 40px;
+  padding: 18px 32px;
   border-radius: var(--border-radius-pill);
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 600;
   transition: all var(--transition-base);
-  margin: var(--spacing-s) 0;
+  margin: var(--spacing-m) 0;
+}
+
+main > .section.hero-patient a.button::after,
+main > .section.hero-patient > div > p > a:not(:has(img))::after {
+  content: "→";
+  font-size: 18px;
+  transition: transform var(--transition-base);
 }
 
 main > .section.hero-patient a.button:hover,
-main > .section.hero-patient > div > p > a:hover {
+main > .section.hero-patient > div > p > a:not(:has(img)):hover {
   background-color: var(--color-deep-blue);
   color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-/* Hero floating image */
+main > .section.hero-patient a.button:hover::after,
+main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
+  transform: translateX(4px);
+}
+
+/* Hero floating image - positioned at bottom right */
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
   bottom: -50px;
-  right: 5%;
-  max-width: 450px;
+  right: 0;
+  left: auto;
+  max-width: 60%;
   z-index: 1;
   margin: 0;
+  pointer-events: none;
+  transform: translateX(25%);
 }
 
 main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p > img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-@media (width >= 900px) {
+/* Desktop adjustments */
+@media (width >= 1200px) {
+  main > .section.hero-patient h1 {
+    font-size: 93px;
+  }
+
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    max-width: 550px;
+    max-width: 60%;
     bottom: -80px;
     right: 0;
+    transform: translateX(30%);
   }
 }
 
+@media (width >= 900px) and (width < 1200px) {
+  main > .section.hero-patient .hero-image,
+  main > .section.hero-patient > div > p:has(img) {
+    max-width: 55%;
+    bottom: -40px;
+    right: 0;
+    transform: translateX(20%);
+  }
+}
+
+/* Tablet and mobile */
 @media (width < 768px) {
   main > .section.hero-patient {
     min-height: auto;
     padding: var(--spacing-xl) 0;
+    padding-bottom: var(--spacing-l);
+    text-align: center;
+    align-items: center;
+  }
+
+  main > .section.hero-patient > div {
+    align-items: center;
+    padding: 0 var(--spacing-m);
+  }
+
+  main > .section.hero-patient h1 {
+    font-size: 48px;
+  }
+
+  main > .section.hero-patient > div > p {
+    font-size: 16px;
+    text-align: center;
   }
 
   main > .section.hero-patient .hero-image,
@@ -937,7 +1015,7 @@ main > .section.hero-patient > div > p > img {
     position: relative;
     bottom: auto;
     right: auto;
-    max-width: 300px;
+    max-width: 100%;
     margin: var(--spacing-l) auto 0;
   }
 }
@@ -1392,5 +1470,83 @@ main > .section.footer-mark {
   main > .section.footer-mark {
     background-size: 400px auto;
     padding-bottom: 250px;
+  }
+}
+
+/* ==========================================================================
+   Scroll Animations
+   ========================================================================== */
+
+/* Base animation state - hidden initially */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible state - triggered by Intersection Observer */
+.animate-on-scroll.animate-visible {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* Animation Types */
+.animate-fade-in {
+  opacity: 0;
+}
+
+.animate-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animate-fade-down {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+/* Title bounce animation - like the original AOS title-bounce */
+.animate-title-bounce {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-title-bounce.animate-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Animation Delays */
+.delay-1 {
+  transition-delay: 0.1s;
+}
+
+.delay-2 {
+  transition-delay: 0.2s;
+}
+
+.delay-3 {
+  transition-delay: 0.3s;
+}
+
+.delay-4 {
+  transition-delay: 0.4s;
+}
+
+.delay-5 {
+  transition-delay: 0.5s;
+}
+
+/* Reduced motion - respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-on-scroll.animate-visible {
+    opacity: 1;
+    transform: none;
   }
 }
