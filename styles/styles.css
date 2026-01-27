@@ -754,47 +754,57 @@ main strong {
 
 /* ==========================================================================
    Patient Page Styles
+   NOTE: All selectors exclude pages with .hero-gateway to prevent style crossover
    ========================================================================== */
 
-/* Patient page - detect by first h1 containing "Illuminate Possibilities" */
-main:has(> div:first-child h1#illuminate-possibilities) {
-  background: var(--gradient-primary);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+/* Patient page - detect by h1 "Illuminate Possibilities" WITHOUT hero-gateway */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) {
+  background: var(--background-color);
 }
 
 /* Patient page hero section - first section with gradient */
-main:has(> div:first-child h1#illuminate-possibilities) > div:first-child {
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child {
   background: var(--gradient-primary);
   background-size: cover;
   background-position: center top;
   color: var(--text-color-inverted);
-  padding: 120px 24px 80px;
+  padding: 100px 24px 60px;
   margin: 0;
   text-align: center;
-  min-height: 50vh;
+  min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) > div:first-child h1 {
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child h1 {
   font-size: var(--heading-font-size-xxl);
   font-style: italic;
   color: var(--text-color-inverted);
   margin-bottom: var(--spacing-m);
-  max-width: 600px;
-}
-
-main:has(> div:first-child h1#illuminate-possibilities) > div:first-child p {
-  color: var(--text-color-inverted);
   max-width: 500px;
-  margin: 0 auto var(--spacing-m);
+  position: relative;
+  z-index: 2;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) > div:first-child a {
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p {
+  color: var(--text-color-inverted);
+  max-width: 450px;
+  margin: 0 auto var(--spacing-m);
+  font-size: var(--body-font-size-m);
+  position: relative;
+  z-index: 2;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p:has(a) {
+  margin-bottom: var(--spacing-l);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child a.button,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p > a {
   display: inline-block;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
@@ -804,46 +814,193 @@ main:has(> div:first-child h1#illuminate-possibilities) > div:first-child a {
   font-family: var(--heading-font-family);
   font-size: 18px;
   transition: all var(--transition-base);
+  position: relative;
+  z-index: 2;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) > div:first-child a:hover {
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child a:hover {
   background-color: var(--color-deep-blue);
   color: var(--color-white);
 }
 
-/* Patient page - all other sections reset background */
-main:has(> div:first-child h1#illuminate-possibilities) > div:not(:first-child) {
+/* Hero floating bottles image */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p:has(img) {
+  position: absolute;
+  bottom: -50px;
+  right: -50px;
+  max-width: 500px;
+  z-index: 1;
+  margin: 0;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p > img {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (width >= 900px) {
+  main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p:has(img) {
+    max-width: 600px;
+    bottom: -80px;
+    right: -80px;
+  }
+}
+
+/* Patient page - all other sections */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:not(:first-child) {
   background: var(--background-color);
   margin: 0;
   padding: var(--spacing-xl) 24px;
 }
 
-/* Patient page content sections */
-main:has(> div:first-child h1#illuminate-possibilities) > div:nth-child(2),
-main:has(> div:first-child h1#illuminate-possibilities) > div:nth-child(3) {
-  max-width: 800px;
+/* Mission section (2nd div) - text layout */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(2) {
+  max-width: 900px;
   margin: 0 auto;
+  padding: var(--spacing-xl) 24px;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) > div h2 {
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(2) h2 {
+  font-size: var(--heading-font-size-xl);
+  color: var(--color-deep-blue);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-l);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(2) h2 strong {
+  color: var(--color-teal);
+}
+
+/* CBD lozenges section (3rd div) - with gradient background */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) {
+  background: var(--gradient-primary);
+  background-size: cover;
+  background-position: center;
+  color: var(--text-color-inverted);
+  padding: var(--spacing-xl) 24px;
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) h2,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) p {
+  color: var(--text-color-inverted);
+  max-width: 500px;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) h2 strong {
+  color: var(--color-teal);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) > p:has(img) {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 400px;
+  margin: 0;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) a {
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  padding: 16px 40px;
+  border-radius: var(--border-radius-pill);
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  margin-top: var(--spacing-m);
+}
+
+/* Patient page headings */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div h2 {
   font-size: var(--heading-font-size-l);
   color: var(--color-deep-blue);
   line-height: 1.2;
   margin-bottom: var(--spacing-m);
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) > div h3 {
-  font-size: var(--heading-font-size-m);
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div h3 {
+  font-size: var(--heading-font-size-l);
+  color: var(--color-deep-blue);
+  margin-bottom: var(--spacing-s);
+  text-align: center;
+}
+
+/* Product cards section (4th div - Find your Luo) */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) {
+  background: linear-gradient(180deg, #f5f0e8 0%, var(--background-color) 100%);
+  padding: var(--spacing-xl) 24px;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-l);
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-l) 0;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul > li {
+  background: var(--background-color);
+  border: none;
+  border-radius: 0;
+  padding: var(--spacing-l);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul > li picture,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul > li img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: var(--spacing-m);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul > li strong {
+  display: block;
+  font-size: var(--heading-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
-/* Patient page - cards styling */
-main:has(> div:first-child h1#illuminate-possibilities) .cards {
-  border: none;
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul > li p {
+  font-size: var(--body-font-size-s);
+  color: var(--color-deep-blue);
+  line-height: 1.5;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) .cards > ul {
+/* Why Luo section (5th div) */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) {
+  background: linear-gradient(135deg, rgba(0, 196, 232, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+  padding: var(--spacing-xl) 24px;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) > p {
+  text-align: center;
+  font-size: var(--body-font-size-m);
+  color: var(--color-deep-blue);
+  margin-bottom: var(--spacing-l);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-m);
@@ -852,36 +1009,108 @@ main:has(> div:first-child h1#illuminate-possibilities) .cards > ul {
   margin: var(--spacing-m) 0;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li {
-  background: var(--light-color);
-  border: 1px solid #e0e0e0;
-  border-radius: var(--border-radius-m);
-  padding: var(--spacing-m);
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li {
+  background: var(--background-color);
+  border: 2px solid var(--color-deep-blue);
+  border-radius: var(--border-radius-l);
+  padding: var(--spacing-l);
+  position: relative;
+  overflow: hidden;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li strong {
+/* Decorative corner clips for Why Luo cards */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li::before,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: var(--background-color);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li::before {
+  top: -2px;
+  right: -2px;
+  border-bottom-left-radius: 15px;
+  border: 2px solid var(--color-deep-blue);
+  border-top: none;
+  border-right: none;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li::after {
+  bottom: -2px;
+  left: -2px;
+  border-top-right-radius: 15px;
+  border: 2px solid var(--color-deep-blue);
+  border-bottom: none;
+  border-left: none;
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li picture,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li img {
+  max-width: 60px;
+  height: 60px;
+  margin-bottom: var(--spacing-m);
+}
+
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li strong {
   display: block;
-  font-size: var(--body-font-size-m);
+  font-size: var(--heading-font-size-s);
+  font-family: var(--heading-font-family);
+  font-style: italic;
   color: var(--color-deep-blue);
-  margin-bottom: var(--spacing-xs);
+  margin-bottom: var(--spacing-s);
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li a {
-  color: var(--color-purple);
-  text-decoration: none;
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(5) .cards > ul > li p {
+  font-size: var(--body-font-size-s);
+  color: var(--color-deep-blue);
+  line-height: 1.5;
+  margin: 0;
 }
 
-main:has(> div:first-child h1#illuminate-possibilities) .cards > ul > li a:hover {
-  text-decoration: underline;
+/* FAQ sections (6th and 7th divs) */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(6),
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(7) {
+  background: linear-gradient(180deg, var(--background-color) 0%, rgba(0, 196, 232, 0.15) 100%);
+  padding: var(--spacing-xl) 24px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* FAQ sections - gradient bottom */
-main:has(> div:first-child h1#illuminate-possibilities) > div:nth-last-child(2),
-main:has(> div:first-child h1#illuminate-possibilities) > div:nth-last-child(3) {
-  background: linear-gradient(180deg, var(--background-color) 0%, rgba(147, 51, 234, 0.1) 100%);
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(6) h3,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(7) h3 {
+  text-align: left;
+  font-size: var(--heading-font-size-l);
 }
 
-/* Hide metadata section */
-main:has(> div:first-child h1#illuminate-possibilities) > div:last-child:has(.metadata) {
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(6) h3 strong,
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(7) h3 strong {
+  color: var(--color-teal);
+}
+
+/* Hide metadata section - applies to patient page only */
+main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:last-child:has(.metadata) {
   display: none;
+}
+
+/* Mobile responsiveness for patient page */
+@media (width < 768px) {
+  main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(4) .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:first-child > p:has(img) {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    max-width: 300px;
+    margin: var(--spacing-m) auto 0;
+  }
+
+  main:has(> div:first-child h1#illuminate-possibilities):not(:has(.hero-gateway)) > div:nth-child(3) > p:has(img) {
+    position: relative;
+    max-width: 100%;
+    margin-top: var(--spacing-l);
+  }
 }

@@ -6,6 +6,8 @@ Luo is committed to supporting people's wellbeing by shining a light on a new wa
 
 [Order Luo](#products)
 
+![Floating Luo bottles](./images/hero-bottles.png)
+
 ---
 
 ## We challenge the stigma of medical cannabis while **bringing real hope** to those who need it most.
@@ -26,14 +28,16 @@ Available in three strengths to help you reliably manage your dosage, Luo helps 
 
 [Order Luo](#products)
 
+![Pills imagery](./images/pills-imagery.png)
+
 ---
 
 ### Find your Luo
 
 | Cards |
 | ----- |
-| **Luo CBD Vanilla Mint Lozenges** Experience the unique, dissolvable format of Luo lozenges in a bold vanilla mint flavour – available in 3 CBD strengths. [Learn More](luo-medical-cbd-lozenges) |
-| **Luo CBD Tropical Fruit Lozenges – new!** Count on the same Luo quality you know, but in a tropical fruit flavour – available in 2 CBD strengths. [Learn More](luo-medical-cbd-lozenges-2) |
+| ![Vanilla Mint Lozenges](./images/product-vanilla-mint.png) **Luo CBD Vanilla Mint Lozenges** Experience the unique, dissolvable format of Luo lozenges in a bold vanilla mint flavour – available in 3 CBD strengths. [Learn More](luo-medical-cbd-lozenges) |
+| ![Tropical Fruit Lozenges](./images/product-tropical-fruit.png) **Luo CBD Tropical Fruit Lozenges – new!** Count on the same Luo quality you know, but in a tropical fruit flavour – available in 2 CBD strengths. [Learn More](luo-medical-cbd-lozenges-2) |
 
 ---
 
@@ -43,11 +47,11 @@ Here to **support you** on your wellbeing journey
 
 | Cards |
 | ----- |
-| **Ease** Oral lozenges are convenient and easy to use. |
-| **Quality** High-dose CBD options without the psychoactive effects associated with THC. |
-| **Unique Format** Luo lozenges easily dissolve in your mouth with a pleasant vanilla mint flavour. |
-| **Reliability** Consistent formulation to help you precisely and reliably manage your dosage. |
-| **Confidence** Luo is committed to meeting the highest quality standards. |
+| ![Ease icon](./images/icon-ease.svg) **Ease** Oral lozenges are convenient and easy to use. |
+| ![Quality icon](./images/icon-quality.png) **Quality** High-dose CBD options without the psychoactive effects associated with THC. |
+| ![Unique Format icon](./images/icon-unique.svg) **Unique Format** Luo lozenges easily dissolve in your mouth with a pleasant vanilla mint flavour. |
+| ![Reliability icon](./images/icon-reliability.svg) **Reliability** Consistent formulation to help you precisely and reliably manage your dosage. |
+| ![Confidence icon](./images/icon-confidence.svg) **Confidence** Luo is committed to meeting the highest quality standards. |
 
 ---
 
