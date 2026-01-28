@@ -853,8 +853,8 @@ main > .section.hero-patient {
   justify-content: flex-start;
   text-align: left;
   position: relative;
-  overflow: visible;
-  padding-top: 120px;
+  overflow: hidden;
+  padding-top: 80px;
   padding-bottom: 200px;
 }
 
@@ -867,6 +867,7 @@ main > .section.hero-patient > div {
   max-width: 550px;
   padding: 0 var(--spacing-xl);
   margin-left: 5%;
+  margin-top: 5vh;
 }
 
 /* Ensure all text content stays above the image */
@@ -940,25 +941,28 @@ main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
   transform: translateX(4px);
 }
 
-/* Hero floating image - positioned at bottom right */
+/* Hero floating image - positioned at top right, filling viewport */
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
-  bottom: -50px;
-  right: 0;
-  left: auto;
-  max-width: 60%;
+  top: -10%;
+  right: -45%;
+  bottom: -10%;
+  left: 45%;
+  max-width: none;
   z-index: 1;
   margin: 0;
   pointer-events: none;
-  transform: translateX(25%);
 }
 
 main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p > img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center center;
 }
 
 /* Desktop adjustments */
@@ -969,20 +973,20 @@ main > .section.hero-patient > div > p > img {
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    max-width: 60%;
-    bottom: -80px;
-    right: 0;
-    transform: translateX(30%);
+    top: -15%;
+    right: -50%;
+    bottom: -15%;
+    left: 40%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    max-width: 55%;
-    bottom: -40px;
-    right: 0;
-    transform: translateX(20%);
+    top: -10%;
+    right: -45%;
+    bottom: -10%;
+    left: 45%;
   }
 }
 
