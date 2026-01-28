@@ -1208,7 +1208,7 @@ main > .section.mission {
   position: relative;
   min-height: 850px;
   max-width: 1415px;
-  margin: -60px auto 0;
+  margin: -120px auto 0;
   background: url('/content/ca/patient/images/lifestyle-bag.webp');
   background-size: cover;
   background-position: center;
