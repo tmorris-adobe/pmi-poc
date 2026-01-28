@@ -365,6 +365,21 @@ main > .section.hero-container {
   margin: 0;
 }
 
+/* Hero-patient section - extend gradient for mission section overlap */
+main > .section.bg-hero.hero-patient {
+  padding-bottom: 200px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Body gradient for patient pages - allows mission section clip-path to reveal gradient */
+body:has(.section.hero-patient) {
+  background: var(--bg-gradient-hero);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
 main > .section.hero-gateway-container {
   margin: 0;
 }
@@ -1188,20 +1203,25 @@ main > .section.banner-right > div > p > img {
 
 main > .section.mission {
   position: relative;
-  min-height: 700px;
+  min-height: 850px;
   background: url('/content/ca/patient/images/lifestyle-bag.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   margin: 0;
+  margin-top: -100px;
   padding: var(--spacing-xl) 0;
+  padding-top: 120px;
+  padding-bottom: 120px;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 5;
   /* Clipped corners - top-right and bottom-left */
   clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 35px 100%, 0 calc(100% - 35px));
 }
 
+/* Frosted glass content container */
 main > .section.mission > div {
   position: relative;
   z-index: 2;
