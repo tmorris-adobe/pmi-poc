@@ -378,12 +378,32 @@ main > .section.bg-hero.hero-patient {
   z-index: 1;
 }
 
-/* Body gradient for patient pages - allows mission section clip-path to reveal gradient */
+/* Body gradient for patient pages - single continuous background */
 body:has(.section.hero-patient) {
   background: var(--bg-gradient-hero);
   background-size: cover;
   background-position: center top;
   background-attachment: fixed;
+}
+
+/* Patient page sections - transparent by default to show body gradient */
+body:has(.section.hero-patient) main > .section {
+  background: transparent !important;
+}
+
+/* Override for mission section - needs its photo background */
+body:has(.section.hero-patient) main > .section.mission {
+  background: url('/content/ca/patient/images/lifestyle-bag.webp') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Content sections need white/semi-transparent backgrounds for readability */
+body:has(.section.hero-patient) main > .section.products,
+body:has(.section.hero-patient) main > .section.features,
+body:has(.section.hero-patient) main > .section.faq {
+  background: rgba(255, 255, 255, 0.95) !important;
 }
 
 main > .section.hero-gateway-container {
