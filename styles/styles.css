@@ -879,7 +879,7 @@ main > .section.hero-patient > div > p:not(:has(img)) {
 
 /* Hero H1 - "Illuminate" bold, "Possibilities" italic/lighter */
 main > .section.hero-patient h1 {
-  font-size: 80px;
+  font-size: 100px;
   font-weight: 700;
   font-style: normal;
   color: var(--text-color-inverted);
@@ -897,9 +897,9 @@ main > .section.hero-patient h1 em {
 
 main > .section.hero-patient > div > p {
   color: var(--text-color-inverted);
-  max-width: 450px;
+  max-width: 500px;
   margin: 0 0 var(--spacing-m);
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1.5;
 }
 
@@ -911,11 +911,11 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 18px 32px;
+  padding: 22px 40px;
   border-radius: var(--border-radius-pill);
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   transition: all var(--transition-base);
   margin: var(--spacing-m) 0;
@@ -945,10 +945,10 @@ main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
-  top: -20%;
+  top: -25%;
   right: 0;
-  bottom: -20%;
-  width: 90vw;
+  bottom: -25%;
+  width: 95vw;
   max-width: none;
   z-index: 1;
   margin: 0;
@@ -958,41 +958,29 @@ main > .section.hero-patient > div > p:has(img) {
 /* Use descendant selector to match img inside picture element */
 main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p:has(img) img {
-  width: 140%;
-  height: 140%;
+  width: 135%;
+  height: 135%;
   max-width: none;
   max-height: none;
   object-fit: contain;
   object-position: right center;
-  transform: translateX(18%);
+  transform: translateX(14%);
 }
 
 /* Desktop adjustments - larger screens get larger images */
 @media (width >= 1200px) {
   main > .section.hero-patient h1 {
-    font-size: 93px;
+    font-size: 120px;
+  }
+
+  main > .section.hero-patient > div > p {
+    font-size: 28px;
   }
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    top: -25%;
-    bottom: -25%;
-    width: 88vw;
-  }
-
-  main > .section.hero-patient .hero-image img,
-  main > .section.hero-patient > div > p:has(img) img {
-    width: 150%;
-    height: 150%;
-    transform: translateX(22%);
-  }
-}
-
-@media (width >= 900px) and (width < 1200px) {
-  main > .section.hero-patient .hero-image,
-  main > .section.hero-patient > div > p:has(img) {
-    top: -22%;
-    bottom: -22%;
+    top: -28%;
+    bottom: -28%;
     width: 90vw;
   }
 
@@ -1000,7 +988,27 @@ main > .section.hero-patient > div > p:has(img) img {
   main > .section.hero-patient > div > p:has(img) img {
     width: 145%;
     height: 145%;
-    transform: translateX(20%);
+    transform: translateX(18%);
+  }
+}
+
+@media (width >= 900px) and (width < 1200px) {
+  main > .section.hero-patient h1 {
+    font-size: 110px;
+  }
+
+  main > .section.hero-patient .hero-image,
+  main > .section.hero-patient > div > p:has(img) {
+    top: -26%;
+    bottom: -26%;
+    width: 92vw;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    width: 140%;
+    height: 140%;
+    transform: translateX(16%);
   }
 }
 
