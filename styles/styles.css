@@ -11,6 +11,7 @@
   --color-purple: #9333EA;
   --color-violet: #7C3AED;
   --color-teal: #00C4E8;
+  --color-teal-text: #01CFC9; /* rgb(1, 207, 201) - used for accent text */
   --color-dark-navy: #1a1a2e;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
 
@@ -1205,7 +1206,7 @@ main > .section.mission {
   position: relative;
   min-height: 850px;
   max-width: 1415px;
-  margin: -100px auto 0;
+  margin: -60px auto 0;
   background: url('/content/ca/patient/images/lifestyle-bag.webp');
   background-size: cover;
   background-position: center;
@@ -1236,23 +1237,26 @@ main > .section.mission > div {
 }
 
 main > .section.mission h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
-  line-height: 1.15;
+  line-height: 1;
   margin-top: 0;
   margin-bottom: var(--spacing-m);
 }
 
 main > .section.mission h2 strong {
-  color: var(--color-teal);
+  color: var(--color-teal-text);
   font-style: italic;
 }
 
 main > .section.mission p {
   color: var(--color-deep-blue);
-  line-height: 1.5;
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  line-height: 1.2;
   margin-bottom: var(--spacing-m);
-  font-size: var(--body-font-size-m);
 }
 
 /* Teal CTA button with arrow */
@@ -1262,15 +1266,14 @@ main > .section.mission > div > p > a {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 350px;
-  background-color: var(--color-teal);
+  background-color: var(--color-teal-text);
   color: var(--color-white);
-  padding: 20px 30px;
+  padding: 19px 60px 19px 25px;
   border: none;
-  border-radius: var(--border-radius-s);
+  border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 18px;
+  font-size: 23px;
   transition: all var(--transition-base);
   margin-top: var(--spacing-m);
 }
