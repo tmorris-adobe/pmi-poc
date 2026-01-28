@@ -1183,50 +1183,135 @@ main > .section.banner-right > div > p > img {
 }
 
 /* ==========================================================================
-   Mission/Text Section Styles
+   Mission/Text Section Styles (Frosted Glass with Background Image)
    ========================================================================== */
 
+main > .section.mission {
+  position: relative;
+  min-height: 700px;
+  background-color: #e8f4f3;
+  margin: 0;
+  padding: var(--spacing-xl) 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Gradient overlay on left side */
+main > .section.mission::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  background: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
+  background-size: cover;
+  background-position: left center;
+  z-index: 1;
+}
+
+/* Lifestyle photo on right side */
+main > .section.mission::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 100%;
+  background: url('/content/ca/patient/images/lifestyle-bag.webp');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
 main > .section.mission > div {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-m);
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0;
+  margin-left: 5%;
+  padding: 57px 53px;
+  background-color: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
 }
 
 main > .section.mission h2 {
   font-size: var(--heading-font-size-xl);
   color: var(--color-deep-blue);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-l);
+  line-height: 1.15;
+  margin-top: 0;
+  margin-bottom: var(--spacing-m);
 }
 
 main > .section.mission h2 strong {
   color: var(--color-teal);
+  font-style: italic;
 }
 
 main > .section.mission p {
   color: var(--color-deep-blue);
-  line-height: 1.6;
+  line-height: 1.5;
   margin-bottom: var(--spacing-m);
+  font-size: var(--body-font-size-m);
 }
 
+/* Teal CTA button with arrow */
 main > .section.mission a.button,
 main > .section.mission > div > p > a {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-deep-blue);
-  padding: 12px 32px;
-  border: 2px solid var(--color-deep-blue);
-  border-radius: var(--border-radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px;
+  background-color: var(--color-teal);
+  color: var(--color-white);
+  padding: 20px 30px;
+  border: none;
+  border-radius: var(--border-radius-s);
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 18px;
   transition: all var(--transition-base);
+  margin-top: var(--spacing-m);
+}
+
+main > .section.mission a.button::after,
+main > .section.mission > div > p > a::after {
+  content: "→";
+  font-size: 20px;
+  transition: transform var(--transition-base);
 }
 
 main > .section.mission a.button:hover,
 main > .section.mission > div > p > a:hover {
-  background-color: var(--color-deep-blue);
+  background-color: var(--color-purple);
   color: var(--color-white);
+}
+
+main > .section.mission a.button:hover::after,
+main > .section.mission > div > p > a:hover::after {
+  transform: translateX(5px);
+}
+
+@media (width < 768px) {
+  main > .section.mission {
+    min-height: auto;
+    background-position: center, center;
+    padding: var(--spacing-l) var(--spacing-m);
+  }
+
+  main > .section.mission > div {
+    max-width: 100%;
+    margin-left: 0;
+    padding: var(--spacing-l);
+  }
+
+  main > .section.mission h2 {
+    font-size: var(--heading-font-size-l);
+  }
 }
 
 /* ==========================================================================

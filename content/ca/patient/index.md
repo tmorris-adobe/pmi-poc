@@ -24,7 +24,7 @@ Trying new things can feel like venturing into the unknown, but we're illuminati
 
 | Section Metadata |  |
 | ---------------- | ---------- |
-| style            | bg-white, mission |
+| style            | mission |
 
 ---
 
