@@ -1226,7 +1226,7 @@ main > .section.banner-right > div > p > img {
 
 main > .section.mission {
   position: relative;
-  min-height: 550px;
+  min-height: 495px;
   max-width: 1415px;
   margin: -120px auto 0;
   background: url('/content/ca/patient/images/lifestyle-bag.webp');
@@ -1234,8 +1234,8 @@ main > .section.mission {
   background-position: center;
   background-repeat: no-repeat;
   padding: var(--spacing-xl) 0;
-  padding-top: 72px;
-  padding-bottom: 72px;
+  padding-top: 65px;
+  padding-bottom: 65px;
   display: flex;
   align-items: center;
   overflow: visible;
