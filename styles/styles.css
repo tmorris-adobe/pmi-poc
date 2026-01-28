@@ -964,7 +964,7 @@ main > .section.hero-patient > div > p:has(img) img {
   max-height: none;
   object-fit: contain;
   object-position: right center;
-  transform: translateX(17%);
+  transform: translateX(11%);
 }
 
 /* Desktop adjustments - larger screens get larger images */
@@ -988,7 +988,7 @@ main > .section.hero-patient > div > p:has(img) img {
   main > .section.hero-patient > div > p:has(img) img {
     width: 160%;
     height: 160%;
-    transform: translateX(21%);
+    transform: translateX(15%);
   }
 }
 
@@ -1008,7 +1008,7 @@ main > .section.hero-patient > div > p:has(img) img {
   main > .section.hero-patient > div > p:has(img) img {
     width: 154%;
     height: 154%;
-    transform: translateX(19%);
+    transform: translateX(13%);
   }
 }
 
