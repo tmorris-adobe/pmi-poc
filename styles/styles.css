@@ -371,19 +371,23 @@ main > .section.hero-container {
   margin: 0;
 }
 
-/* Hero-patient section - extend gradient for mission section overlap */
-main > .section.bg-hero.hero-patient {
-  padding-bottom: 200px;
-  position: relative;
-  z-index: 1;
+/* ==========================================================================
+   Patient Pages - Continuous Gradient Flow
+   Gradient applied to body, sections are transparent to show through
+   ========================================================================== */
+
+/* Patient pages - gradient on body spans from top through product banner */
+body:has(.hero-patient) {
+  background-color: transparent;
+  background-image: var(--bg-gradient-hero);
+  background-size: 100% 3200px;
+  background-position: top center;
+  background-repeat: no-repeat;
 }
 
-/* Hero section gradient background for patient pages */
+/* Hero section is transparent - gradient shows through from body */
 main > .section.hero-patient {
-  background: var(--bg-gradient-hero);
-  background-size: 100% 100%;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
+  background: transparent;
 }
 
 main > .section.hero-gateway-container {
@@ -791,10 +795,10 @@ main strong {
    Section Background Styles (applied via Section Metadata)
    ========================================================================== */
 
-/* Hero gradient background - flipped gradient */
+/* Hero gradient background */
 main > .section.bg-hero {
   background: var(--bg-gradient-hero);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center top;
   background-repeat: no-repeat;
   color: var(--text-color-inverted);
@@ -802,15 +806,25 @@ main > .section.bg-hero {
   padding: var(--spacing-xl) 0;
 }
 
-/* Product gradient background */
+/* On patient pages, bg-hero is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-hero {
+  background: transparent;
+}
+
+/* Product gradient background - transparent on patient pages to show unified gradient */
 main > .section.bg-product {
   background: var(--bg-gradient-product);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   color: var(--text-color-inverted);
   margin: 0;
   padding: var(--spacing-xl) 0;
+}
+
+/* On patient pages, product section is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-product {
+  background: transparent;
 }
 
 /* Even gradient background (teal to white) */
