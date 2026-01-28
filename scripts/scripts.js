@@ -114,6 +114,71 @@ async function loadEager(doc) {
 }
 
 /**
+ * Initializes scroll-triggered animations using Intersection Observer
+ * @param {Element} main The main element
+ */
+function initScrollAnimations(main) {
+  // Add animate-on-scroll class to elements that should animate
+  const heroSection = main.querySelector('.section.hero-patient');
+  if (heroSection) {
+    const h1 = heroSection.querySelector('h1');
+    const paragraphs = heroSection.querySelectorAll(':scope > div > p');
+
+    if (h1) h1.classList.add('animate-on-scroll', 'animate-title-bounce');
+
+    paragraphs.forEach((p, index) => {
+      const hasImg = p.querySelector('img');
+      const hasLink = p.querySelector('a');
+
+      if (hasImg) {
+        // Hero image
+        p.classList.add('animate-on-scroll', 'animate-fade-up', 'delay-3');
+      } else if (hasLink && !hasImg) {
+        // CTA button
+        p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-2');
+      } else if (index === 0 || !hasLink) {
+        // Subtitle text
+        p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-1');
+      }
+    });
+  }
+
+  // Add animations to other sections
+  const sections = main.querySelectorAll('.section:not(.hero-patient)');
+  sections.forEach((section) => {
+    const headings = section.querySelectorAll('h2, h3');
+    const cards = section.querySelectorAll('.cards > div');
+
+    headings.forEach((h) => h.classList.add('animate-on-scroll', 'animate-fade-in'));
+
+    cards.forEach((card, i) => {
+      card.classList.add('animate-on-scroll', 'animate-fade-up');
+      card.classList.add(`delay-${Math.min(i, 4)}`);
+    });
+  });
+
+  // Create Intersection Observer
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animate-on-scroll elements
+  const animatedElements = main.querySelectorAll('.animate-on-scroll');
+  animatedElements.forEach((el) => observer.observe(el));
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
@@ -122,6 +187,9 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+
+  // Initialize scroll animations
+  initScrollAnimations(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;

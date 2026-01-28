@@ -279,11 +279,28 @@ function createAgeVerificationForm(targetUrl) {
 }
 
 export default function decorate(block) {
+  // Check if user already passed age verification (cookie exists)
+  const isVerified = document.cookie.split(';').some((c) => c.trim().startsWith('luo_age_verified='));
+  const patientPagePath = '/ca/patient/';
+  const isOnPatientPage = window.location.pathname.includes('/patient/');
+
+  if (isVerified) {
+    if (isOnPatientPage) {
+      // Already on patient page - just hide the gateway block
+      block.style.display = 'none';
+    } else {
+      // On gateway page but already verified - redirect to patient page
+      window.location.href = patientPagePath;
+    }
+    return;
+  }
+
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'hero-gateway-content';
 
-  // Find target URL from first link (the Enter button destination)
-  let targetUrl = '/ca/patient/';
+  // Hardcode the target URL for age verification redirect
+  // This ensures we always redirect to our local patient page, not the original site
+  const targetUrl = '/ca/patient/';
   const rows = [...block.children];
   let starburstPicture = null;
   let languageLinks = null;
@@ -309,10 +326,9 @@ export default function decorate(block) {
       return;
     }
 
-    // Single link in first cell is the Enter button destination
+    // Skip link rows - we use hardcoded targetUrl now
     const cellLink = firstCell.querySelector('a');
     if (cellLink && !rowText.includes('English') && !rowText.includes('Français')) {
-      targetUrl = cellLink.href;
       return;
     }
 
@@ -344,18 +360,11 @@ export default function decorate(block) {
     langWrapper.className = 'hero-gateway-languages';
     // Extract just the links from the language row
     const links = languageLinks.querySelectorAll('a');
-    links.forEach((link, i) => {
+    links.forEach((link) => {
       const newLink = document.createElement('a');
       newLink.href = link.href;
       newLink.textContent = link.textContent;
       langWrapper.appendChild(newLink);
-      // Add separator between links
-      if (i < links.length - 1) {
-        const sep = document.createElement('span');
-        sep.textContent = ' | ';
-        sep.className = 'lang-separator';
-        langWrapper.appendChild(sep);
-      }
     });
     contentWrapper.appendChild(langWrapper);
   }
