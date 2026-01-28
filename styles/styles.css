@@ -129,6 +129,11 @@ header {
   height: var(--nav-height);
 }
 
+/* Header overlays hero on patient pages - don't reserve space */
+body:has(.section.hero-patient) header {
+  height: 0;
+}
+
 /* Hide default header on gateway pages (age verification) - but not gateway-header */
 body:has(.hero-gateway) header:not(.gateway-header) {
   height: 0;
@@ -870,7 +875,7 @@ main > .section.hero-patient {
   text-align: left;
   position: relative;
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 160px;
   padding-bottom: 200px;
 }
 

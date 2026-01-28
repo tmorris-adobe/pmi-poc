@@ -1,9 +1,12 @@
 /* header and nav layout */
 header .nav-wrapper {
-  background-color: var(--background-color);
+  background-color: transparent;
   width: 100%;
-  z-index: 2;
-  position: fixed;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 header nav {
@@ -55,7 +58,12 @@ header nav p {
 }
 
 header nav a:any-link {
-  color: currentcolor;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+header nav a:any-link:hover {
+  text-decoration: underline;
 }
 
 /* hamburger */
@@ -72,8 +80,8 @@ header nav .nav-hamburger button {
   border: 0;
   border-radius: 0;
   padding: 0;
-  background-color: var(--background-color);
-  color: inherit;
+  background-color: transparent;
+  color: var(--color-white);
   overflow: initial;
   text-overflow: initial;
   white-space: initial;
