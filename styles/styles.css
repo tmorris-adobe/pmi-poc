@@ -958,13 +958,13 @@ main > .section.hero-patient > div > p:has(img) {
 /* Use descendant selector to match img inside picture element */
 main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p:has(img) img {
-  width: 135%;
-  height: 135%;
+  width: 148%;
+  height: 148%;
   max-width: none;
   max-height: none;
   object-fit: contain;
   object-position: right center;
-  transform: translateX(14%);
+  transform: translateX(17%);
 }
 
 /* Desktop adjustments - larger screens get larger images */
@@ -986,9 +986,9 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    width: 145%;
-    height: 145%;
-    transform: translateX(18%);
+    width: 160%;
+    height: 160%;
+    transform: translateX(21%);
   }
 }
 
@@ -999,16 +999,16 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    top: -26%;
-    bottom: -26%;
+    top: -28%;
+    bottom: -28%;
     width: 92vw;
   }
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    width: 140%;
-    height: 140%;
-    transform: translateX(16%);
+    width: 154%;
+    height: 154%;
+    transform: translateX(19%);
   }
 }
 
