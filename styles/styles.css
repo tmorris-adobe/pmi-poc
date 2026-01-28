@@ -945,10 +945,10 @@ main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
-  top: -10%;
-  right: -45%;
-  bottom: -10%;
-  left: 45%;
+  top: -15%;
+  right: -120%;
+  bottom: -15%;
+  left: 40%;
   max-width: none;
   z-index: 1;
   margin: 0;
@@ -963,6 +963,7 @@ main > .section.hero-patient > div > p > img {
   max-height: none;
   object-fit: contain;
   object-position: center center;
+  transform: translateX(40%);
 }
 
 /* Desktop adjustments */
@@ -973,20 +974,30 @@ main > .section.hero-patient > div > p > img {
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    top: -15%;
-    right: -50%;
-    bottom: -15%;
-    left: 40%;
+    top: -20%;
+    right: -130%;
+    bottom: -20%;
+    left: 35%;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p > img {
+    transform: translateX(45%);
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    top: -10%;
-    right: -45%;
-    bottom: -10%;
-    left: 45%;
+    top: -15%;
+    right: -120%;
+    bottom: -15%;
+    left: 40%;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p > img {
+    transform: translateX(40%);
   }
 }
 
