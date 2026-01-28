@@ -961,11 +961,11 @@ main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
-  top: -25%;
+  top: -15%;
   right: 0;
-  bottom: -25%;
-  width: 95vw;
-  max-width: none;
+  bottom: -15%;
+  width: 75vw;
+  max-width: 1100px;
   z-index: 1;
   margin: 0;
   pointer-events: none;
@@ -974,13 +974,13 @@ main > .section.hero-patient > div > p:has(img) {
 /* Use descendant selector to match img inside picture element */
 main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p:has(img) img {
-  width: 148%;
-  height: 148%;
+  width: 130%;
+  height: 130%;
   max-width: none;
   max-height: none;
   object-fit: contain;
   object-position: right center;
-  transform: translateX(1%);
+  transform: translateX(5%);
 }
 
 /* Desktop adjustments - larger screens get larger images */
@@ -995,16 +995,17 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    top: -28%;
-    bottom: -28%;
-    width: 90vw;
+    top: -18%;
+    bottom: -18%;
+    width: 70vw;
+    max-width: 1200px;
   }
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    width: 160%;
-    height: 160%;
-    transform: translateX(5%);
+    width: 140%;
+    height: 140%;
+    transform: translateX(8%);
   }
 }
 
@@ -1015,16 +1016,17 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
-    top: -28%;
-    bottom: -28%;
-    width: 92vw;
+    top: -15%;
+    bottom: -15%;
+    width: 72vw;
+    max-width: 950px;
   }
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    width: 154%;
-    height: 154%;
-    transform: translateX(3%);
+    width: 135%;
+    height: 135%;
+    transform: translateX(6%);
   }
 }
 
