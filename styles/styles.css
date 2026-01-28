@@ -941,14 +941,14 @@ main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
   transform: translateX(4px);
 }
 
-/* Hero floating image - positioned at top right, filling viewport */
+/* Hero floating image - anchored to right edge, scales with viewport */
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
   top: -15%;
-  right: -100%;
+  right: 0;
   bottom: -15%;
-  left: 30%;
+  width: 85vw;
   max-width: none;
   z-index: 1;
   margin: 0;
@@ -958,16 +958,16 @@ main > .section.hero-patient > div > p:has(img) {
 /* Use descendant selector to match img inside picture element */
 main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p:has(img) img {
-  width: 100%;
-  height: 100%;
+  width: 125%;
+  height: 125%;
   max-width: none;
   max-height: none;
   object-fit: contain;
-  object-position: center center;
-  transform: translateX(22%);
+  object-position: right center;
+  transform: translateX(28%);
 }
 
-/* Desktop adjustments */
+/* Desktop adjustments - larger screens get larger images */
 @media (width >= 1200px) {
   main > .section.hero-patient h1 {
     font-size: 93px;
@@ -976,14 +976,15 @@ main > .section.hero-patient > div > p:has(img) img {
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
     top: -20%;
-    right: -110%;
     bottom: -20%;
-    left: 25%;
+    width: 80vw;
   }
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    transform: translateX(28%);
+    width: 135%;
+    height: 135%;
+    transform: translateX(32%);
   }
 }
 
@@ -991,14 +992,15 @@ main > .section.hero-patient > div > p:has(img) img {
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
     top: -15%;
-    right: -100%;
     bottom: -15%;
-    left: 30%;
+    width: 85vw;
   }
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    transform: translateX(22%);
+    width: 128%;
+    height: 128%;
+    transform: translateX(28%);
   }
 }
 
