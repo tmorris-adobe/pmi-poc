@@ -946,24 +946,25 @@ main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
   top: -15%;
-  right: -120%;
+  right: -100%;
   bottom: -15%;
-  left: 40%;
+  left: 30%;
   max-width: none;
   z-index: 1;
   margin: 0;
   pointer-events: none;
 }
 
+/* Use descendant selector to match img inside picture element */
 main > .section.hero-patient .hero-image img,
-main > .section.hero-patient > div > p > img {
+main > .section.hero-patient > div > p:has(img) img {
   width: 100%;
   height: 100%;
   max-width: none;
   max-height: none;
   object-fit: contain;
   object-position: center center;
-  transform: translateX(40%);
+  transform: translateX(22%);
 }
 
 /* Desktop adjustments */
@@ -975,14 +976,14 @@ main > .section.hero-patient > div > p > img {
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
     top: -20%;
-    right: -130%;
+    right: -110%;
     bottom: -20%;
-    left: 35%;
+    left: 25%;
   }
 
   main > .section.hero-patient .hero-image img,
-  main > .section.hero-patient > div > p > img {
-    transform: translateX(45%);
+  main > .section.hero-patient > div > p:has(img) img {
+    transform: translateX(28%);
   }
 }
 
@@ -990,14 +991,14 @@ main > .section.hero-patient > div > p > img {
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
     top: -15%;
-    right: -120%;
+    right: -100%;
     bottom: -15%;
-    left: 40%;
+    left: 30%;
   }
 
   main > .section.hero-patient .hero-image img,
-  main > .section.hero-patient > div > p > img {
-    transform: translateX(40%);
+  main > .section.hero-patient > div > p:has(img) img {
+    transform: translateX(22%);
   }
 }
 
