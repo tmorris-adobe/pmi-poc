@@ -1142,7 +1142,7 @@ main > .section.bg-product.banner-right {
 /* Container holds the text content on the right */
 main > .section.bg-product.banner-left > div,
 main > .section.bg-product.banner-right > div {
-  position: relative;
+  position: static; /* Don't create positioning context - let image position relative to section */
   display: block;
   max-width: 1415px;
   margin: 0 auto;
@@ -1166,17 +1166,25 @@ main > .section.bg-product.banner-left > div > p:not(:has(img)) {
   max-width: 100%;
 }
 
-/* Image wrapper - absolutely positioned on left relative to section, bottom-aligned */
+/* Image wrapper - absolutely positioned on left edge of viewport, bottom-aligned */
 main > .section.bg-product.banner-left > div > p:has(img),
 main > .section.bg-product.banner-left > div > p:has(picture) {
   position: absolute;
-  left: calc(50% - 707px); /* Position from center to align with left edge of max-width container */
+  left: 0; /* Align with viewport left edge */
   bottom: -37px;
-  width: 600px;
+  width: 700px;
   margin: 0;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+}
+
+/* Tablet: slightly smaller image */
+@media (width >= 768px) and (width < 1200px) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 550px;
+  }
 }
 
 /* Text content spacing */
@@ -1266,10 +1274,12 @@ main > .section.bg-product.banner-right > div > p > a:hover {
 
 /* Banner image - large, aligned to bottom-left */
 main > .section.bg-product.banner-left > div > p > img,
-main > .section.bg-product.banner-right > div > p > img {
-  width: auto;
+main > .section.bg-product.banner-right > div > p > img,
+main > .section.bg-product.banner-left > div > p picture img,
+main > .section.bg-product.banner-right > div > p picture img {
+  width: 100%;
   height: auto;
-  max-width: 800px;
+  max-width: none;
   max-height: 832px;
   object-fit: contain;
   object-position: left bottom;
@@ -1295,7 +1305,8 @@ main > .section.bg-product.banner-right > div > p > img {
     width: 100%;
   }
 
-  main > .section.bg-product.banner-left > div > p:has(img) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
     position: relative;
     left: auto;
     top: auto;
@@ -1306,7 +1317,8 @@ main > .section.bg-product.banner-right > div > p > img {
     margin-bottom: var(--spacing-l);
   }
 
-  main > .section.bg-product.banner-left > div > p > img {
+  main > .section.bg-product.banner-left > div > p > img,
+  main > .section.bg-product.banner-left > div > p picture img {
     max-width: 100%;
     max-height: 400px;
   }
