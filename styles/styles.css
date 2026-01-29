@@ -1135,6 +1135,7 @@ main > .section.bg-product.banner-right {
   position: relative;
   height: 883px;
   max-height: 883px;
+  padding: 0;
   overflow: visible;
 }
 
@@ -1170,8 +1171,7 @@ main > .section.bg-product.banner-left > div > p:has(img) {
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 700px;
-  height: 728px;
+  width: 800px;
   margin: 0;
   display: flex;
   align-items: flex-end;
@@ -1263,13 +1263,13 @@ main > .section.bg-product.banner-right > div > p > a:hover {
   color: var(--color-white);
 }
 
-/* Banner image - large, fills the container */
+/* Banner image - large, aligned to bottom-left */
 main > .section.bg-product.banner-left > div > p > img,
 main > .section.bg-product.banner-right > div > p > img {
-  width: 100%;
-  height: 100%;
-  max-width: 700px;
-  max-height: 728px;
+  width: auto;
+  height: auto;
+  max-width: 800px;
+  max-height: 832px;
   object-fit: contain;
   object-position: left bottom;
 }
