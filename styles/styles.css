@@ -892,6 +892,7 @@ main > .section.hero-patient {
   overflow: hidden;
   padding-top: 160px;
   padding-bottom: 200px;
+  z-index: 1;
 }
 
 main > .section.hero-patient > div {
@@ -1232,7 +1233,7 @@ main > .section.mission {
   display: flex;
   align-items: center;
   overflow: visible;
-  z-index: 5;
+  z-index: 10;
   /* Clipped corners - top-right and bottom-left */
   clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 35px 100%, 0 calc(100% - 35px));
 }
