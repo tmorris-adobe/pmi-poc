@@ -1170,7 +1170,7 @@ main > .section.bg-product.banner-left > div > p:not(:has(img)) {
 main > .section.bg-product.banner-left > div > p:has(img) {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: -37px;
   width: 800px;
   margin: 0;
   display: flex;
