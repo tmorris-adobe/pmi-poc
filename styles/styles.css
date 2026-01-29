@@ -1198,11 +1198,23 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
   }
 }
 
-/* Tablet: smaller to leave room for text */
+/* Tablet: smaller image and adjusted text to prevent overlap */
 @media (width >= 768px) and (width < 1200px) {
   main > .section.bg-product.banner-left > div > p:has(img),
   main > .section.bg-product.banner-left > div > p:has(picture) {
-    width: 50vw;
+    width: 42vw;
+  }
+
+  main > .section.bg-product.banner-left > div {
+    padding-left: 45vw; /* Push text content to right of image */
+    padding-right: 40px;
+    align-items: flex-start;
+  }
+
+  main > .section.bg-product.banner-left > div > h2,
+  main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+    width: 100%;
+    max-width: 450px;
   }
 }
 
