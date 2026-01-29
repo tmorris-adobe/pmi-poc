@@ -1166,12 +1166,13 @@ main > .section.bg-product.banner-left > div > p:not(:has(img)) {
   max-width: 100%;
 }
 
-/* Image wrapper - absolutely positioned on left, bottom-aligned */
-main > .section.bg-product.banner-left > div > p:has(img) {
+/* Image wrapper - absolutely positioned on left relative to section, bottom-aligned */
+main > .section.bg-product.banner-left > div > p:has(img),
+main > .section.bg-product.banner-left > div > p:has(picture) {
   position: absolute;
-  left: 0;
+  left: calc(50% - 707px); /* Position from center to align with left edge of max-width container */
   bottom: -37px;
-  width: 800px;
+  width: 600px;
   margin: 0;
   display: flex;
   align-items: flex-end;
@@ -1208,8 +1209,8 @@ main > .section.bg-product.banner-left h2::after,
 main > .section.bg-product.banner-right h2::after {
   content: '';
   display: block;
-  width: 120px;
-  height: 3px;
+  width: 147px;
+  height: 1px;
   background-color: var(--color-white);
   margin-top: var(--spacing-m);
 }
