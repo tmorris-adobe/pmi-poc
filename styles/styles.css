@@ -1167,31 +1167,42 @@ main > .section.bg-product.banner-left > div > p:not(:has(img)) {
 }
 
 /* Image wrapper - absolutely positioned on left edge of viewport, bottom-aligned */
+/* Uses viewport-relative width so image scales down as viewport narrows */
 main > .section.bg-product.banner-left > div > p:has(img),
 main > .section.bg-product.banner-left > div > p:has(picture) {
   position: absolute;
   left: 0; /* Align with viewport left edge */
   bottom: -37px;
-  width: 880px;
+  width: 55vw; /* Responsive width - scales with viewport */
+  max-width: 990px; /* Cap size on very large screens */
   margin: 0;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-/* Large desktop: even bigger image */
+/* Large desktop: slightly larger percentage */
 @media (width >= 1400px) {
   main > .section.bg-product.banner-left > div > p:has(img),
   main > .section.bg-product.banner-left > div > p:has(picture) {
-    width: 990px;
+    width: 60vw;
+    max-width: 990px;
   }
 }
 
-/* Tablet: slightly smaller image */
+/* Medium desktop: balanced size */
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 55vw;
+  }
+}
+
+/* Tablet: smaller to leave room for text */
 @media (width >= 768px) and (width < 1200px) {
   main > .section.bg-product.banner-left > div > p:has(img),
   main > .section.bg-product.banner-left > div > p:has(picture) {
-    width: 715px;
+    width: 50vw;
   }
 }
 
@@ -1320,9 +1331,11 @@ main > .section.bg-product.banner-right > div > p picture img {
     top: auto;
     bottom: auto;
     width: 100%;
+    max-width: none;
     justify-content: center;
-    order: -1;
-    margin-bottom: var(--spacing-l);
+    order: 1; /* Image appears below text on mobile */
+    margin-top: var(--spacing-l);
+    margin-bottom: 0;
   }
 
   main > .section.bg-product.banner-left > div > p > img,
