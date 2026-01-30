@@ -1859,15 +1859,20 @@ main > .section.faq a.button:hover {
 
 /* Base FAQ block section */
 main > .section.faq-block {
-  padding: var(--spacing-xxl) 0;
+  padding: 0;
   margin: 0;
   overflow: visible;
 }
 
+/* Bottom padding on last FAQ section */
+main > .section.faq-block-2 {
+  padding-bottom: 210px;
+}
+
 main > .section.faq-block > .default-content-wrapper {
-  max-width: 1400px;
+  max-width: 1415px;
   margin: 0 auto;
-  padding: 0 var(--spacing-xl);
+  padding: 0 80px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
@@ -1947,13 +1952,13 @@ main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
 
 /* FAQ block heading styling */
 main > .section.faq-block h2 {
-  font-size: 55px;
+  font-size: 64px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-deep-blue);
-  line-height: 1.1;
-  margin: 0;
-  padding-bottom: var(--spacing-m);
+  line-height: 64px;
+  margin: 0 0 20px;
+  max-width: 530px;
   align-self: end;
   position: relative;
 }
@@ -1970,19 +1975,31 @@ main > .section.faq-block h2::after {
   width: 147px;
   height: 2px;
   background: var(--color-deep-blue);
-  margin-top: var(--spacing-m);
+  margin-top: 21px;
+  margin-bottom: 21px;
 }
 
 /* FAQ block paragraph */
 main > .section.faq-block > .default-content-wrapper > p {
   font-family: var(--heading-font-family);
-  font-size: 20px;
+  font-size: 23px;
   color: var(--color-deep-blue);
-  line-height: 1.4;
-  margin: 0 0 var(--spacing-m);
+  line-height: 1.2;
+  margin: 0 0 20px;
+  max-width: 530px;
+}
+
+/* Remove max-width for image container paragraphs */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  max-width: none;
 }
 
 /* FAQ block CTA button - outline style */
+main > .section.faq-block .button-container {
+  margin-top: 27px;
+}
+
 main > .section.faq-block .button-container a,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   display: inline-flex;
@@ -2015,7 +2032,7 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a:ho
 main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
 main > .section.faq-block > .default-content-wrapper > p:has(img) img {
   width: 100%;
-  max-width: 350px;
+  max-width: 628px;
   height: auto;
   display: block;
 }
@@ -2048,11 +2065,11 @@ main > .section.starburst {
 main > .section.starburst::before {
   content: '';
   position: absolute;
-  top: -35px;
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   background-image: url('/icons/luo-symbol.svg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -2065,6 +2082,7 @@ main > .section.starburst::before {
   main > .section.faq-block > .default-content-wrapper {
     grid-template-columns: 1fr;
     gap: var(--spacing-m);
+    padding: 0 40px;
   }
 
   main > .section.faq-block-1 > .default-content-wrapper,
@@ -2078,6 +2096,11 @@ main > .section.starburst::before {
 
   main > .section.faq-block h2 {
     font-size: 36px;
+    line-height: 1.1;
+  }
+
+  main > .section.faq-block > .default-content-wrapper > p {
+    font-size: 18px;
   }
 
   main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
@@ -2090,6 +2113,16 @@ main > .section.starburst::before {
   main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
   main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
     justify-self: center;
+  }
+
+  main > .section.faq-block-2 {
+    padding-bottom: 80px;
+  }
+
+  main > .section.starburst::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
   }
 }
 
