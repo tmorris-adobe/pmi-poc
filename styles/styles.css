@@ -1673,33 +1673,29 @@ main > .section.features .cards > ul > li {
   aspect-ratio: 1.1;
 }
 
-/* Decorative corner clips for feature cards */
+/* Decorative chamfered corners for feature cards - SVG approach */
 main > .section.features .cards > ul > li::before,
 main > .section.features .cards > ul > li::after {
   content: '';
   position: absolute;
   width: 30px;
   height: 30px;
-  background: var(--bg-gradient-even);
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 main > .section.features .cards > ul > li::before {
   top: -2px;
   right: -2px;
-  border-bottom-left-radius: 15px;
-  border: 2px solid var(--color-deep-blue);
-  border-top: none;
-  border-right: none;
+  background-image: url('/icons/top-right-corner.svg');
+  background-position: 100% 0;
 }
 
 main > .section.features .cards > ul > li::after {
   bottom: -2px;
   left: -2px;
-  border-top-right-radius: 15px;
-  border: 2px solid var(--color-deep-blue);
-  border-bottom: none;
-  border-left: none;
+  background-image: url('/icons/bottom-left-corner.svg');
+  background-position: 0 100%;
 }
 
 /* Feature icons */
