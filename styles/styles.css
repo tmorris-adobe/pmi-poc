@@ -1601,45 +1601,56 @@ main > .section.products .cards > ul > li a {
    ========================================================================== */
 
 main > .section.features > div {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-m);
 }
 
+/* Header wrapper - left aligned */
 main > .section.features .features-header,
 main > .section.features > div > div:first-child {
-  text-align: center;
-  margin-bottom: var(--spacing-l);
+  text-align: left;
+  margin-bottom: var(--spacing-xl);
+  max-width: 700px;
 }
 
-main > .section.features h2,
+/* "Why Luo?" label - small, uppercase style */
 main > .section.features h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 18px;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
   color: var(--color-deep-blue);
-  text-align: center;
-  margin-bottom: var(--spacing-s);
+  text-align: left;
+  margin: 0 0 var(--spacing-s);
+  text-transform: none;
 }
 
+/* Main heading - large with teal accent */
 main > .section.features > div > p {
-  text-align: center;
-  font-size: var(--body-font-size-m);
+  text-align: left;
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
-  margin-bottom: var(--spacing-l);
+  line-height: 1.1;
+  margin: 0 0 var(--spacing-xl);
 }
 
 main > .section.features > div > p strong {
-  color: var(--color-teal);
+  color: var(--color-teal-text);
 }
 
+/* Cards grid - 3 columns */
 main > .section.features .cards > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-m);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Individual feature card */
 main > .section.features .cards > ul > li {
   background: var(--background-color);
   border: 2px solid var(--color-deep-blue);
@@ -1647,6 +1658,7 @@ main > .section.features .cards > ul > li {
   padding: var(--spacing-l);
   position: relative;
   overflow: hidden;
+  text-align: left;
 }
 
 /* Decorative corner clips for feature cards */
@@ -1678,27 +1690,55 @@ main > .section.features .cards > ul > li::after {
   border-left: none;
 }
 
+/* Feature icons */
 main > .section.features .cards > ul > li picture,
 main > .section.features .cards > ul > li img {
   max-width: 60px;
   height: 60px;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-l);
 }
 
+/* Feature title - NOT italic, regular weight */
 main > .section.features .cards > ul > li strong {
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: 28px;
   font-family: var(--heading-font-family);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
+/* Feature description */
 main > .section.features .cards > ul > li p {
   font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 1.5;
   margin: 0;
+  text-align: left;
+}
+
+/* Tablet: 2 columns */
+@media (width < 1024px) {
+  main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (width < 768px) {
+  main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  main > .section.features > div > p {
+    font-size: 32px;
+  }
+
+  main > .section.features .cards > ul > li strong {
+    font-size: 22px;
+  }
 }
 
 /* ==========================================================================
