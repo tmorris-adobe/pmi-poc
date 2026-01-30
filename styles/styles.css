@@ -1473,68 +1473,126 @@ main > .section.mission > div > p > a:hover::after {
    Product Cards Section (Find your Luo)
    ========================================================================== */
 
-main > .section.products > div {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-m);
+/* Full-width section - no container padding */
+main > .section.products {
+  padding: 60px 0 0;
 }
 
+main > .section.products > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Heading with underline */
 main > .section.products h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
   text-align: center;
-  margin-bottom: var(--spacing-l);
+  margin: 0 0 var(--spacing-l);
+  padding-bottom: 20px;
+  position: relative;
 }
 
+/* Blue underline via ::after */
+main > .section.products h3::after {
+  content: '';
+  display: block;
+  width: 184px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
+  margin: 20px auto 0;
+}
+
+/* Cards grid - no gap, full width */
 main > .section.products .cards > ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-l);
+  gap: 0;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Individual product card */
 main > .section.products .cards > ul > li {
-  background: var(--background-color);
-  padding: var(--spacing-l);
+  background: transparent;
+  padding: 109px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* First card - right border (vertical divider) */
+main > .section.products .cards > ul > li:first-child {
+  border-right: 1px solid #eee8da;
+}
+
+/* Second card - left border (vertical divider) */
+main > .section.products .cards > ul > li:last-child {
+  border-left: 1px solid #eee8da;
+}
+
+/* Product images - larger size */
 main > .section.products .cards > ul > li picture,
 main > .section.products .cards > ul > li img {
-  max-width: 180px;
+  width: 268px;
+  max-width: 100%;
   height: auto;
   margin-bottom: var(--spacing-m);
 }
 
+/* Product title - bold */
 main > .section.products .cards > ul > li strong {
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: 20px;
   font-family: var(--heading-font-family);
+  font-weight: 700;
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
+/* Product description */
 main > .section.products .cards > ul > li p {
   font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 1.5;
   margin: 0;
+  max-width: 380px;
+  padding: 0 var(--spacing-m);
 }
 
+/* Hide Learn More link - original doesn't show it as separate link */
 main > .section.products .cards > ul > li a {
-  color: var(--color-purple);
-  text-decoration: underline;
-  margin-top: var(--spacing-s);
+  display: none;
 }
 
+/* Mobile: stack cards vertically */
 @media (width < 768px) {
   main > .section.products .cards > ul {
     grid-template-columns: 1fr;
+  }
+
+  main > .section.products .cards > ul > li {
+    padding: 60px var(--spacing-m);
+  }
+
+  main > .section.products .cards > ul > li:first-child {
+    border-right: none;
+    border-bottom: 1px solid #eee8da;
+  }
+
+  main > .section.products .cards > ul > li:last-child {
+    border-left: none;
+    border-top: 1px solid #eee8da;
+  }
+
+  main > .section.products h3 {
+    font-size: 32px;
   }
 }
 
