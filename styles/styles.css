@@ -1876,7 +1876,7 @@ main > .section.faq-block > .default-content-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  align-items: center;
+  position: relative;
 }
 
 /* FAQ block backgrounds - use site gradient background for both sections */
@@ -1899,62 +1899,60 @@ main > .section.faq-block-2 {
 
 /* First FAQ block - text left, image right */
 main > .section.faq-block-1 > .default-content-wrapper {
-  grid-template-areas:
-    "heading image"
-    "text image"
-    "button image";
+  grid-template-columns: 1fr 1fr;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > h2 {
-  grid-area: heading;
+  grid-column: 1;
   margin-left: 13px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
-  grid-area: text;
+  grid-column: 1;
   margin-left: 13px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
-  grid-area: button;
+  grid-column: 1;
   margin-left: 13px;
+  margin-top: 6px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
-  grid-area: image;
-  justify-self: end;
-  align-self: center;
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Second FAQ block - image left, text right */
 main > .section.faq-block-2 > .default-content-wrapper {
-  grid-template-areas:
-    "image heading"
-    "image text"
-    "image button";
+  grid-template-columns: 1fr 1fr;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
-  grid-area: heading;
+  grid-column: 2;
   margin-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
-  grid-area: text;
+  grid-column: 2;
   margin-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
-  grid-area: button;
+  grid-column: 2;
   margin-left: 98px;
+  margin-top: 6px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
-  grid-area: image;
-  justify-self: start;
-  align-self: center;
+  position: absolute;
+  left: 80px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* FAQ block heading styling */
@@ -1964,9 +1962,9 @@ main > .section.faq-block h2 {
   font-weight: 400;
   color: var(--color-deep-blue);
   line-height: 64px;
-  margin: 0 0 20px;
+  margin: 0;
   max-width: 530px;
-  align-self: end;
+  align-self: start;
   position: relative;
 }
 
@@ -1992,7 +1990,7 @@ main > .section.faq-block > .default-content-wrapper > p {
   font-size: 23px;
   color: var(--color-deep-blue);
   line-height: 1.2;
-  margin: 0 0 20px;
+  margin: 0;
   max-width: 530px;
 }
 
