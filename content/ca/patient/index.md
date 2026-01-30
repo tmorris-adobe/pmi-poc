@@ -76,21 +76,31 @@ Here to **support you** on your wellbeing journey
 
 ---
 
-### What is **medical cannabis**?
+## What is **medical cannabis?**
 
 Understanding medical cannabis can be complex. Our FAQs are here to help you navigate this new terrain with ease.
 
 [Learn more](medical-cannabis-guide)
 
-### What is **CBD**?
+![What is medical cannabis](./images/faq-medical-cannabis.webp)
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | bg-odd, faq-block, faq-block-1 |
+
+---
+
+## What is **CBD?**
 
 Our CBD FAQs are designed to help people who are new to CBD explore the topic with no-nonsense information.
 
 [Learn more](medical-cannabis-guide)
 
+![What is CBD](./images/faq-cbd.webp)
+
 | Section Metadata |  |
 | ---------------- | ---------- |
-| style            | bg-odd, faq, two-col |
+| style            | faq-block, faq-block-2, starburst |
 
 ---
 

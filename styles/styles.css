@@ -1657,7 +1657,7 @@ main > .section.features .cards > ul {
   margin: 0;
 }
 
-/* Individual feature card */
+/* Individual feature card - simple rounded corners */
 main > .section.features .cards > ul > li {
   background: var(--background-color);
   border: 2px solid var(--color-deep-blue);
@@ -1671,31 +1671,6 @@ main > .section.features .cards > ul > li {
   justify-content: flex-start;
   align-self: stretch;
   aspect-ratio: 1.1;
-}
-
-/* Decorative chamfered corners for feature cards - SVG approach */
-main > .section.features .cards > ul > li::before,
-main > .section.features .cards > ul > li::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main > .section.features .cards > ul > li::before {
-  top: -2px;
-  right: -2px;
-  background-image: url('/icons/top-right-corner.svg');
-  background-position: 100% 0;
-}
-
-main > .section.features .cards > ul > li::after {
-  bottom: -2px;
-  left: -2px;
-  background-image: url('/icons/bottom-left-corner.svg');
-  background-position: 0 100%;
 }
 
 /* Feature icons */
@@ -1875,6 +1850,246 @@ main > .section.faq a.button:hover {
 @media (width < 768px) {
   main > .section.faq.two-col > div > .default-content-wrapper {
     column-count: 1;
+  }
+}
+
+/* ==========================================================================
+   FAQ Block Section (Image + Text layout)
+   ========================================================================== */
+
+/* Base FAQ block section */
+main > .section.faq-block {
+  padding: var(--spacing-xxl) 0;
+  margin: 0;
+  overflow: visible;
+}
+
+main > .section.faq-block > .default-content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: center;
+}
+
+/* FAQ block backgrounds - use site gradient background for both sections */
+main > .section.faq-block {
+  background-image: url('/styles/backgrounds/bg-gradient-odd.png');
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+}
+
+/* First block shows top half of gradient */
+main > .section.faq-block-1 {
+  background-position: center top;
+}
+
+/* Second block shows bottom half of gradient */
+main > .section.faq-block-2 {
+  background-position: center bottom;
+}
+
+/* First FAQ block - text left, image right */
+main > .section.faq-block-1 > .default-content-wrapper {
+  grid-template-areas:
+    "heading image"
+    "text image"
+    "button image";
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > h2 {
+  grid-area: heading;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  grid-area: text;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
+  grid-area: button;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  grid-area: image;
+  justify-self: end;
+  align-self: center;
+}
+
+/* Second FAQ block - image left, text right */
+main > .section.faq-block-2 > .default-content-wrapper {
+  grid-template-areas:
+    "image heading"
+    "image text"
+    "image button";
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > h2 {
+  grid-area: heading;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  grid-area: text;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
+  grid-area: button;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  grid-area: image;
+  justify-self: start;
+  align-self: center;
+}
+
+/* FAQ block heading styling */
+main > .section.faq-block h2 {
+  font-size: 55px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 1.1;
+  margin: 0;
+  padding-bottom: var(--spacing-m);
+  align-self: end;
+  position: relative;
+}
+
+main > .section.faq-block h2 strong {
+  color: var(--color-teal-text);
+  display: block;
+}
+
+/* Horizontal rule under FAQ heading */
+main > .section.faq-block h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin-top: var(--spacing-m);
+}
+
+/* FAQ block paragraph */
+main > .section.faq-block > .default-content-wrapper > p {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  color: var(--color-deep-blue);
+  line-height: 1.4;
+  margin: 0 0 var(--spacing-m);
+}
+
+/* FAQ block CTA button - outline style */
+main > .section.faq-block .button-container a,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  color: var(--color-deep-blue);
+  border: 2px solid var(--color-deep-blue);
+  padding: 16px 32px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  transition: all var(--transition-base);
+}
+
+main > .section.faq-block .button-container a::after,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
+  content: '→';
+  font-size: 16px;
+}
+
+main > .section.faq-block .button-container a:hover,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
+}
+
+/* FAQ block images */
+main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+main > .section.faq-block > .default-content-wrapper > p:has(img) img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  display: block;
+}
+
+/* Image container - position images to meet at center */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+/* First block image - left edge at center (aligns to start of its grid cell) */
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  justify-self: start;
+}
+
+/* Second block image - right edge at center (aligns to end of its grid cell) */
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  justify-self: end;
+}
+
+/* Starburst decoration - positioned between sections, above images */
+main > .section.starburst {
+  position: relative;
+}
+
+main > .section.starburst::before {
+  content: '';
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 70px;
+  background-image: url('/icons/luo-symbol.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 20;
+}
+
+/* Mobile: stack vertically */
+@media (width < 768px) {
+  main > .section.faq-block > .default-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-m);
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper,
+  main > .section.faq-block-2 > .default-content-wrapper {
+    grid-template-areas:
+      "heading"
+      "text"
+      "button"
+      "image";
+  }
+
+  main > .section.faq-block h2 {
+    font-size: 36px;
+  }
+
+  main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+  main > .section.faq-block > .default-content-wrapper > p:has(img) img {
+    max-width: 100%;
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(img),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+    justify-self: center;
   }
 }
 
