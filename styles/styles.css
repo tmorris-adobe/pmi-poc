@@ -1644,6 +1644,7 @@ main > .section.features > div > p strong {
 main > .section.features .cards > ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
   gap: var(--spacing-m);
   list-style: none;
   padding: 0;
@@ -1717,6 +1718,50 @@ main > .section.features .cards > ul > li p {
   line-height: 1.5;
   margin: 0;
   text-align: left;
+}
+
+/* Image-only card (lifestyle image) - card with just an image, no text */
+main > .section.features .cards > ul > li:not(:has(strong)) {
+  padding: 0;
+  border: none;
+  border-radius: var(--border-radius-l);
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Remove decorative corners from image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong))::before,
+main > .section.features .cards > ul > li:not(:has(strong))::after {
+  display: none;
+}
+
+/* Image fills card completely */
+main > .section.features .cards > ul > li:not(:has(strong)) picture,
+main > .section.features .cards > ul > li:not(:has(strong)) img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  border-radius: var(--border-radius-l);
+}
+
+/* Remove padding/margin from the paragraph wrapper in image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong)) p {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+/* Ensure picture element fills the image-only card */
+main > .section.features .cards > ul > li:not(:has(strong)) picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 /* Tablet: 2 columns */
