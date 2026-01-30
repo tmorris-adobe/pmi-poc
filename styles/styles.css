@@ -1889,6 +1889,7 @@ main > .section.faq-block {
 /* First block shows top half of gradient */
 main > .section.faq-block-1 {
   background-position: center top;
+  padding-top: 80px;
 }
 
 /* Second block shows bottom half of gradient */
@@ -1906,14 +1907,17 @@ main > .section.faq-block-1 > .default-content-wrapper {
 
 main > .section.faq-block-1 > .default-content-wrapper > h2 {
   grid-area: heading;
+  margin-left: 13px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
   grid-area: text;
+  margin-left: 13px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
   grid-area: button;
+  margin-left: 13px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
@@ -1933,14 +1937,17 @@ main > .section.faq-block-2 > .default-content-wrapper {
 
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
   grid-area: heading;
+  margin-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
   grid-area: text;
+  margin-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
   grid-area: button;
+  margin-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
