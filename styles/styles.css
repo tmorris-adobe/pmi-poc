@@ -1915,7 +1915,7 @@ main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container
 main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
   grid-column: 1;
   margin-left: 13px;
-  margin-top: 6px;
+  margin-top: 27px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
@@ -1944,7 +1944,7 @@ main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
   grid-column: 2;
   margin-left: 98px;
-  margin-top: 6px;
+  margin-top: 27px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
