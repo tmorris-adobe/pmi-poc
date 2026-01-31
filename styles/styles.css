@@ -1857,11 +1857,13 @@ main > .section.faq a.button:hover {
    FAQ Block Section (Image + Text layout)
    ========================================================================== */
 
-/* Base FAQ block section */
+/* Base FAQ block section - full width */
 main > .section.faq-block {
   padding: 0;
   margin: 0;
   overflow: visible;
+  width: 100%;
+  max-width: none;
 }
 
 /* Bottom padding on last FAQ section */
@@ -1869,14 +1871,15 @@ main > .section.faq-block-2 {
   padding-bottom: 210px;
 }
 
+/* FAQ wrapper - full width grid with 50/50 columns */
 main > .section.faq-block > .default-content-wrapper {
-  max-width: 1415px;
-  margin: 0 auto;
-  padding: 0 80px;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   gap: 0;
-  position: relative;
 }
 
 /* FAQ block backgrounds - use site gradient background for both sections */
@@ -1898,61 +1901,63 @@ main > .section.faq-block-2 {
 }
 
 /* First FAQ block - text left, image right */
-main > .section.faq-block-1 > .default-content-wrapper {
-  grid-template-columns: 1fr 1fr;
-}
-
 main > .section.faq-block-1 > .default-content-wrapper > h2 {
   grid-column: 1;
-  margin-left: 13px;
+  grid-row: 1;
+  padding-left: 93px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
   grid-column: 1;
-  margin-left: 13px;
+  grid-row: 2;
+  padding-left: 93px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
   grid-column: 1;
-  margin-left: 13px;
+  grid-row: 3;
+  padding-left: 93px;
   margin-top: 27px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
-  position: absolute;
-  right: 80px;
-  top: 50%;
-  transform: translateY(-50%);
+  grid-column: 2;
+  grid-row: 1 / 4;
+  justify-self: start;
+  align-self: center;
+  margin: 0;
+  max-width: none;
 }
 
 /* Second FAQ block - image left, text right */
-main > .section.faq-block-2 > .default-content-wrapper {
-  grid-template-columns: 1fr 1fr;
-}
-
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
   grid-column: 2;
-  margin-left: 98px;
+  grid-row: 1;
+  padding-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
   grid-column: 2;
-  margin-left: 98px;
+  grid-row: 2;
+  padding-left: 98px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
   grid-column: 2;
-  margin-left: 98px;
+  grid-row: 3;
+  padding-left: 98px;
   margin-top: 27px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
-  position: absolute;
-  left: 80px;
-  top: 50%;
-  transform: translateY(-50%);
+  grid-column: 1;
+  grid-row: 1 / 4;
+  justify-self: end;
+  align-self: center;
+  margin: 0;
+  max-width: none;
 }
 
 /* FAQ block heading styling */
