@@ -1901,6 +1901,7 @@ main > .section.faq-block-2 {
   background-position: center bottom;
   position: relative;
   z-index: 2;
+  padding-top: 100px;
 }
 
 /* First FAQ block - text left, image right */
