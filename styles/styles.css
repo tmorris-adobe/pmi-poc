@@ -1956,7 +1956,7 @@ main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture) img,
 main > .section.faq-block-2 > .default-content-wrapper > p:has(img) img {
   max-width: none;
-  width: 628px;
+  width: 100%; /* Fill the grid column so right edge aligns with center */
 }
 
 /* ==========================================================================
