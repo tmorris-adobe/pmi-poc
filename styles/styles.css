@@ -1928,7 +1928,7 @@ main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
 /* Second FAQ block - image left, text right */
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
   margin-left: calc(50% + 98px);
-  margin-top: 0;
+  margin-top: 470px;
   position: relative;
   z-index: 15;
 }
@@ -1951,7 +1951,7 @@ main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
   position: absolute;
   left: auto;
   right: 50%;
-  top: 0;
+  top: 470px;
   width: 50%;
   margin: 0;
   max-width: none;
