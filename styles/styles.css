@@ -1892,11 +1892,15 @@ main > .section.faq-block {
 main > .section.faq-block-1 {
   background-position: center top;
   padding-top: 80px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Second block shows bottom half of gradient */
 main > .section.faq-block-2 {
   background-position: center bottom;
+  position: relative;
+  z-index: 2;
 }
 
 /* First FAQ block - text left, image right */
@@ -1922,28 +1926,21 @@ main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
   width: 50%;
   margin: 0;
   max-width: none;
-  z-index: 10;
 }
 
 /* Second FAQ block - image left, text right */
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
   margin-left: calc(50% + 98px);
-  margin-top: 470px;
-  position: relative;
-  z-index: 15;
+  margin-top: 0;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
   margin-left: calc(50% + 98px);
-  position: relative;
-  z-index: 15;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
   margin-left: calc(50% + 98px);
   margin-top: 27px;
-  position: relative;
-  z-index: 15;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
@@ -1951,7 +1948,7 @@ main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
   position: absolute;
   left: auto;
   right: 50%;
-  top: 470px;
+  top: 0;
   width: 50%;
   margin: 0;
   max-width: none;
@@ -2130,212 +2127,6 @@ main > .section.starburst::before {
     width: 60px;
     height: 60px;
     top: 200px;
-  }
-}
-
-/* ==========================================================================
-   FAQ Combined Section (unified layout for both FAQ items)
-   ========================================================================== */
-
-/* Section container */
-main > .section.faq-combined-section {
-  padding: 80px 0 210px;
-  margin: 0;
-  overflow: visible;
-  width: 100%;
-  max-width: none;
-  background-image: url('/styles/backgrounds/bg-gradient-odd.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* Columns block within FAQ section */
-main > .section.faq-combined-section .columns.faq-combined {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-}
-
-/* Each row in columns */
-main > .section.faq-combined-section .columns.faq-combined > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  align-items: stretch;
-}
-
-/* First row - text left, image right */
-main > .section.faq-combined-section .columns.faq-combined > div:first-child {
-  margin-bottom: -100px;
-}
-
-main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:first-child {
-  padding: 40px 40px 40px 93px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:last-child {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-/* Second row - image left, text right */
-main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:first-child {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:last-child {
-  padding: 40px 93px 40px 98px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* FAQ Headings */
-main > .section.faq-combined-section .columns.faq-combined h2 {
-  font-size: 64px;
-  font-family: var(--heading-font-family);
-  font-weight: 400;
-  color: var(--color-deep-blue);
-  line-height: 1;
-  margin: 0 0 21px 0;
-  max-width: 530px;
-}
-
-main > .section.faq-combined-section .columns.faq-combined h2 strong {
-  color: var(--color-teal-text);
-}
-
-/* Horizontal rule under FAQ heading */
-main > .section.faq-combined-section .columns.faq-combined h2::after {
-  content: '';
-  display: block;
-  width: 147px;
-  height: 2px;
-  background: var(--color-deep-blue);
-  margin-top: 21px;
-}
-
-/* FAQ paragraphs */
-main > .section.faq-combined-section .columns.faq-combined p {
-  font-family: var(--heading-font-family);
-  font-size: 23px;
-  color: var(--color-deep-blue);
-  line-height: 1.2;
-  margin: 21px 0 0 0;
-  max-width: 530px;
-}
-
-/* FAQ CTA buttons */
-main > .section.faq-combined-section .columns.faq-combined a {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background-color: transparent;
-  color: var(--color-deep-blue);
-  border: 2px solid var(--color-deep-blue);
-  padding: 16px 32px;
-  border-radius: 0;
-  text-decoration: none;
-  font-family: var(--heading-font-family);
-  font-size: 18px;
-  transition: all var(--transition-base);
-  margin-top: 27px;
-}
-
-main > .section.faq-combined-section .columns.faq-combined a::after {
-  content: '→';
-  font-size: 16px;
-}
-
-main > .section.faq-combined-section .columns.faq-combined a:hover {
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
-}
-
-/* FAQ Images with diagonal cuts */
-main > .section.faq-combined-section .columns.faq-combined img {
-  width: 100%;
-  max-width: 628px;
-  height: auto;
-  display: block;
-}
-
-/* First image - diagonal cut bottom-right */
-main > .section.faq-combined-section .columns.faq-combined > div:first-child img {
-  clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
-}
-
-/* Second image - diagonal cut top-left */
-main > .section.faq-combined-section .columns.faq-combined > div:last-child img {
-  clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
-}
-
-/* Starburst icon between sections */
-main > .section.faq-combined-section .columns.faq-combined::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100px;
-  height: 100px;
-  background-image: url('/icons/luo-symbol.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: 20;
-}
-
-/* Mobile styles for FAQ combined */
-@media (width < 900px) {
-  main > .section.faq-combined-section {
-    padding: 40px 20px 80px;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined > div {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined > div:first-child {
-    margin-bottom: 40px;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:first-child,
-  main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:last-child {
-    padding: 0 20px;
-    order: 1;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:last-child,
-  main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:first-child {
-    order: 2;
-    justify-content: center;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined h2 {
-    font-size: 36px;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined p {
-    font-size: 18px;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined img {
-    clip-path: none;
-    max-width: 100%;
-  }
-
-  main > .section.faq-combined-section .columns.faq-combined::after {
-    display: none;
   }
 }
 
