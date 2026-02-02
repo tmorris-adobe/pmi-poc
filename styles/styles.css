@@ -1892,15 +1892,11 @@ main > .section.faq-block {
 main > .section.faq-block-1 {
   background-position: center top;
   padding-top: 80px;
-  position: relative;
-  z-index: 1;
 }
 
 /* Second block shows bottom half of gradient */
 main > .section.faq-block-2 {
   background-position: center bottom;
-  position: relative;
-  z-index: 2;
 }
 
 /* First FAQ block - text left, image right */
@@ -1926,21 +1922,28 @@ main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
   width: 50%;
   margin: 0;
   max-width: none;
+  z-index: 10;
 }
 
 /* Second FAQ block - image left, text right */
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
   margin-left: calc(50% + 98px);
   margin-top: 0;
+  position: relative;
+  z-index: 15;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
   margin-left: calc(50% + 98px);
+  position: relative;
+  z-index: 15;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
   margin-left: calc(50% + 98px);
   margin-top: 27px;
+  position: relative;
+  z-index: 15;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
