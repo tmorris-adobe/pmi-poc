@@ -1894,6 +1894,7 @@ main > .section.faq-block-1 {
   padding-top: 80px;
   position: relative;
   z-index: 1;
+  min-height: 820px; /* Accommodate absolute-positioned image */
 }
 
 /* Second block shows bottom half of gradient */
