@@ -1877,9 +1877,8 @@ main > .section.faq-block > .default-content-wrapper {
   width: 100%;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 0;
+  display: block;
+  position: relative;
 }
 
 /* FAQ block backgrounds - use site gradient background for both sections */
@@ -1902,60 +1901,50 @@ main > .section.faq-block-2 {
 
 /* First FAQ block - text left, image right */
 main > .section.faq-block-1 > .default-content-wrapper > h2 {
-  grid-column: 1;
-  grid-row: 1;
-  padding-left: 93px;
+  margin-left: 93px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
-  grid-column: 1;
-  grid-row: 2;
-  padding-left: 93px;
+  margin-left: 93px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
-  grid-column: 1;
-  grid-row: 3;
-  padding-left: 93px;
+  margin-left: 93px;
   margin-top: 27px;
 }
 
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
-  grid-column: 2;
-  grid-row: 1 / 4;
-  justify-self: start;
-  align-self: center;
+  position: absolute;
+  left: 50%;
+  right: auto;
+  top: 0;
+  width: 50%;
   margin: 0;
   max-width: none;
 }
 
 /* Second FAQ block - image left, text right */
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
-  grid-column: 2;
-  grid-row: 1;
-  padding-left: 98px;
+  margin-left: calc(50% + 98px);
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
-  grid-column: 2;
-  grid-row: 2;
-  padding-left: 98px;
+  margin-left: calc(50% + 98px);
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
-  grid-column: 2;
-  grid-row: 3;
-  padding-left: 98px;
+  margin-left: calc(50% + 98px);
   margin-top: 27px;
 }
 
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
-  grid-column: 1;
-  grid-row: 1 / 4;
-  justify-self: end;
-  align-self: center;
+  position: absolute;
+  left: auto;
+  right: 50%;
+  top: 0;
+  width: 50%;
   margin: 0;
   max-width: none;
 }
@@ -2047,12 +2036,10 @@ main > .section.faq-block > .default-content-wrapper > p:has(img) img {
   display: block;
 }
 
-/* Image container - position images to meet at center */
+/* Image container - z-index for proper stacking */
 main > .section.faq-block > .default-content-wrapper > p:has(picture),
 main > .section.faq-block > .default-content-wrapper > p:has(img) {
-  position: relative;
   z-index: 1;
-  margin: 0;
 }
 
 /* First block image - left edge at center (aligns to start of its grid cell) */
