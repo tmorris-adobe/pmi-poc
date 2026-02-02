@@ -411,8 +411,6 @@ body:has(.hero-gateway) main > .section {
 
 body:has(.hero-gateway) main {
   background: transparent;
-  position: relative;
-  z-index: 1;
 }
 
 body:has(.hero-gateway) header,
@@ -1881,8 +1879,6 @@ main > .section.faq-block > .default-content-wrapper {
   padding: 0;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: auto auto auto;
-  align-content: start;
   gap: 0;
 }
 
@@ -1959,11 +1955,9 @@ main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
   grid-column: 1;
   grid-row: 1 / 4;
   justify-self: end;
-  align-self: start;
+  align-self: center;
   margin: 0;
   max-width: none;
-  /* Pull image up so diagonal tips meet at starburst */
-  transform: translateY(clamp(-620px, -43vw, -330px));
 }
 
 /* FAQ block heading styling */
@@ -2129,13 +2123,6 @@ main > .section.starburst::before {
   main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
   main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
     justify-self: center;
-    grid-column: 1;
-  }
-
-  /* Reset transform for mobile stacked layout */
-  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
-  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
-    transform: none;
   }
 
   main > .section.faq-block-2 {
