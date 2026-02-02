@@ -1934,7 +1934,7 @@ main > .section.faq-block-2 {
   background-position: center bottom;
   position: relative;
   z-index: 2;
-  margin-top: clamp(-620px, -43vw, -335px); /* Responsive overlap - scales with image size */
+  margin-top: clamp(-720px, -50vw, -380px); /* Responsive overlap for diagonal corners to meet */
   padding-bottom: 210px;
 }
 
