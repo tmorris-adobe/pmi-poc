@@ -1857,123 +1857,110 @@ main > .section.faq a.button:hover {
    FAQ Block Section (Image + Text layout)
    ========================================================================== */
 
-/* ==========================================================================
-   FAQ Blocks - Fresh Implementation
-   Two sections with zigzag image layout meeting at diagonal corners
-   ========================================================================== */
-
-/* Base FAQ section styles */
+/* Base FAQ block section - full width */
 main > .section.faq-block {
   padding: 0;
   margin: 0;
+  overflow: visible;
   width: 100%;
   max-width: none;
-  overflow: visible;
+}
+
+/* Bottom padding on last FAQ section */
+main > .section.faq-block-2 {
+  padding-bottom: 210px;
+}
+
+/* FAQ wrapper - full width grid with 50/50 columns */
+main > .section.faq-block > .default-content-wrapper {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 0;
+}
+
+/* FAQ block backgrounds - use site gradient background for both sections */
+main > .section.faq-block {
   background-image: url('/styles/backgrounds/bg-gradient-odd.png');
   background-size: 100% 200%;
   background-repeat: no-repeat;
 }
 
-/* Content wrapper - use grid for two-column layout */
-main > .section.faq-block > .default-content-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  min-height: 806px; /* Match image height */
-}
-
-/* ==========================================================================
-   FAQ Block 1: Text Left, Image Right
-   ========================================================================== */
+/* First block shows top half of gradient */
 main > .section.faq-block-1 {
   background-position: center top;
-  position: relative;
-  z-index: 1;
+  padding-top: 80px;
 }
 
-/* Text content - left column */
-main > .section.faq-block-1 > .default-content-wrapper > h2,
-main > .section.faq-block-1 > .default-content-wrapper > p:not(:has(picture)):not(:has(img)) {
-  grid-column: 1;
-  padding-left: 93px;
-  padding-right: 40px;
+/* Second block shows bottom half of gradient */
+main > .section.faq-block-2 {
+  background-position: center bottom;
 }
 
+/* First FAQ block - text left, image right */
 main > .section.faq-block-1 > .default-content-wrapper > h2 {
-  margin-top: 80px;
+  grid-column: 1;
+  grid-row: 1;
+  padding-left: 93px;
 }
 
-/* Image - right column, spans all rows */
+main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  grid-column: 1;
+  grid-row: 2;
+  padding-left: 93px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
+  grid-column: 1;
+  grid-row: 3;
+  padding-left: 93px;
+  margin-top: 27px;
+}
+
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
   grid-column: 2;
-  grid-row: 1 / -1;
+  grid-row: 1 / 4;
+  justify-self: start;
+  align-self: center;
   margin: 0;
-  padding: 0;
-  max-width: none; /* Override general paragraph max-width to fill grid column */
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  max-width: none;
 }
 
-/* Image 1 - responsive width (~44% of viewport), left edge at center */
-main > .section.faq-block-1 > .default-content-wrapper > p:has(picture) img,
-main > .section.faq-block-1 > .default-content-wrapper > p:has(img) img {
-  width: 44vw;
-  max-width: 628px; /* Cap at original large screen size */
-  height: auto;
-}
-
-/* ==========================================================================
-   FAQ Block 2: Image Left, Text Right
-   ========================================================================== */
-main > .section.faq-block-2 {
-  background-position: center bottom;
-  position: relative;
-  z-index: 2;
-  margin-top: clamp(-720px, -50vw, -380px); /* Responsive overlap for diagonal corners to meet */
-  padding-bottom: 210px;
-}
-
-/* Text content - right column */
-main > .section.faq-block-2 > .default-content-wrapper > h2,
-main > .section.faq-block-2 > .default-content-wrapper > p:not(:has(picture)):not(:has(img)) {
-  grid-column: 2;
-  padding-left: 98px;
-  padding-right: 93px;
-}
-
+/* Second FAQ block - image left, text right */
 main > .section.faq-block-2 > .default-content-wrapper > h2 {
-  margin-top: 350px; /* Position text below the overlap area */
+  grid-column: 2;
+  grid-row: 1;
+  padding-left: 98px;
 }
 
-/* Image - left column, spans all rows, aligned to right edge (center of viewport) */
+main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  grid-column: 2;
+  grid-row: 2;
+  padding-left: 98px;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
+  grid-column: 2;
+  grid-row: 3;
+  padding-left: 98px;
+  margin-top: 27px;
+}
+
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
 main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
   grid-column: 1;
-  grid-row: 1 / -1;
+  grid-row: 1 / 4;
+  justify-self: end;
+  align-self: center;
   margin: 0;
-  padding: 0;
-  max-width: none; /* Override general paragraph max-width to fill grid column */
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  max-width: none;
 }
 
-/* Image 2 - responsive width (~44% of viewport), right edge at center */
-main > .section.faq-block-2 > .default-content-wrapper > p:has(picture) img,
-main > .section.faq-block-2 > .default-content-wrapper > p:has(img) img {
-  width: 44vw;
-  max-width: 628px; /* Cap at original large screen size */
-  height: auto;
-}
-
-/* ==========================================================================
-   FAQ Typography & Styling
-   ========================================================================== */
+/* FAQ block heading styling */
 main > .section.faq-block h2 {
   font-size: 64px;
   font-family: var(--heading-font-family);
@@ -1982,6 +1969,8 @@ main > .section.faq-block h2 {
   line-height: 64px;
   margin: 0;
   max-width: 530px;
+  align-self: start;
+  position: relative;
 }
 
 main > .section.faq-block h2 strong {
@@ -1989,6 +1978,7 @@ main > .section.faq-block h2 strong {
   display: block;
 }
 
+/* Horizontal rule under FAQ heading */
 main > .section.faq-block h2::after {
   content: '';
   display: block;
@@ -1999,6 +1989,7 @@ main > .section.faq-block h2::after {
   margin-bottom: 21px;
 }
 
+/* FAQ block paragraph */
 main > .section.faq-block > .default-content-wrapper > p {
   font-family: var(--heading-font-family);
   font-size: 23px;
@@ -2008,12 +1999,19 @@ main > .section.faq-block > .default-content-wrapper > p {
   max-width: 530px;
 }
 
-/* Button styling */
+/* Remove max-width for image container paragraphs */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  max-width: none;
+}
+
+/* FAQ block CTA button - outline style */
 main > .section.faq-block .button-container {
   margin-top: 27px;
 }
 
-main > .section.faq-block .button-container a {
+main > .section.faq-block .button-container a,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -2028,29 +2026,48 @@ main > .section.faq-block .button-container a {
   transition: all var(--transition-base);
 }
 
-main > .section.faq-block .button-container a::after {
+main > .section.faq-block .button-container a::after,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
   content: '→';
   font-size: 16px;
 }
 
-main > .section.faq-block .button-container a:hover {
+main > .section.faq-block .button-container a:hover,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
   background-color: var(--color-deep-blue);
   color: var(--color-white);
 }
 
-/* ==========================================================================
-   FAQ Images
-   ========================================================================== */
-main > .section.faq-block img {
+/* FAQ block images */
+main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+main > .section.faq-block > .default-content-wrapper > p:has(img) img {
   width: 100%;
   max-width: 628px;
   height: auto;
   display: block;
 }
 
-/* ==========================================================================
-   Starburst Icon - Centered between sections
-   ========================================================================== */
+/* Image container - position images to meet at center */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+/* First block image - left edge at center (aligns to start of its grid cell) */
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  justify-self: start;
+}
+
+/* Second block image - right edge at center (aligns to end of its grid cell) */
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  justify-self: end;
+}
+
+/* Starburst decoration - positioned between sections, above images */
 main > .section.starburst {
   position: relative;
 }
@@ -2058,7 +2075,7 @@ main > .section.starburst {
 main > .section.starburst::before {
   content: '';
   position: absolute;
-  top: 50px;
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
@@ -2070,56 +2087,21 @@ main > .section.starburst::before {
   z-index: 20;
 }
 
-/* ==========================================================================
-   Mobile Responsive
-   ========================================================================== */
-@media (max-width: 767px) {
+/* Mobile: stack vertically */
+@media (width < 768px) {
   main > .section.faq-block > .default-content-wrapper {
     grid-template-columns: 1fr;
-    min-height: auto;
-    padding: 0 40px;
     gap: var(--spacing-m);
+    padding: 0 40px;
   }
 
-  main > .section.faq-block-1 > .default-content-wrapper > h2,
-  main > .section.faq-block-1 > .default-content-wrapper > p,
-  main > .section.faq-block-2 > .default-content-wrapper > h2,
-  main > .section.faq-block-2 > .default-content-wrapper > p,
-  main > .section.faq-block-2 > .default-content-wrapper > p:not(:has(picture)):not(:has(img)) {
-    grid-column: 1;
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  main > .section.faq-block-1 > .default-content-wrapper > h2 {
-    margin-top: 40px;
-  }
-
-  main > .section.faq-block-2 {
-    margin-top: 0;
-    padding-bottom: 80px;
-  }
-
-  main > .section.faq-block-2 > .default-content-wrapper > h2 {
-    margin-top: 40px;
-  }
-
-  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
-  main > .section.faq-block-1 > .default-content-wrapper > p:has(img),
-  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
-  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
-    grid-column: 1; /* Override desktop grid-column: 2 */
-    grid-row: auto;
-    justify-content: center;
-  }
-
-  /* Mobile: Full-width images stacked vertically */
-  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture) img,
-  main > .section.faq-block-1 > .default-content-wrapper > p:has(img) img,
-  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture) img,
-  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) img {
-    width: 100%;
-    max-width: none;
+  main > .section.faq-block-1 > .default-content-wrapper,
+  main > .section.faq-block-2 > .default-content-wrapper {
+    grid-template-areas:
+      "heading"
+      "text"
+      "button"
+      "image";
   }
 
   main > .section.faq-block h2 {
@@ -2131,8 +2113,20 @@ main > .section.starburst::before {
     font-size: 18px;
   }
 
-  main > .section.faq-block img {
+  main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+  main > .section.faq-block > .default-content-wrapper > p:has(img) img {
     max-width: 100%;
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(img),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+    justify-self: center;
+  }
+
+  main > .section.faq-block-2 {
+    padding-bottom: 80px;
   }
 
   main > .section.starburst::before {
