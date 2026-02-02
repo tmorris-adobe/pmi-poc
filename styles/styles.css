@@ -11,6 +11,7 @@
   --color-purple: #9333EA;
   --color-violet: #7C3AED;
   --color-teal: #00C4E8;
+  --color-teal-text: #01CFC9; /* rgb(1, 207, 201) - used for accent text */
   --color-dark-navy: #1a1a2e;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
 
@@ -126,6 +127,11 @@ body.appear {
 
 header {
   height: var(--nav-height);
+}
+
+/* Header overlays hero on patient pages - don't reserve space */
+body:has(.section.hero-patient) header {
+  height: 0;
 }
 
 /* Hide default header on gateway pages (age verification) - but not gateway-header */
@@ -363,6 +369,25 @@ main > .section {
 /* Hero + Hero-Gateway seamless connection */
 main > .section.hero-container {
   margin: 0;
+}
+
+/* ==========================================================================
+   Patient Pages - Continuous Gradient Flow
+   Gradient applied to body, sections are transparent to show through
+   ========================================================================== */
+
+/* Patient pages - gradient on body spans from top through product banner */
+body:has(.hero-patient) {
+  background-color: transparent;
+  background-image: var(--bg-gradient-hero);
+  background-size: 100% 3200px;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+/* Hero section is transparent - gradient shows through from body */
+main > .section.hero-patient {
+  background: transparent;
 }
 
 main > .section.hero-gateway-container {
@@ -759,7 +784,8 @@ main strong {
 
 /* Background Gradient Variables using actual images */
 :root {
-  --bg-gradient-hero: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
+  --bg-gradient-hero: url('/styles/backgrounds/footer-gradient-background.jpg');
+  --bg-gradient-mission: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
   --bg-gradient-product: url('/styles/backgrounds/footer-gradient-background.jpg');
   --bg-gradient-even: url('/styles/backgrounds/bg-gradient-even.png');
   --bg-gradient-odd: url('/styles/backgrounds/bg-gradient-odd.png');
@@ -769,10 +795,10 @@ main strong {
    Section Background Styles (applied via Section Metadata)
    ========================================================================== */
 
-/* Hero gradient background - flipped gradient */
+/* Hero gradient background */
 main > .section.bg-hero {
   background: var(--bg-gradient-hero);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center top;
   background-repeat: no-repeat;
   color: var(--text-color-inverted);
@@ -780,15 +806,25 @@ main > .section.bg-hero {
   padding: var(--spacing-xl) 0;
 }
 
-/* Product gradient background */
+/* On patient pages, bg-hero is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-hero {
+  background: transparent;
+}
+
+/* Product gradient background - transparent on patient pages to show unified gradient */
 main > .section.bg-product {
   background: var(--bg-gradient-product);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   color: var(--text-color-inverted);
   margin: 0;
   padding: var(--spacing-xl) 0;
+}
+
+/* On patient pages, product section is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-product {
+  background: transparent;
 }
 
 /* Even gradient background (teal to white) */
@@ -853,13 +889,15 @@ main > .section.hero-patient {
   justify-content: flex-start;
   text-align: left;
   position: relative;
-  overflow: visible;
-  padding-top: 120px;
+  overflow: hidden;
+  padding-top: 160px;
   padding-bottom: 200px;
+  z-index: 1;
 }
 
 main > .section.hero-patient > div {
-  position: relative;
+  /* Use isolation instead of position:relative to maintain stacking without positioning context */
+  isolation: isolate;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -867,6 +905,7 @@ main > .section.hero-patient > div {
   max-width: 550px;
   padding: 0 var(--spacing-xl);
   margin-left: 5%;
+  margin-top: 5vh;
 }
 
 /* Ensure all text content stays above the image */
@@ -878,7 +917,7 @@ main > .section.hero-patient > div > p:not(:has(img)) {
 
 /* Hero H1 - "Illuminate" bold, "Possibilities" italic/lighter */
 main > .section.hero-patient h1 {
-  font-size: 80px;
+  font-size: 100px;
   font-weight: 700;
   font-style: normal;
   color: var(--text-color-inverted);
@@ -896,9 +935,9 @@ main > .section.hero-patient h1 em {
 
 main > .section.hero-patient > div > p {
   color: var(--text-color-inverted);
-  max-width: 450px;
+  max-width: 500px;
   margin: 0 0 var(--spacing-m);
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1.5;
 }
 
@@ -910,11 +949,11 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 18px 32px;
+  padding: 22px 40px;
   border-radius: var(--border-radius-pill);
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   transition: all var(--transition-base);
   margin: var(--spacing-m) 0;
@@ -940,49 +979,70 @@ main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
   transform: translateX(4px);
 }
 
-/* Hero floating image - positioned at bottom right */
+/* Hero floating image - anchored to right edge of viewport */
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
-  bottom: -50px;
+  top: 0;
   right: 0;
-  left: auto;
-  max-width: 60%;
+  bottom: 0;
+  width: auto;
   z-index: 1;
   margin: 0;
   pointer-events: none;
-  transform: translateX(25%);
 }
 
+/* Image fills container height and extends leftward, right edge at viewport edge */
 main > .section.hero-patient .hero-image img,
-main > .section.hero-patient > div > p > img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+main > .section.hero-patient > div > p:has(img) img {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 75%;
+  width: auto;
+  max-width: none;
+  max-height: none;
 }
 
-/* Desktop adjustments */
-@media (width >= 1200px) {
+/* Desktop adjustments - larger screens get larger images */
+@media (width >= 1400px) {
   main > .section.hero-patient h1 {
-    font-size: 93px;
+    font-size: 120px;
   }
 
-  main > .section.hero-patient .hero-image,
-  main > .section.hero-patient > div > p:has(img) {
-    max-width: 60%;
-    bottom: -80px;
-    right: 0;
-    transform: translateX(30%);
+  main > .section.hero-patient > div > p {
+    font-size: 28px;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    height: 90%;
+  }
+}
+
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.hero-patient h1 {
+    font-size: 110px;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    height: 80%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
-  main > .section.hero-patient .hero-image,
-  main > .section.hero-patient > div > p:has(img) {
-    max-width: 55%;
-    bottom: -40px;
-    right: 0;
-    transform: translateX(20%);
+  main > .section.hero-patient h1 {
+    font-size: 100px;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    height: 60%;
+    top: auto;
+    bottom: 0;
+    transform: none;
   }
 }
 
@@ -1069,41 +1129,171 @@ main > .section.two-col-reverse > div > *:last-child {
    Content Banner Sections (Product highlight with text + image)
    ========================================================================== */
 
-main > .section.banner-left > div,
-main > .section.banner-right > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-  max-width: 1200px;
+/* Product banner section - relative for absolute positioning of image */
+main > .section.bg-product.banner-left,
+main > .section.bg-product.banner-right {
+  position: relative;
+  height: 883px;
+  max-height: 883px;
+  padding: 0;
+  overflow: visible;
+}
+
+/* Container holds the text content on the right */
+main > .section.bg-product.banner-left > div,
+main > .section.bg-product.banner-right > div {
+  position: static; /* Don't create positioning context - let image position relative to section */
+  display: block;
+  max-width: 1415px;
   margin: 0 auto;
-  padding: 0 var(--spacing-m);
-  min-height: 500px;
+  padding: 210px 80px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-main > .section.banner-right > div {
-  direction: rtl;
+/* Text content wrapper - positioned on the right side */
+main > .section.bg-product.banner-left > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-main > .section.banner-right > div > * {
-  direction: ltr;
+/* All text content in product banner - constrained width on right */
+main > .section.bg-product.banner-left > div > h2,
+main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+  width: 500px;
+  max-width: 100%;
 }
 
-main > .section.banner-left .content-col,
-main > .section.banner-right .content-col {
+/* Image wrapper - absolutely positioned on left edge of viewport, bottom-aligned */
+/* Uses viewport-relative width so image scales down as viewport narrows */
+main > .section.bg-product.banner-left > div > p:has(img),
+main > .section.bg-product.banner-left > div > p:has(picture) {
+  position: absolute;
+  left: 0; /* Align with viewport left edge */
+  bottom: -37px;
+  width: 55vw; /* Responsive width - scales with viewport */
+  max-width: 990px; /* Cap size on very large screens */
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* Large desktop: slightly larger percentage */
+@media (width >= 1400px) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 60vw;
+    max-width: 990px;
+  }
+}
+
+/* Medium desktop: balanced size */
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 55vw;
+  }
+}
+
+/* Tablet/Stacked layout: text on top, image below anchored to left edge */
+/* Matches original site behavior - switches at 1200px */
+@media (width < 1200px) {
+  main > .section.bg-product.banner-left,
+  main > .section.bg-product.banner-right {
+    height: auto;
+    max-height: none;
+    min-height: auto;
+  }
+
+  main > .section.bg-product.banner-left > div,
+  main > .section.bg-product.banner-right > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-xl) var(--spacing-m);
+  }
+
+  main > .section.bg-product.banner-left > div > h2,
+  main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Image below text, still anchored to left viewport edge */
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    position: relative;
+    left: calc(-1 * var(--spacing-m)); /* Offset padding to align with viewport edge */
+    bottom: auto;
+    width: 70vw;
+    max-width: none;
+    order: 1; /* Image appears below text */
+    margin-top: var(--spacing-l);
+    margin-bottom: 0;
+    justify-content: flex-start;
+  }
+
+  main > .section.bg-product.banner-left > div > p > img,
+  main > .section.bg-product.banner-left > div > p picture img {
+    max-height: 500px;
+  }
+}
+
+/* Text content spacing */
+main > .section.bg-product.banner-left > div > h2 {
+  margin: 0 0 var(--spacing-m);
+}
+
+main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(a)) {
+  margin: 0 0 var(--spacing-m);
+}
+
+main > .section.bg-product.banner-left > div > p:has(a):not(:has(img)) {
+  margin: var(--spacing-m) 0 0;
+}
+
+/* Title styling with horizontal line */
+main > .section.bg-product.banner-left h2,
+main > .section.bg-product.banner-right h2 {
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-color-inverted);
+  position: relative;
+  padding-bottom: var(--spacing-m);
+}
+
+/* Horizontal line under title */
+main > .section.bg-product.banner-left h2::after,
+main > .section.bg-product.banner-right h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 1px;
+  background-color: var(--color-white);
+  margin-top: var(--spacing-m);
+}
+
+/* Strong text in title - white bold on gradient */
+main > .section.bg-product.banner-left h2 strong,
+main > .section.bg-product.banner-right h2 strong {
+  color: var(--text-color-inverted);
+  font-weight: 600;
+  display: block;
+}
+
+/* Body text - exclude image paragraphs */
+main > .section.bg-product.banner-left p:not(:has(img)),
+main > .section.bg-product.banner-right p:not(:has(img)) {
+  color: var(--text-color-inverted);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  line-height: 1.4;
   max-width: 500px;
-}
-
-main > .section.banner-left h2,
-main > .section.banner-right h2 {
-  font-size: var(--heading-font-size-xl);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-m);
-}
-
-main > .section.banner-left h2 strong,
-main > .section.banner-right h2 strong {
-  color: var(--color-teal);
 }
 
 /* Banner CTA button on gradient backgrounds */
@@ -1111,164 +1301,298 @@ main > .section.bg-product.banner-left a.button,
 main > .section.bg-product.banner-right a.button,
 main > .section.bg-product.banner-left > div > p > a,
 main > .section.bg-product.banner-right > div > p > a {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 16px 40px;
+  padding: 20px 40px;
   border-radius: var(--border-radius-pill);
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 500;
   transition: all var(--transition-base);
-  margin-top: var(--spacing-m);
 }
 
-/* Banner image column */
-main > .section.banner-left .image-col,
-main > .section.banner-right .image-col,
-main > .section.banner-left > div > p:has(img),
-main > .section.banner-right > div > p:has(img) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+main > .section.bg-product.banner-left > div > p > a::after,
+main > .section.bg-product.banner-right > div > p > a::after {
+  content: '→';
+  font-size: 18px;
 }
 
-main > .section.banner-left .image-col img,
-main > .section.banner-right .image-col img,
-main > .section.banner-left > div > p > img,
-main > .section.banner-right > div > p > img {
-  max-width: 100%;
+main > .section.bg-product.banner-left > div > p > a:hover,
+main > .section.bg-product.banner-right > div > p > a:hover {
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
+}
+
+/* Banner image - large, aligned to bottom-left */
+main > .section.bg-product.banner-left > div > p > img,
+main > .section.bg-product.banner-right > div > p > img,
+main > .section.bg-product.banner-left > div > p picture img,
+main > .section.bg-product.banner-right > div > p picture img {
+  width: 100%;
   height: auto;
-  max-height: 450px;
+  max-width: none;
+  max-height: 832px;
   object-fit: contain;
+  object-position: left bottom;
 }
 
+/* Mobile: smaller image, still anchored to left edge */
 @media (width < 768px) {
-  main > .section.banner-left > div,
-  main > .section.banner-right > div {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    direction: ltr;
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 90vw; /* Larger on mobile to match original */
   }
 
-  main > .section.banner-right > div > * {
-    direction: ltr;
+  main > .section.bg-product.banner-left > div > p > img,
+  main > .section.bg-product.banner-left > div > p picture img {
+    max-height: 350px;
   }
 }
 
 /* ==========================================================================
-   Mission/Text Section Styles
+   Mission/Text Section Styles (Frosted Glass with Background Image)
    ========================================================================== */
 
+main > .section.mission {
+  position: relative;
+  min-height: 350px;
+  max-width: 1415px;
+  margin: -120px auto 0;
+  background: url('/content/ca/patient/images/lifestyle-bag.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+  z-index: 10;
+  /* Clipped corners - top-right and bottom-left */
+  clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 35px 100%, 0 calc(100% - 35px));
+}
+
+/* Frosted glass content container */
 main > .section.mission > div {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-m);
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  margin: 45px 0;
+  margin-left: 5%;
+  padding: 45px 40px;
+  background-color: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
 }
 
 main > .section.mission h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-l);
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: var(--spacing-m);
 }
 
 main > .section.mission h2 strong {
-  color: var(--color-teal);
+  color: var(--color-teal-text);
+  font-style: italic;
 }
 
 main > .section.mission p {
   color: var(--color-deep-blue);
-  line-height: 1.6;
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  line-height: 1.2;
   margin-bottom: var(--spacing-m);
 }
 
+/* Teal CTA button with arrow */
 main > .section.mission a.button,
 main > .section.mission > div > p > a {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-deep-blue);
-  padding: 12px 32px;
-  border: 2px solid var(--color-deep-blue);
-  border-radius: var(--border-radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: var(--color-teal-text);
+  color: var(--color-white);
+  padding: 19px 60px 19px 25px;
+  border: none;
+  border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 23px;
   transition: all var(--transition-base);
+  margin-top: var(--spacing-m);
+}
+
+main > .section.mission a.button::after,
+main > .section.mission > div > p > a::after {
+  content: "→";
+  font-size: 20px;
+  transition: transform var(--transition-base);
 }
 
 main > .section.mission a.button:hover,
 main > .section.mission > div > p > a:hover {
-  background-color: var(--color-deep-blue);
+  background-color: var(--color-purple);
   color: var(--color-white);
+}
+
+main > .section.mission a.button:hover::after,
+main > .section.mission > div > p > a:hover::after {
+  transform: translateX(5px);
+}
+
+@media (width < 768px) {
+  main > .section.mission {
+    min-height: auto;
+    background-position: center;
+    padding: var(--spacing-l) var(--spacing-m);
+    /* Smaller clip on mobile */
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  main > .section.mission > div {
+    max-width: 100%;
+    margin-left: 0;
+    padding: var(--spacing-l);
+  }
+
+  main > .section.mission h2 {
+    font-size: var(--heading-font-size-l);
+  }
 }
 
 /* ==========================================================================
    Product Cards Section (Find your Luo)
    ========================================================================== */
 
-main > .section.products > div {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-m);
+/* Full-width section - no container padding */
+main > .section.products {
+  padding: 60px 0 0;
 }
 
+main > .section.products > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Heading with underline */
 main > .section.products h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
   text-align: center;
-  margin-bottom: var(--spacing-l);
+  margin: 0 0 var(--spacing-l);
+  padding-bottom: 20px;
+  position: relative;
 }
 
+/* Blue underline via ::after */
+main > .section.products h3::after {
+  content: '';
+  display: block;
+  width: 184px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
+  margin: 20px auto 0;
+}
+
+/* Cards grid - no gap, full width */
 main > .section.products .cards > ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-l);
+  gap: 0;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Individual product card */
 main > .section.products .cards > ul > li {
-  background: var(--background-color);
-  padding: var(--spacing-l);
+  background: transparent;
+  padding: 109px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* First card - right border (vertical divider) */
+main > .section.products .cards > ul > li:first-child {
+  border-right: 1px solid #eee8da;
+}
+
+/* Second card - left border (vertical divider) */
+main > .section.products .cards > ul > li:last-child {
+  border-left: 1px solid #eee8da;
+}
+
+/* Product images - larger size */
 main > .section.products .cards > ul > li picture,
 main > .section.products .cards > ul > li img {
-  max-width: 180px;
+  width: 268px;
+  max-width: 100%;
   height: auto;
   margin-bottom: var(--spacing-m);
 }
 
+/* Product title - bold */
 main > .section.products .cards > ul > li strong {
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: 20px;
   font-family: var(--heading-font-family);
+  font-weight: 700;
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
+/* Product description */
 main > .section.products .cards > ul > li p {
   font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 1.5;
   margin: 0;
+  max-width: 380px;
+  padding: 0 var(--spacing-m);
 }
 
+/* Hide Learn More link - original doesn't show it as separate link */
 main > .section.products .cards > ul > li a {
-  color: var(--color-purple);
-  text-decoration: underline;
-  margin-top: var(--spacing-s);
+  display: none;
 }
 
+/* Mobile: stack cards vertically */
 @media (width < 768px) {
   main > .section.products .cards > ul {
     grid-template-columns: 1fr;
+  }
+
+  main > .section.products .cards > ul > li {
+    padding: 60px var(--spacing-m);
+  }
+
+  main > .section.products .cards > ul > li:first-child {
+    border-right: none;
+    border-bottom: 1px solid #eee8da;
+  }
+
+  main > .section.products .cards > ul > li:last-child {
+    border-left: none;
+    border-top: 1px solid #eee8da;
+  }
+
+  main > .section.products h3 {
+    font-size: 32px;
   }
 }
 
@@ -1277,45 +1601,63 @@ main > .section.products .cards > ul > li a {
    ========================================================================== */
 
 main > .section.features > div {
-  max-width: 1100px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 var(--spacing-m);
 }
 
+/* Cards wrapper - full width (override first-child 700px) */
+main > .section.features .cards.block {
+  width: 100%;
+  max-width: 100% !important;
+}
+
+/* Header wrapper - left aligned */
 main > .section.features .features-header,
-main > .section.features > div > div:first-child {
-  text-align: center;
-  margin-bottom: var(--spacing-l);
+main > .section.features > div > div:first-child:not(.cards) {
+  text-align: left;
+  margin-bottom: var(--spacing-xl);
+  max-width: 700px;
 }
 
-main > .section.features h2,
+/* "Why Luo?" label - small, uppercase style */
 main > .section.features h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 18px;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
   color: var(--color-deep-blue);
-  text-align: center;
-  margin-bottom: var(--spacing-s);
+  text-align: left;
+  margin: 0 0 var(--spacing-s);
+  text-transform: none;
 }
 
+/* Main heading - large with teal accent */
 main > .section.features > div > p {
-  text-align: center;
-  font-size: var(--body-font-size-m);
+  text-align: left;
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
-  margin-bottom: var(--spacing-l);
+  line-height: 1.1;
+  margin: 0 0 var(--spacing-xl);
 }
 
 main > .section.features > div > p strong {
-  color: var(--color-teal);
+  color: var(--color-teal-text);
 }
 
+/* Cards grid - 3 columns */
 main > .section.features .cards > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--spacing-m);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Individual feature card - simple rounded corners */
 main > .section.features .cards > ul > li {
   background: var(--background-color);
   border: 2px solid var(--color-deep-blue);
@@ -1323,58 +1665,115 @@ main > .section.features .cards > ul > li {
   padding: var(--spacing-l);
   position: relative;
   overflow: hidden;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: stretch;
+  aspect-ratio: 1.1;
 }
 
-/* Decorative corner clips for feature cards */
-main > .section.features .cards > ul > li::before,
-main > .section.features .cards > ul > li::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: var(--bg-gradient-even);
-  background-size: cover;
-}
-
-main > .section.features .cards > ul > li::before {
-  top: -2px;
-  right: -2px;
-  border-bottom-left-radius: 15px;
-  border: 2px solid var(--color-deep-blue);
-  border-top: none;
-  border-right: none;
-}
-
-main > .section.features .cards > ul > li::after {
-  bottom: -2px;
-  left: -2px;
-  border-top-right-radius: 15px;
-  border: 2px solid var(--color-deep-blue);
-  border-bottom: none;
-  border-left: none;
-}
-
+/* Feature icons */
 main > .section.features .cards > ul > li picture,
 main > .section.features .cards > ul > li img {
   max-width: 60px;
   height: 60px;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-l);
 }
 
+/* Feature title - NOT italic, regular weight */
 main > .section.features .cards > ul > li strong {
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: 28px;
   font-family: var(--heading-font-family);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
+/* Feature description */
 main > .section.features .cards > ul > li p {
   font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 1.5;
   margin: 0;
+  text-align: left;
+}
+
+/* Image-only card (lifestyle image) - card with just an image, no text */
+main > .section.features .cards > ul > li:not(:has(strong)) {
+  padding: 0;
+  border: none;
+  border-radius: var(--border-radius-l);
+  overflow: hidden;
+  align-self: stretch;
+  aspect-ratio: 1.1;
+}
+
+/* Cards-card-image wrapper in image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image {
+  height: 100%;
+  width: 100%;
+}
+
+/* Remove decorative corners from image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong))::before,
+main > .section.features .cards > ul > li:not(:has(strong))::after {
+  display: none;
+}
+
+/* Image fills card completely */
+main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image picture,
+main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: var(--border-radius-l);
+  display: block;
+}
+
+/* Remove padding/margin from the paragraph wrapper in image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong)) p {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+/* Ensure picture element fills the image-only card */
+main > .section.features .cards > ul > li:not(:has(strong)) picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tablet: 2 columns */
+@media (width < 1024px) {
+  main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (width < 768px) {
+  main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  main > .section.features > div > p {
+    font-size: 32px;
+  }
+
+  main > .section.features .cards > ul > li strong {
+    font-size: 22px;
+  }
 }
 
 /* ==========================================================================
@@ -1451,6 +1850,494 @@ main > .section.faq a.button:hover {
 @media (width < 768px) {
   main > .section.faq.two-col > div > .default-content-wrapper {
     column-count: 1;
+  }
+}
+
+/* ==========================================================================
+   FAQ Block Section (Image + Text layout)
+   ========================================================================== */
+
+/* Base FAQ block section - full width */
+main > .section.faq-block {
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  width: 100%;
+  max-width: none;
+}
+
+/* Bottom padding on last FAQ section */
+main > .section.faq-block-2 {
+  padding-bottom: 210px;
+}
+
+/* FAQ wrapper - full width grid with 50/50 columns */
+main > .section.faq-block > .default-content-wrapper {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: relative;
+}
+
+/* FAQ block backgrounds - use site gradient background for both sections */
+main > .section.faq-block {
+  background-image: url('/styles/backgrounds/bg-gradient-odd.png');
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+}
+
+/* First block shows top half of gradient */
+main > .section.faq-block-1 {
+  background-position: center top;
+  padding-top: 80px;
+}
+
+/* Second block shows bottom half of gradient */
+main > .section.faq-block-2 {
+  background-position: center bottom;
+}
+
+/* First FAQ block - text left, image right */
+main > .section.faq-block-1 > .default-content-wrapper > h2 {
+  margin-left: 93px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  margin-left: 93px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
+  margin-left: 93px;
+  margin-top: 27px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  position: absolute;
+  left: 50%;
+  right: auto;
+  top: 0;
+  width: 50%;
+  margin: 0;
+  max-width: none;
+  z-index: 10;
+}
+
+/* Second FAQ block - image left, text right */
+main > .section.faq-block-2 > .default-content-wrapper > h2 {
+  margin-left: calc(50% + 98px);
+  margin-top: 470px;
+  position: relative;
+  z-index: 15;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  margin-left: calc(50% + 98px);
+  position: relative;
+  z-index: 15;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
+  margin-left: calc(50% + 98px);
+  margin-top: 27px;
+  position: relative;
+  z-index: 15;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  position: absolute;
+  left: auto;
+  right: 50%;
+  top: 470px;
+  width: 50%;
+  margin: 0;
+  max-width: none;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* FAQ block heading styling */
+main > .section.faq-block h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 64px;
+  margin: 0;
+  max-width: 530px;
+  align-self: start;
+  position: relative;
+}
+
+main > .section.faq-block h2 strong {
+  color: var(--color-teal-text);
+  display: block;
+}
+
+/* Horizontal rule under FAQ heading */
+main > .section.faq-block h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin-top: 21px;
+  margin-bottom: 21px;
+}
+
+/* FAQ block paragraph */
+main > .section.faq-block > .default-content-wrapper > p {
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  color: var(--color-deep-blue);
+  line-height: 1.2;
+  margin: 0;
+  max-width: 530px;
+}
+
+/* Remove max-width for image container paragraphs */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  max-width: none;
+}
+
+/* FAQ block CTA button - outline style */
+main > .section.faq-block .button-container {
+  margin-top: 27px;
+}
+
+main > .section.faq-block .button-container a,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  color: var(--color-deep-blue);
+  border: 2px solid var(--color-deep-blue);
+  padding: 16px 32px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  transition: all var(--transition-base);
+}
+
+main > .section.faq-block .button-container a::after,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
+  content: '→';
+  font-size: 16px;
+}
+
+main > .section.faq-block .button-container a:hover,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
+}
+
+/* FAQ block images */
+main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+main > .section.faq-block > .default-content-wrapper > p:has(img) img {
+  width: 100%;
+  max-width: 628px;
+  height: auto;
+  display: block;
+}
+
+/* Image container - z-index for proper stacking */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  z-index: 1;
+}
+
+/* First block image - left edge at center (aligns to start of its grid cell) */
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  justify-self: start;
+}
+
+/* Second block image - right edge at center (aligns to end of its grid cell) */
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  justify-self: end;
+}
+
+/* Starburst decoration - positioned between sections, above images */
+main > .section.starburst {
+  position: relative;
+}
+
+main > .section.starburst::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background-image: url('/icons/luo-symbol.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 20;
+}
+
+/* Mobile: stack vertically */
+@media (width < 768px) {
+  main > .section.faq-block > .default-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-m);
+    padding: 0 40px;
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper,
+  main > .section.faq-block-2 > .default-content-wrapper {
+    grid-template-areas:
+      "heading"
+      "text"
+      "button"
+      "image";
+  }
+
+  main > .section.faq-block h2 {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  main > .section.faq-block > .default-content-wrapper > p {
+    font-size: 18px;
+  }
+
+  main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+  main > .section.faq-block > .default-content-wrapper > p:has(img) img {
+    max-width: 100%;
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(img),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+    justify-self: center;
+  }
+
+  main > .section.faq-block-2 {
+    padding-bottom: 80px;
+  }
+
+  main > .section.starburst::before {
+    width: 60px;
+    height: 60px;
+    top: 200px;
+  }
+}
+
+/* ==========================================================================
+   FAQ Combined Section (unified layout for both FAQ items)
+   ========================================================================== */
+
+/* Section container */
+main > .section.faq-combined-section {
+  padding: 80px 0 210px;
+  margin: 0;
+  overflow: visible;
+  width: 100%;
+  max-width: none;
+  background-image: url('/styles/backgrounds/bg-gradient-odd.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Columns block within FAQ section */
+main > .section.faq-combined-section .columns.faq-combined {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+/* Each row in columns */
+main > .section.faq-combined-section .columns.faq-combined > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: center;
+}
+
+/* First row - text left, image right */
+main > .section.faq-combined-section .columns.faq-combined > div:first-child {
+  margin-bottom: 0;
+}
+
+main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:first-child {
+  padding: 0 0 0 93px;
+  order: 1;
+}
+
+main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:last-child {
+  order: 2;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Second row - image left, text right */
+main > .section.faq-combined-section .columns.faq-combined > div:last-child {
+  margin-top: -80px; /* Pull up to create overlap effect */
+}
+
+main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:first-child {
+  order: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:last-child {
+  padding: 0 93px 0 98px;
+  order: 2;
+}
+
+/* FAQ Headings */
+main > .section.faq-combined-section .columns.faq-combined h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 64px;
+  margin: 0 0 21px 0;
+  max-width: 530px;
+}
+
+main > .section.faq-combined-section .columns.faq-combined h2 strong {
+  color: var(--color-teal-text);
+  display: block;
+}
+
+/* Horizontal rule under FAQ heading */
+main > .section.faq-combined-section .columns.faq-combined h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin-top: 21px;
+  margin-bottom: 21px;
+}
+
+/* FAQ paragraphs */
+main > .section.faq-combined-section .columns.faq-combined p {
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  color: var(--color-deep-blue);
+  line-height: 1.2;
+  margin: 0 0 27px 0;
+  max-width: 530px;
+}
+
+/* FAQ CTA buttons */
+main > .section.faq-combined-section .columns.faq-combined a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: transparent;
+  color: var(--color-deep-blue);
+  border: 2px solid var(--color-deep-blue);
+  padding: 16px 32px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 18px;
+  transition: all var(--transition-base);
+}
+
+main > .section.faq-combined-section .columns.faq-combined a::after {
+  content: '→';
+  font-size: 16px;
+}
+
+main > .section.faq-combined-section .columns.faq-combined a:hover {
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
+}
+
+/* FAQ Images with diagonal cuts */
+main > .section.faq-combined-section .columns.faq-combined img {
+  width: 100%;
+  max-width: 628px;
+  height: auto;
+  display: block;
+}
+
+/* First image - diagonal cut bottom-right */
+main > .section.faq-combined-section .columns.faq-combined > div:first-child img {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+/* Second image - diagonal cut top-left */
+main > .section.faq-combined-section .columns.faq-combined > div:last-child img {
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Starburst icon between sections */
+main > .section.faq-combined-section .columns.faq-combined::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-image: url('/icons/luo-symbol.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 20;
+}
+
+/* Mobile styles for FAQ combined */
+@media (width < 900px) {
+  main > .section.faq-combined-section {
+    padding: 40px 20px 80px;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined > div {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:first-child,
+  main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:last-child {
+    padding: 0 20px;
+    order: 1;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined > div:first-child > div:last-child,
+  main > .section.faq-combined-section .columns.faq-combined > div:last-child > div:first-child {
+    order: 2;
+    justify-content: center;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined > div:last-child {
+    margin-top: 40px;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined h2 {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined p {
+    font-size: 18px;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined img {
+    clip-path: none;
+    max-width: 100%;
+  }
+
+  main > .section.faq-combined-section .columns.faq-combined::after {
+    display: none;
   }
 }
 
