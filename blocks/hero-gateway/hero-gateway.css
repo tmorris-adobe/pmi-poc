@@ -492,11 +492,11 @@ body:has(.hero-gateway) header:not(.gateway-header) {
   }
 }
 
-/* Starburst decoration - fixed above language selector */
+/* Starburst decoration - positioned at the bottom, below form content */
 body:has(.hero-gateway)::after {
   content: '';
   position: fixed;
-  bottom: 40px;
+  bottom: -300px; /* Push down so it only shows subtly at very bottom */
   left: 50%;
   transform: translateX(-50%);
   width: 1280px;
@@ -506,8 +506,8 @@ body:has(.hero-gateway)::after {
   background-repeat: no-repeat;
   background-position: center bottom;
   pointer-events: none;
-  z-index: 0; /* Behind content */
-  opacity: 1;
+  z-index: -1; /* Behind all content */
+  opacity: 0.5;
 }
 
 /* Hide the element-based starburst */

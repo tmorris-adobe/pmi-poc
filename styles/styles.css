@@ -411,6 +411,8 @@ body:has(.hero-gateway) main > .section {
 
 body:has(.hero-gateway) main {
   background: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 body:has(.hero-gateway) header,
