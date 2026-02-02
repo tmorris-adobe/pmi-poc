@@ -1913,15 +1913,17 @@ main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
   grid-row: 1 / -1;
   margin: 0;
   padding: 0;
+  max-width: none; /* Override general paragraph max-width to fill grid column */
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-/* Image 1 - fixed width, left edge at center */
+/* Image 1 - responsive width (~44% of viewport), left edge at center */
 main > .section.faq-block-1 > .default-content-wrapper > p:has(picture) img,
 main > .section.faq-block-1 > .default-content-wrapper > p:has(img) img {
-  width: 350px;
+  width: 44vw;
+  max-width: 628px; /* Cap at original large screen size */
   height: auto;
 }
 
@@ -1932,7 +1934,7 @@ main > .section.faq-block-2 {
   background-position: center bottom;
   position: relative;
   z-index: 2;
-  margin-top: -342px; /* Pull up so diagonal tips touch with 15px gap */
+  margin-top: clamp(-620px, -43vw, -335px); /* Responsive overlap - scales with image size */
   padding-bottom: 210px;
 }
 
@@ -1955,15 +1957,17 @@ main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
   grid-row: 1 / -1;
   margin: 0;
   padding: 0;
+  max-width: none; /* Override general paragraph max-width to fill grid column */
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
 }
 
-/* Image 2 - fixed width, right edge at center */
+/* Image 2 - responsive width (~44% of viewport), right edge at center */
 main > .section.faq-block-2 > .default-content-wrapper > p:has(picture) img,
 main > .section.faq-block-2 > .default-content-wrapper > p:has(img) img {
-  width: 350px;
+  width: 44vw;
+  max-width: 628px; /* Cap at original large screen size */
   height: auto;
 }
 
@@ -2069,7 +2073,7 @@ main > .section.starburst::before {
 /* ==========================================================================
    Mobile Responsive
    ========================================================================== */
-@media (width < 768px) {
+@media (max-width: 767px) {
   main > .section.faq-block > .default-content-wrapper {
     grid-template-columns: 1fr;
     min-height: auto;
@@ -2080,7 +2084,8 @@ main > .section.starburst::before {
   main > .section.faq-block-1 > .default-content-wrapper > h2,
   main > .section.faq-block-1 > .default-content-wrapper > p,
   main > .section.faq-block-2 > .default-content-wrapper > h2,
-  main > .section.faq-block-2 > .default-content-wrapper > p {
+  main > .section.faq-block-2 > .default-content-wrapper > p,
+  main > .section.faq-block-2 > .default-content-wrapper > p:not(:has(picture)):not(:has(img)) {
     grid-column: 1;
     padding-left: 0;
     padding-right: 0;
@@ -2103,8 +2108,18 @@ main > .section.starburst::before {
   main > .section.faq-block-1 > .default-content-wrapper > p:has(img),
   main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
   main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+    grid-column: 1; /* Override desktop grid-column: 2 */
     grid-row: auto;
     justify-content: center;
+  }
+
+  /* Mobile: Full-width images stacked vertically */
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture) img,
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(img) img,
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture) img,
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) img {
+    width: 100%;
+    max-width: none;
   }
 
   main > .section.faq-block h2 {
