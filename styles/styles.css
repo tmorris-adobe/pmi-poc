@@ -2309,78 +2309,11 @@ main > .section.footer-mark {
 }
 
 /* ==========================================================================
-   Footer Styles (EDS Structure)
-   Footer content loads via footer.plain.html and gets wrapped in:
-   <footer><div class="footer block"><div class="section">...
+   Footer Styles - Base only (detailed styles in blocks/footer/footer.css)
    ========================================================================== */
 
 footer {
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 0;
   font-family: var(--body-font-family);
-  position: relative;
-  z-index: 1;
-}
-
-footer .footer.block {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px 24px 40px;
-}
-
-/* All footer sections - reset margins */
-footer .footer.block > .section {
-  margin: 0;
-  padding: 0;
-}
-
-footer .footer.block .default-content-wrapper {
-  margin: 0;
-  padding: 0;
-}
-
-footer .footer.block .default-content-wrapper p {
-  margin: 0;
-  color: var(--color-deep-blue);
-  font-size: 14px;
-}
-
-/* Row 1: Navigation (Patient | HCP) */
-footer .footer.block > .section:nth-child(1) {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(0, 10, 119, 0.2);
-}
-
-footer .footer.block > .section:nth-child(1) p {
-  font-size: 16px;
-}
-
-/* Row 2: Legal links (© Luo 2026 | Terms of Use | ...) */
-footer .footer.block > .section:nth-child(2) {
-  padding: 20px 0;
-}
-
-/* Row 3: Trademark */
-footer .footer.block > .section:nth-child(3) {
-  text-align: center;
-  padding: 16px 0;
-}
-
-footer .footer.block > .section:nth-child(3) p {
-  font-size: 12px;
-  opacity: 0.8;
-}
-
-/* Row 4: Language selector (English | Français) */
-footer .footer.block > .section:nth-child(4) {
-  text-align: center;
-  padding-top: 16px;
-}
-
-/* Mobile responsive footer */
-@media (width < 768px) {
-  footer .footer.block {
-    padding: 20px 16px 32px;
-  }
 }

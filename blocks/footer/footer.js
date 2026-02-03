@@ -2,7 +2,7 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 /**
- * Link configurations for footer navigation and legal links
+ * Link configurations for footer
  */
 const FOOTER_LINKS = {
   Patient: '/ca/patient/',
@@ -14,71 +14,92 @@ const FOOTER_LINKS = {
 };
 
 /**
- * Parse pipe-separated text and convert known items to links
- * @param {Element} paragraph The paragraph element to process
- * @param {number} rowIndex The row index (0-based) to determine layout
+ * Decorate the main footer row with 3-column layout:
+ * Left: © Luo 2026 | Center: Patient HCP | Right: Legal links
+ * @param {Element} navRow The navigation row (Patient | HCP)
+ * @param {Element} legalRow The legal row (© Luo 2026 | Terms | Privacy | Cookie)
  */
-function decorateFooterParagraph(paragraph, rowIndex) {
+function decorateMainRow(navRow, legalRow) {
+  const navText = navRow?.querySelector('p')?.textContent.trim() || '';
+  const legalText = legalRow?.querySelector('p')?.textContent.trim() || '';
+
+  const navParts = navText.split('|').map((p) => p.trim());
+  const legalParts = legalText.split('|').map((p) => p.trim());
+
+  // Create the 3-column structure in the legal row (second row)
+  const paragraph = legalRow?.querySelector('p');
+  if (!paragraph) return;
+
+  paragraph.textContent = '';
+
+  // Left: Copyright
+  const copyrightSpan = document.createElement('span');
+  copyrightSpan.className = 'footer-copyright';
+  const copyrightPart = legalParts.find((p) => p.startsWith('©'));
+  copyrightSpan.textContent = copyrightPart || '© Luo 2026';
+
+  // Center: Nav links
+  const navSpan = document.createElement('span');
+  navSpan.className = 'footer-nav-links';
+  navParts.forEach((part) => {
+    const href = FOOTER_LINKS[part];
+    if (href) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = part;
+      navSpan.appendChild(link);
+    }
+  });
+
+  // Right: Legal links
+  const legalSpan = document.createElement('span');
+  legalSpan.className = 'footer-legal-links';
+  legalParts.forEach((part) => {
+    if (part.startsWith('©')) return; // Skip copyright, it's on the left
+
+    const href = FOOTER_LINKS[part];
+    if (href) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = part;
+      legalSpan.appendChild(link);
+    } else if (part === 'Cookie Preferences') {
+      const button = document.createElement('button');
+      button.className = 'cookie-preferences-btn';
+      button.textContent = part;
+      legalSpan.appendChild(button);
+    }
+  });
+
+  paragraph.appendChild(copyrightSpan);
+  paragraph.appendChild(navSpan);
+  paragraph.appendChild(legalSpan);
+}
+
+/**
+ * Decorate the language row with proper links
+ * @param {Element} langRow The language selector row
+ */
+function decorateLangRow(langRow) {
+  const paragraph = langRow?.querySelector('p');
+  if (!paragraph) return;
+
   const text = paragraph.textContent.trim();
   const parts = text.split('|').map((p) => p.trim());
 
-  // Skip if only one part (like trademark text)
   if (parts.length <= 1) return;
 
-  // Clear the paragraph
   paragraph.textContent = '';
 
-  // Row 1 (nav) and Row 3 (language) - no separators, use flex gap
-  // Row 2 (legal) - copyright left, links right with separators
-  const isLegalRow = rowIndex === 1;
-
-  if (isLegalRow) {
-    // Create left side (copyright)
-    const leftDiv = document.createElement('span');
-    leftDiv.className = 'footer-copyright';
-
-    // Create right side (legal links)
-    const rightDiv = document.createElement('span');
-    rightDiv.className = 'footer-legal-links';
-
-    parts.forEach((part, index) => {
-      const href = FOOTER_LINKS[part];
-
-      if (part.startsWith('©')) {
-        // Copyright goes to left side
-        leftDiv.textContent = part;
-      } else if (href) {
-        const link = document.createElement('a');
-        link.href = href;
-        link.textContent = part;
-        rightDiv.appendChild(link);
-      } else if (part === 'Cookie Preferences') {
-        const button = document.createElement('button');
-        button.className = 'cookie-preferences-btn';
-        button.textContent = part;
-        rightDiv.appendChild(button);
-      }
-    });
-
-    paragraph.appendChild(leftDiv);
-    paragraph.appendChild(rightDiv);
-  } else {
-    // Nav row and language row - just links with flex gap, no separators
-    parts.forEach((part) => {
-      const href = FOOTER_LINKS[part];
-
-      if (href) {
-        const link = document.createElement('a');
-        link.href = href;
-        link.textContent = part;
-        paragraph.appendChild(link);
-      } else {
-        const span = document.createElement('span');
-        span.textContent = part;
-        paragraph.appendChild(span);
-      }
-    });
-  }
+  parts.forEach((part) => {
+    const href = FOOTER_LINKS[part];
+    if (href) {
+      const link = document.createElement('a');
+      link.href = href;
+      link.textContent = part;
+      paragraph.appendChild(link);
+    }
+  });
 }
 
 /**
@@ -96,15 +117,15 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-  // Convert pipe-separated text to proper links
-  // Pass row index based on parent div position
+  // Get all rows
   const rows = footer.querySelectorAll(':scope > div');
-  rows.forEach((row, index) => {
-    const paragraph = row.querySelector('p');
-    if (paragraph) {
-      decorateFooterParagraph(paragraph, index);
-    }
-  });
+  const [navRow, legalRow, trademarkRow, langRow] = rows;
+
+  // Decorate the main row (combines nav and legal into 3 columns)
+  decorateMainRow(navRow, legalRow);
+
+  // Decorate language row with proper links
+  decorateLangRow(langRow);
 
   block.append(footer);
 }

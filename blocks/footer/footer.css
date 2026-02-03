@@ -1,37 +1,96 @@
+/* ==========================================================================
+   Footer Styles - Matching Original Site Layout
+   Structure: footer > .footer > div > .section (multiple)
+   ========================================================================== */
+
 footer {
-  background-color: var(--color-white, #fff);
+  background-color: #fff;
   color: var(--color-deep-blue, #000a77);
   font-family: var(--body-font-family);
-  position: relative;
-  z-index: 1;
+  padding: 20px 0;
 }
 
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 20px 24px 40px;
+  max-width: 1415px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Reset all sections */
+footer .footer .section {
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer .default-content-wrapper {
+  margin: 0;
+  padding: 0;
 }
 
 footer .footer p {
   margin: 0;
-  color: var(--color-deep-blue, #000a77);
-  font-size: 14px;
-  line-height: 1.6;
 }
 
-/* Footer links - default styling */
-footer .footer a {
+/* ==========================================================================
+   Row 1: Hide original nav row (content moved to row 2)
+   ========================================================================== */
+footer .footer > div > .section:nth-child(1) {
+  display: none;
+}
+
+/* ==========================================================================
+   Row 2: Main Footer Row - 3 Column Layout
+   Left: © Luo 2026 | Center: Patient HCP | Right: Legal links
+   ========================================================================== */
+footer .footer > div > .section:nth-child(2) .default-content-wrapper p {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Copyright on left */
+footer .footer .footer-copyright {
+  font-size: 14px;
+  color: var(--color-deep-blue, #000a77);
+  justify-self: start;
+}
+
+/* Nav links in center */
+footer .footer .footer-nav-links {
+  display: flex;
+  gap: 24px;
+  justify-self: center;
+}
+
+footer .footer .footer-nav-links a {
   color: var(--color-deep-blue, #000a77);
   text-decoration: none;
-  transition: text-decoration 0.2s;
+  font-size: 14px;
 }
 
-footer .footer a:hover {
+footer .footer .footer-nav-links a:first-child {
+  opacity: 0.5;
+}
+
+footer .footer .footer-nav-links a:last-child {
   text-decoration: underline;
 }
 
-/* Cookie preferences button */
-footer .footer .cookie-preferences-btn {
+footer .footer .footer-nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Legal links on right */
+footer .footer .footer-legal-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-self: end;
+}
+
+footer .footer .footer-legal-links a,
+footer .footer .footer-legal-links button {
   color: var(--color-deep-blue, #000a77);
   text-decoration: underline;
   font-size: 14px;
@@ -42,121 +101,74 @@ footer .footer .cookie-preferences-btn {
   cursor: pointer;
 }
 
-footer .footer .cookie-preferences-btn:hover {
+footer .footer .footer-legal-links a:hover,
+footer .footer .footer-legal-links button:hover {
   text-decoration: none;
 }
 
 /* ==========================================================================
-   Row 1: Navigation (Patient | HCP)
+   Row 3: Trademark - Centered below main row
    ========================================================================== */
-footer .footer > div > div:nth-child(1) {
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(0, 10, 119, 0.2);
+footer .footer > div > .section:nth-child(3) {
+  text-align: center;
+  padding-top: 30px;
 }
 
-footer .footer > div > div:nth-child(1) p {
-  display: flex;
-  gap: 32px;
-  font-size: 16px;
-}
-
-/* First link (Patient) is muted/lighter */
-footer .footer > div > div:nth-child(1) a:first-child {
+footer .footer > div > .section:nth-child(3) p {
+  font-size: 10px;
   color: var(--color-deep-blue, #000a77);
-  opacity: 0.5;
-}
-
-/* Second link (HCP) is underlined */
-footer .footer > div > div:nth-child(1) a:nth-child(2) {
-  text-decoration: underline;
 }
 
 /* ==========================================================================
-   Row 2: Legal row (© Luo 2026 on left, links on right)
+   Row 4: Language Selector - Centered at bottom
    ========================================================================== */
-footer .footer > div > div:nth-child(2) {
-  padding: 20px 0;
+footer .footer > div > .section:nth-child(4) {
+  text-align: center;
+  padding-top: 20px;
 }
 
-footer .footer > div > div:nth-child(2) p {
+footer .footer > div > .section:nth-child(4) p {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
 }
 
-/* Copyright on left */
-footer .footer .footer-copyright {
-  font-size: 14px;
+footer .footer > div > .section:nth-child(4) a {
   color: var(--color-deep-blue, #000a77);
+  text-decoration: none;
+  font-size: 14px;
 }
 
-/* Legal links on right */
-footer .footer .footer-legal-links {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-
-footer .footer .footer-legal-links a {
+footer .footer > div > .section:nth-child(4) a:hover {
   text-decoration: underline;
 }
 
-footer .footer .footer-legal-links a:hover {
-  text-decoration: none;
-}
-
 /* ==========================================================================
-   Row 3: Trademark (centered)
+   Mobile Responsive
    ========================================================================== */
-footer .footer > div > div:nth-child(3) {
-  text-align: center;
-  padding: 16px 0;
-}
-
-footer .footer > div > div:nth-child(3) p {
-  font-size: 12px;
-  opacity: 0.8;
-  font-style: italic;
-}
-
-/* ==========================================================================
-   Row 4: Language selector (centered)
-   ========================================================================== */
-footer .footer > div > div:nth-child(4) {
-  text-align: center;
-  padding-top: 16px;
-}
-
-footer .footer > div > div:nth-child(4) p {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-}
-
-/* ==========================================================================
-   Mobile responsive
-   ========================================================================== */
-@media (width < 768px) {
+@media (width < 992px) {
   footer .footer > div {
-    padding: 20px 16px 32px;
+    padding: 0 20px;
   }
 
-  footer .footer > div > div:nth-child(2) p {
+  footer .footer > div > .section:nth-child(2) .default-content-wrapper p {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
+    gap: 16px;
+    align-items: center;
+  }
+
+  footer .footer .footer-copyright {
+    order: 2;
+  }
+
+  footer .footer .footer-nav-links {
+    order: 1;
   }
 
   footer .footer .footer-legal-links {
+    order: 3;
     flex-wrap: wrap;
-    gap: 16px;
-  }
-}
-
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 20px 32px 40px;
+    justify-content: center;
   }
 }
