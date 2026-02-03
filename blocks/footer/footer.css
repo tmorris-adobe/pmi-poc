@@ -1,20 +1,111 @@
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: var(--color-white, #fff);
+  color: var(--color-deep-blue, #000a77);
+  font-family: var(--body-font-family);
+  position: relative;
+  z-index: 1;
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 20px 24px 40px;
 }
 
 footer .footer p {
   margin: 0;
+  color: var(--color-deep-blue, #000a77);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Footer links */
+footer .footer a {
+  color: var(--color-deep-blue, #000a77);
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+footer .footer a:hover {
+  text-decoration: underline;
+}
+
+/* Separator styling */
+footer .footer .footer-sep {
+  color: var(--color-deep-blue, #000a77);
+  opacity: 0.5;
+}
+
+/* Cookie preferences button */
+footer .footer .cookie-preferences-btn {
+  color: var(--color-deep-blue, #000a77);
+  text-decoration: underline;
+  font-size: 14px;
+  font-family: var(--body-font-family);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+footer .footer .cookie-preferences-btn:hover {
+  text-decoration: none;
+}
+
+/* Section-specific styles using EDS structure */
+/* Row 1: Navigation */
+footer .footer > div > .section:nth-child(1) {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 10, 119, 0.2);
+}
+
+footer .footer > div > .section:nth-child(1) p {
+  font-size: 16px;
+}
+
+footer .footer > div > .section:nth-child(1) a:first-of-type {
+  color: var(--color-teal-text, #00a3a1);
+}
+
+/* Row 2: Legal links */
+footer .footer > div > .section:nth-child(2) {
+  padding: 20px 0;
+}
+
+footer .footer > div > .section:nth-child(2) a {
+  text-decoration: underline;
+}
+
+footer .footer > div > .section:nth-child(2) a:hover {
+  text-decoration: none;
+}
+
+/* Row 3: Trademark */
+footer .footer > div > .section:nth-child(3) {
+  text-align: center;
+  padding: 16px 0;
+}
+
+footer .footer > div > .section:nth-child(3) p {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Row 4: Language selector */
+footer .footer > div > .section:nth-child(4) {
+  text-align: center;
+  padding-top: 16px;
+}
+
+/* Mobile responsive */
+@media (width < 768px) {
+  footer .footer > div {
+    padding: 20px 16px 32px;
+  }
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 20px 32px 40px;
   }
 }

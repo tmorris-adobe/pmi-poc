@@ -2309,7 +2309,9 @@ main > .section.footer-mark {
 }
 
 /* ==========================================================================
-   Footer Styles
+   Footer Styles (EDS Structure)
+   Footer content loads via footer.plain.html and gets wrapped in:
+   <footer><div class="footer block"><div class="section">...
    ========================================================================== */
 
 footer {
@@ -2321,125 +2323,64 @@ footer {
   z-index: 1;
 }
 
-footer .footer-wrapper {
+footer .footer.block {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px 24px 40px;
 }
 
-/* Footer navigation */
-footer .footer-nav {
+/* All footer sections - reset margins */
+footer .footer.block > .section {
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer.block .default-content-wrapper {
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer.block .default-content-wrapper p {
+  margin: 0;
+  color: var(--color-deep-blue);
+  font-size: 14px;
+}
+
+/* Row 1: Navigation (Patient | HCP) */
+footer .footer.block > .section:nth-child(1) {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 10, 119, 0.2);
 }
 
-footer .footer-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 40px;
-}
-
-footer .footer-nav li a {
-  color: var(--color-deep-blue);
-  text-decoration: none;
+footer .footer.block > .section:nth-child(1) p {
   font-size: 16px;
-  font-weight: 400;
-  transition: text-decoration 0.2s;
 }
 
-footer .footer-nav li a:hover {
-  text-decoration: underline;
-}
-
-footer .footer-nav li:first-child a {
-  color: var(--color-teal-text);
-}
-
-/* Footer legal row */
-footer .footer-legal-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Row 2: Legal links (© Luo 2026 | Terms of Use | ...) */
+footer .footer.block > .section:nth-child(2) {
   padding: 20px 0;
-  flex-wrap: wrap;
-  gap: 16px;
 }
 
-footer .footer-copyright {
-  font-size: 14px;
-  color: var(--color-deep-blue);
-}
-
-footer .footer-legal-links {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-
-footer .footer-legal-links a,
-footer .footer-legal-links button {
-  color: var(--color-deep-blue);
-  text-decoration: underline;
-  font-size: 14px;
-  font-family: var(--body-font-family);
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-footer .footer-legal-links a:hover,
-footer .footer-legal-links button:hover {
-  text-decoration: none;
-}
-
-/* Footer trademark */
-footer .footer-trademark {
+/* Row 3: Trademark */
+footer .footer.block > .section:nth-child(3) {
   text-align: center;
-  font-size: 12px;
-  color: var(--color-deep-blue);
   padding: 16px 0;
+}
+
+footer .footer.block > .section:nth-child(3) p {
+  font-size: 12px;
   opacity: 0.8;
 }
 
-/* Footer language selector */
-footer .footer-language {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
+/* Row 4: Language selector (English | Français) */
+footer .footer.block > .section:nth-child(4) {
+  text-align: center;
   padding-top: 16px;
-}
-
-footer .footer-language a {
-  color: var(--color-deep-blue);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-footer .footer-language a:hover {
-  text-decoration: underline;
 }
 
 /* Mobile responsive footer */
 @media (width < 768px) {
-  footer .footer-wrapper {
+  footer .footer.block {
     padding: 20px 16px 32px;
-  }
-
-  footer .footer-nav ul {
-    gap: 24px;
-  }
-
-  footer .footer-legal-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  footer .footer-legal-links {
-    flex-wrap: wrap;
-    gap: 16px;
   }
 }
