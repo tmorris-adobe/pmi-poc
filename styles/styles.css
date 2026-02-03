@@ -997,9 +997,9 @@ main > .section.hero-patient .hero-image img,
 main > .section.hero-patient > div > p:has(img) img {
   position: absolute;
   right: 0;
-  top: 50%;
+  top: 45%;
   transform: translateY(-50%);
-  height: 75%;
+  height: 71%;
   width: auto;
   max-width: none;
   max-height: none;
@@ -1017,7 +1017,7 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    height: 90%;
+    height: 85%;
   }
 }
 
@@ -1028,7 +1028,7 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    height: 80%;
+    height: 76%;
   }
 }
 
@@ -1039,7 +1039,7 @@ main > .section.hero-patient > div > p:has(img) img {
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    height: 60%;
+    height: 57%;
     top: auto;
     bottom: 0;
     transform: none;

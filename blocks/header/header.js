@@ -48,7 +48,7 @@ function createFallbackHeader(block) {
 
   const brandDiv = document.createElement('div');
   brandDiv.className = 'header-brand';
-  brandDiv.innerHTML = '<a href="/"><img src="/icons/luo-logo-white.svg" alt="Luo Medical Cannabis"></a>';
+  brandDiv.innerHTML = '<a href="/"><img src="/icons/luo-logo-blue.svg" alt="Luo Medical Cannabis"></a>';
   bottomContainer.appendChild(brandDiv);
 
   bottomBar.appendChild(bottomContainer);
@@ -173,7 +173,7 @@ export default async function decorate(block) {
       // Fallback logo if not in nav content
       const brandDiv = document.createElement('div');
       brandDiv.className = 'header-brand';
-      brandDiv.innerHTML = '<a href="/"><img src="/icons/luo-logo-white.svg" alt="Luo Medical Cannabis"></a>';
+      brandDiv.innerHTML = '<a href="/"><img src="/icons/luo-logo-blue.svg" alt="Luo Medical Cannabis"></a>';
       bottomContainer.appendChild(brandDiv);
     }
 
