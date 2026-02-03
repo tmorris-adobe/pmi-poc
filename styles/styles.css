@@ -2156,14 +2156,14 @@ main > .section.gradient-cta {
   overflow: visible;
 }
 
-/* Starburst overlay - extends to bottom, overflows into footer */
+/* Starburst overlay - positioned within gradient section */
 main > .section.gradient-cta::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: -80px;
+  bottom: 40px;
   background-image: url('/styles/backgrounds/footer-mark.svg');
   background-size: 100% auto;
   background-position: center bottom;
@@ -2181,14 +2181,14 @@ main > .section.gradient-cta > div {
 }
 
 main > .section.gradient-cta h2 {
-  font-size: 115px;
+  font-size: 150px;
   font-family: var(--heading-font-family);
   font-weight: 600;
   color: var(--text-color-inverted);
   line-height: 0.9;
   margin: 0;
   text-align: center;
-  max-width: 800px;
+  max-width: 900px;
 }
 
 @media (width >= 900px) {
@@ -2197,7 +2197,7 @@ main > .section.gradient-cta h2 {
   }
 
   main > .section.gradient-cta h2 {
-    font-size: 152px;
+    font-size: 198px;
   }
 }
 
@@ -2207,7 +2207,7 @@ main > .section.gradient-cta h2 {
   }
 
   main > .section.gradient-cta h2 {
-    font-size: 64px;
+    font-size: 83px;
   }
 }
 
