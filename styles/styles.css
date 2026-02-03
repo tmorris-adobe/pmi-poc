@@ -2164,8 +2164,8 @@ main > .section.gradient-cta::before {
   right: 0;
   bottom: 0;
   background-image: url('/styles/backgrounds/footer-mark.svg');
-  background-size: 110% auto;
-  background-position: center 25%;
+  background-size: 100% auto;
+  background-position: center 15%;
   background-repeat: no-repeat;
   pointer-events: none;
 }
