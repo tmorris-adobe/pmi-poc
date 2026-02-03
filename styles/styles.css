@@ -941,7 +941,7 @@ main > .section.hero-patient > div > p {
   line-height: 1.5;
 }
 
-/* Hero CTA button with arrow */
+/* Hero CTA button with arrow - square style like original */
 main > .section.hero-patient a.button,
 main > .section.hero-patient > div > p > a:not(:has(img)) {
   display: inline-flex;
@@ -950,7 +950,7 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   background-color: var(--color-white);
   color: var(--color-deep-blue);
   padding: 22px 40px;
-  border-radius: var(--border-radius-pill);
+  border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
   font-size: 20px;
