@@ -19,7 +19,7 @@ footer .footer p {
   line-height: 1.6;
 }
 
-/* Footer links */
+/* Footer links - default styling */
 footer .footer a {
   color: var(--color-deep-blue, #000a77);
   text-decoration: none;
@@ -28,12 +28,6 @@ footer .footer a {
 
 footer .footer a:hover {
   text-decoration: underline;
-}
-
-/* Separator styling */
-footer .footer .footer-sep {
-  color: var(--color-deep-blue, #000a77);
-  opacity: 0.5;
 }
 
 /* Cookie preferences button */
@@ -52,55 +46,112 @@ footer .footer .cookie-preferences-btn:hover {
   text-decoration: none;
 }
 
-/* Section-specific styles using EDS structure */
-/* Row 1: Navigation */
-footer .footer > div > .section:nth-child(1) {
+/* ==========================================================================
+   Row 1: Navigation (Patient | HCP)
+   ========================================================================== */
+footer .footer > div > div:nth-child(1) {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 10, 119, 0.2);
 }
 
-footer .footer > div > .section:nth-child(1) p {
+footer .footer > div > div:nth-child(1) p {
+  display: flex;
+  gap: 32px;
   font-size: 16px;
 }
 
-footer .footer > div > .section:nth-child(1) a:first-of-type {
-  color: var(--color-teal-text, #00a3a1);
+/* First link (Patient) is muted/lighter */
+footer .footer > div > div:nth-child(1) a:first-child {
+  color: var(--color-deep-blue, #000a77);
+  opacity: 0.5;
 }
 
-/* Row 2: Legal links */
-footer .footer > div > .section:nth-child(2) {
-  padding: 20px 0;
-}
-
-footer .footer > div > .section:nth-child(2) a {
+/* Second link (HCP) is underlined */
+footer .footer > div > div:nth-child(1) a:nth-child(2) {
   text-decoration: underline;
 }
 
-footer .footer > div > .section:nth-child(2) a:hover {
+/* ==========================================================================
+   Row 2: Legal row (© Luo 2026 on left, links on right)
+   ========================================================================== */
+footer .footer > div > div:nth-child(2) {
+  padding: 20px 0;
+}
+
+footer .footer > div > div:nth-child(2) p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* Copyright on left */
+footer .footer .footer-copyright {
+  font-size: 14px;
+  color: var(--color-deep-blue, #000a77);
+}
+
+/* Legal links on right */
+footer .footer .footer-legal-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+footer .footer .footer-legal-links a {
+  text-decoration: underline;
+}
+
+footer .footer .footer-legal-links a:hover {
   text-decoration: none;
 }
 
-/* Row 3: Trademark */
-footer .footer > div > .section:nth-child(3) {
+/* ==========================================================================
+   Row 3: Trademark (centered)
+   ========================================================================== */
+footer .footer > div > div:nth-child(3) {
   text-align: center;
   padding: 16px 0;
 }
 
-footer .footer > div > .section:nth-child(3) p {
+footer .footer > div > div:nth-child(3) p {
   font-size: 12px;
   opacity: 0.8;
+  font-style: italic;
 }
 
-/* Row 4: Language selector */
-footer .footer > div > .section:nth-child(4) {
+/* ==========================================================================
+   Row 4: Language selector (centered)
+   ========================================================================== */
+footer .footer > div > div:nth-child(4) {
   text-align: center;
   padding-top: 16px;
 }
 
-/* Mobile responsive */
+footer .footer > div > div:nth-child(4) p {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   Mobile responsive
+   ========================================================================== */
 @media (width < 768px) {
   footer .footer > div {
     padding: 20px 16px 32px;
+  }
+
+  footer .footer > div > div:nth-child(2) p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  footer .footer .footer-legal-links {
+    flex-wrap: wrap;
+    gap: 16px;
   }
 }
 

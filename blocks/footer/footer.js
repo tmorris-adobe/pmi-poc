@@ -16,8 +16,9 @@ const FOOTER_LINKS = {
 /**
  * Parse pipe-separated text and convert known items to links
  * @param {Element} paragraph The paragraph element to process
+ * @param {number} rowIndex The row index (0-based) to determine layout
  */
-function decorateFooterParagraph(paragraph) {
+function decorateFooterParagraph(paragraph, rowIndex) {
   const text = paragraph.textContent.trim();
   const parts = text.split('|').map((p) => p.trim());
 
@@ -27,36 +28,57 @@ function decorateFooterParagraph(paragraph) {
   // Clear the paragraph
   paragraph.textContent = '';
 
-  parts.forEach((part, index) => {
-    // Check if this part should be a link
-    const href = FOOTER_LINKS[part];
+  // Row 1 (nav) and Row 3 (language) - no separators, use flex gap
+  // Row 2 (legal) - copyright left, links right with separators
+  const isLegalRow = rowIndex === 1;
 
-    if (href) {
-      const link = document.createElement('a');
-      link.href = href;
-      link.textContent = part;
-      paragraph.appendChild(link);
-    } else if (part === 'Cookie Preferences') {
-      // Cookie preferences button
-      const button = document.createElement('button');
-      button.className = 'cookie-preferences-btn';
-      button.textContent = part;
-      paragraph.appendChild(button);
-    } else {
-      // Plain text (like copyright)
-      const span = document.createElement('span');
-      span.textContent = part;
-      paragraph.appendChild(span);
-    }
+  if (isLegalRow) {
+    // Create left side (copyright)
+    const leftDiv = document.createElement('span');
+    leftDiv.className = 'footer-copyright';
 
-    // Add separator except for last item
-    if (index < parts.length - 1) {
-      const sep = document.createElement('span');
-      sep.className = 'footer-sep';
-      sep.textContent = ' | ';
-      paragraph.appendChild(sep);
-    }
-  });
+    // Create right side (legal links)
+    const rightDiv = document.createElement('span');
+    rightDiv.className = 'footer-legal-links';
+
+    parts.forEach((part, index) => {
+      const href = FOOTER_LINKS[part];
+
+      if (part.startsWith('©')) {
+        // Copyright goes to left side
+        leftDiv.textContent = part;
+      } else if (href) {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = part;
+        rightDiv.appendChild(link);
+      } else if (part === 'Cookie Preferences') {
+        const button = document.createElement('button');
+        button.className = 'cookie-preferences-btn';
+        button.textContent = part;
+        rightDiv.appendChild(button);
+      }
+    });
+
+    paragraph.appendChild(leftDiv);
+    paragraph.appendChild(rightDiv);
+  } else {
+    // Nav row and language row - just links with flex gap, no separators
+    parts.forEach((part) => {
+      const href = FOOTER_LINKS[part];
+
+      if (href) {
+        const link = document.createElement('a');
+        link.href = href;
+        link.textContent = part;
+        paragraph.appendChild(link);
+      } else {
+        const span = document.createElement('span');
+        span.textContent = part;
+        paragraph.appendChild(span);
+      }
+    });
+  }
 }
 
 /**
@@ -75,7 +97,14 @@ export default async function decorate(block) {
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
   // Convert pipe-separated text to proper links
-  footer.querySelectorAll('p').forEach(decorateFooterParagraph);
+  // Pass row index based on parent div position
+  const rows = footer.querySelectorAll(':scope > div');
+  rows.forEach((row, index) => {
+    const paragraph = row.querySelector('p');
+    if (paragraph) {
+      decorateFooterParagraph(paragraph, index);
+    }
+  });
 
   block.append(footer);
 }
