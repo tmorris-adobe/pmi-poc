@@ -2148,7 +2148,7 @@ main > .section.gradient-cta {
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
-  min-height: 600px;
+  min-height: 660px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2191,7 +2191,7 @@ main > .section.gradient-cta h2 {
 
 @media (width >= 900px) {
   main > .section.gradient-cta {
-    min-height: 800px;
+    min-height: 880px;
   }
 
   main > .section.gradient-cta h2 {
