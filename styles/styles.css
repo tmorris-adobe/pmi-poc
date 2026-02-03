@@ -2144,7 +2144,7 @@ main > .section.starburst::before {
 main > .section.gradient-cta {
   background-image: url('/styles/backgrounds/footer-gradient-background.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: 50% 0%;
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
