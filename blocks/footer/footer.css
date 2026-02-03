@@ -1,6 +1,6 @@
 /* ==========================================================================
    Footer Styles - Matching Original Site Layout
-   Structure: footer > .footer > div > .section (multiple)
+   Handles both 3-section and 4-section content structures
    ========================================================================== */
 
 footer {
@@ -32,17 +32,13 @@ footer .footer p {
 }
 
 /* ==========================================================================
-   Row 1: Hide original nav row (content moved to row 2)
+   Main Footer Row - 3 Column Grid Layout
+   Contains: Copyright (left) | Nav links (center) | Legal links (right)
+   Applies to FIRST visible section (either section 1 or 2)
    ========================================================================== */
-footer .footer > div > .section:nth-child(1) {
-  display: none;
-}
 
-/* ==========================================================================
-   Row 2: Main Footer Row - 3 Column Layout
-   Left: © Luo 2026 | Center: Patient HCP | Right: Legal links
-   ========================================================================== */
-footer .footer > div > .section:nth-child(2) .default-content-wrapper p {
+/* Style any paragraph containing footer-copyright class as grid */
+footer .footer p:has(.footer-copyright) {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -107,51 +103,55 @@ footer .footer .footer-legal-links button:hover {
 }
 
 /* ==========================================================================
-   Row 3: Trademark - Centered below main row
+   Trademark Row - Centered (second-to-last section)
    ========================================================================== */
-footer .footer > div > .section:nth-child(3) {
+
+/* For 3-section structure: trademark is section 2 */
+footer .footer > div > .section:nth-last-child(2) {
   text-align: center;
   padding-top: 30px;
 }
 
-footer .footer > div > .section:nth-child(3) p {
+footer .footer > div > .section:nth-last-child(2) p:not(:has(.footer-copyright)) {
   font-size: 10px;
   color: var(--color-deep-blue, #000a77);
 }
 
 /* ==========================================================================
-   Row 4: Language Selector - Centered at bottom
+   Language Selector - Centered (last section)
    ========================================================================== */
-footer .footer > div > .section:nth-child(4) {
+
+footer .footer > div > .section:last-child {
   text-align: center;
   padding-top: 20px;
 }
 
-footer .footer > div > .section:nth-child(4) p {
+footer .footer > div > .section:last-child p {
   display: flex;
   justify-content: center;
   gap: 16px;
 }
 
-footer .footer > div > .section:nth-child(4) a {
+footer .footer > div > .section:last-child a {
   color: var(--color-deep-blue, #000a77);
   text-decoration: none;
   font-size: 14px;
 }
 
-footer .footer > div > .section:nth-child(4) a:hover {
+footer .footer > div > .section:last-child a:hover {
   text-decoration: underline;
 }
 
 /* ==========================================================================
    Mobile Responsive
    ========================================================================== */
+
 @media (width < 992px) {
   footer .footer > div {
     padding: 0 20px;
   }
 
-  footer .footer > div > .section:nth-child(2) .default-content-wrapper p {
+  footer .footer p:has(.footer-copyright) {
     display: flex;
     flex-direction: column;
     gap: 16px;

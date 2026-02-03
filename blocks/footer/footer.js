@@ -14,28 +14,32 @@ const FOOTER_LINKS = {
 };
 
 /**
- * Decorate the main footer row with 3-column layout:
- * Left: © Luo 2026 | Center: Patient HCP | Right: Legal links
- * @param {Element} navRow The navigation row (Patient | HCP)
- * @param {Element} legalRow The legal row (© Luo 2026 | Terms | Privacy | Cookie)
+ * Parse a single row containing all footer content (copyright, nav, legal)
+ * and restructure it into 3-column layout
+ * @param {Element} row The row element containing pipe-separated content
  */
-function decorateMainRow(navRow, legalRow) {
-  const navText = navRow?.querySelector('p')?.textContent.trim() || '';
-  const legalText = legalRow?.querySelector('p')?.textContent.trim() || '';
-
-  const navParts = navText.split('|').map((p) => p.trim());
-  const legalParts = legalText.split('|').map((p) => p.trim());
-
-  // Create the 3-column structure in the legal row (second row)
-  const paragraph = legalRow?.querySelector('p');
+function decorateCombinedRow(row) {
+  const paragraph = row?.querySelector('p');
   if (!paragraph) return;
 
+  const text = paragraph.textContent.trim();
+  const parts = text.split('|').map((p) => p.trim()).filter((p) => p);
+
+  // Clear the paragraph
   paragraph.textContent = '';
+
+  // Find copyright (starts with ©), nav links (Patient, HCP), and legal links
+  const copyrightPart = parts.find((p) => p.startsWith('©') && p.includes('Luo'));
+  const navParts = parts.filter((p) => p === 'Patient' || p === 'HCP');
+  const legalParts = parts.filter((p) =>
+    p === 'Terms of Use' ||
+    p === 'Privacy Policy' ||
+    p === 'Cookie Preferences'
+  );
 
   // Left: Copyright
   const copyrightSpan = document.createElement('span');
   copyrightSpan.className = 'footer-copyright';
-  const copyrightPart = legalParts.find((p) => p.startsWith('©'));
   copyrightSpan.textContent = copyrightPart || '© Luo 2026';
 
   // Center: Nav links
@@ -55,8 +59,6 @@ function decorateMainRow(navRow, legalRow) {
   const legalSpan = document.createElement('span');
   legalSpan.className = 'footer-legal-links';
   legalParts.forEach((part) => {
-    if (part.startsWith('©')) return; // Skip copyright, it's on the left
-
     const href = FOOTER_LINKS[part];
     if (href) {
       const link = document.createElement('a');
@@ -117,15 +119,36 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-  // Get all rows
+  // Get all rows (sections)
   const rows = footer.querySelectorAll(':scope > div');
-  const [navRow, legalRow, trademarkRow, langRow] = rows;
 
-  // Decorate the main row (combines nav and legal into 3 columns)
-  decorateMainRow(navRow, legalRow);
+  // Handle different content structures:
+  // 3 sections: [main row with all content] [trademark] [language]
+  // 4 sections: [nav] [legal] [trademark] [language]
+  if (rows.length === 3) {
+    // 3-section structure: combined main row
+    decorateCombinedRow(rows[0]);
+    // rows[1] is trademark - leave as is (already centered via CSS)
+    decorateLangRow(rows[2]);
+  } else if (rows.length >= 4) {
+    // 4-section structure: separate nav and legal rows
+    // Combine nav (row 0) and legal (row 1) content into row 1
+    const navText = rows[0]?.querySelector('p')?.textContent.trim() || '';
+    const legalText = rows[1]?.querySelector('p')?.textContent.trim() || '';
+    const combinedText = `${legalText}${navText ? ' | ' + navText : ''}`;
 
-  // Decorate language row with proper links
-  decorateLangRow(langRow);
+    const legalP = rows[1]?.querySelector('p');
+    if (legalP) {
+      legalP.textContent = combinedText;
+      decorateCombinedRow(rows[1]);
+    }
+
+    // Hide the original nav row
+    rows[0].style.display = 'none';
+
+    // rows[2] is trademark - leave as is
+    decorateLangRow(rows[3]);
+  }
 
   block.append(footer);
 }
