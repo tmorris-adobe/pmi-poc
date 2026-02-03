@@ -47,7 +47,7 @@ footer .footer p:has(.footer-copyright) {
 
 /* Copyright on left */
 footer .footer .footer-copyright {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--color-deep-blue, #000a77);
   justify-self: start;
 }
@@ -62,7 +62,7 @@ footer .footer .footer-nav-links {
 footer .footer .footer-nav-links a {
   color: var(--color-deep-blue, #000a77);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 footer .footer .footer-nav-links a:first-child {
@@ -89,7 +89,7 @@ footer .footer .footer-legal-links a,
 footer .footer .footer-legal-links button {
   color: var(--color-deep-blue, #000a77);
   text-decoration: underline;
-  font-size: 14px;
+  font-size: 15px;
   font-family: var(--body-font-family);
   background: none;
   border: none;
@@ -113,7 +113,7 @@ footer .footer > div > .section:nth-last-child(2) {
 }
 
 footer .footer > div > .section:nth-last-child(2) p:not(:has(.footer-copyright)) {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--color-deep-blue, #000a77);
 }
 
@@ -135,7 +135,7 @@ footer .footer > div > .section:last-child p {
 footer .footer > div > .section:last-child a {
   color: var(--color-deep-blue, #000a77);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 footer .footer > div > .section:last-child a:hover {
