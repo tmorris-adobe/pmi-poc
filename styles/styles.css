@@ -1659,6 +1659,7 @@ main > .section.features > div > p {
 
 main > .section.features > div > p strong {
   color: var(--color-teal-text);
+  font-weight: 700;
 }
 
 /* Cards grid - 3 columns */
