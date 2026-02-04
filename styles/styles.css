@@ -2298,6 +2298,16 @@ main > .section.gradient-cta h2 {
   margin: 0;
   text-align: center;
   max-width: 900px;
+  /* Scroll-triggered fade-up animation - site-wide */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animated state when scrolled into view */
+main > .section.gradient-cta.section-animated h2 {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (width >= 900px) {

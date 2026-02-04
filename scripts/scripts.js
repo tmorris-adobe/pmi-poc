@@ -196,6 +196,10 @@ function initScrollAnimations(main) {
     // Observe FAQ sections for fade-up animation
     const faqSections = main.querySelectorAll('.section.faq-block');
     faqSections.forEach((section) => sectionAnimObserver.observe(section));
+
+    // Observe gradient-cta sections (footer tagline) for fade-up animation
+    const ctaSections = main.querySelectorAll('.section.gradient-cta');
+    ctaSections.forEach((section) => sectionAnimObserver.observe(section));
   }, 100);
 }
 
