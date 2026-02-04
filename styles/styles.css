@@ -333,7 +333,7 @@ a.button-slide:any-link {
   transition: padding-left 500ms ease;
 }
 
-/* Sliding blue panel with arrow */
+/* Sliding panel with arrow - matches button background */
 .button-slide::before {
   content: "→";
   position: absolute;
@@ -344,8 +344,8 @@ a.button-slide:any-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
   font-size: 20px;
   transition: left 500ms ease;
 }
@@ -1030,7 +1030,7 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   margin: var(--spacing-m) 0;
 }
 
-/* Sliding blue panel with arrow */
+/* Sliding panel with arrow - matches button background */
 main > .section.hero-patient a.button::before,
 main > .section.hero-patient > div > p > a:not(:has(img))::before {
   content: "→";
@@ -1042,8 +1042,8 @@ main > .section.hero-patient > div > p > a:not(:has(img))::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
   font-size: 20px;
   transition: left 500ms ease;
 }
@@ -1427,7 +1427,7 @@ main > .section.bg-product.banner-right > div > p > a {
   transition: padding-left 500ms ease;
 }
 
-/* Sliding blue panel with arrow */
+/* Sliding panel with arrow - matches button background */
 main > .section.bg-product.banner-left > div > p > a::before,
 main > .section.bg-product.banner-right > div > p > a::before {
   content: "→";
@@ -1439,8 +1439,8 @@ main > .section.bg-product.banner-right > div > p > a::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
   font-size: 20px;
   transition: left 500ms ease;
 }
@@ -2249,7 +2249,7 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   transition: padding-left 500ms ease, border-color 500ms ease;
 }
 
-/* Sliding blue panel with arrow */
+/* Sliding panel with arrow - matches button background */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "→";
@@ -2261,8 +2261,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
   font-size: 18px;
   transition: left 500ms ease;
 }
