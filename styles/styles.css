@@ -1412,15 +1412,13 @@ main > .section.mission::before {
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
-  /* Scroll-triggered zoom animation */
-  opacity: 0.5;
+  /* Scroll-triggered zoom animation - starts visible, zooms in on scroll */
   transform: scale(1);
-  transition: opacity 2.5s ease-out, transform 2.5s ease-out;
+  transition: transform 2.5s ease-out;
 }
 
 /* Zoomed state - triggered by JavaScript adding .bg-zoom-active class */
 main > .section.mission.bg-zoom-active::before {
-  opacity: 1;
   transform: scale(1.2);
 }
 
@@ -2438,13 +2436,12 @@ main > .section.footer-mark {
 }
 
 /* Background Zoom - starts normal, zooms in with fade (for background images) */
+/* Background Zoom - pure zoom effect (no opacity change) */
 @keyframes anim-bg-zoom {
   from {
-    opacity: 0.5;
     transform: scale(1);
   }
   to {
-    opacity: 1;
     transform: scale(1.2);
   }
 }
@@ -2557,14 +2554,13 @@ main > .section.footer-mark {
 }
 
 /* Background zoom - for pseudo-elements with background images */
+/* Background zoom - pure zoom effect for pseudo-elements */
 .animate-bg-zoom {
-  opacity: 0.5;
   transform: scale(1);
-  transition: opacity 2.5s ease-out, transform 2.5s ease-out;
+  transition: transform 2.5s ease-out;
 }
 
 .animate-bg-zoom.animate-visible {
-  opacity: 1;
   transform: scale(1.2);
 }
 
