@@ -2274,7 +2274,7 @@ main > .section.footer-mark {
 
 .animate-fade-down {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(-80px);
 }
 
 /* Title bounce animation - like the original AOS title-bounce */
@@ -2326,6 +2326,10 @@ main > .section.footer-mark {
 /* Animation Durations */
 .duration-10 {
   transition-duration: 1s;
+}
+
+.duration-12 {
+  transition-duration: 1.2s;
 }
 
 /* Reduced motion - respect user preferences */
