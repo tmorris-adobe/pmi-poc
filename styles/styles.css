@@ -1963,16 +1963,6 @@ main > .section.faq-block {
   overflow: visible;
   width: 100%;
   max-width: none;
-  /* Scroll-triggered fade-up animation */
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* Animated state - section fades in and up */
-main > .section.faq-block.section-animated {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Bottom padding on last FAQ section */
@@ -1989,6 +1979,16 @@ main > .section.faq-block > .default-content-wrapper {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 0;
+  /* Scroll-triggered fade-up animation - only content, not background */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animated state - content fades in and up */
+main > .section.faq-block.section-animated > .default-content-wrapper {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FAQ block backgrounds - use site gradient background for both sections */
