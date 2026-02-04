@@ -1017,53 +1017,23 @@ main > .section.hero-patient > div > p:has(img) img {
   width: auto;
   max-width: none;
   max-height: none;
-  /* Hero image entrance animation - fades down from above */
-  animation: heroImageFadeDown 1.2s ease-out 1s both;
-}
-
-/* Keyframe animations for hero section - no JavaScript needed */
-@keyframes heroImageFadeDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-50%) translateY(-100px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(-50%);
-  }
-}
-
-@keyframes heroTitleFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes heroTextFadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+  /* Hero image entrance animation - uses animation system */
+  animation: anim-fade-down-deep 1.2s ease-out 1s both;
+  /* Preserve the translateY(-50%) positioning after animation */
+  --anim-base-transform: translateY(-50%);
 }
 
 /* Apply entrance animations to hero text elements */
 main > .section.hero-patient h1 {
-  animation: heroTitleFadeIn 0.8s ease-out 0.2s both;
+  animation: anim-fade-up 0.8s ease-out 0.2s both;
 }
 
 main > .section.hero-patient > div > p:not(:has(img)) {
-  animation: heroTextFadeIn 0.6s ease-out 0.5s both;
+  animation: anim-fade-in 0.6s ease-out 0.5s both;
 }
 
 main > .section.hero-patient > div > p:has(a):not(:has(img)) {
-  animation: heroTextFadeIn 0.6s ease-out 0.7s both;
+  animation: anim-fade-in 0.6s ease-out 0.7s both;
 }
 
 /* Desktop adjustments - larger screens get larger images */
@@ -1423,17 +1393,35 @@ main > .section.mission {
   min-height: 350px;
   max-width: 1415px;
   margin: -220px auto 0;
+  padding: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Clip the zoomed background */
+  z-index: 10;
+  /* Clipped corners - top-right and bottom-left */
+  clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 35px 100%, 0 calc(100% - 35px));
+}
+
+/* Background image on pseudo-element for zoom animation */
+main > .section.mission::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: url('/content/ca/patient/images/lifestyle-bag.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 0 0 16px 0;
-  display: flex;
-  align-items: center;
-  overflow: visible;
-  z-index: 10;
-  /* Clipped corners - top-right and bottom-left */
-  clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 35px 100%, 0 calc(100% - 35px));
+  z-index: 0;
+  /* Scroll-triggered zoom animation */
+  opacity: 0.5;
+  transform: scale(1);
+  transition: opacity 2.5s ease-out, transform 2.5s ease-out;
+}
+
+/* Zoomed state - triggered by JavaScript adding .bg-zoom-active class */
+main > .section.mission.bg-zoom-active::before {
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 /* Frosted glass content container */
@@ -1513,10 +1501,13 @@ main > .section.mission > div > p > a:hover::after {
 @media (width < 768px) {
   main > .section.mission {
     min-height: auto;
-    background-position: center;
     padding: var(--spacing-l) var(--spacing-m);
     /* Smaller clip on mobile */
     clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  main > .section.mission::before {
+    background-position: center;
   }
 
   main > .section.mission > div {
@@ -2294,10 +2285,221 @@ main > .section.footer-mark {
 }
 
 /* ==========================================================================
-   Scroll Animations
+   Animation System
+   ==========================================================================
+
+   A reusable animation system supporting:
+   1. Auto-play animations (CSS keyframes - run on page load)
+   2. Scroll-triggered animations (Intersection Observer)
+
+   USAGE:
+
+   Auto-play (immediate on page load):
+     animation: anim-fade-up 0.8s ease-out 0.2s both;
+
+   Scroll-triggered (when element enters viewport):
+     class="animate-on-scroll animate-fade-up delay-2"
+
    ========================================================================== */
 
-/* Base animation state - hidden initially */
+/* --------------------------------------------------------------------------
+   KEYFRAME DEFINITIONS
+   Use these with the 'animation' property for auto-play animations
+   -------------------------------------------------------------------------- */
+
+/* Fade In - simple opacity */
+@keyframes anim-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fade Up - rises from below */
+@keyframes anim-fade-up {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Up Deep - rises from further below (more dramatic) */
+@keyframes anim-fade-up-deep {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Down - drops from above */
+@keyframes anim-fade-down {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Down Deep - drops from further above (more dramatic) */
+@keyframes anim-fade-down-deep {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Left - slides in from right */
+@keyframes anim-fade-left {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateX(0);
+  }
+}
+
+/* Fade Right - slides in from left */
+@keyframes anim-fade-right {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateX(0);
+  }
+}
+
+/* Scale In - grows from smaller */
+@keyframes anim-scale-in {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) scale(1);
+  }
+}
+
+/* Scale Up - grows while rising */
+@keyframes anim-scale-up {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0) scale(1);
+  }
+}
+
+/* Bounce In - playful entrance with overshoot */
+@keyframes anim-bounce-in {
+  0% {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(20px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0) scale(1);
+  }
+}
+
+/* Zoom In - dramatic scale entrance */
+@keyframes anim-zoom-in {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) scale(1);
+  }
+}
+
+/* Background Zoom - starts normal, zooms in with fade (for background images) */
+@keyframes anim-bg-zoom {
+  from {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   AUTO-PLAY UTILITY CLASSES
+   Add these classes to elements for automatic page-load animations
+   Syntax: .anim-[type]-[delay]
+   -------------------------------------------------------------------------- */
+
+/* Base auto-play animations with common timing */
+.anim-fade-in { animation: anim-fade-in 0.6s ease-out both; }
+.anim-fade-up { animation: anim-fade-up 0.6s ease-out both; }
+.anim-fade-up-deep { animation: anim-fade-up-deep 0.8s ease-out both; }
+.anim-fade-down { animation: anim-fade-down 0.6s ease-out both; }
+.anim-fade-down-deep { animation: anim-fade-down-deep 0.8s ease-out both; }
+.anim-fade-left { animation: anim-fade-left 0.6s ease-out both; }
+.anim-fade-right { animation: anim-fade-right 0.6s ease-out both; }
+.anim-scale-in { animation: anim-scale-in 0.6s ease-out both; }
+.anim-scale-up { animation: anim-scale-up 0.6s ease-out both; }
+.anim-bounce-in { animation: anim-bounce-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.anim-zoom-in { animation: anim-zoom-in 0.5s ease-out both; }
+
+/* Animation delays for auto-play (use with utility classes above) */
+.anim-delay-1 { animation-delay: 0.1s; }
+.anim-delay-2 { animation-delay: 0.2s; }
+.anim-delay-3 { animation-delay: 0.3s; }
+.anim-delay-4 { animation-delay: 0.4s; }
+.anim-delay-5 { animation-delay: 0.5s; }
+.anim-delay-6 { animation-delay: 0.6s; }
+.anim-delay-7 { animation-delay: 0.7s; }
+.anim-delay-8 { animation-delay: 0.8s; }
+.anim-delay-9 { animation-delay: 0.9s; }
+.anim-delay-10 { animation-delay: 1s; }
+.anim-delay-12 { animation-delay: 1.2s; }
+.anim-delay-15 { animation-delay: 1.5s; }
+.anim-delay-20 { animation-delay: 2s; }
+
+/* Animation durations for auto-play */
+.anim-duration-3 { animation-duration: 0.3s; }
+.anim-duration-4 { animation-duration: 0.4s; }
+.anim-duration-5 { animation-duration: 0.5s; }
+.anim-duration-6 { animation-duration: 0.6s; }
+.anim-duration-8 { animation-duration: 0.8s; }
+.anim-duration-10 { animation-duration: 1s; }
+.anim-duration-12 { animation-duration: 1.2s; }
+.anim-duration-15 { animation-duration: 1.5s; }
+
+/* --------------------------------------------------------------------------
+   SCROLL-TRIGGERED ANIMATIONS
+   These use Intersection Observer (requires JavaScript in scripts.js)
+   Elements start hidden, animate when scrolled into view
+   -------------------------------------------------------------------------- */
+
+/* Base state - hidden until triggered */
 .animate-on-scroll {
   opacity: 0;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -2309,7 +2511,7 @@ main > .section.footer-mark {
   transform: none !important;
 }
 
-/* Animation Types */
+/* Scroll animation types */
 .animate-fade-in {
   opacity: 0;
 }
@@ -2319,68 +2521,85 @@ main > .section.footer-mark {
   transform: translateY(30px);
 }
 
+.animate-fade-up-deep {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
 .animate-fade-down {
   opacity: 0;
-  transform: translateY(-80px);
+  transform: translateY(-30px);
 }
 
-/* Title bounce animation - like the original AOS title-bounce */
-.animate-title-bounce {
+.animate-fade-down-deep {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+
+.animate-fade-left {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.animate-fade-right {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.animate-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.animate-scale-up {
   opacity: 0;
   transform: translateY(20px) scale(0.95);
-  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.animate-title-bounce.animate-visible {
+/* Background zoom - for pseudo-elements with background images */
+.animate-bg-zoom {
+  opacity: 0.5;
+  transform: scale(1);
+  transition: opacity 2.5s ease-out, transform 2.5s ease-out;
+}
+
+.animate-bg-zoom.animate-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: scale(1.2);
 }
 
-/* Animation Delays */
-.delay-1 {
-  transition-delay: 0.1s;
-}
+/* Scroll animation delays (for staggered effects) */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+.delay-9 { transition-delay: 0.9s; }
+.delay-10 { transition-delay: 1s; }
 
-.delay-2 {
-  transition-delay: 0.2s;
-}
+/* Scroll animation durations */
+.duration-3 { transition-duration: 0.3s; }
+.duration-4 { transition-duration: 0.4s; }
+.duration-5 { transition-duration: 0.5s; }
+.duration-6 { transition-duration: 0.6s; }
+.duration-8 { transition-duration: 0.8s; }
+.duration-10 { transition-duration: 1s; }
+.duration-12 { transition-duration: 1.2s; }
 
-.delay-3 {
-  transition-delay: 0.3s;
-}
-
-.delay-4 {
-  transition-delay: 0.4s;
-}
-
-.delay-5 {
-  transition-delay: 0.5s;
-}
-
-/* Longer delays for hero animations */
-.delay-10 {
-  transition-delay: 1s;
-}
-
-.delay-15 {
-  transition-delay: 1.5s;
-}
-
-.delay-20 {
-  transition-delay: 2s;
-}
-
-/* Animation Durations */
-.duration-10 {
-  transition-duration: 1s;
-}
-
-.duration-12 {
-  transition-duration: 1.2s;
-}
-
-/* Reduced motion - respect user preferences */
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY - Reduced Motion
+   Respects user's system preference for reduced motion
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
+  /* Disable all auto-play animations */
+  [class*="anim-"] {
+    animation: none !important;
+  }
+
+  /* Disable scroll-triggered animations */
   .animate-on-scroll {
     opacity: 1;
     transform: none;

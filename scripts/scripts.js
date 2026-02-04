@@ -135,7 +135,7 @@ function initScrollAnimations(main) {
     });
   });
 
-  // Create Intersection Observer
+  // Create Intersection Observer for element animations
   const observerOptions = {
     root: null,
     rootMargin: '0px 0px -50px 0px',
@@ -151,11 +151,29 @@ function initScrollAnimations(main) {
     });
   }, observerOptions);
 
+  // Create separate observer for background zoom effects (sections with ::before pseudo-elements)
+  const bgZoomObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('bg-zoom-active');
+        bgZoomObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -100px 0px',
+    threshold: 0.2,
+  });
+
   // Delay observer start so user sees initial hidden state first
-  // This ensures the animation is visible on page load
   setTimeout(() => {
+    // Observe animated elements
     const animatedElements = main.querySelectorAll('.animate-on-scroll');
     animatedElements.forEach((el) => observer.observe(el));
+
+    // Observe sections with background zoom (mission section)
+    const bgZoomSections = main.querySelectorAll('.section.mission');
+    bgZoomSections.forEach((section) => bgZoomObserver.observe(section));
   }, 100);
 }
 
