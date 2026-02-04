@@ -104,6 +104,14 @@ Our CBD FAQs are designed to help people who are new to CBD explore the topic wi
 
 ---
 
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
+
+---
+
 | Metadata | |
 | -------- | --------- |
 | Title | Luo - Patient Portal |
