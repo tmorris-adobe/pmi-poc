@@ -56,9 +56,11 @@ header .header-lang a:hover {
   text-decoration: underline;
 }
 
-/* Current language is faded, other language is prominent */
+/* Current language is faded with underline, other language is prominent */
 header .header-lang a.current-lang {
   opacity: 0.5;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 header .header-lang .lang-separator {
@@ -103,9 +105,11 @@ header .header-links a:hover {
   text-decoration: underline;
 }
 
-/* Current page indicator - muted */
+/* Current page indicator - muted with underline */
 header .header-links li:first-child a {
   opacity: 0.5;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 @media (width >= 900px) {
