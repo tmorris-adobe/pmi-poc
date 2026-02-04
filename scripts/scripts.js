@@ -192,6 +192,10 @@ function initScrollAnimations(main) {
     // Observe banner sections for scroll animations
     const bannerSections = main.querySelectorAll('.section.banner-left, .section.banner-right');
     bannerSections.forEach((section) => sectionAnimObserver.observe(section));
+
+    // Observe FAQ sections for fade-up animation
+    const faqSections = main.querySelectorAll('.section.faq-block');
+    faqSections.forEach((section) => sectionAnimObserver.observe(section));
   }, 100);
 }
 

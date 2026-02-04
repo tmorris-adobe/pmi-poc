@@ -1963,6 +1963,16 @@ main > .section.faq-block {
   overflow: visible;
   width: 100%;
   max-width: none;
+  /* Scroll-triggered fade-up animation */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animated state - section fades in and up */
+main > .section.faq-block.section-animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Bottom padding on last FAQ section */
