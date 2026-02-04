@@ -165,6 +165,20 @@ function initScrollAnimations(main) {
     threshold: 0.2,
   });
 
+  // Observer for section-level animations (banner sections, etc.)
+  const sectionAnimObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section-animated');
+        sectionAnimObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -100px 0px',
+    threshold: 0.15,
+  });
+
   // Delay observer start so user sees initial hidden state first
   setTimeout(() => {
     // Observe animated elements
@@ -174,6 +188,10 @@ function initScrollAnimations(main) {
     // Observe sections with background zoom (mission section)
     const bgZoomSections = main.querySelectorAll('.section.mission');
     bgZoomSections.forEach((section) => bgZoomObserver.observe(section));
+
+    // Observe banner sections for scroll animations
+    const bannerSections = main.querySelectorAll('.section.banner-left, .section.banner-right');
+    bannerSections.forEach((section) => sectionAnimObserver.observe(section));
   }, 100);
 }
 

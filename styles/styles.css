@@ -1384,6 +1384,46 @@ main > .section.bg-product.banner-right > div > p picture img {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Banner Section Scroll Animations
+   -------------------------------------------------------------------------- */
+
+/* Product image - slides in from left with rotation */
+main > .section.bg-product.banner-left > div > p:has(img),
+main > .section.bg-product.banner-left > div > p:has(picture) {
+  opacity: 0;
+  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+main > .section.bg-product.banner-left.section-animated > div > p:has(img),
+main > .section.bg-product.banner-left.section-animated > div > p:has(picture) {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+}
+
+/* Title - bounces up from below */
+main > .section.bg-product.banner-left > div > h2 {
+  opacity: 0;
+  transform: translateY(7rem);
+  transition: opacity 0.5s ease-out 0.8s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s;
+}
+
+main > .section.bg-product.banner-left.section-animated > div > h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Text content - fades in */
+main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(picture)) {
+  opacity: 0;
+  transition: opacity 0.5s ease-out 1s;
+}
+
+main > .section.bg-product.banner-left.section-animated > div > p:not(:has(img)):not(:has(picture)) {
+  opacity: 1;
+}
+
 /* ==========================================================================
    Mission/Text Section Styles (Frosted Glass with Background Image)
    ========================================================================== */
@@ -2435,7 +2475,6 @@ main > .section.footer-mark {
   }
 }
 
-/* Background Zoom - starts normal, zooms in with fade (for background images) */
 /* Background Zoom - pure zoom effect (no opacity change) */
 @keyframes anim-bg-zoom {
   from {
@@ -2443,6 +2482,33 @@ main > .section.footer-mark {
   }
   to {
     transform: scale(1.2);
+  }
+}
+
+/* Product Fade - slides in from left with rotation (for product images) */
+@keyframes anim-product-slide {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translate(-15rem, -2rem) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translate(0, 0) rotate(0deg);
+  }
+}
+
+/* Title Bounce - rises from below with overshoot */
+@keyframes anim-title-bounce {
+  0% {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(7rem);
+  }
+  70% {
+    transform: var(--anim-base-transform, none) translateY(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
   }
 }
 
@@ -2464,6 +2530,8 @@ main > .section.footer-mark {
 .anim-scale-up { animation: anim-scale-up 0.6s ease-out both; }
 .anim-bounce-in { animation: anim-bounce-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 .anim-zoom-in { animation: anim-zoom-in 0.5s ease-out both; }
+.anim-product-slide { animation: anim-product-slide 1s ease-out both; }
+.anim-title-bounce { animation: anim-title-bounce 0.5s ease-out both; }
 
 /* Animation delays for auto-play (use with utility classes above) */
 .anim-delay-1 { animation-delay: 0.1s; }
@@ -2551,6 +2619,30 @@ main > .section.footer-mark {
 .animate-scale-up {
   opacity: 0;
   transform: translateY(20px) scale(0.95);
+}
+
+/* Product slide - slides in from left with rotation */
+.animate-product-slide {
+  opacity: 0;
+  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-product-slide.animate-visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+}
+
+/* Title bounce - rises from below with overshoot */
+.animate-title-bounce {
+  opacity: 0;
+  transform: translateY(7rem);
+  transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-title-bounce.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Background zoom - for pseudo-elements with background images */
