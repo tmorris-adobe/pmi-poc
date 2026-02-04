@@ -1648,11 +1648,11 @@ main > .section.features h3 {
 /* Main heading - large with teal accent */
 main > .section.features > div > p {
   text-align: left;
-  font-size: 45px;
+  font-size: 68px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-deep-blue);
-  line-height: 1.1;
+  line-height: 1;
   margin: 0 0 var(--spacing-xl);
 }
 
