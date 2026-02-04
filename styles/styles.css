@@ -376,18 +376,17 @@ main > .section.hero-container {
    Gradient applied to body, sections are transparent to show through
    ========================================================================== */
 
-/* Patient pages - gradient on body spans from top through product banner */
+/* Patient pages - white background for page */
 body:has(.hero-patient) {
-  background-color: transparent;
+  background-color: var(--color-white);
+}
+
+/* Hero section has gradient background - matches original site approach */
+main > .section.hero-patient {
   background-image: var(--bg-gradient-hero);
   background-size: 100% 100%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-}
-
-/* Hero section is transparent - gradient shows through from body */
-main > .section.hero-patient {
-  background: transparent;
 }
 
 main > .section.hero-gateway-container {
@@ -806,9 +805,12 @@ main > .section.bg-hero {
   padding: var(--spacing-xl) 0;
 }
 
-/* On patient pages, bg-hero is transparent - unified gradient shows through */
-body:has(.hero-patient) main > .section.bg-hero {
-  background: transparent;
+/* On patient pages, hero section has its own gradient background */
+body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+  background-image: var(--bg-gradient-hero);
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
 }
 
 /* Product gradient background - transparent on patient pages to show unified gradient */
