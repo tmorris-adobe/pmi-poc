@@ -118,32 +118,10 @@ async function loadEager(doc) {
  * @param {Element} main The main element
  */
 function initScrollAnimations(main) {
-  // Add animate-on-scroll class to elements that should animate
-  const heroSection = main.querySelector('.section.hero-patient');
-  if (heroSection) {
-    const h1 = heroSection.querySelector('h1');
-    const paragraphs = heroSection.querySelectorAll(':scope > div > p');
+  // Hero section uses pure CSS keyframe animations (defined in styles.css)
+  // No JavaScript needed - animations start automatically on page load
 
-    if (h1) h1.classList.add('animate-on-scroll', 'animate-title-bounce');
-
-    paragraphs.forEach((p, index) => {
-      const hasImg = p.querySelector('img');
-      const hasLink = p.querySelector('a');
-
-      if (hasImg) {
-        // Hero image - dramatic fade down with 1s delay, 1.2s duration
-        p.classList.add('animate-on-scroll', 'animate-fade-down', 'delay-10', 'duration-12');
-      } else if (hasLink && !hasImg) {
-        // CTA button
-        p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-2');
-      } else if (index === 0 || !hasLink) {
-        // Subtitle text
-        p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-1');
-      }
-    });
-  }
-
-  // Add animations to other sections
+  // Add animations to other sections (non-hero)
   const sections = main.querySelectorAll('.section:not(.hero-patient)');
   sections.forEach((section) => {
     const headings = section.querySelectorAll('h2, h3');
@@ -173,9 +151,12 @@ function initScrollAnimations(main) {
     });
   }, observerOptions);
 
-  // Observe all animate-on-scroll elements
-  const animatedElements = main.querySelectorAll('.animate-on-scroll');
-  animatedElements.forEach((el) => observer.observe(el));
+  // Delay observer start so user sees initial hidden state first
+  // This ensures the animation is visible on page load
+  setTimeout(() => {
+    const animatedElements = main.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach((el) => observer.observe(el));
+  }, 100);
 }
 
 /**

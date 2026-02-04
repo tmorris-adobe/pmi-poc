@@ -1017,6 +1017,53 @@ main > .section.hero-patient > div > p:has(img) img {
   width: auto;
   max-width: none;
   max-height: none;
+  /* Hero image entrance animation - fades down from above */
+  animation: heroImageFadeDown 1.2s ease-out 1s both;
+}
+
+/* Keyframe animations for hero section - no JavaScript needed */
+@keyframes heroImageFadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes heroTitleFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTextFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Apply entrance animations to hero text elements */
+main > .section.hero-patient h1 {
+  animation: heroTitleFadeIn 0.8s ease-out 0.2s both;
+}
+
+main > .section.hero-patient > div > p:not(:has(img)) {
+  animation: heroTextFadeIn 0.6s ease-out 0.5s both;
+}
+
+main > .section.hero-patient > div > p:has(a):not(:has(img)) {
+  animation: heroTextFadeIn 0.6s ease-out 0.7s both;
 }
 
 /* Desktop adjustments - larger screens get larger images */
