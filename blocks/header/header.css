@@ -37,10 +37,34 @@ header .header-lang {
   font-size: 15px;
   font-family: var(--body-font-family);
   color: var(--color-deep-blue, #000a77);
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 
 header .header-lang p {
   margin: 0;
+}
+
+header .header-lang a {
+  color: var(--color-deep-blue, #000a77);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+header .header-lang a:hover {
+  text-decoration: underline;
+}
+
+/* Current language is faded, other language is prominent */
+header .header-lang a.current-lang {
+  opacity: 0.5;
+}
+
+header .header-lang .lang-separator {
+  color: var(--color-deep-blue, #000a77);
+  opacity: 0.5;
+  margin: 0 8px;
 }
 
 /* Nav section - right side */

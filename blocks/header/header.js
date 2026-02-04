@@ -17,10 +17,31 @@ function createFallbackHeader(block) {
   const topContainer = document.createElement('div');
   topContainer.className = 'header-top-container';
 
-  // Language selector - left side
+  // Language selector - left side with both English and French
   const langDiv = document.createElement('div');
   langDiv.className = 'header-lang';
-  langDiv.textContent = 'English';
+
+  // Determine current language from URL path
+  const currentPath = window.location.pathname;
+  const isFrench = currentPath.includes('/ca-fr/');
+
+  const engLink = document.createElement('a');
+  engLink.href = isFrench ? currentPath.replace('/ca-fr/', '/ca/') : currentPath;
+  engLink.textContent = 'English';
+  engLink.className = isFrench ? '' : 'current-lang';
+
+  const separator = document.createElement('span');
+  separator.className = 'lang-separator';
+  separator.textContent = ' | ';
+
+  const frLink = document.createElement('a');
+  frLink.href = isFrench ? currentPath : currentPath.replace('/ca/', '/ca-fr/');
+  frLink.textContent = 'Français';
+  frLink.className = isFrench ? 'current-lang' : '';
+
+  langDiv.appendChild(engLink);
+  langDiv.appendChild(separator);
+  langDiv.appendChild(frLink);
   topContainer.appendChild(langDiv);
 
   // Nav section - right side
@@ -100,14 +121,31 @@ export default async function decorate(block) {
     const topContainer = document.createElement('div');
     topContainer.className = 'header-top-container';
 
-    // Language selector - left side
+    // Language selector - left side with both English and French
     const langDiv = document.createElement('div');
     langDiv.className = 'header-lang';
-    if (langText && !langText.querySelector('picture') && !langText.querySelector('img')) {
-      langDiv.textContent = langText.textContent;
-    } else {
-      langDiv.textContent = 'English';
-    }
+
+    // Determine current language from URL path
+    const currentPath = window.location.pathname;
+    const isFrench = currentPath.includes('/ca-fr/');
+
+    const engLink = document.createElement('a');
+    engLink.href = isFrench ? currentPath.replace('/ca-fr/', '/ca/') : currentPath;
+    engLink.textContent = 'English';
+    engLink.className = isFrench ? '' : 'current-lang';
+
+    const separator = document.createElement('span');
+    separator.className = 'lang-separator';
+    separator.textContent = ' | ';
+
+    const frLink = document.createElement('a');
+    frLink.href = isFrench ? currentPath : currentPath.replace('/ca/', '/ca-fr/');
+    frLink.textContent = 'Français';
+    frLink.className = isFrench ? 'current-lang' : '';
+
+    langDiv.appendChild(engLink);
+    langDiv.appendChild(separator);
+    langDiv.appendChild(frLink);
     topContainer.appendChild(langDiv);
 
     // Nav section - right side
