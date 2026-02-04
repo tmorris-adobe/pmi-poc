@@ -131,8 +131,8 @@ function initScrollAnimations(main) {
       const hasLink = p.querySelector('a');
 
       if (hasImg) {
-        // Hero image
-        p.classList.add('animate-on-scroll', 'animate-fade-up', 'delay-3');
+        // Hero image - fade down with 2s delay, 1s duration (like original)
+        p.classList.add('animate-on-scroll', 'animate-fade-down', 'delay-20', 'duration-10');
       } else if (hasLink && !hasImg) {
         // CTA button
         p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-2');

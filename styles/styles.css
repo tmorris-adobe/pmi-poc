@@ -2310,6 +2310,24 @@ main > .section.footer-mark {
   transition-delay: 0.5s;
 }
 
+/* Longer delays for hero animations */
+.delay-10 {
+  transition-delay: 1s;
+}
+
+.delay-15 {
+  transition-delay: 1.5s;
+}
+
+.delay-20 {
+  transition-delay: 2s;
+}
+
+/* Animation Durations */
+.duration-10 {
+  transition-duration: 1s;
+}
+
 /* Reduced motion - respect user preferences */
 @media (prefers-reduced-motion: reduce) {
   .animate-on-scroll {
