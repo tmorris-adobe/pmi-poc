@@ -315,12 +315,12 @@ button.secondary:hover {
   color: var(--color-dark-blue);
 }
 
-/* Buttons - Slide Reveal Animation (reusable for square buttons) */
+/* Buttons - Arrow Animation (reusable for square buttons) */
 .button-slide,
 a.button-slide:any-link {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
   padding: 22px 40px;
@@ -329,46 +329,19 @@ a.button-slide:any-link {
   font-family: var(--heading-font-family);
   font-size: 20px;
   font-weight: 600;
-  overflow: hidden;
-  transition: padding-left 500ms ease;
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
-/* Sliding panel with arrow - matches button background */
-.button-slide::before {
-  content: "→";
-  position: absolute;
-  left: -70px;
-  top: 0;
-  bottom: 0;
-  width: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-white);
-  color: var(--color-deep-blue);
-  font-size: 20px;
-  transition: left 500ms ease;
-}
-
-/* Arrow after text (default state) */
+/* Arrow after text */
 .button-slide::after {
   content: "→";
-  margin-left: 12px;
   font-size: 20px;
-  transition: opacity 300ms ease;
+  transition: transform 300ms ease;
 }
 
-/* Hover state - slide in the blue panel */
-.button-slide:hover {
-  padding-left: 110px;
-}
-
-.button-slide:hover::before {
-  left: 0;
-}
-
+/* Hover state - arrow shifts right */
 .button-slide:hover::after {
-  opacity: 0;
+  transform: translateX(6px);
 }
 
 /* Form elements */
@@ -1011,12 +984,12 @@ main > .section.hero-patient > div > p {
   line-height: 1.5;
 }
 
-/* Hero CTA button with slide reveal animation */
+/* Hero CTA button with arrow animation */
 main > .section.hero-patient a.button,
 main > .section.hero-patient > div > p > a:not(:has(img)) {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
   padding: 22px 40px;
@@ -1025,52 +998,22 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   font-family: var(--heading-font-family);
   font-size: 20px;
   font-weight: 600;
-  overflow: hidden;
-  transition: padding-left 500ms ease;
   margin: var(--spacing-m) 0;
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
-/* Sliding panel with arrow - matches button background */
-main > .section.hero-patient a.button::before,
-main > .section.hero-patient > div > p > a:not(:has(img))::before {
-  content: "→";
-  position: absolute;
-  left: -70px;
-  top: 0;
-  bottom: 0;
-  width: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-white);
-  color: var(--color-deep-blue);
-  font-size: 20px;
-  transition: left 500ms ease;
-}
-
-/* Arrow after text (default state) */
+/* Arrow after text */
 main > .section.hero-patient a.button::after,
 main > .section.hero-patient > div > p > a:not(:has(img))::after {
   content: "→";
-  margin-left: 12px;
   font-size: 20px;
-  transition: opacity 300ms ease;
+  transition: transform 300ms ease;
 }
 
-/* Hover state - slide in the blue panel */
-main > .section.hero-patient a.button:hover,
-main > .section.hero-patient > div > p > a:not(:has(img)):hover {
-  padding-left: 110px;
-}
-
-main > .section.hero-patient a.button:hover::before,
-main > .section.hero-patient > div > p > a:not(:has(img)):hover::before {
-  left: 0;
-}
-
+/* Hover state - arrow shifts right */
 main > .section.hero-patient a.button:hover::after,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
-  opacity: 0;
+  transform: translateX(6px);
 }
 
 /* Hero floating image - anchored to right edge of viewport */
@@ -1407,14 +1350,14 @@ main > .section.bg-product.banner-right p:not(:has(img)) {
   max-width: 500px;
 }
 
-/* Banner CTA button with slide reveal animation */
+/* Banner CTA button with arrow animation */
 main > .section.bg-product.banner-left a.button,
 main > .section.bg-product.banner-right a.button,
 main > .section.bg-product.banner-left > div > p > a,
 main > .section.bg-product.banner-right > div > p > a {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
   padding: 20px 40px;
@@ -1423,51 +1366,21 @@ main > .section.bg-product.banner-right > div > p > a {
   font-family: var(--heading-font-family);
   font-size: 20px;
   font-weight: 500;
-  overflow: hidden;
-  transition: padding-left 500ms ease;
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
-/* Sliding panel with arrow - matches button background */
-main > .section.bg-product.banner-left > div > p > a::before,
-main > .section.bg-product.banner-right > div > p > a::before {
-  content: "→";
-  position: absolute;
-  left: -70px;
-  top: 0;
-  bottom: 0;
-  width: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-white);
-  color: var(--color-deep-blue);
-  font-size: 20px;
-  transition: left 500ms ease;
-}
-
-/* Arrow after text (default state) */
+/* Arrow after text */
 main > .section.bg-product.banner-left > div > p > a::after,
 main > .section.bg-product.banner-right > div > p > a::after {
   content: "→";
-  margin-left: 12px;
   font-size: 20px;
-  transition: opacity 300ms ease;
+  transition: transform 300ms ease;
 }
 
-/* Hover state - slide in the blue panel */
-main > .section.bg-product.banner-left > div > p > a:hover,
-main > .section.bg-product.banner-right > div > p > a:hover {
-  padding-left: 110px;
-}
-
-main > .section.bg-product.banner-left > div > p > a:hover::before,
-main > .section.bg-product.banner-right > div > p > a:hover::before {
-  left: 0;
-}
-
+/* Hover state - arrow shifts right */
 main > .section.bg-product.banner-left > div > p > a:hover::after,
 main > .section.bg-product.banner-right > div > p > a:hover::after {
-  opacity: 0;
+  transform: translateX(6px);
 }
 
 /* Banner image - large, aligned to bottom-left */
@@ -2231,12 +2144,12 @@ main > .section.faq-block .button-container {
   margin-top: 27px;
 }
 
-/* FAQ block CTA button with slide reveal animation */
+/* FAQ block CTA button with arrow animation */
 main > .section.faq-block .button-container a,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 12px;
   background-color: transparent;
   color: var(--color-deep-blue);
   border: 2px solid var(--color-deep-blue);
@@ -2245,52 +2158,27 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   text-decoration: none;
   font-family: var(--heading-font-family);
   font-size: 18px;
-  overflow: hidden;
-  transition: padding-left 500ms ease, border-color 500ms ease;
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
-/* Sliding panel with arrow - matches button background */
-main > .section.faq-block .button-container a::before,
-main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
-  content: "→";
-  position: absolute;
-  left: -60px;
-  top: -2px;
-  bottom: -2px;
-  width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--color-white);
-  color: var(--color-deep-blue);
-  font-size: 18px;
-  transition: left 500ms ease;
-}
-
-/* Arrow after text (default state) */
+/* Arrow after text */
 main > .section.faq-block .button-container a::after,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
   content: "→";
-  margin-left: 12px;
   font-size: 16px;
-  transition: opacity 300ms ease;
+  transition: transform 300ms ease;
 }
 
-/* Hover state - slide in the blue panel */
+/* Hover state - arrow shifts right */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  padding-left: 92px;
-  border-color: var(--color-deep-blue);
-}
-
-main > .section.faq-block .button-container a:hover::before,
-main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  left: 0;
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
 }
 
 main > .section.faq-block .button-container a:hover::after,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::after {
-  opacity: 0;
+  transform: translateX(6px);
 }
 
 /* FAQ block images */
