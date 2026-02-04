@@ -380,7 +380,7 @@ main > .section.hero-container {
 body:has(.hero-patient) {
   background-color: var(--color-white);
   background-image: var(--bg-gradient-hero);
-  background-size: 100% 3000px;
+  background-size: 100% 3100px;
   background-position: right top;
   background-repeat: no-repeat;
 }
@@ -859,6 +859,20 @@ main > .section.bg-cream {
   background: linear-gradient(180deg, #f5f0e8 0%, var(--background-color) 100%);
   margin: 0;
   padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+/* Hide shadow artifact from product section above */
+main > .section.bg-cream::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent 0%, #f5f0e8 70%);
+  pointer-events: none;
+  z-index: 10;
 }
 
 /* Text colors for gradient backgrounds */
@@ -1136,7 +1150,7 @@ main > .section.bg-product.banner-right {
   height: 883px;
   max-height: 883px;
   padding: 0;
-  overflow: visible;
+  overflow: hidden; /* Clip the bottle shadow at section bottom */
 }
 
 /* Container holds the text content on the right */
