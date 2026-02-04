@@ -1654,6 +1654,7 @@ main > .section.features > div > p {
   color: var(--color-deep-blue);
   line-height: 1;
   margin: 0 0 var(--spacing-xl);
+  max-width: 720px;
 }
 
 main > .section.features > div > p strong {
