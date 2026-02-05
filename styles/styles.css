@@ -1031,13 +1031,8 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover - matches original 600ms timing */
-  transition: margin-left 600ms ease-out;
-  /* Arrow as background image - matches original positioning */
-  background-image: url('/icons/arrow-right-blue.svg');
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 19px 16px;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -1045,8 +1040,8 @@ main > .section.hero-patient a.button::before,
 main > .section.hero-patient > div > p > a:not(:has(img))::before {
   content: "";
   position: absolute;
-  /* Position outside the button - 60px panel + 20px margin = 80px offset */
-  left: -80px;
+  /* Position outside the button - 60px panel + 10px gap = 70px offset */
+  left: -70px;
   top: 0;
   bottom: 0;
   width: 60px;
@@ -1058,28 +1053,46 @@ main > .section.hero-patient > div > p > a:not(:has(img))::before {
   background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Matches original 600ms timing */
-  transition: left 600ms ease-out, opacity 600ms ease-out;
+  /* Fast panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
 }
 
-/* Remove the ::after arrow - original uses background-image on main element */
+/* Arrow on main button - exits to the right */
 main > .section.hero-patient a.button::after,
 main > .section.hero-patient > div > p > a:not(:has(img))::after {
-  content: none;
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Arrow exits at same speed as panel enters */
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
-/* Hover state - matches original site behavior */
+/* Hover state - synchronized animations */
 main > .section.hero-patient a.button:hover,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover {
-  /* Main button shifts right 70px - matches original */
-  margin-left: 70px;
+  /* Main button shifts right - reduced gap (35px shift for 10px final gap) */
+  margin-left: 35px;
 }
 
 main > .section.hero-patient a.button:hover::before,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::before {
-  /* Arrow panel slides to position and becomes visible */
-  left: -80px;
+  /* Arrow panel becomes visible */
   opacity: 1;
+}
+
+main > .section.hero-patient a.button:hover::after,
+main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
+  /* Arrow exits to the right at same speed as panel enters */
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
 }
 
 /* Hero floating image - anchored to right edge of viewport */
@@ -1434,13 +1447,8 @@ main > .section.bg-product.banner-right > div > p > a {
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover - matches original 600ms timing */
-  transition: margin-left 600ms ease-out;
-  /* Arrow as background image - matches original positioning */
-  background-image: url('/icons/arrow-right-blue.svg');
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 19px 16px;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -1448,8 +1456,8 @@ main > .section.bg-product.banner-left > div > p > a::before,
 main > .section.bg-product.banner-right > div > p > a::before {
   content: "";
   position: absolute;
-  /* Position outside the button - 60px panel + 20px margin = 80px offset */
-  left: -80px;
+  /* Position outside the button - 60px panel + 10px gap = 70px offset */
+  left: -70px;
   top: 0;
   bottom: 0;
   width: 60px;
@@ -1461,28 +1469,46 @@ main > .section.bg-product.banner-right > div > p > a::before {
   background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Matches original 600ms timing */
-  transition: left 600ms ease-out, opacity 600ms ease-out;
+  /* Fast panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
 }
 
-/* Remove the ::after arrow - original uses background-image on main element */
+/* Arrow on main button - exits to the right */
 main > .section.bg-product.banner-left > div > p > a::after,
 main > .section.bg-product.banner-right > div > p > a::after {
-  content: none;
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Arrow exits at same speed as panel enters */
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
-/* Hover state - matches original site behavior */
+/* Hover state - synchronized animations */
 main > .section.bg-product.banner-left > div > p > a:hover,
 main > .section.bg-product.banner-right > div > p > a:hover {
-  /* Main button shifts right 70px - matches original */
-  margin-left: 70px;
+  /* Main button shifts right - reduced gap (35px shift for 10px final gap) */
+  margin-left: 35px;
 }
 
 main > .section.bg-product.banner-left > div > p > a:hover::before,
 main > .section.bg-product.banner-right > div > p > a:hover::before {
-  /* Arrow panel slides to position and becomes visible */
-  left: -80px;
+  /* Arrow panel becomes visible */
   opacity: 1;
+}
+
+main > .section.bg-product.banner-left > div > p > a:hover::after,
+main > .section.bg-product.banner-right > div > p > a:hover::after {
+  /* Arrow exits to the right at same speed as panel enters */
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
 }
 
 /* Banner image - large, aligned to bottom-left */
@@ -2263,13 +2289,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover - matches original 600ms timing */
-  transition: margin-left 600ms ease-out, background-color 600ms ease, color 600ms ease, background-image 0ms;
-  /* Arrow as background image - blue arrow for outline style */
-  background-image: url('/icons/arrow-right-blue.svg');
-  background-repeat: no-repeat;
-  background-position: right 21px center;
-  background-size: 19px 16px;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out, background-color 400ms ease, color 400ms ease, background-image 0ms;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -2277,8 +2298,8 @@ main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "";
   position: absolute;
-  /* Position outside the button - 60px panel + gap */
-  left: -72px;
+  /* Position outside the button - 60px panel + 5px gap = 65px offset */
+  left: -67px;
   top: -2px;
   bottom: -2px;
   width: 60px;
@@ -2292,32 +2313,48 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Matches original 600ms timing */
-  transition: left 600ms ease-out, opacity 600ms ease-out;
+  /* Fast panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
 }
 
-/* Remove the ::after arrow - original uses background-image on main element */
+/* Arrow on main button - exits to the right */
 main > .section.faq-block .button-container a::after,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
-  content: none;
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Arrow exits at same speed as panel enters */
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
-/* Hover state - parallax effect with fill */
+/* Hover state - synchronized animations with fill */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  /* Main button shifts right 70px - matches original */
-  margin-left: 70px;
+  /* Main button shifts right - reduced gap (35px shift for smaller final gap) */
+  margin-left: 35px;
   background-color: var(--color-deep-blue);
   color: var(--color-white);
-  /* Switch to white arrow when filled */
-  background-image: url('/icons/arrow-right-white.svg');
 }
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Arrow panel slides to position and becomes visible */
-  left: -72px;
+  /* Arrow panel becomes visible */
   opacity: 1;
+}
+
+main > .section.faq-block .button-container a:hover::after,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::after {
+  /* Arrow exits to the right at same speed as panel enters */
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
 }
 
 /* FAQ block images */
