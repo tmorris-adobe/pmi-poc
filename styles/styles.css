@@ -2293,29 +2293,29 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   transition: margin-left 300ms ease-out;
 }
 
-/* Hidden arrow panel - positioned outside button, slides in with button movement */
+/* Hidden arrow panel - slides in from far left like coming from behind a curtain */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "";
   position: absolute;
-  /* Position outside button to the left */
-  left: -70px;
+  /* Start far left, will slide to final position */
+  left: -140px;
   top: 0;
   bottom: 0;
   width: 60px;
   box-sizing: border-box;
   background-color: transparent;
+  /* Full border including right edge */
   border: 2px solid var(--color-deep-blue);
-  border-right: none;
   /* Blue arrow for transparent panel */
   background-image: url('/icons/arrow-right-blue.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 19px 16px;
-  /* Hidden initially, appears when button slides */
-  opacity: 0;
-  /* Fast fade-in with delay - appears after button starts sliding */
-  transition: opacity 200ms ease-out 150ms;
+  /* Always visible - no fade, just slide */
+  opacity: 1;
+  /* Slides in fast after delay - catching up to main button */
+  transition: left 150ms ease-out 200ms;
 }
 
 /* Arrow on main button - exits to the right */
@@ -2348,8 +2348,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a:ho
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Panel becomes visible as button slides away */
-  opacity: 1;
+  /* Panel slides in from left, catching up to main button */
+  left: -70px;
 }
 
 main > .section.faq-block .button-container a:hover::after,
