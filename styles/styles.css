@@ -1031,8 +1031,8 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover via margin */
-  transition: margin-left 600ms ease;
+  /* Main button shifts right on hover - fast shift creates gap */
+  transition: margin-left 400ms ease-out;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -1040,8 +1040,8 @@ main > .section.hero-patient a.button::before,
 main > .section.hero-patient > div > p > a:not(:has(img))::before {
   content: "→";
   position: absolute;
-  /* Position completely outside the button to the left */
-  left: -70px;
+  /* Position outside the button with gap space */
+  left: -80px;
   top: 0;
   bottom: 0;
   width: 70px;
@@ -1054,8 +1054,8 @@ main > .section.hero-patient > div > p > a:not(:has(img))::before {
   border-right: 1px solid rgba(0, 10, 119, 0.15);
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Slides in from left */
-  transition: left 600ms ease, opacity 300ms ease;
+  /* Fade in slower than button shift, with slight delay */
+  transition: left 600ms ease-out, opacity 700ms ease-out 100ms;
 }
 
 /* Arrow after text (right side) - animates right then fades */
@@ -1074,14 +1074,14 @@ main > .section.hero-patient > div > p > a:not(:has(img))::after {
 /* Hover state - parallax effect */
 main > .section.hero-patient a.button:hover,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover {
-  /* Main button shifts right to reveal the incoming panel */
-  margin-left: 70px;
+  /* Main button shifts right quickly to create gap effect */
+  margin-left: 80px;
 }
 
 main > .section.hero-patient a.button:hover::before,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::before {
-  /* Arrow panel stays at -70px but is now visible in the gap created by margin shift */
-  left: -70px;
+  /* Arrow panel slides in and fades - 10px gap between panel and button */
+  left: -80px;
   opacity: 1;
 }
 
@@ -1444,8 +1444,8 @@ main > .section.bg-product.banner-right > div > p > a {
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover via margin */
-  transition: margin-left 600ms ease;
+  /* Main button shifts right on hover - fast shift creates gap */
+  transition: margin-left 400ms ease-out;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -1453,8 +1453,8 @@ main > .section.bg-product.banner-left > div > p > a::before,
 main > .section.bg-product.banner-right > div > p > a::before {
   content: "→";
   position: absolute;
-  /* Position completely outside the button to the left */
-  left: -70px;
+  /* Position outside the button with gap space */
+  left: -80px;
   top: 0;
   bottom: 0;
   width: 70px;
@@ -1467,8 +1467,8 @@ main > .section.bg-product.banner-right > div > p > a::before {
   border-right: 1px solid rgba(0, 10, 119, 0.15);
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Slides in from left */
-  transition: left 600ms ease, opacity 300ms ease;
+  /* Fade in slower than button shift, with slight delay */
+  transition: left 600ms ease-out, opacity 700ms ease-out 100ms;
 }
 
 /* Arrow after text (right side) - animates right then fades */
@@ -1487,14 +1487,14 @@ main > .section.bg-product.banner-right > div > p > a::after {
 /* Hover state - parallax effect */
 main > .section.bg-product.banner-left > div > p > a:hover,
 main > .section.bg-product.banner-right > div > p > a:hover {
-  /* Main button shifts right to reveal the incoming panel */
-  margin-left: 70px;
+  /* Main button shifts right quickly to create gap effect */
+  margin-left: 80px;
 }
 
 main > .section.bg-product.banner-left > div > p > a:hover::before,
 main > .section.bg-product.banner-right > div > p > a:hover::before {
-  /* Arrow panel stays at -70px but is now visible in the gap created by margin shift */
-  left: -70px;
+  /* Arrow panel slides in and fades - 10px gap between panel and button */
+  left: -80px;
   opacity: 1;
 }
 
@@ -2282,8 +2282,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover via margin */
-  transition: margin-left 600ms ease, background-color 300ms ease, color 300ms ease;
+  /* Main button shifts right on hover - fast shift creates gap */
+  transition: margin-left 400ms ease-out, background-color 300ms ease, color 300ms ease;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -2291,8 +2291,8 @@ main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "→";
   position: absolute;
-  /* Position completely outside the button to the left */
-  left: -60px;
+  /* Position outside the button with gap space */
+  left: -70px;
   top: -2px;
   bottom: -2px;
   width: 60px;
@@ -2306,8 +2306,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   border-right: none;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Slides in from left */
-  transition: left 600ms ease, opacity 300ms ease;
+  /* Fade in slower than button shift, with slight delay */
+  transition: left 600ms ease-out, opacity 700ms ease-out 100ms;
 }
 
 /* Arrow after text (right side) - animates right then fades */
@@ -2326,16 +2326,16 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::a
 /* Hover state - parallax effect with fill */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  /* Main button shifts right to reveal the incoming panel */
-  margin-left: 60px;
+  /* Main button shifts right quickly to create gap effect */
+  margin-left: 70px;
   background-color: var(--color-deep-blue);
   color: var(--color-white);
 }
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Arrow panel stays at -60px but is now visible in the gap created by margin shift */
-  left: -60px;
+  /* Arrow panel slides in and fades - 10px gap between panel and button */
+  left: -70px;
   opacity: 1;
 }
 
