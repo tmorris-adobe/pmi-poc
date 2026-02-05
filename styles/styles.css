@@ -2290,7 +2290,7 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   overflow: visible;
   white-space: normal;
   /* Main button shifts right on hover - synced with panel animation */
-  transition: margin-left 400ms ease-out, background-color 400ms ease, color 400ms ease, background-image 0ms;
+  transition: margin-left 400ms ease-out;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
@@ -2335,13 +2335,14 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::a
   transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
-/* Hover state - synchronized animations with fill */
+/* Hover state - synchronized animations, stays transparent */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
   /* Main button shifts right - reduced gap (35px shift for smaller final gap) */
   margin-left: 35px;
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
+  /* Keep transparent background and blue text/outline */
+  background-color: transparent;
+  color: var(--color-deep-blue);
 }
 
 main > .section.faq-block .button-container a:hover::before,
