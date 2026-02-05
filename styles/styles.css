@@ -2303,11 +2303,11 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   top: -2px;
   bottom: -2px;
   width: 60px;
-  background-color: var(--color-deep-blue);
+  background-color: transparent;
   border: 2px solid var(--color-deep-blue);
   border-right: none;
-  /* White arrow for the blue panel */
-  background-image: url('/icons/arrow-right-white.svg');
+  /* Blue arrow for transparent panel */
+  background-image: url('/icons/arrow-right-blue.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 19px 16px;
