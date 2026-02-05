@@ -1,20 +1,174 @@
+/* ==========================================================================
+   Footer Styles - Matching Original Site Layout
+   Handles both 3-section and 4-section content structures
+   ========================================================================== */
+
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  background-color: #fff;
+  color: var(--color-deep-blue, #000a77);
+  font-family: var(--body-font-family);
+  padding: 20px 0;
 }
 
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  max-width: 1415px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Reset all sections */
+footer .footer .section {
+  margin: 0;
+  padding: 0;
+}
+
+footer .footer .default-content-wrapper {
+  margin: 0;
+  padding: 0;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
+/* ==========================================================================
+   Main Footer Row - 3 Column Grid Layout
+   Contains: Copyright (left) | Nav links (center) | Legal links (right)
+   Applies to FIRST visible section (either section 1 or 2)
+   ========================================================================== */
+
+/* Style any paragraph containing footer-copyright class as grid */
+footer .footer p:has(.footer-copyright) {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Copyright on left */
+footer .footer .footer-copyright {
+  font-size: 15px;
+  color: var(--color-deep-blue, #000a77);
+  justify-self: start;
+}
+
+/* Nav links in center */
+footer .footer .footer-nav-links {
+  display: flex;
+  gap: 24px;
+  justify-self: center;
+}
+
+footer .footer .footer-nav-links a {
+  color: var(--color-deep-blue, #000a77);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+footer .footer .footer-nav-links a:first-child {
+  opacity: 0.5;
+}
+
+footer .footer .footer-nav-links a:last-child {
+  text-decoration: underline;
+}
+
+footer .footer .footer-nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Legal links on right */
+footer .footer .footer-legal-links {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-self: end;
+}
+
+footer .footer .footer-legal-links a,
+footer .footer .footer-legal-links button {
+  color: var(--color-deep-blue, #000a77);
+  text-decoration: underline;
+  font-size: 15px;
+  font-family: var(--body-font-family);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+footer .footer .footer-legal-links a:hover,
+footer .footer .footer-legal-links button:hover {
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Trademark Row - Centered (second-to-last section)
+   ========================================================================== */
+
+/* For 3-section structure: trademark is section 2 */
+footer .footer > div > .section:nth-last-child(2) {
+  text-align: center;
+  padding-top: 30px;
+}
+
+footer .footer > div > .section:nth-last-child(2) p:not(:has(.footer-copyright)) {
+  font-size: 11px;
+  color: var(--color-deep-blue, #000a77);
+}
+
+/* ==========================================================================
+   Language Selector - Centered (last section)
+   ========================================================================== */
+
+footer .footer > div > .section:last-child {
+  text-align: center;
+  padding-top: 20px;
+}
+
+footer .footer > div > .section:last-child p {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+footer .footer > div > .section:last-child a {
+  color: var(--color-deep-blue, #000a77);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+footer .footer > div > .section:last-child a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Mobile Responsive
+   ========================================================================== */
+
+@media (width < 992px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 0 20px;
+  }
+
+  footer .footer p:has(.footer-copyright) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  footer .footer .footer-copyright {
+    order: 2;
+  }
+
+  footer .footer .footer-nav-links {
+    order: 1;
+  }
+
+  footer .footer .footer-legal-links {
+    order: 3;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

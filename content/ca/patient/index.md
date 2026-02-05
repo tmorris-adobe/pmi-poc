@@ -24,7 +24,7 @@ Trying new things can feel like venturing into the unknown, but we're illuminati
 
 | Section Metadata |  |
 | ---------------- | ---------- |
-| style            | bg-white, mission |
+| style            | mission |
 
 ---
 
@@ -65,6 +65,7 @@ Here to **support you** on your wellbeing journey
 | ----- |
 | ![Ease icon](./images/icon-ease.svg) **Ease** Oral lozenges are convenient and easy to use. |
 | ![Quality icon](./images/icon-quality.png) **Quality** High-dose CBD options without the psychoactive effects associated with THC. |
+| ![Lifestyle](./images/lifestyle-features.jpeg) |
 | ![Unique Format icon](./images/icon-unique.svg) **Unique Format** Luo lozenges easily dissolve in your mouth with a pleasant vanilla mint flavour. |
 | ![Reliability icon](./images/icon-reliability.svg) **Reliability** Consistent formulation to help you precisely and reliably manage your dosage. |
 | ![Confidence icon](./images/icon-confidence.svg) **Confidence** Luo is committed to meeting the highest quality standards. |
@@ -75,21 +76,39 @@ Here to **support you** on your wellbeing journey
 
 ---
 
-### What is **medical cannabis**?
+## What is **medical cannabis?**
 
 Understanding medical cannabis can be complex. Our FAQs are here to help you navigate this new terrain with ease.
 
 [Learn more](medical-cannabis-guide)
 
-### What is **CBD**?
+![What is medical cannabis](./images/faq-medical-cannabis.webp)
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | bg-odd, faq-block, faq-block-1 |
+
+---
+
+## What is **CBD?**
 
 Our CBD FAQs are designed to help people who are new to CBD explore the topic with no-nonsense information.
 
 [Learn more](medical-cannabis-guide)
 
+![What is CBD](./images/faq-cbd.webp)
+
 | Section Metadata |  |
 | ---------------- | ---------- |
-| style            | bg-odd, faq, two-col |
+| style            | faq-block, faq-block-2, starburst |
+
+---
+
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

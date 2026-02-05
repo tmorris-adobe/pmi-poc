@@ -118,32 +118,10 @@ async function loadEager(doc) {
  * @param {Element} main The main element
  */
 function initScrollAnimations(main) {
-  // Add animate-on-scroll class to elements that should animate
-  const heroSection = main.querySelector('.section.hero-patient');
-  if (heroSection) {
-    const h1 = heroSection.querySelector('h1');
-    const paragraphs = heroSection.querySelectorAll(':scope > div > p');
+  // Hero section uses pure CSS keyframe animations (defined in styles.css)
+  // No JavaScript needed - animations start automatically on page load
 
-    if (h1) h1.classList.add('animate-on-scroll', 'animate-title-bounce');
-
-    paragraphs.forEach((p, index) => {
-      const hasImg = p.querySelector('img');
-      const hasLink = p.querySelector('a');
-
-      if (hasImg) {
-        // Hero image
-        p.classList.add('animate-on-scroll', 'animate-fade-up', 'delay-3');
-      } else if (hasLink && !hasImg) {
-        // CTA button
-        p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-2');
-      } else if (index === 0 || !hasLink) {
-        // Subtitle text
-        p.classList.add('animate-on-scroll', 'animate-fade-in', 'delay-1');
-      }
-    });
-  }
-
-  // Add animations to other sections
+  // Add animations to other sections (non-hero)
   const sections = main.querySelectorAll('.section:not(.hero-patient)');
   sections.forEach((section) => {
     const headings = section.querySelectorAll('h2, h3');
@@ -157,7 +135,7 @@ function initScrollAnimations(main) {
     });
   });
 
-  // Create Intersection Observer
+  // Create Intersection Observer for element animations
   const observerOptions = {
     root: null,
     rootMargin: '0px 0px -50px 0px',
@@ -173,9 +151,56 @@ function initScrollAnimations(main) {
     });
   }, observerOptions);
 
-  // Observe all animate-on-scroll elements
-  const animatedElements = main.querySelectorAll('.animate-on-scroll');
-  animatedElements.forEach((el) => observer.observe(el));
+  // Create separate observer for background zoom effects (sections with ::before pseudo-elements)
+  const bgZoomObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('bg-zoom-active');
+        bgZoomObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -100px 0px',
+    threshold: 0.2,
+  });
+
+  // Observer for section-level animations (banner sections, etc.)
+  const sectionAnimObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section-animated');
+        sectionAnimObserver.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -100px 0px',
+    threshold: 0.15,
+  });
+
+  // Delay observer start so user sees initial hidden state first
+  setTimeout(() => {
+    // Observe animated elements
+    const animatedElements = main.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach((el) => observer.observe(el));
+
+    // Observe sections with background zoom (mission section)
+    const bgZoomSections = main.querySelectorAll('.section.mission');
+    bgZoomSections.forEach((section) => bgZoomObserver.observe(section));
+
+    // Observe banner sections for scroll animations
+    const bannerSections = main.querySelectorAll('.section.banner-left, .section.banner-right');
+    bannerSections.forEach((section) => sectionAnimObserver.observe(section));
+
+    // Observe FAQ sections for fade-up animation
+    const faqSections = main.querySelectorAll('.section.faq-block');
+    faqSections.forEach((section) => sectionAnimObserver.observe(section));
+
+    // Observe gradient-cta sections (footer tagline) for fade-up animation
+    const ctaSections = main.querySelectorAll('.section.gradient-cta');
+    ctaSections.forEach((section) => sectionAnimObserver.observe(section));
+  }, 100);
 }
 
 /**

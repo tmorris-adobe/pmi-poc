@@ -11,6 +11,7 @@
   --color-purple: #9333EA;
   --color-violet: #7C3AED;
   --color-teal: #00C4E8;
+  --color-teal-text: #01CFC9; /* rgb(1, 207, 201) - used for accent text */
   --color-dark-navy: #1a1a2e;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
 
@@ -126,6 +127,11 @@ body.appear {
 
 header {
   height: var(--nav-height);
+}
+
+/* Header overlays hero on patient pages - don't reserve space */
+body:has(.section.hero-patient) header {
+  height: 0;
 }
 
 /* Hide default header on gateway pages (age verification) - but not gateway-header */
@@ -309,6 +315,65 @@ button.secondary:hover {
   color: var(--color-dark-blue);
 }
 
+/* Buttons - Slide Reveal Animation (reusable for square buttons) */
+.button-slide,
+a.button-slide:any-link {
+  position: relative;
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 600;
+  overflow: hidden;
+  transition: padding-left 600ms ease;
+}
+
+/* Hidden arrow panel - slides in from left */
+.button-slide::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  font-size: 20px;
+  transform: translateX(-100%);
+  transition: transform 600ms ease;
+}
+
+/* Arrow after text (right side) */
+.button-slide::after {
+  content: "→";
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  transition: opacity 400ms ease;
+}
+
+/* Hover state - synchronized animation */
+.button-slide:hover {
+  padding-left: 85px;
+}
+
+.button-slide:hover::before {
+  transform: translateX(0);
+}
+
+.button-slide:hover::after {
+  opacity: 0;
+}
+
 /* Form elements */
 input[type="text"],
 input[type="email"],
@@ -363,6 +428,25 @@ main > .section {
 /* Hero + Hero-Gateway seamless connection */
 main > .section.hero-container {
   margin: 0;
+}
+
+/* ==========================================================================
+   Patient Pages - Continuous Gradient Flow
+   Gradient applied to body, sections are transparent to show through
+   ========================================================================== */
+
+/* Patient pages - gradient flows from top through product section */
+body:has(.hero-patient) {
+  background-color: var(--color-white);
+  background-image: var(--bg-gradient-hero);
+  background-size: 100% 3100px;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+/* Hero section transparent to show body gradient */
+main > .section.hero-patient {
+  background: transparent;
 }
 
 main > .section.hero-gateway-container {
@@ -759,7 +843,8 @@ main strong {
 
 /* Background Gradient Variables using actual images */
 :root {
-  --bg-gradient-hero: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
+  --bg-gradient-hero: url('/styles/backgrounds/footer-gradient-background.jpg');
+  --bg-gradient-mission: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
   --bg-gradient-product: url('/styles/backgrounds/footer-gradient-background.jpg');
   --bg-gradient-even: url('/styles/backgrounds/bg-gradient-even.png');
   --bg-gradient-odd: url('/styles/backgrounds/bg-gradient-odd.png');
@@ -769,10 +854,10 @@ main strong {
    Section Background Styles (applied via Section Metadata)
    ========================================================================== */
 
-/* Hero gradient background - flipped gradient */
+/* Hero gradient background */
 main > .section.bg-hero {
   background: var(--bg-gradient-hero);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center top;
   background-repeat: no-repeat;
   color: var(--text-color-inverted);
@@ -780,15 +865,25 @@ main > .section.bg-hero {
   padding: var(--spacing-xl) 0;
 }
 
-/* Product gradient background */
+/* On patient pages, hero section is transparent to show body gradient */
+body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+  background: transparent;
+}
+
+/* Product gradient background - transparent on patient pages to show unified gradient */
 main > .section.bg-product {
   background: var(--bg-gradient-product);
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
   color: var(--text-color-inverted);
   margin: 0;
   padding: var(--spacing-xl) 0;
+}
+
+/* On patient pages, product section is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-product {
+  background: transparent;
 }
 
 /* Even gradient background (teal to white) */
@@ -823,6 +918,20 @@ main > .section.bg-cream {
   background: linear-gradient(180deg, #f5f0e8 0%, var(--background-color) 100%);
   margin: 0;
   padding: var(--spacing-xl) 0;
+  position: relative;
+}
+
+/* Hide shadow artifact from product section above */
+main > .section.bg-cream::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent 0%, #f5f0e8 70%);
+  pointer-events: none;
+  z-index: 10;
 }
 
 /* Text colors for gradient backgrounds */
@@ -853,13 +962,15 @@ main > .section.hero-patient {
   justify-content: flex-start;
   text-align: left;
   position: relative;
-  overflow: visible;
-  padding-top: 120px;
+  overflow: hidden;
+  padding-top: 160px;
   padding-bottom: 200px;
+  z-index: 1;
 }
 
 main > .section.hero-patient > div {
-  position: relative;
+  /* Use isolation instead of position:relative to maintain stacking without positioning context */
+  isolation: isolate;
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -867,6 +978,7 @@ main > .section.hero-patient > div {
   max-width: 550px;
   padding: 0 var(--spacing-xl);
   margin-left: 5%;
+  margin-top: 5vh;
 }
 
 /* Ensure all text content stays above the image */
@@ -878,7 +990,7 @@ main > .section.hero-patient > div > p:not(:has(img)) {
 
 /* Hero H1 - "Illuminate" bold, "Possibilities" italic/lighter */
 main > .section.hero-patient h1 {
-  font-size: 80px;
+  font-size: 100px;
   font-weight: 700;
   font-style: normal;
   color: var(--text-color-inverted);
@@ -896,93 +1008,174 @@ main > .section.hero-patient h1 em {
 
 main > .section.hero-patient > div > p {
   color: var(--text-color-inverted);
-  max-width: 450px;
+  max-width: 500px;
   margin: 0 0 var(--spacing-m);
-  font-size: 20px;
+  font-size: 25px;
   line-height: 1.5;
 }
 
-/* Hero CTA button with arrow */
+/* Hero CTA button with slide-reveal animation (matches original site) */
 main > .section.hero-patient a.button,
 main > .section.hero-patient > div > p > a:not(:has(img)) {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  position: relative;
+  display: inline-block;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 18px 32px;
-  border-radius: var(--border-radius-pill);
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 16px;
-  font-weight: 600;
-  transition: all var(--transition-base);
+  font-size: 23px;
+  font-weight: 500;
   margin: var(--spacing-m) 0;
+  /* Override generic button overflow to allow ::before to be visible outside */
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out;
 }
 
+/* Hidden arrow panel - slides in from outside the button */
+main > .section.hero-patient a.button::before,
+main > .section.hero-patient > div > p > a:not(:has(img))::before {
+  content: "";
+  position: absolute;
+  /* Position outside the button - 60px panel + 10px gap = 70px offset */
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-white);
+  /* Arrow as background image */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Fast panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
+}
+
+/* Arrow on main button - exits to the right */
 main > .section.hero-patient a.button::after,
 main > .section.hero-patient > div > p > a:not(:has(img))::after {
-  content: "→";
-  font-size: 18px;
-  transition: transform var(--transition-base);
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Arrow exits at same speed as panel enters */
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
+/* Hover state - synchronized animations */
 main > .section.hero-patient a.button:hover,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover {
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  /* Main button shifts right - reduced gap (35px shift for 10px final gap) */
+  margin-left: 35px;
+}
+
+main > .section.hero-patient a.button:hover::before,
+main > .section.hero-patient > div > p > a:not(:has(img)):hover::before {
+  /* Arrow panel becomes visible */
+  opacity: 1;
 }
 
 main > .section.hero-patient a.button:hover::after,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
-  transform: translateX(4px);
+  /* Arrow exits to the right at same speed as panel enters */
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
 }
 
-/* Hero floating image - positioned at bottom right */
+/* Hero floating image - anchored to right edge of viewport */
 main > .section.hero-patient .hero-image,
 main > .section.hero-patient > div > p:has(img) {
   position: absolute;
-  bottom: -50px;
+  top: 0;
   right: 0;
-  left: auto;
-  max-width: 60%;
+  bottom: 0;
+  width: auto;
   z-index: 1;
   margin: 0;
   pointer-events: none;
-  transform: translateX(25%);
 }
 
+/* Image fills container height and extends leftward, right edge at viewport edge */
 main > .section.hero-patient .hero-image img,
-main > .section.hero-patient > div > p > img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+main > .section.hero-patient > div > p:has(img) img {
+  position: absolute;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  height: 71%;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  /* Hero image entrance animation - uses animation system */
+  animation: anim-fade-down-deep 1.2s ease-out 1s both;
+  /* Preserve the translateY(-50%) positioning after animation */
+  --anim-base-transform: translateY(-50%);
 }
 
-/* Desktop adjustments */
-@media (width >= 1200px) {
+/* Apply entrance animations to hero text elements */
+main > .section.hero-patient h1 {
+  animation: anim-fade-up 0.8s ease-out 0.2s both;
+}
+
+main > .section.hero-patient > div > p:not(:has(img)) {
+  animation: anim-fade-in 0.6s ease-out 0.5s both;
+}
+
+main > .section.hero-patient > div > p:has(a):not(:has(img)) {
+  animation: anim-fade-in 0.6s ease-out 0.7s both;
+}
+
+/* Desktop adjustments - larger screens get larger images */
+@media (width >= 1400px) {
   main > .section.hero-patient h1 {
-    font-size: 93px;
+    font-size: 120px;
   }
 
-  main > .section.hero-patient .hero-image,
-  main > .section.hero-patient > div > p:has(img) {
-    max-width: 60%;
-    bottom: -80px;
-    right: 0;
-    transform: translateX(30%);
+  main > .section.hero-patient > div > p {
+    font-size: 28px;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    height: 85%;
+  }
+}
+
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.hero-patient h1 {
+    font-size: 110px;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    height: 76%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
-  main > .section.hero-patient .hero-image,
-  main > .section.hero-patient > div > p:has(img) {
-    max-width: 55%;
-    bottom: -40px;
-    right: 0;
-    transform: translateX(20%);
+  main > .section.hero-patient h1 {
+    font-size: 100px;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    height: 57%;
+    top: auto;
+    bottom: 0;
+    transform: none;
   }
 }
 
@@ -1069,206 +1262,617 @@ main > .section.two-col-reverse > div > *:last-child {
    Content Banner Sections (Product highlight with text + image)
    ========================================================================== */
 
-main > .section.banner-left > div,
-main > .section.banner-right > div {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-  max-width: 1200px;
+/* Product banner section - relative for absolute positioning of image */
+main > .section.bg-product.banner-left,
+main > .section.bg-product.banner-right {
+  position: relative;
+  height: 883px;
+  max-height: 883px;
+  padding: 0;
+  overflow: hidden; /* Clip the bottle shadow at section bottom */
+}
+
+/* Container holds the text content on the right */
+main > .section.bg-product.banner-left > div,
+main > .section.bg-product.banner-right > div {
+  position: static; /* Don't create positioning context - let image position relative to section */
+  display: block;
+  max-width: 1415px;
   margin: 0 auto;
-  padding: 0 var(--spacing-m);
-  min-height: 500px;
+  padding: 210px 80px;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-main > .section.banner-right > div {
-  direction: rtl;
+/* Text content wrapper - positioned on the right side */
+main > .section.bg-product.banner-left > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 
-main > .section.banner-right > div > * {
-  direction: ltr;
+/* All text content in product banner - constrained width on right */
+main > .section.bg-product.banner-left > div > h2,
+main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+  width: 500px;
+  max-width: 100%;
 }
 
-main > .section.banner-left .content-col,
-main > .section.banner-right .content-col {
+/* Image wrapper - absolutely positioned on left edge of viewport, bottom-aligned */
+/* Uses viewport-relative width so image scales down as viewport narrows */
+main > .section.bg-product.banner-left > div > p:has(img),
+main > .section.bg-product.banner-left > div > p:has(picture) {
+  position: absolute;
+  left: 0; /* Align with viewport left edge */
+  bottom: -37px;
+  width: 55vw; /* Responsive width - scales with viewport */
+  max-width: 990px; /* Cap size on very large screens */
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* Large desktop: slightly larger percentage */
+@media (width >= 1400px) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 60vw;
+    max-width: 990px;
+  }
+}
+
+/* Medium desktop: balanced size */
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 55vw;
+  }
+}
+
+/* Tablet/Stacked layout: text on top, image below anchored to left edge */
+/* Matches original site behavior - switches at 1200px */
+@media (width < 1200px) {
+  main > .section.bg-product.banner-left,
+  main > .section.bg-product.banner-right {
+    height: auto;
+    max-height: none;
+    min-height: auto;
+  }
+
+  main > .section.bg-product.banner-left > div,
+  main > .section.bg-product.banner-right > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-xl) var(--spacing-m);
+  }
+
+  main > .section.bg-product.banner-left > div > h2,
+  main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Image below text, still anchored to left viewport edge */
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    position: relative;
+    left: calc(-1 * var(--spacing-m)); /* Offset padding to align with viewport edge */
+    bottom: auto;
+    width: 70vw;
+    max-width: none;
+    order: 1; /* Image appears below text */
+    margin-top: var(--spacing-l);
+    margin-bottom: 0;
+    justify-content: flex-start;
+  }
+
+  main > .section.bg-product.banner-left > div > p > img,
+  main > .section.bg-product.banner-left > div > p picture img {
+    max-height: 500px;
+  }
+}
+
+/* Text content spacing */
+main > .section.bg-product.banner-left > div > h2 {
+  margin: 0 0 var(--spacing-m);
+}
+
+main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(a)) {
+  margin: 0 0 var(--spacing-m);
+}
+
+main > .section.bg-product.banner-left > div > p:has(a):not(:has(img)) {
+  margin: var(--spacing-m) 0 0;
+}
+
+/* Title styling with horizontal line */
+main > .section.bg-product.banner-left h2,
+main > .section.bg-product.banner-right h2 {
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text-color-inverted);
+  position: relative;
+  padding-bottom: var(--spacing-m);
+}
+
+/* Horizontal line under title */
+main > .section.bg-product.banner-left h2::after,
+main > .section.bg-product.banner-right h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 1px;
+  background-color: var(--color-white);
+  margin-top: var(--spacing-m);
+}
+
+/* Strong text in title - white bold on gradient */
+main > .section.bg-product.banner-left h2 strong,
+main > .section.bg-product.banner-right h2 strong {
+  color: var(--text-color-inverted);
+  font-weight: 600;
+  display: block;
+}
+
+/* Body text - exclude image paragraphs */
+main > .section.bg-product.banner-left p:not(:has(img)),
+main > .section.bg-product.banner-right p:not(:has(img)) {
+  color: var(--text-color-inverted);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  line-height: 1.4;
   max-width: 500px;
 }
 
-main > .section.banner-left h2,
-main > .section.banner-right h2 {
-  font-size: var(--heading-font-size-xl);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-m);
-}
-
-main > .section.banner-left h2 strong,
-main > .section.banner-right h2 strong {
-  color: var(--color-teal);
-}
-
-/* Banner CTA button on gradient backgrounds */
+/* Banner CTA button with parallax slide animation (matches original site) */
 main > .section.bg-product.banner-left a.button,
 main > .section.bg-product.banner-right a.button,
 main > .section.bg-product.banner-left > div > p > a,
 main > .section.bg-product.banner-right > div > p > a {
+  position: relative;
   display: inline-block;
   background-color: var(--color-white);
   color: var(--color-deep-blue);
-  padding: 16px 40px;
-  border-radius: var(--border-radius-pill);
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 18px;
-  transition: all var(--transition-base);
-  margin-top: var(--spacing-m);
+  font-size: 23px;
+  font-weight: 500;
+  /* Override generic button overflow to allow ::before to be visible outside */
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out;
 }
 
-/* Banner image column */
-main > .section.banner-left .image-col,
-main > .section.banner-right .image-col,
-main > .section.banner-left > div > p:has(img),
-main > .section.banner-right > div > p:has(img) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Hidden arrow panel - slides in from outside the button */
+main > .section.bg-product.banner-left > div > p > a::before,
+main > .section.bg-product.banner-right > div > p > a::before {
+  content: "";
+  position: absolute;
+  /* Position outside the button - 60px panel + 10px gap = 70px offset */
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-white);
+  /* Arrow as background image */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Fast panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
 }
 
-main > .section.banner-left .image-col img,
-main > .section.banner-right .image-col img,
-main > .section.banner-left > div > p > img,
-main > .section.banner-right > div > p > img {
-  max-width: 100%;
+/* Arrow on main button - exits to the right */
+main > .section.bg-product.banner-left > div > p > a::after,
+main > .section.bg-product.banner-right > div > p > a::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Arrow exits at same speed as panel enters */
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+/* Hover state - synchronized animations */
+main > .section.bg-product.banner-left > div > p > a:hover,
+main > .section.bg-product.banner-right > div > p > a:hover {
+  /* Main button shifts right - reduced gap (35px shift for 10px final gap) */
+  margin-left: 35px;
+}
+
+main > .section.bg-product.banner-left > div > p > a:hover::before,
+main > .section.bg-product.banner-right > div > p > a:hover::before {
+  /* Arrow panel becomes visible */
+  opacity: 1;
+}
+
+main > .section.bg-product.banner-left > div > p > a:hover::after,
+main > .section.bg-product.banner-right > div > p > a:hover::after {
+  /* Arrow exits to the right at same speed as panel enters */
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+/* Banner image - large, aligned to bottom-left */
+main > .section.bg-product.banner-left > div > p > img,
+main > .section.bg-product.banner-right > div > p > img,
+main > .section.bg-product.banner-left > div > p picture img,
+main > .section.bg-product.banner-right > div > p picture img {
+  width: 100%;
   height: auto;
-  max-height: 450px;
+  max-width: none;
+  max-height: 832px;
   object-fit: contain;
+  object-position: left bottom;
 }
 
+/* Mobile: smaller image, still anchored to left edge */
 @media (width < 768px) {
-  main > .section.banner-left > div,
-  main > .section.banner-right > div {
-    grid-template-columns: 1fr;
-    min-height: auto;
-    direction: ltr;
+  main > .section.bg-product.banner-left > div > p:has(img),
+  main > .section.bg-product.banner-left > div > p:has(picture) {
+    width: 90vw; /* Larger on mobile to match original */
   }
 
-  main > .section.banner-right > div > * {
-    direction: ltr;
+  main > .section.bg-product.banner-left > div > p > img,
+  main > .section.bg-product.banner-left > div > p picture img {
+    max-height: 350px;
   }
+}
+
+/* --------------------------------------------------------------------------
+   Banner Section Scroll Animations
+   -------------------------------------------------------------------------- */
+
+/* Product image - slides in from left with rotation */
+main > .section.bg-product.banner-left > div > p:has(img),
+main > .section.bg-product.banner-left > div > p:has(picture) {
+  opacity: 0;
+  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+main > .section.bg-product.banner-left.section-animated > div > p:has(img),
+main > .section.bg-product.banner-left.section-animated > div > p:has(picture) {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+}
+
+/* Title - bounces up from below */
+main > .section.bg-product.banner-left > div > h2 {
+  opacity: 0;
+  transform: translateY(7rem);
+  transition: opacity 0.5s ease-out 0.8s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s;
+}
+
+main > .section.bg-product.banner-left.section-animated > div > h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Text content - fades in */
+main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(picture)) {
+  opacity: 0;
+  transition: opacity 0.5s ease-out 1s;
+}
+
+main > .section.bg-product.banner-left.section-animated > div > p:not(:has(img)):not(:has(picture)) {
+  opacity: 1;
 }
 
 /* ==========================================================================
-   Mission/Text Section Styles
+   Mission/Text Section Styles (Frosted Glass with Background Image)
    ========================================================================== */
 
+main > .section.mission {
+  position: relative;
+  min-height: 350px;
+  max-width: 1415px;
+  margin: -220px auto 0;
+  padding: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden; /* Clip the zoomed background */
+  z-index: 10;
+  /* Clipped corners - top-right and bottom-left */
+  clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 35px 100%, 0 calc(100% - 35px));
+}
+
+/* Background image on pseudo-element for zoom animation */
+main > .section.mission::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/content/ca/patient/images/lifestyle-bag.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  /* Scroll-triggered zoom animation - starts visible, zooms in on scroll */
+  transform: scale(1);
+  transition: transform 2.5s ease-out;
+}
+
+/* Zoomed state - triggered by JavaScript adding .bg-zoom-active class */
+main > .section.mission.bg-zoom-active::before {
+  transform: scale(1.2);
+}
+
+/* Frosted glass content container */
 main > .section.mission > div {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: var(--spacing-xl) var(--spacing-m);
+  position: relative;
+  z-index: 2;
+  max-width: 500px;
+  margin: 45px 0;
+  margin-left: 5%;
+  padding: 45px 40px;
+  background-color: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
 }
 
 main > .section.mission h2 {
-  font-size: var(--heading-font-size-xl);
+  font-size: var(--heading-font-size-xxl);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
-  line-height: 1.2;
-  margin-bottom: var(--spacing-l);
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: var(--spacing-m);
 }
 
 main > .section.mission h2 strong {
-  color: var(--color-teal);
+  color: var(--color-teal-text);
+  font-style: italic;
 }
 
 main > .section.mission p {
   color: var(--color-deep-blue);
-  line-height: 1.6;
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  line-height: 1.2;
   margin-bottom: var(--spacing-m);
 }
 
+/* Teal CTA button with slide-reveal animation */
 main > .section.mission a.button,
 main > .section.mission > div > p > a {
+  position: relative;
   display: inline-block;
-  background-color: transparent;
-  color: var(--color-deep-blue);
-  padding: 12px 32px;
-  border: 2px solid var(--color-deep-blue);
-  border-radius: var(--border-radius-pill);
+  background-color: var(--color-teal-text);
+  color: var(--color-white);
+  padding: 19px 60px 19px 25px;
+  border: none;
+  border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 16px;
-  transition: all var(--transition-base);
+  font-size: 23px;
+  font-weight: 500;
+  margin-top: var(--spacing-m);
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover */
+  transition: margin-left 400ms ease-out;
 }
 
+/* Hidden arrow panel - slides in from outside the button */
+main > .section.mission a.button::before,
+main > .section.mission > div > p > a::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-teal-text);
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Hidden by default */
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+/* Arrow on main button */
+main > .section.mission a.button::after,
+main > .section.mission > div > p > a::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+/* Hover state */
 main > .section.mission a.button:hover,
 main > .section.mission > div > p > a:hover {
-  background-color: var(--color-deep-blue);
-  color: var(--color-white);
+  margin-left: 35px;
+}
+
+main > .section.mission a.button:hover::before,
+main > .section.mission > div > p > a:hover::before {
+  opacity: 1;
+}
+
+main > .section.mission a.button:hover::after,
+main > .section.mission > div > p > a:hover::after {
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+@media (width < 768px) {
+  main > .section.mission {
+    min-height: auto;
+    padding: var(--spacing-l) var(--spacing-m);
+    /* Smaller clip on mobile */
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  main > .section.mission::before {
+    background-position: center;
+  }
+
+  main > .section.mission > div {
+    max-width: 100%;
+    margin-left: 0;
+    padding: var(--spacing-l);
+  }
+
+  main > .section.mission h2 {
+    font-size: var(--heading-font-size-l);
+  }
 }
 
 /* ==========================================================================
    Product Cards Section (Find your Luo)
    ========================================================================== */
 
-main > .section.products > div {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 var(--spacing-m);
+/* Full-width section - no container padding */
+main > .section.products {
+  padding: 60px 0 0;
 }
 
+main > .section.products > div {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Heading with underline */
 main > .section.products h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
   text-align: center;
-  margin-bottom: var(--spacing-l);
+  margin: 0 0 var(--spacing-l);
+  padding-bottom: 20px;
+  position: relative;
 }
 
+/* Blue underline via ::after */
+main > .section.products h3::after {
+  content: '';
+  display: block;
+  width: 184px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
+  margin: 20px auto 0;
+}
+
+/* Cards grid - no gap, full width */
 main > .section.products .cards > ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-l);
+  gap: 0;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Individual product card */
 main > .section.products .cards > ul > li {
-  background: var(--background-color);
-  padding: var(--spacing-l);
+  background: transparent;
+  padding: 109px 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* First card - right border (vertical divider) */
+main > .section.products .cards > ul > li:first-child {
+  border-right: 1px solid #eee8da;
+}
+
+/* Second card - left border (vertical divider) */
+main > .section.products .cards > ul > li:last-child {
+  border-left: 1px solid #eee8da;
+}
+
+/* Product images - larger size */
 main > .section.products .cards > ul > li picture,
 main > .section.products .cards > ul > li img {
-  max-width: 180px;
+  width: 268px;
+  max-width: 100%;
   height: auto;
   margin-bottom: var(--spacing-m);
 }
 
+/* Product title - bold */
 main > .section.products .cards > ul > li strong {
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: 20px;
   font-family: var(--heading-font-family);
+  font-weight: 700;
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
+/* Product description */
 main > .section.products .cards > ul > li p {
   font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 1.5;
   margin: 0;
+  max-width: 380px;
+  padding: 0 var(--spacing-m);
 }
 
+/* Hide Learn More link - original doesn't show it as separate link */
 main > .section.products .cards > ul > li a {
-  color: var(--color-purple);
-  text-decoration: underline;
-  margin-top: var(--spacing-s);
+  display: none;
 }
 
+/* Mobile: stack cards vertically */
 @media (width < 768px) {
   main > .section.products .cards > ul {
     grid-template-columns: 1fr;
+  }
+
+  main > .section.products .cards > ul > li {
+    padding: 60px var(--spacing-m);
+  }
+
+  main > .section.products .cards > ul > li:first-child {
+    border-right: none;
+    border-bottom: 1px solid #eee8da;
+  }
+
+  main > .section.products .cards > ul > li:last-child {
+    border-left: none;
+    border-top: 1px solid #eee8da;
+  }
+
+  main > .section.products h3 {
+    font-size: 32px;
   }
 }
 
@@ -1277,45 +1881,65 @@ main > .section.products .cards > ul > li a {
    ========================================================================== */
 
 main > .section.features > div {
-  max-width: 1100px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 var(--spacing-m);
 }
 
+/* Cards wrapper - full width (override first-child 700px) */
+main > .section.features .cards.block {
+  width: 100%;
+  max-width: 100% !important;
+}
+
+/* Header wrapper - left aligned */
 main > .section.features .features-header,
-main > .section.features > div > div:first-child {
-  text-align: center;
-  margin-bottom: var(--spacing-l);
+main > .section.features > div > div:first-child:not(.cards) {
+  text-align: left;
+  margin-bottom: var(--spacing-xl);
+  max-width: 700px;
 }
 
-main > .section.features h2,
+/* "Why Luo?" label - small, uppercase style */
 main > .section.features h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 23px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
   color: var(--color-deep-blue);
-  text-align: center;
-  margin-bottom: var(--spacing-s);
+  text-align: left;
+  margin: 0 0 var(--spacing-s);
+  text-transform: none;
 }
 
+/* Main heading - large with teal accent */
 main > .section.features > div > p {
-  text-align: center;
-  font-size: var(--body-font-size-m);
+  text-align: left;
+  font-size: 68px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
   color: var(--color-deep-blue);
-  margin-bottom: var(--spacing-l);
+  line-height: 1;
+  margin: 0 0 var(--spacing-xl);
+  max-width: 720px;
 }
 
 main > .section.features > div > p strong {
-  color: var(--color-teal);
+  color: var(--color-teal-text);
+  font-weight: 700;
 }
 
+/* Cards grid - 3 columns */
 main > .section.features .cards > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-auto-rows: 1fr;
   gap: var(--spacing-m);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Individual feature card - simple rounded corners */
 main > .section.features .cards > ul > li {
   background: var(--background-color);
   border: 2px solid var(--color-deep-blue);
@@ -1323,58 +1947,122 @@ main > .section.features .cards > ul > li {
   padding: var(--spacing-l);
   position: relative;
   overflow: hidden;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: stretch;
+  aspect-ratio: 1.1;
 }
 
-/* Decorative corner clips for feature cards */
-main > .section.features .cards > ul > li::before,
-main > .section.features .cards > ul > li::after {
-  content: '';
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: var(--bg-gradient-even);
-  background-size: cover;
-}
-
-main > .section.features .cards > ul > li::before {
-  top: -2px;
-  right: -2px;
-  border-bottom-left-radius: 15px;
-  border: 2px solid var(--color-deep-blue);
-  border-top: none;
-  border-right: none;
-}
-
-main > .section.features .cards > ul > li::after {
-  bottom: -2px;
-  left: -2px;
-  border-top-right-radius: 15px;
-  border: 2px solid var(--color-deep-blue);
-  border-bottom: none;
-  border-left: none;
-}
-
+/* Feature icons */
 main > .section.features .cards > ul > li picture,
 main > .section.features .cards > ul > li img {
   max-width: 60px;
   height: 60px;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-l);
 }
 
+/* Feature title - NOT italic, regular weight */
 main > .section.features .cards > ul > li strong {
   display: block;
-  font-size: var(--heading-font-size-s);
+  font-size: 28px;
   font-family: var(--heading-font-family);
-  font-style: italic;
+  font-style: normal;
+  font-weight: 400;
   color: var(--color-deep-blue);
   margin-bottom: var(--spacing-s);
 }
 
+/* Feature description */
 main > .section.features .cards > ul > li p {
   font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 1.5;
   margin: 0;
+  text-align: left;
+}
+
+/* Image-only card (lifestyle image) - card with just an image, no text */
+main > .section.features .cards > ul > li:not(:has(strong)) {
+  padding: 0;
+  border: none;
+  border-radius: var(--border-radius-l);
+  overflow: hidden;
+  align-self: stretch;
+  aspect-ratio: 1.1;
+}
+
+/* Cards-card-image wrapper in image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image {
+  height: 100%;
+  width: 100%;
+}
+
+/* Remove decorative corners from image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong))::before,
+main > .section.features .cards > ul > li:not(:has(strong))::after {
+  display: none;
+}
+
+/* Image fills card completely */
+main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image picture,
+main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: var(--border-radius-l);
+  display: block;
+  /* Hover zoom effect */
+  transition: transform 0.4s ease-out;
+}
+
+/* Hover zoom - image scales up on hover */
+main > .section.features .cards > ul > li:not(:has(strong)):hover .cards-card-image img {
+  transform: scale(1.1);
+}
+
+/* Remove padding/margin from the paragraph wrapper in image-only cards */
+main > .section.features .cards > ul > li:not(:has(strong)) p {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+/* Ensure picture element fills the image-only card */
+main > .section.features .cards > ul > li:not(:has(strong)) picture {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tablet: 2 columns */
+@media (width < 1024px) {
+  main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile: 1 column */
+@media (width < 768px) {
+  main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  main > .section.features > div > p {
+    font-size: 32px;
+  }
+
+  main > .section.features .cards > ul > li strong {
+    font-size: 22px;
+  }
 }
 
 /* ==========================================================================
@@ -1455,6 +2143,440 @@ main > .section.faq a.button:hover {
 }
 
 /* ==========================================================================
+   FAQ Block Section (Image + Text layout)
+   ========================================================================== */
+
+/* Base FAQ block section - full width */
+main > .section.faq-block {
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  width: 100%;
+  max-width: none;
+}
+
+/* Bottom padding on last FAQ section */
+main > .section.faq-block-2 {
+  padding-bottom: 210px;
+}
+
+/* FAQ wrapper - full width grid with 50/50 columns */
+main > .section.faq-block > .default-content-wrapper {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 0;
+  /* Scroll-triggered fade-up animation - only content, not background */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animated state - content fades in and up */
+main > .section.faq-block.section-animated > .default-content-wrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FAQ block backgrounds - use site gradient background for both sections */
+main > .section.faq-block {
+  background-image: url('/styles/backgrounds/bg-gradient-odd.png');
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+}
+
+/* First block shows top half of gradient */
+main > .section.faq-block-1 {
+  background-position: center top;
+  padding-top: 80px;
+}
+
+/* Second block shows bottom half of gradient */
+main > .section.faq-block-2 {
+  background-position: center bottom;
+}
+
+/* First FAQ block - text left, image right */
+main > .section.faq-block-1 > .default-content-wrapper > h2 {
+  grid-column: 1;
+  grid-row: 1;
+  padding-left: 93px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  grid-column: 1;
+  grid-row: 2;
+  padding-left: 93px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p.button-container {
+  grid-column: 1;
+  grid-row: 3;
+  padding-left: 93px;
+  margin-top: 27px;
+}
+
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  justify-self: start;
+  align-self: center;
+  margin: 0;
+  max-width: none;
+}
+
+/* Second FAQ block - image left, text right */
+main > .section.faq-block-2 > .default-content-wrapper > h2 {
+  grid-column: 2;
+  grid-row: 1;
+  padding-left: 98px;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p:not(.button-container):not(:has(picture)):not(:has(img)) {
+  grid-column: 2;
+  grid-row: 2;
+  padding-left: 98px;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p.button-container {
+  grid-column: 2;
+  grid-row: 3;
+  padding-left: 98px;
+  margin-top: 27px;
+}
+
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  justify-self: end;
+  align-self: center;
+  margin: 0;
+  max-width: none;
+}
+
+/* FAQ block heading styling */
+main > .section.faq-block h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 64px;
+  margin: 0;
+  max-width: 530px;
+  align-self: start;
+  position: relative;
+}
+
+main > .section.faq-block h2 strong {
+  color: var(--color-teal-text);
+  display: block;
+}
+
+/* Horizontal rule under FAQ heading */
+main > .section.faq-block h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin-top: 21px;
+  margin-bottom: 21px;
+}
+
+/* FAQ block paragraph */
+main > .section.faq-block > .default-content-wrapper > p {
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  color: var(--color-deep-blue);
+  line-height: 1.2;
+  margin: 0;
+  max-width: 530px;
+}
+
+/* Remove max-width for image container paragraphs */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  max-width: none;
+}
+
+/* FAQ block CTA button - outline style */
+main > .section.faq-block .button-container {
+  margin-top: 27px;
+}
+
+/* FAQ block CTA button with slide-reveal animation (matches hero button pattern) */
+main > .section.faq-block .button-container a,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a {
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-deep-blue);
+  border: 2px solid var(--color-deep-blue);
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  font-weight: 500;
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out;
+}
+
+/* Hidden arrow panel - slides in from outside the button */
+main > .section.faq-block .button-container a::before,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
+  content: "";
+  position: absolute;
+  /* Position outside the button - 60px panel + 10px gap = 70px offset */
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: 2px solid var(--color-deep-blue);
+  /* Arrow as background image */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
+}
+
+/* Arrow on main button - exits to the right */
+main > .section.faq-block .button-container a::after,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Arrow exits at same speed as panel enters */
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+/* Hover state - synchronized animations */
+main > .section.faq-block .button-container a:hover,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
+  /* Main button shifts right - reduced gap (35px shift for 10px final gap) */
+  margin-left: 35px;
+  background-color: transparent;
+  color: var(--color-deep-blue);
+}
+
+main > .section.faq-block .button-container a:hover::before,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
+  /* Arrow panel becomes visible */
+  opacity: 1;
+}
+
+main > .section.faq-block .button-container a:hover::after,
+main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::after {
+  /* Arrow exits to the right at same speed as panel enters */
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+/* FAQ block images */
+main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+main > .section.faq-block > .default-content-wrapper > p:has(img) img {
+  width: 100%;
+  max-width: 628px;
+  height: auto;
+  display: block;
+}
+
+/* Image container - position images to meet at center */
+main > .section.faq-block > .default-content-wrapper > p:has(picture),
+main > .section.faq-block > .default-content-wrapper > p:has(img) {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+/* First block image - left edge at center (aligns to start of its grid cell) */
+main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-1 > .default-content-wrapper > p:has(img) {
+  justify-self: start;
+}
+
+/* Second block image - right edge at center (aligns to end of its grid cell) */
+main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+  justify-self: end;
+}
+
+/* Starburst decoration - positioned between sections, above images */
+main > .section.starburst {
+  position: relative;
+}
+
+main > .section.starburst::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background-image: url('/icons/luo-symbol.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 20;
+}
+
+/* Mobile: stack vertically */
+@media (width < 768px) {
+  main > .section.faq-block > .default-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-m);
+    padding: 0 40px;
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper,
+  main > .section.faq-block-2 > .default-content-wrapper {
+    grid-template-areas:
+      "heading"
+      "text"
+      "button"
+      "image";
+  }
+
+  main > .section.faq-block h2 {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  main > .section.faq-block > .default-content-wrapper > p {
+    font-size: 18px;
+  }
+
+  main > .section.faq-block > .default-content-wrapper > p:has(picture) img,
+  main > .section.faq-block > .default-content-wrapper > p:has(img) img {
+    max-width: 100%;
+  }
+
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-1 > .default-content-wrapper > p:has(img),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(picture),
+  main > .section.faq-block-2 > .default-content-wrapper > p:has(img) {
+    justify-self: center;
+  }
+
+  main > .section.faq-block-2 {
+    padding-bottom: 80px;
+  }
+
+  main > .section.starburst::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+  }
+}
+
+/* ==========================================================================
+   Gradient CTA Section (Illuminate Possibilities)
+   Full-width gradient with starburst pattern and large centered heading
+   ========================================================================== */
+
+main > .section.gradient-cta {
+  background-image: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 60px 0 0;
+  min-height: 660px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* Starburst overlay - positioned within gradient section */
+main > .section.gradient-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  background-image: url('/styles/backgrounds/footer-mark.svg');
+  background-size: 100% auto;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 10;
+}
+
+main > .section.gradient-cta > div {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 var(--spacing-m);
+}
+
+main > .section.gradient-cta h2 {
+  font-size: 150px;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  color: var(--text-color-inverted);
+  line-height: 0.9;
+  margin: 0;
+  text-align: center;
+  max-width: 900px;
+  /* Scroll-triggered fade-up animation - site-wide */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Animated state when scrolled into view */
+main > .section.gradient-cta.section-animated h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (width >= 900px) {
+  main > .section.gradient-cta {
+    min-height: 880px;
+  }
+
+  main > .section.gradient-cta h2 {
+    font-size: 198px;
+  }
+}
+
+@media (width < 768px) {
+  main > .section.gradient-cta {
+    min-height: 400px;
+  }
+
+  main > .section.gradient-cta h2 {
+    font-size: 83px;
+  }
+}
+
+/* ==========================================================================
    Footer Mark Decoration
    ========================================================================== */
 
@@ -1474,10 +2596,248 @@ main > .section.footer-mark {
 }
 
 /* ==========================================================================
-   Scroll Animations
+   Animation System
+   ==========================================================================
+
+   A reusable animation system supporting:
+   1. Auto-play animations (CSS keyframes - run on page load)
+   2. Scroll-triggered animations (Intersection Observer)
+
+   USAGE:
+
+   Auto-play (immediate on page load):
+     animation: anim-fade-up 0.8s ease-out 0.2s both;
+
+   Scroll-triggered (when element enters viewport):
+     class="animate-on-scroll animate-fade-up delay-2"
+
    ========================================================================== */
 
-/* Base animation state - hidden initially */
+/* --------------------------------------------------------------------------
+   KEYFRAME DEFINITIONS
+   Use these with the 'animation' property for auto-play animations
+   -------------------------------------------------------------------------- */
+
+/* Fade In - simple opacity */
+@keyframes anim-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fade Up - rises from below */
+@keyframes anim-fade-up {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Up Deep - rises from further below (more dramatic) */
+@keyframes anim-fade-up-deep {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Down - drops from above */
+@keyframes anim-fade-down {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Down Deep - drops from further above (more dramatic) */
+@keyframes anim-fade-down-deep {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* Fade Left - slides in from right */
+@keyframes anim-fade-left {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateX(0);
+  }
+}
+
+/* Fade Right - slides in from left */
+@keyframes anim-fade-right {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateX(0);
+  }
+}
+
+/* Scale In - grows from smaller */
+@keyframes anim-scale-in {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) scale(1);
+  }
+}
+
+/* Scale Up - grows while rising */
+@keyframes anim-scale-up {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0) scale(1);
+  }
+}
+
+/* Bounce In - playful entrance with overshoot */
+@keyframes anim-bounce-in {
+  0% {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(20px) scale(0.9);
+  }
+  60% {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0) scale(1);
+  }
+}
+
+/* Zoom In - dramatic scale entrance */
+@keyframes anim-zoom-in {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) scale(1);
+  }
+}
+
+/* Background Zoom - pure zoom effect (no opacity change) */
+@keyframes anim-bg-zoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+/* Product Fade - slides in from left with rotation (for product images) */
+@keyframes anim-product-slide {
+  from {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translate(-15rem, -2rem) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translate(0, 0) rotate(0deg);
+  }
+}
+
+/* Title Bounce - rises from below with overshoot */
+@keyframes anim-title-bounce {
+  0% {
+    opacity: 0;
+    transform: var(--anim-base-transform, none) translateY(7rem);
+  }
+  70% {
+    transform: var(--anim-base-transform, none) translateY(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--anim-base-transform, none) translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   AUTO-PLAY UTILITY CLASSES
+   Add these classes to elements for automatic page-load animations
+   Syntax: .anim-[type]-[delay]
+   -------------------------------------------------------------------------- */
+
+/* Base auto-play animations with common timing */
+.anim-fade-in { animation: anim-fade-in 0.6s ease-out both; }
+.anim-fade-up { animation: anim-fade-up 0.6s ease-out both; }
+.anim-fade-up-deep { animation: anim-fade-up-deep 0.8s ease-out both; }
+.anim-fade-down { animation: anim-fade-down 0.6s ease-out both; }
+.anim-fade-down-deep { animation: anim-fade-down-deep 0.8s ease-out both; }
+.anim-fade-left { animation: anim-fade-left 0.6s ease-out both; }
+.anim-fade-right { animation: anim-fade-right 0.6s ease-out both; }
+.anim-scale-in { animation: anim-scale-in 0.6s ease-out both; }
+.anim-scale-up { animation: anim-scale-up 0.6s ease-out both; }
+.anim-bounce-in { animation: anim-bounce-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.anim-zoom-in { animation: anim-zoom-in 0.5s ease-out both; }
+.anim-product-slide { animation: anim-product-slide 1s ease-out both; }
+.anim-title-bounce { animation: anim-title-bounce 0.5s ease-out both; }
+
+/* Animation delays for auto-play (use with utility classes above) */
+.anim-delay-1 { animation-delay: 0.1s; }
+.anim-delay-2 { animation-delay: 0.2s; }
+.anim-delay-3 { animation-delay: 0.3s; }
+.anim-delay-4 { animation-delay: 0.4s; }
+.anim-delay-5 { animation-delay: 0.5s; }
+.anim-delay-6 { animation-delay: 0.6s; }
+.anim-delay-7 { animation-delay: 0.7s; }
+.anim-delay-8 { animation-delay: 0.8s; }
+.anim-delay-9 { animation-delay: 0.9s; }
+.anim-delay-10 { animation-delay: 1s; }
+.anim-delay-12 { animation-delay: 1.2s; }
+.anim-delay-15 { animation-delay: 1.5s; }
+.anim-delay-20 { animation-delay: 2s; }
+
+/* Animation durations for auto-play */
+.anim-duration-3 { animation-duration: 0.3s; }
+.anim-duration-4 { animation-duration: 0.4s; }
+.anim-duration-5 { animation-duration: 0.5s; }
+.anim-duration-6 { animation-duration: 0.6s; }
+.anim-duration-8 { animation-duration: 0.8s; }
+.anim-duration-10 { animation-duration: 1s; }
+.anim-duration-12 { animation-duration: 1.2s; }
+.anim-duration-15 { animation-duration: 1.5s; }
+
+/* --------------------------------------------------------------------------
+   SCROLL-TRIGGERED ANIMATIONS
+   These use Intersection Observer (requires JavaScript in scripts.js)
+   Elements start hidden, animate when scrolled into view
+   -------------------------------------------------------------------------- */
+
+/* Base state - hidden until triggered */
 .animate-on-scroll {
   opacity: 0;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -1489,7 +2849,7 @@ main > .section.footer-mark {
   transform: none !important;
 }
 
-/* Animation Types */
+/* Scroll animation types */
 .animate-fade-in {
   opacity: 0;
 }
@@ -1499,46 +2859,108 @@ main > .section.footer-mark {
   transform: translateY(30px);
 }
 
+.animate-fade-up-deep {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
 .animate-fade-down {
   opacity: 0;
   transform: translateY(-30px);
 }
 
-/* Title bounce animation - like the original AOS title-bounce */
-.animate-title-bounce {
+.animate-fade-down-deep {
+  opacity: 0;
+  transform: translateY(-60px);
+}
+
+.animate-fade-left {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.animate-fade-right {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.animate-scale-in {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.animate-scale-up {
   opacity: 0;
   transform: translateY(20px) scale(0.95);
-  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Product slide - slides in from left with rotation */
+.animate-product-slide {
+  opacity: 0;
+  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.animate-product-slide.animate-visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+}
+
+/* Title bounce - rises from below with overshoot */
+.animate-title-bounce {
+  opacity: 0;
+  transform: translateY(7rem);
+  transition: opacity 0.5s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .animate-title-bounce.animate-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
 }
 
-/* Animation Delays */
-.delay-1 {
-  transition-delay: 0.1s;
+/* Background zoom - for pseudo-elements with background images */
+/* Background zoom - pure zoom effect for pseudo-elements */
+.animate-bg-zoom {
+  transform: scale(1);
+  transition: transform 2.5s ease-out;
 }
 
-.delay-2 {
-  transition-delay: 0.2s;
+.animate-bg-zoom.animate-visible {
+  transform: scale(1.2);
 }
 
-.delay-3 {
-  transition-delay: 0.3s;
-}
+/* Scroll animation delays (for staggered effects) */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+.delay-9 { transition-delay: 0.9s; }
+.delay-10 { transition-delay: 1s; }
 
-.delay-4 {
-  transition-delay: 0.4s;
-}
+/* Scroll animation durations */
+.duration-3 { transition-duration: 0.3s; }
+.duration-4 { transition-duration: 0.4s; }
+.duration-5 { transition-duration: 0.5s; }
+.duration-6 { transition-duration: 0.6s; }
+.duration-8 { transition-duration: 0.8s; }
+.duration-10 { transition-duration: 1s; }
+.duration-12 { transition-duration: 1.2s; }
 
-.delay-5 {
-  transition-delay: 0.5s;
-}
-
-/* Reduced motion - respect user preferences */
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY - Reduced Motion
+   Respects user's system preference for reduced motion
+   -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
+  /* Disable all auto-play animations */
+  [class*="anim-"] {
+    animation: none !important;
+  }
+
+  /* Disable scroll-triggered animations */
   .animate-on-scroll {
     opacity: 1;
     transform: none;
@@ -1549,4 +2971,14 @@ main > .section.footer-mark {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ==========================================================================
+   Footer Styles - Base only (detailed styles in blocks/footer/footer.css)
+   ========================================================================== */
+
+footer {
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  font-family: var(--body-font-family);
 }
