@@ -1025,71 +1025,61 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 23px;
+  font-weight: 500;
   margin: var(--spacing-m) 0;
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover - fast shift creates gap */
-  transition: margin-left 400ms ease-out;
+  /* Main button shifts right on hover - matches original 600ms timing */
+  transition: margin-left 600ms ease-out;
+  /* Arrow as background image - matches original positioning */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: right 21px center;
+  background-size: 19px 16px;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
 main > .section.hero-patient a.button::before,
 main > .section.hero-patient > div > p > a:not(:has(img))::before {
-  content: "→";
+  content: "";
   position: absolute;
-  /* Position outside the button with gap space */
+  /* Position outside the button - 60px panel + 20px margin = 80px offset */
   left: -80px;
   top: 0;
   bottom: 0;
-  width: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 60px;
   background-color: var(--color-white);
-  color: var(--color-deep-blue);
-  font-size: 20px;
-  border-right: 1px solid rgba(0, 10, 119, 0.15);
+  /* Arrow as background image */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Fade in slower than button shift, with slight delay */
-  transition: left 600ms ease-out, opacity 700ms ease-out 100ms;
+  /* Matches original 600ms timing */
+  transition: left 600ms ease-out, opacity 600ms ease-out;
 }
 
-/* Arrow after text (right side) - animates right then fades */
+/* Remove the ::after arrow - original uses background-image on main element */
 main > .section.hero-patient a.button::after,
 main > .section.hero-patient > div > p > a:not(:has(img))::after {
-  content: "→";
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%) translateX(0);
-  font-size: 20px;
-  /* Arrow moves right and fades */
-  transition: transform 600ms ease, opacity 400ms ease 200ms;
+  content: none;
 }
 
-/* Hover state - parallax effect */
+/* Hover state - matches original site behavior */
 main > .section.hero-patient a.button:hover,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover {
-  /* Main button shifts right quickly to create gap effect */
-  margin-left: 80px;
+  /* Main button shifts right 70px - matches original */
+  margin-left: 70px;
 }
 
 main > .section.hero-patient a.button:hover::before,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::before {
-  /* Arrow panel slides in and fades - 10px gap between panel and button */
+  /* Arrow panel slides to position and becomes visible */
   left: -80px;
   opacity: 1;
-}
-
-main > .section.hero-patient a.button:hover::after,
-main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
-  /* Arrow moves right as it exits */
-  transform: translateY(-50%) translateX(30px);
-  opacity: 0;
 }
 
 /* Hero floating image - anchored to right edge of viewport */
@@ -1439,70 +1429,60 @@ main > .section.bg-product.banner-right > div > p > a {
   border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 20px;
+  font-size: 23px;
   font-weight: 500;
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover - fast shift creates gap */
-  transition: margin-left 400ms ease-out;
+  /* Main button shifts right on hover - matches original 600ms timing */
+  transition: margin-left 600ms ease-out;
+  /* Arrow as background image - matches original positioning */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: right 21px center;
+  background-size: 19px 16px;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
 main > .section.bg-product.banner-left > div > p > a::before,
 main > .section.bg-product.banner-right > div > p > a::before {
-  content: "→";
+  content: "";
   position: absolute;
-  /* Position outside the button with gap space */
+  /* Position outside the button - 60px panel + 20px margin = 80px offset */
   left: -80px;
   top: 0;
   bottom: 0;
-  width: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 60px;
   background-color: var(--color-white);
-  color: var(--color-deep-blue);
-  font-size: 20px;
-  border-right: 1px solid rgba(0, 10, 119, 0.15);
+  /* Arrow as background image */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Fade in slower than button shift, with slight delay */
-  transition: left 600ms ease-out, opacity 700ms ease-out 100ms;
+  /* Matches original 600ms timing */
+  transition: left 600ms ease-out, opacity 600ms ease-out;
 }
 
-/* Arrow after text (right side) - animates right then fades */
+/* Remove the ::after arrow - original uses background-image on main element */
 main > .section.bg-product.banner-left > div > p > a::after,
 main > .section.bg-product.banner-right > div > p > a::after {
-  content: "→";
-  position: absolute;
-  right: 25px;
-  top: 50%;
-  transform: translateY(-50%) translateX(0);
-  font-size: 20px;
-  /* Arrow moves right and fades */
-  transition: transform 600ms ease, opacity 400ms ease 200ms;
+  content: none;
 }
 
-/* Hover state - parallax effect */
+/* Hover state - matches original site behavior */
 main > .section.bg-product.banner-left > div > p > a:hover,
 main > .section.bg-product.banner-right > div > p > a:hover {
-  /* Main button shifts right quickly to create gap effect */
-  margin-left: 80px;
+  /* Main button shifts right 70px - matches original */
+  margin-left: 70px;
 }
 
 main > .section.bg-product.banner-left > div > p > a:hover::before,
 main > .section.bg-product.banner-right > div > p > a:hover::before {
-  /* Arrow panel slides in and fades - 10px gap between panel and button */
+  /* Arrow panel slides to position and becomes visible */
   left: -80px;
   opacity: 1;
-}
-
-main > .section.bg-product.banner-left > div > p > a:hover::after,
-main > .section.bg-product.banner-right > div > p > a:hover::after {
-  /* Arrow moves right as it exits */
-  transform: translateY(-50%) translateX(30px);
-  opacity: 0;
 }
 
 /* Banner image - large, aligned to bottom-left */
@@ -2274,76 +2254,70 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   background-color: transparent;
   color: var(--color-deep-blue);
   border: 2px solid var(--color-deep-blue);
-  padding: 16px 50px 16px 22px;
+  padding: 19px 60px 19px 25px;
   border-radius: 0;
   text-decoration: none;
   font-family: var(--heading-font-family);
-  font-size: 18px;
+  font-size: 23px;
+  font-weight: 500;
   /* Override generic button overflow to allow ::before to be visible outside */
   overflow: visible;
   white-space: normal;
-  /* Main button shifts right on hover - fast shift creates gap */
-  transition: margin-left 400ms ease-out, background-color 300ms ease, color 300ms ease;
+  /* Main button shifts right on hover - matches original 600ms timing */
+  transition: margin-left 600ms ease-out, background-color 600ms ease, color 600ms ease, background-image 0ms;
+  /* Arrow as background image - blue arrow for outline style */
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: right 21px center;
+  background-size: 19px 16px;
 }
 
 /* Hidden arrow panel - slides in from outside the button */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
-  content: "→";
+  content: "";
   position: absolute;
-  /* Position outside the button with gap space */
-  left: -70px;
+  /* Position outside the button - 60px panel + gap */
+  left: -72px;
   top: -2px;
   bottom: -2px;
   width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: var(--color-deep-blue);
-  color: var(--color-white);
-  font-size: 18px;
   border: 2px solid var(--color-deep-blue);
   border-right: none;
+  /* White arrow for the blue panel */
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Fade in slower than button shift, with slight delay */
-  transition: left 600ms ease-out, opacity 700ms ease-out 100ms;
+  /* Matches original 600ms timing */
+  transition: left 600ms ease-out, opacity 600ms ease-out;
 }
 
-/* Arrow after text (right side) - animates right then fades */
+/* Remove the ::after arrow - original uses background-image on main element */
 main > .section.faq-block .button-container a::after,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
-  content: "→";
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%) translateX(0);
-  font-size: 16px;
-  /* Arrow moves right and fades */
-  transition: transform 600ms ease, opacity 400ms ease 200ms;
+  content: none;
 }
 
 /* Hover state - parallax effect with fill */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  /* Main button shifts right quickly to create gap effect */
+  /* Main button shifts right 70px - matches original */
   margin-left: 70px;
   background-color: var(--color-deep-blue);
   color: var(--color-white);
+  /* Switch to white arrow when filled */
+  background-image: url('/icons/arrow-right-white.svg');
 }
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Arrow panel slides in and fades - 10px gap between panel and button */
-  left: -70px;
+  /* Arrow panel slides to position and becomes visible */
+  left: -72px;
   opacity: 1;
-}
-
-main > .section.faq-block .button-container a:hover::after,
-main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::after {
-  /* Arrow moves right as it exits */
-  transform: translateY(-50%) translateX(30px);
-  opacity: 0;
 }
 
 /* FAQ block images */
