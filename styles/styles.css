@@ -2272,7 +2272,7 @@ main > .section.faq-block .button-container {
   margin-top: 27px;
 }
 
-/* FAQ block CTA button with parallax slide animation (matches original site) */
+/* FAQ block CTA button with slide-reveal animation (matches hero button pattern) */
 main > .section.faq-block .button-container a,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   position: relative;
@@ -2286,36 +2286,34 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   font-family: var(--heading-font-family);
   font-size: 23px;
   font-weight: 500;
-  /* Allow panel to extend outside button bounds */
   overflow: visible;
   white-space: normal;
-  /* Entire button slides right on hover - fast so panel has room */
-  transition: margin-left 300ms ease-out;
+  /* Main button shifts right on hover - synced with panel animation */
+  transition: margin-left 400ms ease-out;
 }
 
-/* Hidden arrow panel - slides in from far left like coming from behind a curtain */
+/* Hidden arrow panel - slides in from outside the button */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "";
   position: absolute;
-  /* Start far left, will slide to final position */
-  left: -140px;
+  /* Position outside the button - 60px panel + 10px gap = 70px offset */
+  left: -70px;
   top: 0;
   bottom: 0;
   width: 60px;
   box-sizing: border-box;
   background-color: transparent;
-  /* Full border including right edge */
   border: 2px solid var(--color-deep-blue);
-  /* Blue arrow for transparent panel */
+  /* Arrow as background image */
   background-image: url('/icons/arrow-right-blue.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 19px 16px;
-  /* Always visible - no fade, just slide */
-  opacity: 1;
-  /* Slides in fast after delay - catching up to main button */
-  transition: left 150ms ease-out 200ms;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Panel entrance - 400ms */
+  transition: opacity 400ms ease-out;
 }
 
 /* Arrow on main button - exits to the right */
@@ -2336,20 +2334,19 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::a
   transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
-/* Hover state - synchronized animations, stays transparent */
+/* Hover state - synchronized animations */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  /* Entire button slides right to make room for panel (60px panel + 10px gap) */
-  margin-left: 70px;
-  /* Keep transparent background and blue text/outline */
+  /* Main button shifts right - reduced gap (35px shift for 10px final gap) */
+  margin-left: 35px;
   background-color: transparent;
   color: var(--color-deep-blue);
 }
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Panel slides in from left, catching up to main button */
-  left: -70px;
+  /* Arrow panel becomes visible */
+  opacity: 1;
 }
 
 main > .section.faq-block .button-container a:hover::after,
