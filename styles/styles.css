@@ -2289,8 +2289,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   /* Overflow hidden creates the "curtain" effect - panel slides from behind edge */
   overflow: hidden;
   white-space: normal;
-  /* Main button shifts right on hover - synced with panel animation */
-  transition: margin-left 400ms ease-out;
+  /* Text shifts right on hover via padding - fast so it clears before panel arrives */
+  transition: padding-left 250ms ease-out;
 }
 
 /* Hidden arrow panel - slides in from behind left edge (curtain effect) */
@@ -2340,8 +2340,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::a
 /* Hover state - synchronized animations, stays transparent */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  /* Main button shifts right - reduced gap (35px shift for smaller final gap) */
-  margin-left: 35px;
+  /* Text shifts right via padding to make room for panel (60px panel + 10px gap) */
+  padding-left: 95px;
   /* Keep transparent background and blue text/outline */
   background-color: transparent;
   color: var(--color-deep-blue);
