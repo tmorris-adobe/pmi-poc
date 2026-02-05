@@ -2300,11 +2300,15 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   position: absolute;
   /* Position outside the button - 60px panel + 5px gap = 65px offset */
   left: -67px;
-  top: -2px;
-  bottom: -2px;
+  top: 0;
+  bottom: 0;
   width: 60px;
+  /* Match exact height of parent button */
+  box-sizing: border-box;
   background-color: transparent;
-  border: 2px solid var(--color-deep-blue);
+  border-top: 2px solid var(--color-deep-blue);
+  border-bottom: 2px solid var(--color-deep-blue);
+  border-left: 2px solid var(--color-deep-blue);
   border-right: none;
   /* Blue arrow for transparent panel */
   background-image: url('/icons/arrow-right-blue.svg');
@@ -2313,8 +2317,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   background-size: 19px 16px;
   /* Hidden by default, revealed on hover */
   opacity: 0;
-  /* Panel entrance with delay - waits 150ms before fading in */
-  transition: opacity 400ms ease-out 150ms;
+  /* Panel entrance - faster than main button, with 300ms delay */
+  transition: opacity 250ms ease-out 300ms;
 }
 
 /* Arrow on main button - exits to the right */
