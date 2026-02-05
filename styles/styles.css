@@ -2315,10 +2315,11 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::b
   background-repeat: no-repeat;
   background-position: center;
   background-size: 19px 16px;
-  /* Hidden by default, revealed on hover */
+  /* Hidden by default, starts farther left */
   opacity: 0;
-  /* Panel entrance - faster than main button, with 300ms delay */
-  transition: opacity 250ms ease-out 300ms;
+  transform: translateX(-50px);
+  /* Panel zooms in while fading - 450ms delay, fast 200ms animation */
+  transition: opacity 250ms ease-out 450ms, transform 200ms ease-out 450ms;
 }
 
 /* Arrow on main button - exits to the right */
@@ -2351,8 +2352,9 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a:ho
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Arrow panel becomes visible */
+  /* Arrow panel zooms in from left while fading in */
   opacity: 1;
+  transform: translateX(0);
 }
 
 main > .section.faq-block .button-container a:hover::after,
