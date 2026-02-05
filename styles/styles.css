@@ -2286,37 +2286,36 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   font-family: var(--heading-font-family);
   font-size: 23px;
   font-weight: 500;
-  /* Overflow hidden creates the "curtain" effect - panel slides from behind edge */
-  overflow: hidden;
+  /* Allow panel to extend outside button bounds */
+  overflow: visible;
   white-space: normal;
-  /* Text shifts right on hover via padding - fast so it clears before panel arrives */
-  transition: padding-left 250ms ease-out;
+  /* Entire button slides right on hover - fast so panel has room */
+  transition: margin-left 300ms ease-out;
 }
 
-/* Hidden arrow panel - slides in from behind left edge (curtain effect) */
+/* Hidden arrow panel - positioned outside button, slides in with button movement */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "";
   position: absolute;
-  /* Position at left edge, will slide in from outside */
-  left: 0;
+  /* Position outside button to the left */
+  left: -70px;
   top: 0;
   bottom: 0;
   width: 60px;
-  /* Match exact height of parent button */
   box-sizing: border-box;
   background-color: transparent;
-  border-right: 2px solid var(--color-deep-blue);
+  border: 2px solid var(--color-deep-blue);
+  border-right: none;
   /* Blue arrow for transparent panel */
   background-image: url('/icons/arrow-right-blue.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 19px 16px;
-  /* Always visible (no fade), starts hidden behind left edge */
-  opacity: 1;
-  transform: translateX(-100%);
-  /* Fast slide-in with delay */
-  transition: transform 200ms ease-out 450ms;
+  /* Hidden initially, appears when button slides */
+  opacity: 0;
+  /* Fast fade-in with delay - appears after button starts sliding */
+  transition: opacity 200ms ease-out 150ms;
 }
 
 /* Arrow on main button - exits to the right */
@@ -2340,8 +2339,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a::a
 /* Hover state - synchronized animations, stays transparent */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  /* Text shifts right via padding to make room for panel (60px panel + 10px gap) */
-  padding-left: 95px;
+  /* Entire button slides right to make room for panel (60px panel + 10px gap) */
+  margin-left: 70px;
   /* Keep transparent background and blue text/outline */
   background-color: transparent;
   color: var(--color-deep-blue);
@@ -2349,8 +2348,8 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a:ho
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Arrow panel slides in from behind left edge - no fade, just slide */
-  transform: translateX(0);
+  /* Panel becomes visible as button slides away */
+  opacity: 1;
 }
 
 main > .section.faq-block .button-container a:hover::after,
