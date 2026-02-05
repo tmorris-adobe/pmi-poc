@@ -1028,19 +1028,23 @@ main > .section.hero-patient > div > p > a:not(:has(img)) {
   font-size: 20px;
   font-weight: 600;
   margin: var(--spacing-m) 0;
-  overflow: hidden;
-  transition: padding-left 600ms ease;
+  /* Override generic button overflow to allow ::before to be visible outside */
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover via margin */
+  transition: margin-left 600ms ease;
 }
 
-/* Hidden arrow panel - slides in from left */
+/* Hidden arrow panel - slides in from outside the button */
 main > .section.hero-patient a.button::before,
 main > .section.hero-patient > div > p > a:not(:has(img))::before {
   content: "→";
   position: absolute;
-  left: 0;
+  /* Position completely outside the button to the left */
+  left: -70px;
   top: 0;
   bottom: 0;
-  width: 60px;
+  width: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1048,35 +1052,43 @@ main > .section.hero-patient > div > p > a:not(:has(img))::before {
   color: var(--color-deep-blue);
   font-size: 20px;
   border-right: 1px solid rgba(0, 10, 119, 0.15);
-  transform: translateX(-100%);
-  transition: transform 600ms ease;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Slides in from left */
+  transition: left 600ms ease, opacity 300ms ease;
 }
 
-/* Arrow after text (right side) */
+/* Arrow after text (right side) - animates right then fades */
 main > .section.hero-patient a.button::after,
 main > .section.hero-patient > div > p > a:not(:has(img))::after {
   content: "→";
   position: absolute;
   right: 25px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(0);
   font-size: 20px;
-  transition: opacity 400ms ease;
+  /* Arrow moves right and fades */
+  transition: transform 600ms ease, opacity 400ms ease 200ms;
 }
 
-/* Hover state - synchronized animation */
+/* Hover state - parallax effect */
 main > .section.hero-patient a.button:hover,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover {
-  padding-left: 85px;
+  /* Main button shifts right to reveal the incoming panel */
+  margin-left: 70px;
 }
 
 main > .section.hero-patient a.button:hover::before,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::before {
-  transform: translateX(0);
+  /* Arrow panel stays at -70px but is now visible in the gap created by margin shift */
+  left: -70px;
+  opacity: 1;
 }
 
 main > .section.hero-patient a.button:hover::after,
 main > .section.hero-patient > div > p > a:not(:has(img)):hover::after {
+  /* Arrow moves right as it exits */
+  transform: translateY(-50%) translateX(30px);
   opacity: 0;
 }
 
@@ -1414,7 +1426,7 @@ main > .section.bg-product.banner-right p:not(:has(img)) {
   max-width: 500px;
 }
 
-/* Banner CTA button with slide-reveal animation */
+/* Banner CTA button with parallax slide animation (matches original site) */
 main > .section.bg-product.banner-left a.button,
 main > .section.bg-product.banner-right a.button,
 main > .section.bg-product.banner-left > div > p > a,
@@ -1429,19 +1441,23 @@ main > .section.bg-product.banner-right > div > p > a {
   font-family: var(--heading-font-family);
   font-size: 20px;
   font-weight: 500;
-  overflow: hidden;
-  transition: padding-left 600ms ease;
+  /* Override generic button overflow to allow ::before to be visible outside */
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover via margin */
+  transition: margin-left 600ms ease;
 }
 
-/* Hidden arrow panel - slides in from left */
+/* Hidden arrow panel - slides in from outside the button */
 main > .section.bg-product.banner-left > div > p > a::before,
 main > .section.bg-product.banner-right > div > p > a::before {
   content: "→";
   position: absolute;
-  left: 0;
+  /* Position completely outside the button to the left */
+  left: -70px;
   top: 0;
   bottom: 0;
-  width: 60px;
+  width: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1449,35 +1465,43 @@ main > .section.bg-product.banner-right > div > p > a::before {
   color: var(--color-deep-blue);
   font-size: 20px;
   border-right: 1px solid rgba(0, 10, 119, 0.15);
-  transform: translateX(-100%);
-  transition: transform 600ms ease;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Slides in from left */
+  transition: left 600ms ease, opacity 300ms ease;
 }
 
-/* Arrow after text (right side) */
+/* Arrow after text (right side) - animates right then fades */
 main > .section.bg-product.banner-left > div > p > a::after,
 main > .section.bg-product.banner-right > div > p > a::after {
   content: "→";
   position: absolute;
   right: 25px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(0);
   font-size: 20px;
-  transition: opacity 400ms ease;
+  /* Arrow moves right and fades */
+  transition: transform 600ms ease, opacity 400ms ease 200ms;
 }
 
-/* Hover state - synchronized animation */
+/* Hover state - parallax effect */
 main > .section.bg-product.banner-left > div > p > a:hover,
 main > .section.bg-product.banner-right > div > p > a:hover {
-  padding-left: 85px;
+  /* Main button shifts right to reveal the incoming panel */
+  margin-left: 70px;
 }
 
 main > .section.bg-product.banner-left > div > p > a:hover::before,
 main > .section.bg-product.banner-right > div > p > a:hover::before {
-  transform: translateX(0);
+  /* Arrow panel stays at -70px but is now visible in the gap created by margin shift */
+  left: -70px;
+  opacity: 1;
 }
 
 main > .section.bg-product.banner-left > div > p > a:hover::after,
 main > .section.bg-product.banner-right > div > p > a:hover::after {
+  /* Arrow moves right as it exits */
+  transform: translateY(-50%) translateX(30px);
   opacity: 0;
 }
 
@@ -2242,7 +2266,7 @@ main > .section.faq-block .button-container {
   margin-top: 27px;
 }
 
-/* FAQ block CTA button with slide-reveal animation */
+/* FAQ block CTA button with parallax slide animation (matches original site) */
 main > .section.faq-block .button-container a,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   position: relative;
@@ -2255,57 +2279,70 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   text-decoration: none;
   font-family: var(--heading-font-family);
   font-size: 18px;
-  overflow: hidden;
-  transition: padding-left 600ms ease, background-color 300ms ease, color 300ms ease;
+  /* Override generic button overflow to allow ::before to be visible outside */
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover via margin */
+  transition: margin-left 600ms ease, background-color 300ms ease, color 300ms ease;
 }
 
-/* Hidden arrow panel - slides in from left */
+/* Hidden arrow panel - slides in from outside the button */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "→";
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 50px;
+  /* Position completely outside the button to the left */
+  left: -60px;
+  top: -2px;
+  bottom: -2px;
+  width: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  color: var(--color-deep-blue);
+  background-color: var(--color-deep-blue);
+  color: var(--color-white);
   font-size: 18px;
-  transform: translateX(-100%);
-  transition: transform 600ms ease, color 300ms ease;
+  border: 2px solid var(--color-deep-blue);
+  border-right: none;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  /* Slides in from left */
+  transition: left 600ms ease, opacity 300ms ease;
 }
 
-/* Arrow after text (right side) */
+/* Arrow after text (right side) - animates right then fades */
 main > .section.faq-block .button-container a::after,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::after {
   content: "→";
   position: absolute;
   right: 20px;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(0);
   font-size: 16px;
-  transition: opacity 400ms ease;
+  /* Arrow moves right and fades */
+  transition: transform 600ms ease, opacity 400ms ease 200ms;
 }
 
-/* Hover state - synchronized animation */
+/* Hover state - parallax effect with fill */
 main > .section.faq-block .button-container a:hover,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
-  padding-left: 72px;
+  /* Main button shifts right to reveal the incoming panel */
+  margin-left: 60px;
   background-color: var(--color-deep-blue);
   color: var(--color-white);
 }
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  transform: translateX(0);
-  color: var(--color-white);
+  /* Arrow panel stays at -60px but is now visible in the gap created by margin shift */
+  left: -60px;
+  opacity: 1;
 }
 
 main > .section.faq-block .button-container a:hover::after,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::after {
+  /* Arrow moves right as it exits */
+  transform: translateY(-50%) translateX(30px);
   opacity: 0;
 }
 
