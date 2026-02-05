@@ -1652,13 +1652,11 @@ main > .section.mission p {
   margin-bottom: var(--spacing-m);
 }
 
-/* Teal CTA button with arrow */
+/* Teal CTA button with slide-reveal animation */
 main > .section.mission a.button,
 main > .section.mission > div > p > a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  position: relative;
+  display: inline-block;
   background-color: var(--color-teal-text);
   color: var(--color-white);
   padding: 19px 60px 19px 25px;
@@ -1667,26 +1665,65 @@ main > .section.mission > div > p > a {
   text-decoration: none;
   font-family: var(--heading-font-family);
   font-size: 23px;
-  transition: all var(--transition-base);
+  font-weight: 500;
   margin-top: var(--spacing-m);
+  overflow: visible;
+  white-space: normal;
+  /* Main button shifts right on hover */
+  transition: margin-left 400ms ease-out;
 }
 
+/* Hidden arrow panel - slides in from outside the button */
+main > .section.mission a.button::before,
+main > .section.mission > div > p > a::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-teal-text);
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  /* Hidden by default */
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+/* Arrow on main button */
 main > .section.mission a.button::after,
 main > .section.mission > div > p > a::after {
-  content: "→";
-  font-size: 20px;
-  transition: transform var(--transition-base);
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
 }
 
+/* Hover state */
 main > .section.mission a.button:hover,
 main > .section.mission > div > p > a:hover {
-  background-color: var(--color-purple);
-  color: var(--color-white);
+  margin-left: 35px;
+}
+
+main > .section.mission a.button:hover::before,
+main > .section.mission > div > p > a:hover::before {
+  opacity: 1;
 }
 
 main > .section.mission a.button:hover::after,
 main > .section.mission > div > p > a:hover::after {
-  transform: translateX(5px);
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
 }
 
 @media (width < 768px) {
