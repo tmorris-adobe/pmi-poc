@@ -2286,40 +2286,37 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a {
   font-family: var(--heading-font-family);
   font-size: 23px;
   font-weight: 500;
-  /* Override generic button overflow to allow ::before to be visible outside */
-  overflow: visible;
+  /* Overflow hidden creates the "curtain" effect - panel slides from behind edge */
+  overflow: hidden;
   white-space: normal;
   /* Main button shifts right on hover - synced with panel animation */
   transition: margin-left 400ms ease-out;
 }
 
-/* Hidden arrow panel - slides in from outside the button */
+/* Hidden arrow panel - slides in from behind left edge (curtain effect) */
 main > .section.faq-block .button-container a::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
   content: "";
   position: absolute;
-  /* Position outside the button - 60px panel + 5px gap = 65px offset */
-  left: -67px;
+  /* Position at left edge, will slide in from outside */
+  left: 0;
   top: 0;
   bottom: 0;
   width: 60px;
   /* Match exact height of parent button */
   box-sizing: border-box;
   background-color: transparent;
-  border-top: 2px solid var(--color-deep-blue);
-  border-bottom: 2px solid var(--color-deep-blue);
-  border-left: 2px solid var(--color-deep-blue);
-  border-right: none;
+  border-right: 2px solid var(--color-deep-blue);
   /* Blue arrow for transparent panel */
   background-image: url('/icons/arrow-right-blue.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 19px 16px;
-  /* Hidden by default, starts farther left */
-  opacity: 0;
-  transform: translateX(-50px);
-  /* Panel zooms in while fading - 450ms delay, fast 200ms animation */
-  transition: opacity 250ms ease-out 450ms, transform 200ms ease-out 450ms;
+  /* Always visible (no fade), starts hidden behind left edge */
+  opacity: 1;
+  transform: translateX(-100%);
+  /* Fast slide-in with delay */
+  transition: transform 200ms ease-out 450ms;
 }
 
 /* Arrow on main button - exits to the right */
@@ -2352,8 +2349,7 @@ main > .section.faq-block > .default-content-wrapper > p.button-container > a:ho
 
 main > .section.faq-block .button-container a:hover::before,
 main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover::before {
-  /* Arrow panel zooms in from left while fading in */
-  opacity: 1;
+  /* Arrow panel slides in from behind left edge - no fade, just slide */
   transform: translateX(0);
 }
 
