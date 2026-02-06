@@ -10,6 +10,22 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else div.className = 'cards-card-body';
     });
+    /* make entire card clickable if it contains a link */
+    const link = li.querySelector('a');
+    if (link) {
+      const wrapper = document.createElement('a');
+      wrapper.href = link.href;
+      wrapper.className = 'cards-card-link';
+      /* replace nested links with spans to avoid invalid HTML */
+      li.querySelectorAll('a').forEach((a) => {
+        const span = document.createElement('span');
+        span.className = 'cards-link-text';
+        span.textContent = a.textContent;
+        a.replaceWith(span);
+      });
+      while (li.firstChild) wrapper.append(li.firstChild);
+      li.append(wrapper);
+    }
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
