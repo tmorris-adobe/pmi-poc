@@ -76,6 +76,28 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Restores anchor links that the EDS pipeline strips during HTML processing.
+ * @param {Element} main The main element
+ */
+function fixAnchorLinks(main) {
+  const anchorMap = {
+    'Order Luo': '#find-your-luo',
+  };
+
+  main.querySelectorAll('a').forEach((link) => {
+    const target = anchorMap[link.textContent.trim()];
+    if (target && (link.getAttribute('href') === '/' || link.getAttribute('href') === '')) {
+      link.href = target;
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const el = document.getElementById(target.substring(1));
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -87,6 +109,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  fixAnchorLinks(main);
 }
 
 /**
