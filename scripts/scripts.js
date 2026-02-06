@@ -82,6 +82,7 @@ function buildAutoBlocks(main) {
 function fixAnchorLinks(main) {
   const anchorMap = {
     'Order Luo': '#find-your-luo',
+    'Commander Luo': '#trouvez-votre-luo',
   };
 
   main.querySelectorAll('a').forEach((link) => {

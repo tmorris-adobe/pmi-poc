@@ -20,7 +20,7 @@ Et comme nous sommes innovateurs dans l'âme, nous avons mis au point un nouveau
 
 Faire l'essai d'un nouveau produit, c'est un peu comme s'aventurer en terrain inconnu, mais nous sommes là pour vous éclairer et vous aider à découvrir le cannabis médicinal en toute confiance.
 
-[Commander Luo](luo-medical-cbd-lozenges)
+[Commander Luo](/ca-fr/patient/luo-medical-cbd-lozenges/)
 
 | Section Metadata |  |
 | ---------------- | ---------- |
@@ -48,8 +48,8 @@ Grâce à Luo, qui est offert en trois teneurs pour que vous preniez la bonne do
 
 | Cards |
 | ----- |
-| ![Pastilles Vanille Menthe](./images/product-vanilla-mint.png) **Pastilles de CBD Luo Vanille Menthe** Découvrez la présentation unique des pastilles de CBD Luo, qui se dissolvent en bouche : offertes à la saveur originale de Vanille Menthe, en 3 teneurs. [Pour en savoir plus](luo-medical-cbd-lozenges) |
-| ![Pastilles Fruits tropicaux](./images/product-tropical-fruit.png) **Pastilles de CBD Luo Fruits tropicaux – nouveau!** La qualité Luo que vous connaissez, maintenant à saveur de fruits tropicaux – offertes en 2 teneurs. [Pour en savoir plus](pastilles-de-cbd-medicinal-luo) |
+| ![Pastilles Vanille Menthe](./images/product-vanilla-mint.png) **Pastilles de CBD Luo Vanille Menthe** Découvrez la présentation unique des pastilles de CBD Luo, qui se dissolvent en bouche : offertes à la saveur originale de Vanille Menthe, en 3 teneurs. [Pour en savoir plus](/ca-fr/patient/luo-medical-cbd-lozenges/) |
+| ![Pastilles Fruits tropicaux](./images/product-tropical-fruit.png) **Pastilles de CBD Luo Fruits tropicaux – nouveau!** La qualité Luo que vous connaissez, maintenant à saveur de fruits tropicaux – offertes en 2 teneurs. [Pour en savoir plus](/ca-fr/patient/pastilles-de-cbd-medicinal-luo/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
@@ -80,7 +80,7 @@ Nous sommes là pour **faciliter votre quête** de bien-être
 
 La question du cannabis médicinal peut être complexe. Nos foires aux questions (FAQ) vous aideront à vous y retrouver facilement.
 
-[Pour en savoir plus](medical-cannabis-guide)
+[Pour en savoir plus](/ca-fr/patient/medical-cannabis-guide/)
 
 ![Qu'est-ce que le cannabis médicinal](./images/faq-medical-cannabis.webp)
 
@@ -94,7 +94,7 @@ La question du cannabis médicinal peut être complexe. Nos foires aux questions
 
 Nos FAQ sur le CBD ont été conçues pour fournir de l'information pratique aux personnes qui ne connaissent pas le CBD et qui souhaitent se renseigner sur le sujet.
 
-[Pour en savoir plus](medical-cannabis-guide)
+[Pour en savoir plus](/ca-fr/patient/medical-cannabis-guide/)
 
 ![Qu'est-ce que le CBD](./images/faq-cbd.webp)
 
