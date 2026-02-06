@@ -1,3 +1,4 @@
+/* cards block - product cards with clickable card links */
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
