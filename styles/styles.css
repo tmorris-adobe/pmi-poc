@@ -134,8 +134,9 @@ body:has(.section.hero-patient) header {
   height: 0;
 }
 
-/* Hide default header on gateway pages (age verification) - but not gateway-header */
-body:has(.hero-gateway) header:not(.gateway-header) {
+/* Hide default header on gateway pages (age verification, HCP) - but not gateway-header */
+body:has(.hero-gateway) header:not(.gateway-header),
+body:has(.hero-gateway-hcp) header:not(.gateway-header) {
   height: 0;
   overflow: hidden;
 }
@@ -464,21 +465,36 @@ body:has(.hero-gateway) {
   overflow: hidden;
 }
 
-body:has(.hero-gateway) main > .section {
+/* HCP gateway - same gradient but allows scrolling for longer content */
+body:has(.hero-gateway-hcp) {
+  background: var(--gradient-primary);
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+body:has(.hero-gateway) main > .section,
+body:has(.hero-gateway-hcp) main > .section {
   margin: 0;
 }
 
-body:has(.hero-gateway) main {
+body:has(.hero-gateway) main,
+body:has(.hero-gateway-hcp) main {
   background: transparent;
 }
 
 body:has(.hero-gateway) header,
-body:has(.hero-gateway) footer {
+body:has(.hero-gateway) footer,
+body:has(.hero-gateway-hcp) header,
+body:has(.hero-gateway-hcp) footer {
   background: transparent;
 }
 
 /* Hide empty footer on gateway pages */
-body:has(.hero-gateway) footer:empty {
+body:has(.hero-gateway) footer:empty,
+body:has(.hero-gateway-hcp) footer:empty {
   display: none;
 }
 

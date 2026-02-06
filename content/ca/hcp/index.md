@@ -2,8 +2,7 @@
 
 | Hero |
 | ---- |
-| ![Luo logo](./images/luo-logo-white.png) |
-| ## For Healthcare Professionals Only |
+| # *For Healthcare Professionals Only* |
 
 | Hero-Gateway-HCP |
 | ----------------- |

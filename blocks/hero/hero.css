@@ -5,6 +5,8 @@
 
 .hero-container {
   margin: 0 !important;
+  position: relative;
+  z-index: 1; /* Above body::after starburst on gateway pages */
 }
 
 .hero-container .hero-wrapper {
@@ -26,7 +28,7 @@
 }
 
 /* Fallback gradient for pages without hero-gateway */
-body:not(:has(.hero-gateway)) .hero {
+body:not(:has(.hero-gateway)):not(:has(.hero-gateway-hcp)) .hero {
   background: var(--gradient-primary);
 }
 
@@ -46,12 +48,14 @@ body:not(:has(.hero-gateway)) .hero {
 }
 
 /* Hide starburst image on gateway pages - only show the heading */
-body:has(.hero-gateway) .hero picture {
+body:has(.hero-gateway) .hero picture,
+body:has(.hero-gateway-hcp) .hero picture {
   display: none;
 }
 
 /* Add Luo logo at top of gateway pages */
-body:has(.hero-gateway) .hero::before {
+body:has(.hero-gateway) .hero::before,
+body:has(.hero-gateway-hcp) .hero::before {
   content: '';
   display: block;
   width: 110px;
@@ -77,7 +81,8 @@ body:has(.hero-gateway) .hero::before {
 }
 
 /* Force two-line display on gateway pages to match original */
-body:has(.hero-gateway) .hero h1 {
+body:has(.hero-gateway) .hero h1,
+body:has(.hero-gateway-hcp) .hero h1 {
   max-width: 500px;
 }
 

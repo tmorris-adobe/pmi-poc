@@ -115,9 +115,43 @@ export default function decorate(block) {
   block.textContent = '';
   block.appendChild(contentWrapper);
 
+  // Add starburst decoration (absolutely positioned behind content)
+  const starburst = document.createElement('div');
+  starburst.className = 'hero-gateway-hcp-starburst';
+  block.appendChild(starburst);
+
   // Hide default site header and footer on HCP gateway pages
   const siteHeader = document.querySelector('header:not(.gateway-header)');
   if (siteHeader) siteHeader.style.display = 'none';
   const siteFooter = document.querySelector('footer');
   if (siteFooter) siteFooter.style.display = 'none';
+
+  // Create fixed language selector at bottom (matching age verification portal)
+  // Find the language paragraph - it's a sibling <p> in the same section wrapper
+  const section = block.closest('.section');
+  const allParagraphs = section ? section.querySelectorAll('p') : [];
+  let languageParagraph = null;
+  allParagraphs.forEach((p) => {
+    const links = p.querySelectorAll('a');
+    if (links.length >= 2) {
+      const hasLangLinks = [...links].some((a) => a.textContent.trim() === 'English' || a.textContent.trim() === 'Français');
+      if (hasLangLinks) languageParagraph = p;
+    }
+  });
+
+  if (languageParagraph) {
+    const links = languageParagraph.querySelectorAll('a');
+    const langSelector = document.createElement('div');
+    langSelector.className = 'hero-gateway-hcp-languages';
+    links.forEach((link) => {
+      const langLink = document.createElement('a');
+      langLink.href = link.getAttribute('href');
+      langLink.textContent = link.textContent.trim();
+      langSelector.appendChild(langLink);
+    });
+    document.body.appendChild(langSelector);
+    // Hide the original language paragraph
+    languageParagraph.style.display = 'none';
+  }
+
 }
