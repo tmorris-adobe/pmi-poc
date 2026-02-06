@@ -1,3 +1,4 @@
+/* cards block styles */
 .cards > ul {
   list-style: none;
   margin: 0;
@@ -24,6 +25,13 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* Make entire card clickable via wrapper link */
+.cards .cards-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Product cards: preserve natural square aspect ratio for bottle images */
