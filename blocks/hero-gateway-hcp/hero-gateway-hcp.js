@@ -4,12 +4,15 @@
  * Migrated from: https://www.luomedical.com/ca/?request=hcp
  */
 export default function decorate(block) {
-  // Create content wrapper for the card layout
   const contentWrapper = document.createElement('div');
   contentWrapper.className = 'hero-gateway-hcp-content';
 
-  // Process each row - flexible structure
+  // Process each row
   const rows = [...block.children];
+  let confirmUrl = '/ca/health-care-professionals/';
+  let cancelUrl = '/ca/';
+  const textElements = [];
+
   rows.forEach((row) => {
     const cell = row.querySelector('div');
     if (!cell) return;
@@ -17,38 +20,26 @@ export default function decorate(block) {
     // Check for list (ul/ol)
     const list = cell.querySelector('ul, ol');
     if (list) {
-      contentWrapper.appendChild(list.cloneNode(true));
+      textElements.push(list.cloneNode(true));
       return;
     }
 
     // Check for link (CTA button)
     const link = cell.querySelector('a');
     if (link) {
-      const wrapper = document.createElement('div');
-      wrapper.className = 'hero-gateway-hcp-cta';
-      const btn = link.cloneNode(true);
-      // Check if it's the cancel link
-      if (link.textContent.toLowerCase().includes('cancel')) {
-        btn.className = 'button secondary';
+      const text = link.textContent.toLowerCase();
+      if (text.includes('cancel')) {
+        cancelUrl = link.getAttribute('href') || cancelUrl;
       } else {
-        btn.className = 'button primary';
+        confirmUrl = link.getAttribute('href') || confirmUrl;
       }
-      wrapper.appendChild(btn);
-      contentWrapper.appendChild(wrapper);
       return;
     }
 
     // Check for heading
     const heading = cell.querySelector('h1, h2, h3, h4');
     if (heading) {
-      contentWrapper.appendChild(heading.cloneNode(true));
-      return;
-    }
-
-    // Check for paragraph
-    const para = cell.querySelector('p');
-    if (para) {
-      contentWrapper.appendChild(para.cloneNode(true));
+      textElements.push(heading.cloneNode(true));
       return;
     }
 
@@ -57,11 +48,76 @@ export default function decorate(block) {
     if (text) {
       const p = document.createElement('p');
       p.textContent = text;
-      contentWrapper.appendChild(p);
+      textElements.push(p);
+    }
+  });
+
+  // Build the disclaimer card
+  const card = document.createElement('div');
+  card.className = 'hero-gateway-hcp-card';
+  textElements.forEach((el) => card.appendChild(el));
+  contentWrapper.appendChild(card);
+
+  // Build the checkbox
+  const checkboxGroup = document.createElement('div');
+  checkboxGroup.className = 'hero-gateway-hcp-checkbox';
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = 'hcp-confirm';
+
+  const checkboxLabel = document.createElement('label');
+  checkboxLabel.htmlFor = 'hcp-confirm';
+  checkboxLabel.textContent = 'I am a healthcare professional and agree to the above terms.';
+
+  checkboxGroup.appendChild(checkbox);
+  checkboxGroup.appendChild(checkboxLabel);
+  contentWrapper.appendChild(checkboxGroup);
+
+  // Build the CTA buttons
+  const ctaWrapper = document.createElement('div');
+  ctaWrapper.className = 'hero-gateway-hcp-cta';
+
+  const confirmBtn = document.createElement('a');
+  confirmBtn.href = confirmUrl;
+  confirmBtn.className = 'button primary';
+  confirmBtn.textContent = 'Enter Luo HCP';
+  confirmBtn.setAttribute('aria-disabled', 'true');
+
+  const cancelBtn = document.createElement('a');
+  cancelBtn.href = cancelUrl;
+  cancelBtn.className = 'button secondary';
+  cancelBtn.textContent = 'Cancel';
+
+  ctaWrapper.appendChild(confirmBtn);
+  ctaWrapper.appendChild(cancelBtn);
+  contentWrapper.appendChild(ctaWrapper);
+
+  // Checkbox enables/disables the confirm button
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      confirmBtn.setAttribute('aria-disabled', 'false');
+      confirmBtn.classList.remove('disabled');
+    } else {
+      confirmBtn.setAttribute('aria-disabled', 'true');
+      confirmBtn.classList.add('disabled');
+    }
+  });
+
+  // Prevent click when disabled
+  confirmBtn.addEventListener('click', (e) => {
+    if (confirmBtn.getAttribute('aria-disabled') === 'true') {
+      e.preventDefault();
     }
   });
 
   // Clear block and add wrapped content
   block.textContent = '';
   block.appendChild(contentWrapper);
+
+  // Hide default site header and footer on HCP gateway pages
+  const siteHeader = document.querySelector('header:not(.gateway-header)');
+  if (siteHeader) siteHeader.style.display = 'none';
+  const siteFooter = document.querySelector('footer');
+  if (siteFooter) siteFooter.style.display = 'none';
 }

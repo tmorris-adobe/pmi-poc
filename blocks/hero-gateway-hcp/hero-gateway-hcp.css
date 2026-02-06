@@ -1,7 +1,26 @@
 /*
  * Hero Gateway HCP Block Styles
- * White card layout for HCP disclaimer content over gradient background
+ * Full-page gradient layout matching original site
  */
+
+/* Hide default site header and footer on HCP gateway pages */
+body:has(.hero-gateway-hcp) header:not(.gateway-header) {
+  display: none;
+}
+
+body:has(.hero-gateway-hcp) footer {
+  display: none;
+}
+
+/* Remove section wrapper padding so gradient fills edge to edge */
+.hero-gateway-hcp-container {
+  margin: 0 !important;
+}
+
+.hero-gateway-hcp-container .hero-gateway-hcp-wrapper {
+  max-width: unset;
+  padding: 0;
+}
 
 .hero-gateway-hcp {
   background: var(--gradient-primary);
@@ -13,91 +32,140 @@
 }
 
 .hero-gateway-hcp-content {
-  background: var(--color-white);
-  border-radius: 8px;
-  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 600px;
   width: 100%;
-  color: var(--text-color);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
-.hero-gateway-hcp-content h2,
-.hero-gateway-hcp-content h3 {
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-m);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-primary);
-  margin: 0 0 24px;
-  text-align: center;
+/* Disclaimer card with semi-transparent border */
+.hero-gateway-hcp-card {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 40px;
+  width: 100%;
+  color: var(--text-color-inverted, #fff);
+  margin-bottom: 32px;
 }
 
-.hero-gateway-hcp-content p {
+.hero-gateway-hcp-card p {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   line-height: 1.6;
   margin: 0 0 16px;
-  color: var(--text-color);
+  color: var(--text-color-inverted, #fff);
 }
 
-.hero-gateway-hcp-content ul {
+.hero-gateway-hcp-card ul {
   margin: 0 0 24px;
   padding-left: 24px;
 }
 
-.hero-gateway-hcp-content li {
+.hero-gateway-hcp-card li {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-s);
   line-height: 1.6;
   margin-bottom: 12px;
-  color: var(--text-color);
+  color: var(--text-color-inverted, #fff);
 }
 
-.hero-gateway-hcp-content li::marker {
-  color: var(--color-primary);
+.hero-gateway-hcp-card li::marker {
+  color: var(--text-color-inverted, #fff);
 }
 
+/* Checkbox */
+.hero-gateway-hcp-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.hero-gateway-hcp-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+.hero-gateway-hcp-checkbox input[type="checkbox"]:checked {
+  background-color: var(--color-white, #fff);
+  border-color: var(--color-white, #fff);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24'%3E%3Cpath fill='%23000a77' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-gateway-hcp-checkbox label {
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  color: var(--text-color-inverted, #fff);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* CTA buttons */
 .hero-gateway-hcp-cta {
   display: flex;
-  justify-content: center;
-  margin-top: 24px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
 }
 
 .hero-gateway-hcp-cta .button.primary {
-  background: var(--color-white);
-  border: 2px solid var(--color-primary);
-  color: var(--color-primary);
-  padding: 16px 48px;
-  border-radius: 50px;
-  font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  font-weight: var(--font-weight-medium);
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 4px;
+  color: var(--text-color-inverted, #fff);
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 400;
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-  min-width: 200px;
   text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .hero-gateway-hcp-cta .button.primary:hover {
-  background: var(--color-primary);
-  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.hero-gateway-hcp-cta .button.primary[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.hero-gateway-hcp-cta .button.primary[aria-disabled="false"] {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .hero-gateway-hcp-cta .button.secondary {
   background: transparent;
   border: none;
-  color: var(--color-primary);
+  color: var(--text-color-inverted, #fff);
   padding: 12px 24px;
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-s);
-  text-decoration: underline;
-  display: inline-block;
+  font-size: var(--body-font-size-m);
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .hero-gateway-hcp-cta .button.secondary:hover {
-  color: var(--color-secondary);
+  text-decoration: underline;
 }
 
 /* Mobile responsive */
@@ -106,12 +174,7 @@
     padding: 20px 16px 60px;
   }
 
-  .hero-gateway-hcp-content {
+  .hero-gateway-hcp-card {
     padding: 24px;
-  }
-
-  .hero-gateway-hcp-content h2,
-  .hero-gateway-hcp-content h3 {
-    font-size: var(--heading-font-size-s);
   }
 }
