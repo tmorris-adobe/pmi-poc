@@ -1271,11 +1271,11 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
 
 main > .section.hero-hcp h1 {
   font-size: 64px;
-  font-weight: 700;
+  font-weight: 400;
   font-style: normal;
   color: var(--text-color-inverted);
   margin-bottom: var(--spacing-m);
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: -0.02em;
 }
 
@@ -1449,6 +1449,74 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
     max-width: 100%;
     margin: var(--spacing-l) auto 0;
   }
+}
+
+/* ==========================================================================
+   HCP Page-Specific Overrides
+   Scoped with body:has(.hero-hcp) to avoid affecting patient page
+   ========================================================================== */
+
+/* Mission h2 - smaller than patient page (54px vs 64px) due to longer heading */
+body:has(.hero-hcp) main > .section.mission h2 {
+  font-size: 54px;
+}
+
+@media (width < 768px) {
+  body:has(.hero-hcp) main > .section.mission h2 {
+    font-size: 36px;
+  }
+}
+
+/* Features section - use teal/green gradient background (matches original) */
+body:has(.hero-hcp) main > .section.bg-even.features {
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 110px 0 60px;
+}
+
+/* Features h3 "Why patients choose Luo?" - large white heading */
+body:has(.hero-hcp) main > .section.features h3 {
+  font-size: 45px;
+  color: var(--color-white);
+  font-weight: 400;
+}
+
+@media (width < 768px) {
+  body:has(.hero-hcp) main > .section.features h3 {
+    font-size: 32px;
+  }
+}
+
+/* Features cards - white card style on teal gradient background */
+body:has(.hero-hcp) main > .section.features .cards > ul > li {
+  border-color: transparent;
+}
+
+/* Dosing section - deep blue text on transparent gradient (not dark bg-product) */
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2,
+body:has(.hero-hcp) main > .section.bg-product h2 {
+  color: var(--color-deep-blue);
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2 strong,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2 strong,
+body:has(.hero-hcp) main > .section.bg-product h2 strong {
+  color: var(--color-teal-text);
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left p:not(:has(img)),
+body:has(.hero-hcp) main > .section.bg-product.banner-right p:not(:has(img)),
+body:has(.hero-hcp) main > .section.bg-product p {
+  color: var(--color-deep-blue);
+}
+
+/* Dosing section - horizontal line under heading should be deep blue */
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2::after,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2::after {
+  background-color: var(--color-deep-blue);
 }
 
 /* ==========================================================================
