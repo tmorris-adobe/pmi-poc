@@ -129,8 +129,9 @@ header {
   height: var(--nav-height);
 }
 
-/* Header overlays hero on patient pages - don't reserve space */
-body:has(.section.hero-patient) header {
+/* Header overlays hero on patient/HCP pages - don't reserve space */
+body:has(.section.hero-patient) header,
+body:has(.section.hero-hcp) header {
   height: 0;
 }
 
@@ -436,8 +437,9 @@ main > .section.hero-container {
    Gradient applied to body, sections are transparent to show through
    ========================================================================== */
 
-/* Patient pages - gradient flows from top through product section */
-body:has(.hero-patient) {
+/* Patient/HCP pages - gradient flows from top through product section */
+body:has(.hero-patient),
+body:has(.hero-hcp) {
   background-color: var(--color-white);
   background-image: var(--bg-gradient-hero);
   background-size: 100% 3100px;
@@ -446,7 +448,8 @@ body:has(.hero-patient) {
 }
 
 /* Hero section transparent to show body gradient */
-main > .section.hero-patient {
+main > .section.hero-patient,
+main > .section.hero-hcp {
   background: transparent;
 }
 
@@ -881,8 +884,9 @@ main > .section.bg-hero {
   padding: var(--spacing-xl) 0;
 }
 
-/* On patient pages, hero section is transparent to show body gradient */
-body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+/* On patient/HCP pages, hero section is transparent to show body gradient */
+body:has(.hero-patient) main > .section.bg-hero.hero-patient,
+body:has(.hero-hcp) main > .section.bg-hero.hero-hcp {
   background: transparent;
 }
 
@@ -897,8 +901,9 @@ main > .section.bg-product {
   padding: var(--spacing-xl) 0;
 }
 
-/* On patient pages, product section is transparent - unified gradient shows through */
-body:has(.hero-patient) main > .section.bg-product {
+/* On patient/HCP pages, product section is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-product,
+body:has(.hero-hcp) main > .section.bg-product {
   background: transparent;
 }
 
@@ -1221,6 +1226,223 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
 
   main > .section.hero-patient .hero-image,
   main > .section.hero-patient > div > p:has(img) {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    max-width: 100%;
+    margin: var(--spacing-l) auto 0;
+  }
+}
+
+/* ==========================================================================
+   Hero HCP Section - Extends hero-patient styles for HCP page
+   ========================================================================== */
+
+main > .section.hero-hcp {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  padding-top: 160px;
+  padding-bottom: 200px;
+  z-index: 1;
+}
+
+main > .section.hero-hcp > div {
+  isolation: isolate;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 550px;
+  padding: 0 var(--spacing-xl);
+  margin-left: 5%;
+  margin-top: 5vh;
+}
+
+main > .section.hero-hcp > div > h1,
+main > .section.hero-hcp > div > p:not(:has(img)) {
+  position: relative;
+  z-index: 5;
+}
+
+main > .section.hero-hcp h1 {
+  font-size: 64px;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--text-color-inverted);
+  margin-bottom: var(--spacing-m);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+main > .section.hero-hcp > div > p {
+  color: var(--text-color-inverted);
+  max-width: 500px;
+  margin: 0 0 var(--spacing-m);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* HCP hero CTA button - same slide-reveal animation as patient hero */
+main > .section.hero-hcp a.button,
+main > .section.hero-hcp > div > p > a:not(:has(img)) {
+  position: relative;
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  font-weight: 500;
+  margin: var(--spacing-m) 0;
+  overflow: visible;
+  white-space: normal;
+  transition: margin-left 400ms ease-out;
+}
+
+main > .section.hero-hcp a.button::before,
+main > .section.hero-hcp > div > p > a:not(:has(img))::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-white);
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+main > .section.hero-hcp a.button::after,
+main > .section.hero-hcp > div > p > a:not(:has(img))::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+main > .section.hero-hcp a.button:hover,
+main > .section.hero-hcp > div > p > a:not(:has(img)):hover {
+  margin-left: 35px;
+}
+
+main > .section.hero-hcp a.button:hover::before,
+main > .section.hero-hcp > div > p > a:not(:has(img)):hover::before {
+  opacity: 1;
+}
+
+main > .section.hero-hcp a.button:hover::after,
+main > .section.hero-hcp > div > p > a:not(:has(img)):hover::after {
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+/* HCP hero floating image */
+main > .section.hero-hcp .hero-image,
+main > .section.hero-hcp > div > p:has(img) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  z-index: 1;
+  margin: 0;
+  pointer-events: none;
+}
+
+main > .section.hero-hcp .hero-image img,
+main > .section.hero-hcp > div > p:has(img) img {
+  position: absolute;
+  right: 0;
+  top: 45%;
+  transform: translateY(-50%);
+  height: 71%;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  animation: anim-fade-down-deep 1.2s ease-out 1s both;
+  --anim-base-transform: translateY(-50%);
+}
+
+main > .section.hero-hcp h1 {
+  animation: anim-fade-up 0.8s ease-out 0.2s both;
+}
+
+main > .section.hero-hcp > div > p:not(:has(img)) {
+  animation: anim-fade-in 0.6s ease-out 0.5s both;
+}
+
+@media (width >= 1400px) {
+  main > .section.hero-hcp h1 {
+    font-size: 80px;
+  }
+
+  main > .section.hero-hcp .hero-image img,
+  main > .section.hero-hcp > div > p:has(img) img {
+    height: 85%;
+  }
+}
+
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.hero-hcp .hero-image img,
+  main > .section.hero-hcp > div > p:has(img) img {
+    height: 76%;
+  }
+}
+
+@media (width >= 900px) and (width < 1200px) {
+  main > .section.hero-hcp .hero-image img,
+  main > .section.hero-hcp > div > p:has(img) img {
+    height: 57%;
+    top: auto;
+    bottom: 0;
+    transform: none;
+  }
+}
+
+@media (width < 768px) {
+  main > .section.hero-hcp {
+    min-height: auto;
+    padding: var(--spacing-xl) 0;
+    padding-bottom: var(--spacing-l);
+    text-align: center;
+    align-items: center;
+  }
+
+  main > .section.hero-hcp > div {
+    align-items: center;
+    padding: 0 var(--spacing-m);
+  }
+
+  main > .section.hero-hcp h1 {
+    font-size: 40px;
+  }
+
+  main > .section.hero-hcp > div > p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  main > .section.hero-hcp .hero-image,
+  main > .section.hero-hcp > div > p:has(img) {
     position: relative;
     bottom: auto;
     right: auto;
@@ -2505,6 +2727,63 @@ main > .section.starburst::before {
     height: 60px;
     top: -30px;
   }
+}
+
+/* ==========================================================================
+   Sources Section (Academic references, collapsible)
+   ========================================================================== */
+
+main > .section.sources {
+  background: var(--color-white);
+  padding: var(--spacing-l) 0;
+  margin: 0;
+}
+
+main > .section.sources h4 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-deep-blue);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-s) 0;
+  border-top: 1px solid var(--color-deep-blue);
+  margin: 0;
+}
+
+main > .section.sources h4::after {
+  content: '+';
+  font-size: 24px;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+main > .section.sources h4.open::after {
+  content: '−';
+}
+
+main > .section.sources ul {
+  display: none;
+  list-style: disc;
+  padding: var(--spacing-s) var(--spacing-m) var(--spacing-m) var(--spacing-l);
+  margin: 0;
+}
+
+main > .section.sources h4.open + ul {
+  display: block;
+}
+
+main > .section.sources li {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: var(--spacing-xs);
+}
+
+main > .section.sources li em {
+  font-style: italic;
 }
 
 /* ==========================================================================
