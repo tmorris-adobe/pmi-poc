@@ -1979,6 +1979,7 @@ main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type
   letter-spacing: 0.1px;
   color: var(--color-deep-blue);
   margin-bottom: 10px;
+  margin-top: 60px;
   order: 0;
 }
 
