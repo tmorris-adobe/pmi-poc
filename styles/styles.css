@@ -1921,6 +1921,16 @@ body:has(.guide-hero) main {
   background: none;
 }
 
+/* Remove section margins so there's no white gap between sections */
+body:has(.guide-hero) main > .section {
+  margin: 0;
+}
+
+/* Hide empty metadata section */
+body:has(.guide-hero) main > .section:empty {
+  display: none;
+}
+
 /* Guide hero - clean white/cream background with centered text */
 /* Override base hero-hcp styles completely */
 main > .section.hero-hcp.guide-hero {
