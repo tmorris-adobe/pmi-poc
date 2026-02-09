@@ -1456,14 +1456,200 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
    Scoped with body:has(.hero-hcp) to avoid affecting patient page
    ========================================================================== */
 
-/* Mission h2 - smaller than patient page (54px vs 64px) due to longer heading */
-body:has(.hero-hcp) main > .section.mission h2 {
-  font-size: 54px;
+/* ---------- HCP Mission Section ----------
+   Original site uses a gradient background with two-column layout:
+   text on the left, 4 outlined tile cards in a 2x2 grid on the right.
+   This completely overrides the patient-page frosted-glass style. */
+
+/* Reset section: remove clip-path, background image, frosted glass */
+body:has(.hero-hcp) main > .section.mission {
+  clip-path: none;
+  margin: 0 auto;
+  min-height: auto;
+  overflow: visible;
+  padding: 140px 90px 160px;
+  background: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 0 40px;
+  align-items: start;
 }
 
+/* Remove the lifestyle-bag background pseudo-element */
+body:has(.hero-hcp) main > .section.mission::before {
+  display: none;
+}
+
+/* Reset the default-content-wrapper (left column) */
+body:has(.hero-hcp) main > .section.mission > .default-content-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+}
+
+/* Cards wrapper (right column) - spans all rows */
+body:has(.hero-hcp) main > .section.mission > .cards-wrapper {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+}
+
+/* Heading */
+body:has(.hero-hcp) main > .section.mission h2 {
+  font-size: 54px;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+/* h2 strong - deep blue bold (not teal italic as on patient page) */
+body:has(.hero-hcp) main > .section.mission h2 strong {
+  color: var(--color-deep-blue);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* HR separator after heading */
+body:has(.hero-hcp) main > .section.mission h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
+  margin: 30px 0;
+}
+
+/* Body paragraphs */
+body:has(.hero-hcp) main > .section.mission p {
+  font-size: 23px;
+  line-height: 1.2;
+  color: var(--color-deep-blue);
+  font-family: var(--heading-font-family);
+}
+
+/* "find out more" link in text */
+body:has(.hero-hcp) main > .section.mission p a {
+  color: var(--color-deep-blue);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+body:has(.hero-hcp) main > .section.mission p a:hover {
+  color: var(--color-teal-text);
+}
+
+/* Cards block - 2x2 grid of outlined tiles */
+body:has(.hero-hcp) main > .section.mission .cards > ul {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Individual tile card - outlined with clipped corners */
+body:has(.hero-hcp) main > .section.mission .cards > ul > li {
+  border: 1px solid var(--color-deep-blue);
+  border-radius: 0;
+  background: transparent;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+  padding: 0;
+}
+
+/* Card image container - acts as full card content area */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image {
+  padding: 30px;
+  line-height: 1.4;
+}
+
+/* Card content paragraph - flex column for icon/heading/text layout */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  color: var(--color-deep-blue);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Card icon - small teal SVG icons */
+body:has(.hero-hcp) main > .section.mission .cards > ul > li img {
+  width: 48px;
+  height: 48px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+/* Card icon picture wrapper */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image picture {
+  line-height: 0;
+}
+
+/* Card heading (strong) - block display to separate from description */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image strong {
+  display: block;
+  font-size: 32px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+/* Card body area if it exists */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-body {
+  padding: 16px 30px 30px;
+  margin: 0;
+}
+
+/* Mobile responsive */
 @media (width < 768px) {
+  body:has(.hero-hcp) main > .section.mission {
+    grid-template-columns: 1fr;
+    padding: 60px var(--spacing-m) 80px;
+    gap: 40px 0;
+  }
+
+  body:has(.hero-hcp) main > .section.mission > .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  body:has(.hero-hcp) main > .section.mission > .cards-wrapper {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
   body:has(.hero-hcp) main > .section.mission h2 {
     font-size: 36px;
+  }
+
+  body:has(.hero-hcp) main > .section.mission .cards > ul {
+    grid-template-columns: 1fr;
   }
 }
 
