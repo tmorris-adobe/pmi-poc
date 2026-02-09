@@ -1936,7 +1936,7 @@ body:has(.guide-hero) main > .section:empty {
 main > .section.hero-hcp.guide-hero {
   background: transparent;
   background-image: none;
-  padding: 100px 20px 60px;
+  padding: 50px 20px 60px;
   text-align: center;
   max-width: 100%;
   min-height: auto;
@@ -1979,7 +1979,7 @@ main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type
   letter-spacing: 0.1px;
   color: var(--color-deep-blue);
   margin-bottom: 5px;
-  margin-top: 60px;
+  margin-top: 0;
   order: 0;
 }
 
