@@ -1801,6 +1801,28 @@ body:has(.hero-hcp) main > .section.bg-product p {
   color: var(--color-deep-blue);
 }
 
+/* HCP dosing section - gradient background, adjusted sizing */
+body:has(.hero-hcp) main > .section.bg-product.banner-left,
+body:has(.hero-hcp) main > .section.bg-product.banner-right {
+  background: url('/styles/backgrounds/big-gradient-bg.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  height: 947px;
+  max-height: 947px;
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2 strong,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2 strong {
+  font-weight: 700;
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left p:not(:has(img)),
+body:has(.hero-hcp) main > .section.bg-product.banner-right p:not(:has(img)) {
+  font-size: 23px;
+  line-height: 1.2;
+}
+
 /* Dosing section - horizontal line under heading should be deep blue */
 body:has(.hero-hcp) main > .section.bg-product.banner-left h2::after,
 body:has(.hero-hcp) main > .section.bg-product.banner-right h2::after {
