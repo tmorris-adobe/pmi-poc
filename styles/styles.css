@@ -1385,10 +1385,10 @@ main > .section.hero-hcp > div > p:has(img) {
 main > .section.hero-hcp .hero-image img,
 main > .section.hero-hcp > div > p:has(img) img {
   position: absolute;
-  left: 72%;
+  left: 76%;
   top: 45%;
   transform: translate(-50%, -50%);
-  height: 40%;
+  height: 44%;
   width: auto;
   max-width: none;
   max-height: none;
@@ -1411,21 +1411,21 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
 
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 48%;
+    height: 53%;
   }
 }
 
 @media (width >= 1200px) and (width < 1400px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 43%;
+    height: 47%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 32%;
+    height: 35%;
     top: auto;
     bottom: 0;
     transform: translateX(-50%);
