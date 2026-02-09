@@ -43,21 +43,22 @@
 }
 
 .cards.faq-cards .faq-filter-btn {
-  padding: 10px 24px;
-  border-radius: 30px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 15px 25px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 2px solid var(--color-deep-blue);
-  background: var(--color-deep-blue);
-  color: var(--color-white);
+  border: none;
+  background: #eee8da;
+  color: var(--color-deep-blue);
   font-family: var(--body-font-family);
 }
 
 .cards.faq-cards .faq-filter-btn.active {
   background: var(--color-white);
   color: var(--color-deep-blue);
+  border: 1px solid var(--color-deep-blue);
 }
 
 .cards.faq-cards .faq-filter-btn:hover {
