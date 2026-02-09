@@ -1251,15 +1251,16 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
    ========================================================================== */
 
 main > .section.hero-hcp {
-  min-height: 100vh;
+  min-height: 91vh;
+  box-sizing: border-box;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   text-align: left;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding-top: 160px;
-  padding-bottom: 200px;
+  padding-bottom: 60px;
   z-index: 1;
 }
 
@@ -1386,9 +1387,9 @@ main > .section.hero-hcp .hero-image img,
 main > .section.hero-hcp > div > p:has(img) img {
   position: absolute;
   left: 76%;
-  top: 45%;
+  top: 62%;
   transform: translate(-50%, -50%);
-  height: 44%;
+  height: 80%;
   width: auto;
   max-width: none;
   max-height: none;
@@ -1411,23 +1412,23 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
 
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 53%;
+    height: 80%;
   }
 }
 
 @media (width >= 1200px) and (width < 1400px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 47%;
+    height: 70%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 35%;
+    height: 55%;
     top: auto;
-    bottom: 0;
+    bottom: -5%;
     transform: translateX(-50%);
   }
 }
