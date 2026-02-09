@@ -1374,7 +1374,7 @@ main > .section.hero-hcp > div > p:has(img) img {
   right: 0;
   top: 45%;
   transform: translateY(-50%);
-  height: 71%;
+  height: 53%;
   width: auto;
   max-width: none;
   max-height: none;
@@ -1397,21 +1397,21 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
 
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 85%;
+    height: 64%;
   }
 }
 
 @media (width >= 1200px) and (width < 1400px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 76%;
+    height: 57%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 57%;
+    height: 43%;
     top: auto;
     bottom: 0;
     transform: none;
@@ -1653,20 +1653,21 @@ body:has(.hero-hcp) main > .section.mission .cards .cards-card-body {
   }
 }
 
-/* Features section - use teal/green gradient background (matches original) */
+/* Features section - clean white background */
 body:has(.hero-hcp) main > .section.bg-even.features {
-  background: url('/styles/backgrounds/footer-gradient-background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: var(--color-white);
   padding: 110px 0 60px;
 }
 
-/* Features h3 "Why patients choose Luo?" - large white heading */
+/* Features h3 "Why patients choose Luo?" - large heading on white bg */
 body:has(.hero-hcp) main > .section.features h3 {
   font-size: 45px;
-  color: var(--color-white);
+  color: var(--color-deep-blue);
   font-weight: 400;
+}
+
+body:has(.hero-hcp) main > .section.features h3 strong {
+  color: var(--color-teal-text);
 }
 
 @media (width < 768px) {
@@ -1675,9 +1676,9 @@ body:has(.hero-hcp) main > .section.features h3 {
   }
 }
 
-/* Features cards - white card style on teal gradient background */
+/* Features cards - subtle border on white background */
 body:has(.hero-hcp) main > .section.features .cards > ul > li {
-  border-color: transparent;
+  border-color: #dadada;
 }
 
 /* Dosing section - deep blue text on transparent gradient (not dark bg-product) */
