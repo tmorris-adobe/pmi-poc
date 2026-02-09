@@ -1916,9 +1916,9 @@ body:has(.hero-hcp) main > .section.sources li {
    HCP Guide Page (A Guide for HCPs)
    ========================================================================== */
 
-/* Remove main gradient background on guide page (leaks through section gaps) */
+/* Single unified background on guide page — matches original (#f7f3ed) */
 body:has(.guide-hero) main {
-  background: none;
+  background: #f7f3ed;
 }
 
 /* Remove section margins so there's no white gap between sections */
@@ -1934,7 +1934,7 @@ body:has(.guide-hero) main > .section:empty {
 /* Guide hero - clean white/cream background with centered text */
 /* Override base hero-hcp styles completely */
 main > .section.hero-hcp.guide-hero {
-  background: #f9f6f2;
+  background: transparent;
   background-image: none;
   padding: 60px 20px;
   text-align: center;
@@ -1992,9 +1992,9 @@ main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:last-of-type 
   text-align: center;
 }
 
-/* FAQ cards section - cream/beige background */
+/* FAQ cards section - transparent, inherits main background */
 body:has(.hero-hcp) main > .section.faq-cards-section {
-  background: #f5f0eb;
+  background: transparent;
   background-image: none;
   padding: 40px 20px 80px;
 }
