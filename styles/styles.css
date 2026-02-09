@@ -437,14 +437,19 @@ main > .section.hero-container {
    Gradient applied to body, sections are transparent to show through
    ========================================================================== */
 
-/* Patient/HCP pages - gradient flows from top through product section */
-body:has(.hero-patient),
-body:has(.hero-hcp) {
+/* Patient pages - gradient flows from top through product section */
+body:has(.hero-patient) {
   background-color: var(--color-white);
   background-image: var(--bg-gradient-hero);
   background-size: 100% 3100px;
   background-position: right top;
   background-repeat: no-repeat;
+}
+
+/* HCP pages - no body gradient; gradient is on the hero section itself */
+body:has(.hero-hcp) {
+  background-color: var(--color-white);
+  background-image: none;
 }
 
 /* Hero section transparent to show body gradient */
@@ -884,10 +889,17 @@ main > .section.bg-hero {
   padding: var(--spacing-xl) 0;
 }
 
-/* On patient/HCP pages, hero section is transparent to show body gradient */
-body:has(.hero-patient) main > .section.bg-hero.hero-patient,
-body:has(.hero-hcp) main > .section.bg-hero.hero-hcp {
+/* On patient pages, hero section is transparent to show body gradient */
+body:has(.hero-patient) main > .section.bg-hero.hero-patient {
   background: transparent;
+}
+
+/* On HCP pages, hero has its own gradient (not body-level) so it doesn't bleed */
+body:has(.hero-hcp) main > .section.bg-hero.hero-hcp {
+  background: var(--bg-gradient-hero);
+  background-size: cover;
+  background-position: right top;
+  background-repeat: no-repeat;
 }
 
 /* Product gradient background - transparent on patient pages to show unified gradient */
@@ -1374,7 +1386,7 @@ main > .section.hero-hcp > div > p:has(img) img {
   right: 0;
   top: 45%;
   transform: translateY(-50%);
-  height: 53%;
+  height: 40%;
   width: auto;
   max-width: none;
   max-height: none;
@@ -1397,21 +1409,21 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
 
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 64%;
+    height: 48%;
   }
 }
 
 @media (width >= 1200px) and (width < 1400px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 57%;
+    height: 43%;
   }
 }
 
 @media (width >= 900px) and (width < 1200px) {
   main > .section.hero-hcp .hero-image img,
   main > .section.hero-hcp > div > p:has(img) img {
-    height: 43%;
+    height: 32%;
     top: auto;
     bottom: 0;
     transform: none;
