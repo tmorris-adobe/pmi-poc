@@ -1930,10 +1930,39 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
   justify-content: flex-start;
 }
 
+/* Banner-right: text on LEFT, image on RIGHT (mirror of banner-left) */
+main > .section.bg-product.banner-right > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+main > .section.bg-product.banner-right > div > h2,
+main > .section.bg-product.banner-right > div > p:not(:has(img)) {
+  width: 500px;
+  max-width: 100%;
+}
+
+main > .section.bg-product.banner-right > div > p:has(img),
+main > .section.bg-product.banner-right > div > p:has(picture) {
+  position: absolute;
+  right: 0;
+  bottom: -37px;
+  width: 55vw;
+  max-width: 990px;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 /* Large desktop: slightly larger percentage */
 @media (width >= 1400px) {
   main > .section.bg-product.banner-left > div > p:has(img),
-  main > .section.bg-product.banner-left > div > p:has(picture) {
+  main > .section.bg-product.banner-left > div > p:has(picture),
+  main > .section.bg-product.banner-right > div > p:has(img),
+  main > .section.bg-product.banner-right > div > p:has(picture) {
     width: 60vw;
     max-width: 990px;
   }
@@ -1942,7 +1971,9 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
 /* Medium desktop: balanced size */
 @media (width >= 1200px) and (width < 1400px) {
   main > .section.bg-product.banner-left > div > p:has(img),
-  main > .section.bg-product.banner-left > div > p:has(picture) {
+  main > .section.bg-product.banner-left > div > p:has(picture),
+  main > .section.bg-product.banner-right > div > p:has(img),
+  main > .section.bg-product.banner-right > div > p:has(picture) {
     width: 55vw;
   }
 }
@@ -1966,12 +1997,14 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
   }
 
   main > .section.bg-product.banner-left > div > h2,
-  main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+  main > .section.bg-product.banner-left > div > p:not(:has(img)),
+  main > .section.bg-product.banner-right > div > h2,
+  main > .section.bg-product.banner-right > div > p:not(:has(img)) {
     width: 100%;
     max-width: 100%;
   }
 
-  /* Image below text, still anchored to left viewport edge */
+  /* Image below text, still anchored to viewport edge */
   main > .section.bg-product.banner-left > div > p:has(img),
   main > .section.bg-product.banner-left > div > p:has(picture) {
     position: relative;
@@ -1985,22 +2018,40 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
     justify-content: flex-start;
   }
 
+  main > .section.bg-product.banner-right > div > p:has(img),
+  main > .section.bg-product.banner-right > div > p:has(picture) {
+    position: relative;
+    right: calc(-1 * var(--spacing-m));
+    bottom: auto;
+    width: 70vw;
+    max-width: none;
+    order: 1;
+    margin-top: var(--spacing-l);
+    margin-bottom: 0;
+    justify-content: flex-end;
+  }
+
   main > .section.bg-product.banner-left > div > p > img,
-  main > .section.bg-product.banner-left > div > p picture img {
+  main > .section.bg-product.banner-left > div > p picture img,
+  main > .section.bg-product.banner-right > div > p > img,
+  main > .section.bg-product.banner-right > div > p picture img {
     max-height: 500px;
   }
 }
 
 /* Text content spacing */
-main > .section.bg-product.banner-left > div > h2 {
+main > .section.bg-product.banner-left > div > h2,
+main > .section.bg-product.banner-right > div > h2 {
   margin: 0 0 var(--spacing-m);
 }
 
-main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(a)) {
+main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(a)),
+main > .section.bg-product.banner-right > div > p:not(:has(img)):not(:has(a)) {
   margin: 0 0 var(--spacing-m);
 }
 
-main > .section.bg-product.banner-left > div > p:has(a):not(:has(img)) {
+main > .section.bg-product.banner-left > div > p:has(a):not(:has(img)),
+main > .section.bg-product.banner-right > div > p:has(a):not(:has(img)) {
   margin: var(--spacing-m) 0 0;
 }
 

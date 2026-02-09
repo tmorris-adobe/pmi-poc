@@ -60,7 +60,7 @@ Luo lozenges are available in 3 strengths to help you manage your dosage. Rememb
 
 | Section Metadata |  |
 | ---------------- | ---------- |
-| style            | bg-product, banner-left |
+| style            | bg-product, banner-right |
 
 ---
 
