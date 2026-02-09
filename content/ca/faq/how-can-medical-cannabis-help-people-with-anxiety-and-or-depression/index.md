@@ -6,11 +6,25 @@ The following is taken from the Government of Canada website: **[Information for
 
 "Clinical data: At least 10 clinical studies have examined the acute anxiolytic properties of CBD. Indeed, increasing evidence suggests pure CBD, at doses of several hundred milligrams (i.e., 300-600 mg, p.o.) may be effective in decreasing acute, experimentally induced social anxiety in the clinic, although the extent to which CBD (at the relatively lower concentrations commonly found in THC-predominant cannabis) is able to achieve anxiolysis either in an experimental or, more importantly, in a real-life setting, remains uncertain."
 
-[< Go Back](/ca/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Go Back](/ca/health-care-professionals/a-guide-for-hcps/) |
+| **Conditions FAQs** |
+| [How can medical cannabis help people achieve better sleep](/ca/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| [How can medical cannabis help people suffering from pain](/ca/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| [How can medical cannabis help people with anxiety and/or depression?](/ca/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

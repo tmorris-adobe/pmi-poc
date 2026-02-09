@@ -6,11 +6,25 @@ Le patient utilisera ce document médical pour s'inscrire auprès d'un producteu
 
 Toute personne qui a reçu une autorisation médicale pour utiliser du cannabis médicinal peut avoir tout au plus en sa possession 30 fois la quantité quotidienne de cannabis médicinal indiquée sur le document d'autorisation médicale (maximum de 150 g de cannabis séché).
 
-[< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/) |
+| **FAQ générales** |
+| [Au bout de combien de temps les effets du CBD se font-ils sentir? Combien de temps durent-ils?](/ca-fr/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| [Comment autorise-t-on l'utilisation du cannabis médicinal au Canada?](/ca-fr/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| [Quelles sont les lignes directrices relatives à l'utilisation du cannabis médicinal?](/ca-fr/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminez les possibilités
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

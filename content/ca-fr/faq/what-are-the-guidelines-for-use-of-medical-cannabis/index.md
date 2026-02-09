@@ -4,11 +4,25 @@ Il existe peu de lignes directrices sur l'utilisation du cannabis médicinal dan
 
 En général, il est recommandé de commencer par une faible dose de cannabis médicinal que l'on augmentera graduellement jusqu'à l'obtention des effets escomptés.
 
-[< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/) |
+| **FAQ générales** |
+| [Au bout de combien de temps les effets du CBD se font-ils sentir? Combien de temps durent-ils?](/ca-fr/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| [Comment autorise-t-on l'utilisation du cannabis médicinal au Canada?](/ca-fr/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| [Quelles sont les lignes directrices relatives à l'utilisation du cannabis médicinal?](/ca-fr/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminez les possibilités
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

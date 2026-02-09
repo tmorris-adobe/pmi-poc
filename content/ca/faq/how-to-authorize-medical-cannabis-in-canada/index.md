@@ -6,11 +6,25 @@ Patients must take their medical document and register with a licensed producer.
 
 Patients with medical authorization to use medical cannabis can possess a maximum of 30 times the daily quantity of medical cannabis indicated in their medical document (maximum of 150 g of dried cannabis).
 
-[< Go Back](/ca/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Go Back](/ca/health-care-professionals/a-guide-for-hcps/) |
+| **General FAQs** |
+| [How quickly does CBD work? And how long does it last?](/ca/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| [How to authorize medical cannabis in Canada](/ca/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| [What are the guidelines for use of medical cannabis?](/ca/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

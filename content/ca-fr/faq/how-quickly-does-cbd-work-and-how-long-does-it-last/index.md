@@ -8,11 +8,25 @@ Le début d'action des préparations injectables, des préparations topiques et 
 | Vaporisateur buccal | De 15 à 45 minutes | De 6 à 8 heures |
 | Préparation orale | De 1 à 3 heures | De 6 à 8 heures |
 
-[< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/) |
+| **FAQ générales** |
+| [Au bout de combien de temps les effets du CBD se font-ils sentir? Combien de temps durent-ils?](/ca-fr/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| [Comment autorise-t-on l'utilisation du cannabis médicinal au Canada?](/ca-fr/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| [Quelles sont les lignes directrices relatives à l'utilisation du cannabis médicinal?](/ca-fr/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminez les possibilités
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

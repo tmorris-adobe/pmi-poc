@@ -6,11 +6,25 @@ L'information ci-dessous est tirée de la page Web du gouvernement du Canada **[
 
 « Données cliniques : Au moins dix études cliniques ont examiné les propriétés anxiolytiques aiguës du CBD. En effet, de plus en plus de données probantes suggèrent que le CBD pur, à des doses de plusieurs centaines de milligrammes (c.-à-d. 300 à 600 mg, PO) serait efficace pour diminuer l'angoisse sociale aiguë induite de façon expérimentale dans la clinique, bien que la mesure dans laquelle le CBD (à des concentrations relativement plus faibles comme observées dans le cannabis à forte teneur en THC) est capable de parvenir à une anxiolyse dans un cadre expérimental ou, fait encore plus important, dans une situation réelle, demeure incertaine. »
 
-[< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/) |
+| **FAQ sur les conditions** |
+| [Comment le cannabis médicinal peut-il aider les gens à mieux dormir?](/ca-fr/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| [Comment le cannabis médicinal peut-il aider les personnes en proie à une douleur?](/ca-fr/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| [Comment le cannabis médicinal peut-il aider les personnes qui ressentent de l'anxiété et/ou qui sont atteintes de dépression?](/ca-fr/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminez les possibilités
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

@@ -8,11 +8,25 @@ L'information ci-dessous est tirée de la page Web du gouvernement du Canada **[
 
 « Douleur neuropathique et douleur chronique non cancéreuse chez l'humain : Quelques études ayant utilisé des méthodes expérimentales possédant de la validité prédictive pour les pharmacothérapies utilisées pour soulager la douleur chronique ont signalé des effets analgésiques du cannabis fumé. De plus, il existe des preuves plus cohérentes de l'efficacité des cannabinoïdes (cannabis fumé ou vaporisé, nabiximols, dronabinol) dans le traitement de la douleur chronique d'étiologies différentes, surtout dans des cas où des traitements traditionnels ont été essayés et ont échoué. »
 
-[< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Revenir](/ca-fr/health-care-professionals/a-guide-for-hcps/) |
+| **FAQ sur les conditions** |
+| [Comment le cannabis médicinal peut-il aider les gens à mieux dormir?](/ca-fr/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| [Comment le cannabis médicinal peut-il aider les personnes en proie à une douleur?](/ca-fr/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| [Comment le cannabis médicinal peut-il aider les personnes qui ressentent de l'anxiété et/ou qui sont atteintes de dépression?](/ca-fr/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminez les possibilités
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

@@ -6,11 +6,25 @@ The following is taken from the Government of Canada website: **[Information for
 
 "Clinical data: A systematic review and meta-analysis of 28 RCTs (N=2,454 participants) of cannabinoids (i.e., smoked cannabis, nabiximols, nabilone, dronabinol, CBD, THC, levonontradol, ajulemic acid) using the GRADE approach reported that there was some evidence that cannabinoids may improve sleep (insomnia, sleep quality, sleep disturbance)."
 
-[< Go Back](/ca/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Go Back](/ca/health-care-professionals/a-guide-for-hcps/) |
+| **Conditions FAQs** |
+| [How can medical cannabis help people achieve better sleep](/ca/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| [How can medical cannabis help people suffering from pain](/ca/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| [How can medical cannabis help people with anxiety and/or depression?](/ca/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

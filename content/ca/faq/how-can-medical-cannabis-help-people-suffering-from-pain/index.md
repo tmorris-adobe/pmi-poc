@@ -8,11 +8,25 @@ The following is taken from the Government of Canada website: **[Information for
 
 "Neuropathic pain and chronic non-cancer pain in humans: A few studies that have used experimental methods having predictive validity for pharmacotherapies used to alleviate chronic pain have reported an analgesic effect of smoked cannabis. Furthermore, there is more consistent evidence of the efficacy of cannabinoids (smoked/vapourized cannabis, nabiximols, dronabinol) in treating chronic pain of various etiologies, especially in cases where conventional treatments have been tried and have failed."
 
-[< Go Back](/ca/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Go Back](/ca/health-care-professionals/a-guide-for-hcps/) |
+| **Conditions FAQs** |
+| [How can medical cannabis help people achieve better sleep](/ca/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| [How can medical cannabis help people suffering from pain](/ca/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| [How can medical cannabis help people with anxiety and/or depression?](/ca/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 

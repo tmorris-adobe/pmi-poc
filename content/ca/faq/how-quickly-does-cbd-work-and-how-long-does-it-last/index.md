@@ -8,11 +8,25 @@ The speed and duration of the effects of medical cannabis can vary depending on 
 | Oromucosal spray | 15-45 minutes | 6-8 hours |
 | Oral consumption | 1-3 hours | 6-8 hours |
 
-[< Go Back](/ca/health-care-professionals/a-guide-for-hcps/)
+| FAQ Sidebar |
+| --- |
+| [< Go Back](/ca/health-care-professionals/a-guide-for-hcps/) |
+| **General FAQs** |
+| [How quickly does CBD work? And how long does it last?](/ca/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| [How to authorize medical cannabis in Canada](/ca/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| [What are the guidelines for use of medical cannabis?](/ca/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |
 | style            | faq-detail |
+
+---
+
+## Illuminate Possibilities
+
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | gradient-cta |
 
 ---
 
