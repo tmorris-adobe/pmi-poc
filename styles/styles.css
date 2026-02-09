@@ -1829,13 +1829,14 @@ body:has(.hero-hcp) main > .section.bg-product.banner-right h2::after {
   background-color: var(--color-deep-blue);
 }
 
-/* HCP FAQ section - part of gradient footer */
+/* HCP FAQ section - gradient extends behind Sources section below */
 body:has(.hero-hcp) main > .section.faq-block {
   background-image: url('/styles/backgrounds/footer-gradient-background.jpg');
   background-size: cover;
   background-position: center top;
-  background-repeat: no-repeat;
   padding-top: 105px;
+  padding-bottom: 200px;
+  margin-bottom: -200px;
 }
 
 /* Override 2-column grid to centered single column */
@@ -1881,12 +1882,11 @@ body:has(.hero-hcp) main > .section.faq-block > .default-content-wrapper > p.but
   border-color: var(--color-white);
 }
 
-/* HCP Sources section - part of gradient footer */
+/* HCP Sources section - transparent to let FAQ gradient show through */
 body:has(.hero-hcp) main > .section.sources {
-  background-image: url('/styles/backgrounds/footer-gradient-background.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: transparent;
+  position: relative;
+  z-index: 1;
 }
 
 body:has(.hero-hcp) main > .section.sources h4 {
