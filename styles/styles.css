@@ -1478,7 +1478,8 @@ main > .section.hero-hcp > div > p:not(:has(img)) {
 /* Reset section: remove clip-path, background image, frosted glass */
 body:has(.hero-hcp) main > .section.mission {
   clip-path: none;
-  margin: 0 auto;
+  margin: 0;
+  max-width: none;
   min-height: auto;
   overflow: visible;
   padding: 160px 90px 209px;
