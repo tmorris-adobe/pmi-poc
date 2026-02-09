@@ -106,7 +106,7 @@ header .header-links a:hover {
 }
 
 /* Current page indicator - muted with underline */
-header .header-links li:first-child a {
+header .header-links li.active a {
   opacity: 0.5;
   text-decoration: underline;
   text-underline-offset: 4px;
