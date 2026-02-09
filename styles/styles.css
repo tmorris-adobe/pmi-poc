@@ -1936,7 +1936,7 @@ body:has(.guide-hero) main > .section:empty {
 main > .section.hero-hcp.guide-hero {
   background: transparent;
   background-image: none;
-  padding: 100px 20px 60px;
+  padding: 200px 20px 60px;
   text-align: center;
   max-width: 100%;
   min-height: auto;
