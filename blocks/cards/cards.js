@@ -15,7 +15,7 @@ export default function decorate(block) {
     const link = li.querySelector('a');
     if (link) {
       const wrapper = document.createElement('a');
-      wrapper.href = link.href;
+      wrapper.href = link.getAttribute('href') || link.href;
       wrapper.className = 'cards-card-link';
       /* replace nested links with spans to avoid invalid HTML */
       li.querySelectorAll('a').forEach((a) => {
