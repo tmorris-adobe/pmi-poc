@@ -1383,8 +1383,8 @@ main > .section.hero-hcp > div > p:has(img) {
 main > .section.hero-hcp .hero-image img,
 main > .section.hero-hcp > div > p:has(img) img {
   position: absolute;
-  right: 15%;
-  top: 45%;
+  right: 22%;
+  top: 52%;
   transform: translateY(-50%);
   height: 48%;
   width: auto;
