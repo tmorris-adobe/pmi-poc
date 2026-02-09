@@ -1692,30 +1692,94 @@ body:has(.hero-hcp) main > .section.mission .cards .cards-card-body {
 
 /* Features section - clean white background */
 body:has(.hero-hcp) main > .section.bg-even.features {
-  background: var(--color-white);
-  padding: 110px 0 60px;
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  padding: 110px 0 130px;
 }
 
-/* Features h3 "Why patients choose Luo?" - large heading on white bg */
+/* Features h3 "Why patients choose Luo?" - white on gradient */
 body:has(.hero-hcp) main > .section.features h3 {
   font-size: 45px;
-  color: var(--color-deep-blue);
+  color: var(--color-white);
   font-weight: 400;
+  margin-bottom: 20px;
 }
 
 body:has(.hero-hcp) main > .section.features h3 strong {
-  color: var(--color-teal-text);
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+/* White HR separator under heading */
+body:has(.hero-hcp) main > .section.features .default-content-wrapper {
+  margin-bottom: 40px;
+}
+
+body:has(.hero-hcp) main > .section.features h3::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 1px;
+  background-color: var(--color-white);
+  margin-top: 21px;
+}
+
+/* 4-column grid for features */
+body:has(.hero-hcp) main > .section.features .cards > ul {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Feature cards - transparent, no borders */
+body:has(.hero-hcp) main > .section.features .cards > ul > li {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  aspect-ratio: unset;
+}
+
+/* White icons */
+body:has(.hero-hcp) main > .section.features .cards > ul > li img {
+  max-width: 55px;
+  height: 57px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+/* White titles */
+body:has(.hero-hcp) main > .section.features .cards > ul > li strong {
+  font-size: 32px;
+  color: var(--color-white);
+  margin-bottom: 20px;
+}
+
+/* White description text */
+body:has(.hero-hcp) main > .section.features .cards > ul > li p {
+  font-size: 23px;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+@media (width < 1024px) {
+  body:has(.hero-hcp) main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width < 768px) {
   body:has(.hero-hcp) main > .section.features h3 {
     font-size: 32px;
   }
-}
 
-/* Features cards - subtle border on white background */
-body:has(.hero-hcp) main > .section.features .cards > ul > li {
-  border-color: #dadada;
+  body:has(.hero-hcp) main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.hero-hcp) main > .section.features .cards > ul > li p {
+    font-size: 18px;
+  }
 }
 
 /* Dosing section - deep blue text on transparent gradient (not dark bg-product) */
