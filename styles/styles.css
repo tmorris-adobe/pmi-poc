@@ -1916,6 +1916,11 @@ body:has(.hero-hcp) main > .section.sources li {
    HCP Guide Page (A Guide for HCPs)
    ========================================================================== */
 
+/* Remove main gradient background on guide page (leaks through section gaps) */
+body:has(.guide-hero) main {
+  background: none;
+}
+
 /* Guide hero - clean white/cream background with centered text */
 /* Override base hero-hcp styles completely */
 main > .section.hero-hcp.guide-hero {

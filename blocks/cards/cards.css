@@ -34,6 +34,36 @@
   color: inherit;
 }
 
+/* FAQ cards filter buttons */
+.cards.faq-cards .faq-cards-filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.cards.faq-cards .faq-filter-btn {
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid var(--color-deep-blue);
+  background: var(--color-deep-blue);
+  color: var(--color-white);
+  font-family: var(--body-font-family);
+}
+
+.cards.faq-cards .faq-filter-btn.active {
+  background: var(--color-white);
+  color: var(--color-deep-blue);
+}
+
+.cards.faq-cards .faq-filter-btn:hover {
+  opacity: 0.85;
+}
+
 /* Product cards: preserve natural square aspect ratio for bottle images */
 .products .cards > ul > li img {
   aspect-ratio: 1 / 1;

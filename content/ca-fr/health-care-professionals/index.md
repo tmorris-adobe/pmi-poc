@@ -2,7 +2,7 @@
 
 Grâce à Luo, les professionnels de la santé et les patients peuvent comprendre les bienfaits du cannabis médicinal et en profiter en toute confiance.
 
-[Pour en savoir plus](./a-guide-for-hcps/)
+[Pour en savoir plus](/ca-fr/health-care-professionals/a-guide-for-hcps/)
 
 ![Luo product bottle](./images/hero-bottle.png)
 
@@ -14,7 +14,7 @@ Grâce à Luo, les professionnels de la santé et les patients peuvent comprendr
 
 ## **Un nouvel éclairage** pour les professionnels de la santé
 
-Le cannabis médicinal et le CBD peuvent révolutionner la façon dont vos patients vivent avec leurs problèmes de santé. **[Informez-vous](./a-guide-for-hcps/)**.
+Le cannabis médicinal et le CBD peuvent révolutionner la façon dont vos patients vivent avec leurs problèmes de santé. **[Informez-vous](/ca-fr/health-care-professionals/a-guide-for-hcps/)**.
 
 Cela dit, rares sont les préparations de cannabis médicinal qui sont aussi pratiques et aussi faciles à utiliser que les pastilles Luo.
 
@@ -68,7 +68,7 @@ Les pastilles aux teneurs précises permettent à vos patients de profiter facil
 
 Explorez nos FAQ destinées aux professionnels de la santé pour en savoir plus sur le CBD et le cannabis médicinal.
 
-[Consultez nos FAQ destinées aux PS](./a-guide-for-hcps/)
+[Consultez nos FAQ destinées aux PS](/ca-fr/health-care-professionals/a-guide-for-hcps/)
 
 | Section Metadata |  |
 | ---------------- | ---------- |

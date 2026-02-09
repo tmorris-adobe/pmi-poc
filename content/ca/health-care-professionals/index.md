@@ -2,7 +2,7 @@
 
 Luo helps healthcare professionals and patients understand and enjoy the benefits of medical cannabis with confidence.
 
-[Learn more](./a-guide-for-hcps/)
+[Learn more](/ca/health-care-professionals/a-guide-for-hcps/)
 
 ![Luo product bottle](./images/hero-bottle.png)
 
@@ -14,7 +14,7 @@ Luo helps healthcare professionals and patients understand and enjoy the benefit
 
 ## **Lighting the way** for healthcare professionals
 
-Medical cannabis and CBD have the potential to transform the way your patients experience their conditions – **[find out more](./a-guide-for-hcps/)**.
+Medical cannabis and CBD have the potential to transform the way your patients experience their conditions – **[find out more](/ca/health-care-professionals/a-guide-for-hcps/)**.
 
 However, few medical cannabis solutions are as easy and convenient as Luo lozenges.
 
@@ -68,7 +68,7 @@ Luo lozenges are available in 3 strengths to help you manage your dosage. Rememb
 
 Explore our FAQs for healthcare professionals to learn more about CBD and medical cannabis.
 
-[Visit our HCP FAQs](./a-guide-for-hcps/)
+[Visit our HCP FAQs](/ca/health-care-professionals/a-guide-for-hcps/)
 
 | Section Metadata |  |
 | ---------------- | ---------- |
