@@ -1913,6 +1913,149 @@ body:has(.hero-hcp) main > .section.sources li {
 }
 
 /* ==========================================================================
+   HCP Guide Page (A Guide for HCPs)
+   ========================================================================== */
+
+/* Guide hero - clean white/cream background with centered text */
+/* Override base hero-hcp styles completely */
+main > .section.hero-hcp.guide-hero {
+  background: #f9f6f2;
+  background-image: none;
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 100%;
+  min-height: auto;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+main > .section.hero-hcp.guide-hero > .default-content-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: static;
+  width: 100%;
+  padding: 0 20px;
+  align-items: center;
+  margin-left: auto;
+  margin-top: 0;
+}
+
+main > .section.hero-hcp.guide-hero h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin-bottom: 24px;
+  text-align: center;
+  line-height: 1.1;
+  position: static;
+  max-width: 100%;
+  order: 1;
+  letter-spacing: -0.01em;
+}
+
+/* Subtitle "CBD & Medical cannabis" - reorder above h1 */
+main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-deep-blue);
+  margin-bottom: 8px;
+  order: 0;
+}
+
+/* Description text */
+main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:last-of-type {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-deep-blue);
+  opacity: 0.8;
+  order: 2;
+  text-align: center;
+}
+
+/* FAQ cards section - cream/beige background */
+body:has(.hero-hcp) main > .section.faq-cards-section {
+  background: #f5f0eb;
+  background-image: none;
+  padding: 40px 20px 80px;
+}
+
+/* FAQ cards grid */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li {
+  background: var(--color-white);
+  border-radius: 24px;
+  padding: 32px 28px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Category tag - first bold text */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li p strong:first-child {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-deep-blue);
+  background: #f0ecf5;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+/* Title - second bold text */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li p strong:nth-of-type(2) {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-deep-blue);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+/* Excerpt text */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-deep-blue);
+  opacity: 0.7;
+}
+
+@media (width < 900px) {
+  body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  body:has(.hero-hcp) main > .section.guide-hero h1 {
+    font-size: 2rem;
+  }
+
+  body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
    Two Column Layout (via Section Metadata)
    ========================================================================== */
 
