@@ -1481,10 +1481,10 @@ body:has(.hero-hcp) main > .section.mission {
   margin: 0 auto;
   min-height: auto;
   overflow: visible;
-  padding: 140px 90px 160px;
-  background: url('/styles/backgrounds/footer-gradient-background-flip.jpg');
+  padding: 160px 90px 209px;
+  background: url('/styles/backgrounds/big-gradient-bg.png');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   display: grid;
   grid-template-columns: 5fr 7fr;
@@ -1570,10 +1570,19 @@ body:has(.hero-hcp) main > .section.mission p a:hover {
   color: var(--color-teal-text);
 }
 
-/* Cards block - 2x2 grid of outlined tiles */
+/* Cards block - 2x2 grid of outlined tiles with staggered right column */
 body:has(.hero-hcp) main > .section.mission .cards > ul {
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+  gap: 30px;
+}
+
+/* Stagger: offset right column tiles down */
+body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(2) {
+  margin-top: 80px;
+}
+
+body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(4) {
+  margin-top: 50px;
 }
 
 /* Individual tile card - outlined with clipped corners */
@@ -1664,6 +1673,11 @@ body:has(.hero-hcp) main > .section.mission .cards .cards-card-body {
 
   body:has(.hero-hcp) main > .section.mission .cards > ul {
     grid-template-columns: 1fr;
+  }
+
+  body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(2),
+  body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(4) {
+    margin-top: 0;
   }
 }
 
