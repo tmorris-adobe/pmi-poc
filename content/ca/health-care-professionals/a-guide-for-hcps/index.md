@@ -12,12 +12,12 @@ CBD and medical cannabis in general may be new to many healthcare professionals 
 
 | Cards (faq-cards) |
 | ----- |
-| **Conditions** **How can medical cannabis help people achieve better sleep** The following is taken from the Government of Canada website: Information for Health Care Professionals:... |
-| **Conditions** **How can medical cannabis help people suffering from pain** The following is taken from the Government of Canada website: Information for Health Care Professionals: Cannabis... |
-| **Conditions** **How can medical cannabis help people with anxiety and/or depression?** The following is taken from the Government of Canada website: Information for Health Care Professionals:... |
-| **General** **How quickly does CBD work? And how long does it last?** The speed and duration of the effects of medical cannabis can vary depending on the... |
-| **General** **How to authorize medical cannabis in Canada** HCPs in Canada can authorize medical cannabis for medical purposes for any medical condition without... |
-| **General** **What are the guidelines for use of medical cannabis?** Because medical cannabis can be authorized for use for any medical condition, and dosing, frequency... |
+| **Conditions** **How can medical cannabis help people achieve better sleep** The following is taken from the Government of Canada website: Information for Health Care Professionals:... [Read more](/ca/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| **Conditions** **How can medical cannabis help people suffering from pain** The following is taken from the Government of Canada website: Information for Health Care Professionals: Cannabis... [Read more](/ca/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| **Conditions** **How can medical cannabis help people with anxiety and/or depression?** The following is taken from the Government of Canada website: Information for Health Care Professionals:... [Read more](/ca/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
+| **General** **How quickly does CBD work? And how long does it last?** The speed and duration of the effects of medical cannabis can vary depending on the... [Read more](/ca/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| **General** **How to authorize medical cannabis in Canada** HCPs in Canada can authorize medical cannabis for medical purposes for any medical condition without... [Read more](/ca/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| **General** **What are the guidelines for use of medical cannabis?** Because medical cannabis can be authorized for use for any medical condition, and dosing, frequency... [Read more](/ca/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |

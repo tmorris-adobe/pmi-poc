@@ -12,12 +12,12 @@ Le CBD, c'est du nouveau pour bon nombre de professionnels de la santé (PS), to
 
 | Cards (faq-cards) |
 | ----- |
-| **Conditions** **Comment le cannabis médicinal peut-il aider les gens à mieux dormir?** L'information ci-dessous est tirée de la page Web du gouvernement du Canada Pour les professionnels... |
-| **Conditions** **Comment le cannabis médicinal peut-il aider les personnes en proie à une douleur?** L'information ci-dessous est tirée de la page Web du gouvernement du Canada Pour les professionnels... |
-| **Conditions** **Comment le cannabis médicinal peut-il aider les personnes qui ressentent de l'anxiété et/ou qui sont atteintes de dépression?** L'information ci-dessous est tirée de la page Web du gouvernement du Canada Pour les professionnels... |
-| **General** **Au bout de combien de temps les effets du CBD se font-ils sentir? Combien de temps durent-ils?** Le début d'action des préparations injectables, des préparations topiques et des suppositoires de cannabis médicinal... |
-| **General** **Comment autorise-t-on l'utilisation du cannabis médicinal au Canada?** Au Canada, un PS peut autoriser l'utilisation du cannabis à des fins médicales pour n'importe... |
-| **General** **Quelles sont les lignes directrices relatives à l'utilisation du cannabis médicinal?** II existe peu de lignes directrices sur l'utilisation du cannabis médicinal dans la pratique courante,... |
+| **Conditions** **Comment le cannabis médicinal peut-il aider les gens à mieux dormir?** L'information ci-dessous est tirée de la page Web du gouvernement du Canada Pour les professionnels... [En savoir plus](/ca-fr/faq/how-can-medical-cannabis-help-people-achieve-better-sleep/) |
+| **Conditions** **Comment le cannabis médicinal peut-il aider les personnes en proie à une douleur?** L'information ci-dessous est tirée de la page Web du gouvernement du Canada Pour les professionnels... [En savoir plus](/ca-fr/faq/how-can-medical-cannabis-help-people-suffering-from-pain/) |
+| **Conditions** **Comment le cannabis médicinal peut-il aider les personnes qui ressentent de l'anxiété et/ou qui sont atteintes de dépression?** L'information ci-dessous est tirée de la page Web du gouvernement du Canada Pour les professionnels... [En savoir plus](/ca-fr/faq/how-can-medical-cannabis-help-people-with-anxiety-and-or-depression/) |
+| **General** **Au bout de combien de temps les effets du CBD se font-ils sentir? Combien de temps durent-ils?** Le début d'action des préparations injectables, des préparations topiques et des suppositoires de cannabis médicinal... [En savoir plus](/ca-fr/faq/how-quickly-does-cbd-work-and-how-long-does-it-last/) |
+| **General** **Comment autorise-t-on l'utilisation du cannabis médicinal au Canada?** Au Canada, un PS peut autoriser l'utilisation du cannabis à des fins médicales pour n'importe... [En savoir plus](/ca-fr/faq/how-to-authorize-medical-cannabis-in-canada/) |
+| **General** **Quelles sont les lignes directrices relatives à l'utilisation du cannabis médicinal?** II existe peu de lignes directrices sur l'utilisation du cannabis médicinal dans la pratique courante,... [En savoir plus](/ca-fr/faq/what-are-the-guidelines-for-use-of-medical-cannabis/) |
 
 | Section Metadata |  |
 | ---------------- | ---------- |

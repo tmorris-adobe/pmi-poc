@@ -2072,6 +2072,124 @@ body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li
 }
 
 /* ==========================================================================
+   FAQ Detail Pages
+   ========================================================================== */
+
+/* FAQ detail page - white background */
+main > .section.faq-detail {
+  background: var(--color-white);
+  padding: 160px 20px 60px;
+  max-width: 100%;
+}
+
+main > .section.faq-detail > .default-content-wrapper {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* H1 */
+main > .section.faq-detail h1 {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 64px;
+  color: var(--color-deep-blue);
+  margin: 0 0 24px;
+}
+
+/* Body paragraphs */
+main > .section.faq-detail p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 29.4px;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+}
+
+/* Content links - underlined */
+main > .section.faq-detail p a {
+  color: var(--color-deep-blue);
+  text-decoration: underline;
+}
+
+main > .section.faq-detail p a:hover {
+  opacity: 0.8;
+}
+
+/* Go Back link — target last paragraph in last default-content-wrapper */
+main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-type {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #dadada;
+}
+
+main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-type a {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  text-decoration: none;
+}
+
+main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-type a:hover {
+  text-decoration: underline;
+}
+
+/* Table block styling (type-of-medical-cannabis / preparation-de-cannabis-medicinal) */
+main > .section.faq-detail [class$="-wrapper"]:has(.block) {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"],
+main > .section.faq-detail .block[class*="cannabis-m"] {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--color-deep-blue);
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div,
+main > .section.faq-detail .block[class*="cannabis-m"] > div {
+  display: table-row;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div:first-child,
+main > .section.faq-detail .block[class*="cannabis-m"] > div:first-child {
+  background: #eae2d1;
+  font-weight: 700;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div > div,
+main > .section.faq-detail .block[class*="cannabis-m"] > div > div {
+  display: table-cell;
+  padding: 13px 10px;
+  border: 2px solid #f4f0e8;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div > div p,
+main > .section.faq-detail .block[class*="cannabis-m"] > div > div p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Mobile */
+@media (width < 600px) {
+  main > .section.faq-detail h1 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  main > .section.faq-detail p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* ==========================================================================
    Two Column Layout (via Section Metadata)
    ========================================================================== */
 
