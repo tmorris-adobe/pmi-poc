@@ -1936,7 +1936,7 @@ body:has(.guide-hero) main > .section:empty {
 main > .section.hero-hcp.guide-hero {
   background: transparent;
   background-image: none;
-  padding: 60px 20px;
+  padding: 100px 20px 60px;
   text-align: center;
   max-width: 100%;
   min-height: auto;
@@ -1959,7 +1959,7 @@ main > .section.hero-hcp.guide-hero > .default-content-wrapper {
 }
 
 main > .section.hero-hcp.guide-hero h1 {
-  font-size: 3rem;
+  font-size: 3.75rem;
   font-weight: 400;
   color: var(--color-deep-blue);
   margin-bottom: 24px;
@@ -1973,7 +1973,7 @@ main > .section.hero-hcp.guide-hero h1 {
 
 /* Subtitle "CBD & Medical cannabis" - reorder above h1 */
 main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type {
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -1984,7 +1984,7 @@ main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type
 
 /* Description text */
 main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:last-of-type {
-  font-size: 0.95rem;
+  font-size: 1.09rem;
   line-height: 1.6;
   color: var(--color-deep-blue);
   opacity: 0.8;
