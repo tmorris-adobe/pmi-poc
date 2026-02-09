@@ -1959,35 +1959,34 @@ main > .section.hero-hcp.guide-hero > .default-content-wrapper {
 }
 
 main > .section.hero-hcp.guide-hero h1 {
-  font-size: 3.75rem;
-  font-weight: 400;
+  font-size: 96px;
+  font-weight: 500;
   color: var(--color-deep-blue);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-align: center;
-  line-height: 1.1;
+  line-height: 1;
   position: static;
   max-width: 100%;
   order: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.1px;
 }
 
 /* Subtitle "CBD & Medical cannabis" - reorder above h1 */
 main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type {
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.1px;
   color: var(--color-deep-blue);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   order: 0;
 }
 
 /* Description text */
 main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:last-of-type {
-  font-size: 1.09rem;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 22.4px;
   color: var(--color-deep-blue);
-  opacity: 0.8;
   order: 2;
   text-align: center;
 }
@@ -2062,7 +2061,7 @@ body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li
 
 @media (width < 600px) {
   body:has(.hero-hcp) main > .section.guide-hero h1 {
-    font-size: 2rem;
+    font-size: 48px;
   }
 
   body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
