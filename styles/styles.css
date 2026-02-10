@@ -15,6 +15,9 @@
   --color-dark-navy: #1a1a2e;
   --color-transparent-white: rgba(255, 255, 255, 0.1);
 
+  /* Alias (matches --color-deep-blue; used broadly in button/legal styles) */
+  --color-dark-blue: #000A77;
+
   /* Semantic colors */
   --background-color: var(--color-white);
   --light-color: #f8f8f8;
@@ -779,85 +782,151 @@ main .section.gateway-footer img {
 
 /* ==========================================================================
    Legal Content Pages (Terms of Use, Privacy Policy)
+   Scoped to pages containing a hero-legal section
    ========================================================================== */
 
-/* Hero-Legal section - no margin for seamless gradient */
-main > .section.hero-legal-container {
+/* Header overlays hero on legal pages - don't reserve space */
+body:has(.hero-legal) header {
+  height: 0;
+}
+
+/* Hero-Legal banner - blue gradient with centered white title */
+/* Section Metadata style: hero-legal → adds .hero-legal class to the section */
+main > .section.hero-legal {
   margin: 0;
+  background: var(--bg-gradient-hero);
+  background-size: 100% 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+  padding: 285px 0 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Legal content area styling */
-.legal-content,
-main > .section:has(> div > p:first-child > em) {
-  padding: var(--spacing-xl) 0;
-}
-
-.legal-content > div,
-main > .section:has(> div > p:first-child > em) > div {
-  max-width: 780px;
+main > .section.hero-legal > div {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-m);
 }
 
-/* Legal page h4 - section headings */
-main h4 {
+main > .section.hero-legal h1 {
+  color: #fff;
   font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-m);
+  font-size: 64px;
   font-weight: 400;
-  color: var(--color-dark-blue);
+  font-style: normal;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Legal content area styling - scoped to pages with hero-legal */
+/* Content overlaps into the hero gradient; white background with beveled top-right corner */
+body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) {
+  position: relative;
+  max-width: 820px;
+  margin: -127px auto 0;
+  padding: 0;
+  background: transparent;
+  z-index: 1;
+}
+
+/* Beveled corner shape - diagonal cut at top right matching original SVG (inline data URI) */
+body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child)::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 84px;
+  background: url("data:image/svg+xml,%3Csvg width='821' height='84' viewBox='0 0 821 84' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6.76278C0 3.02781 3.02779 0 6.76277 0H741.725C743.535 0 745.27 0.726119 746.541 2.01579L819.054 75.5943C820.301 76.8596 821 78.5648 821 80.3413V83.3942H0V6.76278Z' fill='white'/%3E%3C/svg%3E") no-repeat center bottom / 100%;
+  margin-bottom: -1px;
+}
+
+body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) > div {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 107px 40px;
+  background: #fff;
+}
+
+/* Legal page h4 - section headings */
+body:has(.hero-legal) main h4 {
+  font-family: var(--heading-font-family);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
   margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-m);
   line-height: 1;
 }
 
-main h4:first-of-type {
+body:has(.hero-legal) main h4:first-of-type {
   margin-top: var(--spacing-l);
 }
 
 /* Legal page body text */
-main p {
+body:has(.hero-legal) main p {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   font-weight: 400;
-  color: var(--color-dark-blue);
+  color: var(--color-deep-blue);
   line-height: 1.2;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: 20px;
 }
 
 /* Italic text (Last Updated date) */
-main p em {
+body:has(.hero-legal) main p em {
   font-style: italic;
-  color: var(--color-dark-blue);
+  color: var(--color-deep-blue);
 }
 
 /* Legal page lists */
-main ul,
-main ol {
+body:has(.hero-legal) main ul,
+body:has(.hero-legal) main ol {
   margin-left: 30px;
   padding-left: var(--spacing-m);
   margin-bottom: var(--spacing-m);
-  color: var(--color-dark-blue);
+  color: var(--color-deep-blue);
 }
 
-main ul {
+body:has(.hero-legal) main ul {
   list-style-type: disc;
 }
 
-main ol {
+body:has(.hero-legal) main ol {
   list-style-type: decimal;
 }
 
-main li {
+body:has(.hero-legal) main li {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
-  color: var(--color-dark-blue);
+  color: var(--color-deep-blue);
   line-height: 1.5;
   margin-bottom: var(--spacing-xs);
 }
 
 /* Strong text in legal content */
-main strong {
+body:has(.hero-legal) main strong {
   font-weight: 600;
+}
+
+/* Mobile responsive for hero-legal */
+@media (width < 900px) {
+  main > .section.hero-legal {
+    padding: 160px 0 100px;
+  }
+
+  main > .section.hero-legal h1 {
+    font-size: 40px;
+  }
+
+  body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) {
+    margin: -92px 20px 0;
+  }
+
+  body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) > div {
+    padding: 0 30px 30px;
+  }
 }
 
 /* ==========================================================================
