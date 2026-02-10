@@ -816,7 +816,7 @@ main > .section.hero-legal h1 {
   font-family: var(--heading-font-family);
   font-size: 64px;
   font-weight: 400;
-  font-style: italic;
+  font-style: normal;
   line-height: 1;
   margin: 0;
 }
@@ -826,7 +826,7 @@ main > .section.hero-legal h1 {
 body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) {
   position: relative;
   max-width: 820px;
-  margin: -110px auto 0;
+  margin: -127px auto 0;
   padding: 0;
   background: transparent;
   z-index: 1;
@@ -921,7 +921,7 @@ body:has(.hero-legal) main strong {
   }
 
   body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) {
-    margin: -80px 20px 0;
+    margin: -92px 20px 0;
   }
 
   body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) > div {
