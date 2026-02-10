@@ -2203,6 +2203,29 @@ main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-t
   text-decoration: underline;
 }
 
+/* Native HTML table styling in FAQ content */
+main > .section.faq-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--color-deep-blue);
+}
+
+main > .section.faq-detail table thead tr {
+  background: #eae2d1;
+  font-weight: 700;
+}
+
+main > .section.faq-detail table th,
+main > .section.faq-detail table td {
+  padding: 13px 10px;
+  border: 2px solid #f4f0e8;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+}
+
 /* Table block styling (type-of-medical-cannabis / preparation-de-cannabis-medicinal) */
 main > .section.faq-detail [class$="-wrapper"]:has(.block) {
   max-width: 740px;
