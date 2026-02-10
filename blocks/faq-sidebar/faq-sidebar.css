@@ -1,0 +1,119 @@
+.faq-sidebar {
+  width: 100%;
+}
+
+.faq-sidebar .faq-sidebar-go-back-wrapper {
+  margin-bottom: 16px;
+}
+
+.faq-sidebar .faq-sidebar-go-back {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  text-decoration: none;
+}
+
+.faq-sidebar .faq-sidebar-go-back:hover {
+  text-decoration: underline;
+}
+
+.faq-sidebar .faq-sidebar-nav {
+  background: #f2eee3;
+  padding: 35px 15px;
+}
+
+.faq-sidebar .faq-sidebar-nav h4 {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  font-family: var(--heading-font-family);
+  margin: 0 0 20px;
+}
+
+.faq-sidebar .faq-sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  font-size: 23px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  font-family: var(--heading-font-family);
+  text-decoration: none;
+  margin-bottom: 9px;
+  gap: 12px;
+  line-height: 1.2;
+}
+
+.faq-sidebar .faq-sidebar-link:last-child {
+  margin-bottom: 0;
+}
+
+.faq-sidebar .faq-sidebar-link.active {
+  background: #eae2d1;
+}
+
+.faq-sidebar .faq-sidebar-link:hover:not(.active) {
+  background: #eee8da;
+}
+
+.faq-sidebar .faq-sidebar-arrow {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.faq-sidebar .faq-sidebar-arrow::after {
+  content: "\2192";
+  font-size: 20px;
+  line-height: 1;
+}
+
+/* two-column layout for faq-detail section on desktop */
+@media (min-width: 900px) {
+  main > .section.faq-detail {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 160px 40px 60px;
+    align-items: start;
+  }
+
+  /* sidebar in column 1, spanning all rows */
+  main > .section.faq-detail > .faq-sidebar-wrapper {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    position: sticky;
+    top: 20px;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* all other wrappers in column 2 */
+  main > .section.faq-detail > .default-content-wrapper,
+  main > .section.faq-detail > [class$="-wrapper"]:not(.faq-sidebar-wrapper):not(.section-metadata-wrapper) {
+    grid-column: 2;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  main > .section.faq-detail > .section-metadata-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .faq-sidebar .faq-sidebar-nav h4 {
+    font-size: 26px;
+  }
+
+  .faq-sidebar .faq-sidebar-link {
+    font-size: 18px;
+    padding: 14px 15px;
+  }
+}

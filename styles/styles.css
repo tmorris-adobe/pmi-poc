@@ -129,13 +129,15 @@ header {
   height: var(--nav-height);
 }
 
-/* Header overlays hero on patient pages - don't reserve space */
-body:has(.section.hero-patient) header {
+/* Header overlays hero on patient/HCP pages - don't reserve space */
+body:has(.section.hero-patient) header,
+body:has(.section.hero-hcp) header {
   height: 0;
 }
 
-/* Hide default header on gateway pages (age verification) - but not gateway-header */
-body:has(.hero-gateway) header:not(.gateway-header) {
+/* Hide default header on gateway pages (age verification, HCP) - but not gateway-header */
+body:has(.hero-gateway) header:not(.gateway-header),
+body:has(.hero-gateway-hcp) header:not(.gateway-header) {
   height: 0;
   overflow: hidden;
 }
@@ -444,8 +446,15 @@ body:has(.hero-patient) {
   background-repeat: no-repeat;
 }
 
+/* HCP pages - no body gradient; gradient is on the hero section itself */
+body:has(.hero-hcp) {
+  background-color: var(--color-white);
+  background-image: none;
+}
+
 /* Hero section transparent to show body gradient */
-main > .section.hero-patient {
+main > .section.hero-patient,
+main > .section.hero-hcp {
   background: transparent;
 }
 
@@ -464,21 +473,36 @@ body:has(.hero-gateway) {
   overflow: hidden;
 }
 
-body:has(.hero-gateway) main > .section {
+/* HCP gateway - same gradient but allows scrolling for longer content */
+body:has(.hero-gateway-hcp) {
+  background: var(--gradient-primary);
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+body:has(.hero-gateway) main > .section,
+body:has(.hero-gateway-hcp) main > .section {
   margin: 0;
 }
 
-body:has(.hero-gateway) main {
+body:has(.hero-gateway) main,
+body:has(.hero-gateway-hcp) main {
   background: transparent;
 }
 
 body:has(.hero-gateway) header,
-body:has(.hero-gateway) footer {
+body:has(.hero-gateway) footer,
+body:has(.hero-gateway-hcp) header,
+body:has(.hero-gateway-hcp) footer {
   background: transparent;
 }
 
 /* Hide empty footer on gateway pages */
-body:has(.hero-gateway) footer:empty {
+body:has(.hero-gateway) footer:empty,
+body:has(.hero-gateway-hcp) footer:empty {
   display: none;
 }
 
@@ -870,6 +894,14 @@ body:has(.hero-patient) main > .section.bg-hero.hero-patient {
   background: transparent;
 }
 
+/* On HCP pages, hero has its own gradient (not body-level) so it doesn't bleed */
+body:has(.hero-hcp) main > .section.bg-hero.hero-hcp {
+  background: var(--bg-gradient-hero);
+  background-size: cover;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
 /* Product gradient background - transparent on patient pages to show unified gradient */
 main > .section.bg-product {
   background: var(--bg-gradient-product);
@@ -881,8 +913,9 @@ main > .section.bg-product {
   padding: var(--spacing-xl) 0;
 }
 
-/* On patient pages, product section is transparent - unified gradient shows through */
-body:has(.hero-patient) main > .section.bg-product {
+/* On patient/HCP pages, product section is transparent - unified gradient shows through */
+body:has(.hero-patient) main > .section.bg-product,
+body:has(.hero-hcp) main > .section.bg-product {
   background: transparent;
 }
 
@@ -1214,6 +1247,949 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
 }
 
 /* ==========================================================================
+   Hero HCP Section - Extends hero-patient styles for HCP page
+   ========================================================================== */
+
+main > .section.hero-hcp {
+  min-height: 91vh;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  position: relative;
+  overflow: visible;
+  padding-top: 160px;
+  padding-bottom: 60px;
+  z-index: 1;
+}
+
+main > .section.hero-hcp > div {
+  isolation: isolate;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 550px;
+  padding: 0 var(--spacing-xl);
+  margin-left: 5%;
+  margin-top: 5vh;
+}
+
+main > .section.hero-hcp > div > h1,
+main > .section.hero-hcp > div > p:not(:has(img)) {
+  position: relative;
+  z-index: 5;
+}
+
+main > .section.hero-hcp h1 {
+  font-size: 64px;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--text-color-inverted);
+  margin-bottom: var(--spacing-m);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+main > .section.hero-hcp > div > p {
+  color: var(--text-color-inverted);
+  max-width: 500px;
+  margin: 0 0 var(--spacing-m);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* HCP hero CTA button - same slide-reveal animation as patient hero */
+main > .section.hero-hcp a.button,
+main > .section.hero-hcp > div > p > a:not(:has(img)) {
+  position: relative;
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  font-size: 23px;
+  font-weight: 500;
+  margin: var(--spacing-m) 0;
+  overflow: visible;
+  white-space: normal;
+  transition: margin-left 400ms ease-out;
+}
+
+main > .section.hero-hcp a.button::before,
+main > .section.hero-hcp > div > p > a:not(:has(img))::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-white);
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+main > .section.hero-hcp a.button::after,
+main > .section.hero-hcp > div > p > a:not(:has(img))::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+main > .section.hero-hcp a.button:hover,
+main > .section.hero-hcp > div > p > a:not(:has(img)):hover {
+  margin-left: 35px;
+}
+
+main > .section.hero-hcp a.button:hover::before,
+main > .section.hero-hcp > div > p > a:not(:has(img)):hover::before {
+  opacity: 1;
+}
+
+main > .section.hero-hcp a.button:hover::after,
+main > .section.hero-hcp > div > p > a:not(:has(img)):hover::after {
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+/* HCP hero floating image */
+main > .section.hero-hcp .hero-image,
+main > .section.hero-hcp > div > p:has(img) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: none;
+  z-index: 1;
+  margin: 0;
+  pointer-events: none;
+}
+
+main > .section.hero-hcp .hero-image img,
+main > .section.hero-hcp > div > p:has(img) img {
+  position: absolute;
+  left: 76%;
+  top: 62%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  animation: anim-fade-down-deep 1.2s ease-out 1s both;
+  --anim-base-transform: translate(-50%, -50%);
+}
+
+main > .section.hero-hcp h1 {
+  animation: anim-fade-up 0.8s ease-out 0.2s both;
+}
+
+main > .section.hero-hcp > div > p:not(:has(img)) {
+  animation: anim-fade-in 0.6s ease-out 0.5s both;
+}
+
+@media (width >= 1400px) {
+  main > .section.hero-hcp h1 {
+    font-size: 80px;
+  }
+
+  main > .section.hero-hcp .hero-image img,
+  main > .section.hero-hcp > div > p:has(img) img {
+    height: 80%;
+  }
+}
+
+@media (width >= 1200px) and (width < 1400px) {
+  main > .section.hero-hcp .hero-image img,
+  main > .section.hero-hcp > div > p:has(img) img {
+    height: 70%;
+  }
+}
+
+@media (width >= 900px) and (width < 1200px) {
+  main > .section.hero-hcp .hero-image img,
+  main > .section.hero-hcp > div > p:has(img) img {
+    height: 55%;
+    top: auto;
+    bottom: -5%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (width < 768px) {
+  main > .section.hero-hcp {
+    min-height: auto;
+    padding: var(--spacing-xl) 0;
+    padding-bottom: var(--spacing-l);
+    text-align: center;
+    align-items: center;
+  }
+
+  main > .section.hero-hcp > div {
+    align-items: center;
+    padding: 0 var(--spacing-m);
+  }
+
+  main > .section.hero-hcp h1 {
+    font-size: 40px;
+  }
+
+  main > .section.hero-hcp > div > p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  main > .section.hero-hcp .hero-image,
+  main > .section.hero-hcp > div > p:has(img) {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    max-width: 100%;
+    margin: var(--spacing-l) auto 0;
+  }
+}
+
+/* ==========================================================================
+   HCP Page-Specific Overrides
+   Scoped with body:has(.hero-hcp) to avoid affecting patient page
+   ========================================================================== */
+
+/* ---------- HCP Mission Section ----------
+   Original site uses a gradient background with two-column layout:
+   text on the left, 4 outlined tile cards in a 2x2 grid on the right.
+   This completely overrides the patient-page frosted-glass style. */
+
+/* Reset section: remove clip-path, background image, frosted glass */
+body:has(.hero-hcp) main > .section.mission {
+  clip-path: none;
+  margin: 0;
+  max-width: none;
+  min-height: auto;
+  overflow: visible;
+  padding: 160px 90px 209px;
+  background: var(--color-white) url('/styles/backgrounds/big-gradient-bg.png') center top / cover no-repeat;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 0 40px;
+  align-items: start;
+}
+
+/* Remove the lifestyle-bag background pseudo-element */
+body:has(.hero-hcp) main > .section.mission::before {
+  display: none;
+}
+
+/* Reset the default-content-wrapper (left column) */
+body:has(.hero-hcp) main > .section.mission > .default-content-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+}
+
+/* Cards wrapper (right column) - spans all rows */
+body:has(.hero-hcp) main > .section.mission > .cards-wrapper {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-radius: 0;
+}
+
+/* Heading */
+body:has(.hero-hcp) main > .section.mission h2 {
+  font-size: 54px;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+/* h2 strong - deep blue bold (not teal italic as on patient page) */
+body:has(.hero-hcp) main > .section.mission h2 strong {
+  color: var(--color-deep-blue);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* HR separator after heading */
+body:has(.hero-hcp) main > .section.mission h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
+  margin: 30px 0;
+}
+
+/* Body paragraphs */
+body:has(.hero-hcp) main > .section.mission p {
+  font-size: 23px;
+  line-height: 1.2;
+  color: var(--color-deep-blue);
+  font-family: var(--heading-font-family);
+}
+
+/* "find out more" link in text */
+body:has(.hero-hcp) main > .section.mission p a {
+  color: var(--color-deep-blue);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+body:has(.hero-hcp) main > .section.mission p a:hover {
+  color: var(--color-teal-text);
+}
+
+/* Cards block - 2x2 grid of outlined tiles with staggered right column */
+body:has(.hero-hcp) main > .section.mission .cards > ul {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* Stagger: offset right column tiles down */
+body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(2) {
+  margin-top: 80px;
+}
+
+body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(4) {
+  margin-top: 50px;
+}
+
+/* Individual tile card - outlined with basil corners (top-right, bottom-left) */
+body:has(.hero-hcp) main > .section.mission .cards > ul > li {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 30px) 0,
+    100% 30px,
+    100% 100%,
+    30px 100%,
+    0 calc(100% - 30px)
+  );
+  box-shadow: inset 0 0 0 1px var(--color-deep-blue);
+  padding: 0;
+  height: 375px;
+  box-sizing: border-box;
+}
+
+/* Card image container - acts as full card content area */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image {
+  padding: 30px;
+  line-height: 1.4;
+}
+
+/* Card content paragraph - flex column for icon/heading/text layout */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  color: var(--color-deep-blue);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Card icon - small teal SVG icons */
+body:has(.hero-hcp) main > .section.mission .cards > ul > li img {
+  width: 48px;
+  height: 48px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+/* Card icon picture wrapper */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image picture {
+  line-height: 0;
+}
+
+/* Card heading (strong) - block display to separate from description */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-image strong {
+  display: block;
+  font-size: 32px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+/* Card body area if it exists */
+body:has(.hero-hcp) main > .section.mission .cards .cards-card-body {
+  padding: 16px 30px 30px;
+  margin: 0;
+}
+
+/* Mobile responsive */
+@media (width < 768px) {
+  body:has(.hero-hcp) main > .section.mission {
+    grid-template-columns: 1fr;
+    padding: 60px var(--spacing-m) 80px;
+    gap: 40px 0;
+  }
+
+  body:has(.hero-hcp) main > .section.mission > .default-content-wrapper {
+    grid-column: 1;
+  }
+
+  body:has(.hero-hcp) main > .section.mission > .cards-wrapper {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  body:has(.hero-hcp) main > .section.mission h2 {
+    font-size: 36px;
+  }
+
+  body:has(.hero-hcp) main > .section.mission .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.hero-hcp) main > .section.mission .cards > ul > li {
+    height: auto;
+  }
+
+  body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(2),
+  body:has(.hero-hcp) main > .section.mission .cards > ul > li:nth-child(4) {
+    margin-top: 0;
+  }
+}
+
+/* Features section - clean white background */
+body:has(.hero-hcp) main > .section.bg-even.features {
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  padding: 110px 0 130px;
+}
+
+/* Features h3 "Why patients choose Luo?" - white on gradient */
+body:has(.hero-hcp) main > .section.features h3 {
+  font-size: 45px;
+  color: var(--color-white);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+body:has(.hero-hcp) main > .section.features h3 strong {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+/* White HR separator under heading */
+body:has(.hero-hcp) main > .section.features .default-content-wrapper {
+  margin-bottom: 40px;
+}
+
+body:has(.hero-hcp) main > .section.features h3::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 1px;
+  background-color: var(--color-white);
+  margin-top: 21px;
+}
+
+/* 4-column grid for features */
+body:has(.hero-hcp) main > .section.features .cards > ul {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Feature cards - transparent, no borders */
+body:has(.hero-hcp) main > .section.features .cards > ul > li {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  aspect-ratio: unset;
+}
+
+/* White icons */
+body:has(.hero-hcp) main > .section.features .cards > ul > li img {
+  max-width: 55px;
+  height: 57px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+/* White titles */
+body:has(.hero-hcp) main > .section.features .cards > ul > li strong {
+  font-size: 32px;
+  color: var(--color-white);
+  margin-bottom: 20px;
+}
+
+/* White description text */
+body:has(.hero-hcp) main > .section.features .cards > ul > li p {
+  font-size: 23px;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+@media (width < 1024px) {
+  body:has(.hero-hcp) main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 768px) {
+  body:has(.hero-hcp) main > .section.features h3 {
+    font-size: 32px;
+  }
+
+  body:has(.hero-hcp) main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.hero-hcp) main > .section.features .cards > ul > li p {
+    font-size: 18px;
+  }
+}
+
+/* Dosing section - deep blue text on transparent gradient (not dark bg-product) */
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2,
+body:has(.hero-hcp) main > .section.bg-product h2 {
+  color: var(--color-deep-blue);
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2 strong,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2 strong,
+body:has(.hero-hcp) main > .section.bg-product h2 strong {
+  color: var(--color-teal-text);
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left p:not(:has(img)),
+body:has(.hero-hcp) main > .section.bg-product.banner-right p:not(:has(img)),
+body:has(.hero-hcp) main > .section.bg-product p {
+  color: var(--color-deep-blue);
+}
+
+/* HCP dosing section - gradient background, adjusted sizing */
+body:has(.hero-hcp) main > .section.bg-product.banner-left,
+body:has(.hero-hcp) main > .section.bg-product.banner-right {
+  background: var(--color-white) url('/styles/backgrounds/big-gradient-bg.png') center top / cover no-repeat;
+  height: 947px;
+  max-height: 947px;
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2 strong,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2 strong {
+  font-weight: 700;
+}
+
+body:has(.hero-hcp) main > .section.bg-product.banner-left p:not(:has(img)),
+body:has(.hero-hcp) main > .section.bg-product.banner-right p:not(:has(img)) {
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+/* Dosing section - horizontal line under heading should be deep blue */
+body:has(.hero-hcp) main > .section.bg-product.banner-left h2::after,
+body:has(.hero-hcp) main > .section.bg-product.banner-right h2::after {
+  background-color: var(--color-deep-blue);
+}
+
+/* HCP footer gradient - single gradient on main, anchored at bottom */
+body:has(.hero-hcp) main {
+  background: url('/styles/backgrounds/footer-gradient-background.jpg') center bottom / 100% auto no-repeat;
+}
+
+/* HCP FAQ section - transparent to show main gradient through */
+body:has(.hero-hcp) main > .section.faq-block {
+  background-image: none;
+  padding-top: 105px;
+}
+
+/* HCP gradient CTA - transparent to show main gradient through */
+body:has(.hero-hcp) main > .section.gradient-cta {
+  background-image: none;
+}
+
+/* Override 2-column grid to centered single column */
+body:has(.hero-hcp) main > .section.faq-block > .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+/* White text for FAQ on gradient */
+body:has(.hero-hcp) main > .section.faq-block h5 {
+  color: var(--color-white);
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-s);
+}
+
+body:has(.hero-hcp) main > .section.faq-block h2 {
+  color: var(--color-white);
+  max-width: none;
+  text-align: center;
+}
+
+body:has(.hero-hcp) main > .section.faq-block h2::after {
+  display: none;
+}
+
+body:has(.hero-hcp) main > .section.faq-block > .default-content-wrapper > p {
+  color: var(--color-white);
+  max-width: none;
+  text-align: center;
+}
+
+/* White block CTA button */
+body:has(.hero-hcp) main > .section.faq-block .button-container a,
+body:has(.hero-hcp) main > .section.faq-block > .default-content-wrapper > p.button-container > a {
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  border-color: var(--color-white);
+  padding-left: 60px;
+}
+
+/* HCP FAQ button hover - keep white background, white arrow panel */
+body:has(.hero-hcp) main > .section.faq-block .button-container a:hover,
+body:has(.hero-hcp) main > .section.faq-block > .default-content-wrapper > p.button-container > a:hover {
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+}
+
+body:has(.hero-hcp) main > .section.faq-block .button-container a::before,
+body:has(.hero-hcp) main > .section.faq-block > .default-content-wrapper > p.button-container > a::before {
+  background-color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+/* HCP Sources section - transparent to let FAQ gradient show through */
+body:has(.hero-hcp) main > .section.sources {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+body:has(.hero-hcp) main > .section.sources h4 {
+  color: var(--color-white);
+  border-top-color: rgba(255, 255, 255, 0.4);
+}
+
+body:has(.hero-hcp) main > .section.sources li {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   HCP Guide Page (A Guide for HCPs)
+   ========================================================================== */
+
+/* Single unified background on guide page — matches original (#f7f3ed) */
+body:has(.guide-hero) main {
+  background: #f7f3ed;
+}
+
+/* Remove section margins so there's no white gap between sections */
+body:has(.guide-hero) main > .section {
+  margin: 0;
+}
+
+/* Hide empty metadata section */
+body:has(.guide-hero) main > .section:empty {
+  display: none;
+}
+
+/* Guide hero - clean white/cream background with centered text */
+/* Override base hero-hcp styles completely */
+main > .section.hero-hcp.guide-hero {
+  background: transparent;
+  background-image: none;
+  padding: 200px 20px 60px;
+  text-align: center;
+  max-width: 100%;
+  min-height: auto;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+main > .section.hero-hcp.guide-hero > .default-content-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: static;
+  width: 100%;
+  padding: 0 20px;
+  align-items: center;
+  margin-left: auto;
+  margin-top: 0;
+}
+
+main > .section.hero-hcp.guide-hero h1 {
+  font-size: 96px;
+  font-weight: 500;
+  color: var(--color-deep-blue);
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1;
+  position: static;
+  max-width: 100%;
+  order: 1;
+  letter-spacing: 0.1px;
+}
+
+/* Subtitle "CBD & Medical cannabis" - reorder above h1 */
+main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:first-of-type {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1px;
+  color: var(--color-deep-blue);
+  margin-bottom: 5px;
+  margin-top: 0;
+  order: 0;
+}
+
+/* Description text */
+main > .section.hero-hcp.guide-hero > .default-content-wrapper > p:last-of-type {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--color-deep-blue);
+  order: 2;
+  text-align: center;
+}
+
+/* FAQ cards section - transparent, inherits main background */
+body:has(.hero-hcp) main > .section.faq-cards-section {
+  background: transparent;
+  background-image: none;
+  padding: 40px 20px 80px;
+}
+
+/* FAQ cards grid */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px 24px;
+  list-style: none;
+  padding: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li {
+  background: #f2eee3;
+  border-radius: 0 30px 0 30px;
+  padding: 45px 28px 40px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  min-height: 380px;
+}
+
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Category tag - first bold text */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li p strong:first-child {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-white);
+  background: var(--color-deep-blue);
+  padding: 14px 18px;
+  border-radius: 5px;
+  margin-bottom: 24px;
+}
+
+/* Title - second bold text */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li p strong:nth-of-type(2) {
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin-bottom: 16px;
+  line-height: 32px;
+}
+
+/* Excerpt text */
+body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li p {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--color-deep-blue);
+}
+
+@media (width < 900px) {
+  body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  body:has(.hero-hcp) main > .section.guide-hero h1 {
+    font-size: 48px;
+  }
+
+  body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   FAQ Detail Pages
+   ========================================================================== */
+
+/* FAQ detail page - white background */
+main > .section.faq-detail {
+  background: var(--color-white);
+  padding: 160px 20px 60px;
+  max-width: 100%;
+}
+
+main > .section.faq-detail > .default-content-wrapper {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* H1 */
+main > .section.faq-detail h1 {
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 64px;
+  color: var(--color-deep-blue);
+  margin: 0 0 24px;
+}
+
+/* Body paragraphs */
+main > .section.faq-detail p {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 29.4px;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+}
+
+/* Content links - underlined */
+main > .section.faq-detail p a {
+  color: var(--color-deep-blue);
+  text-decoration: underline;
+}
+
+main > .section.faq-detail p a:hover {
+  opacity: 0.8;
+}
+
+/* Go Back link — target last paragraph in last default-content-wrapper */
+main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-type {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #dadada;
+}
+
+main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-type a {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  text-decoration: none;
+}
+
+main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-type a:hover {
+  text-decoration: underline;
+}
+
+/* Table block styling (type-of-medical-cannabis / preparation-de-cannabis-medicinal) */
+main > .section.faq-detail [class$="-wrapper"]:has(.block) {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"],
+main > .section.faq-detail .block[class*="cannabis-m"] {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--color-deep-blue);
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div,
+main > .section.faq-detail .block[class*="cannabis-m"] > div {
+  display: table-row;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div:first-child,
+main > .section.faq-detail .block[class*="cannabis-m"] > div:first-child {
+  background: #eae2d1;
+  font-weight: 700;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div > div,
+main > .section.faq-detail .block[class*="cannabis-m"] > div > div {
+  display: table-cell;
+  padding: 13px 10px;
+  border: 2px solid #f4f0e8;
+}
+
+main > .section.faq-detail .block[class*="medical-cannabis"] > div > div p,
+main > .section.faq-detail .block[class*="cannabis-m"] > div > div p {
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Mobile */
+@media (width < 600px) {
+  main > .section.faq-detail h1 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  main > .section.faq-detail p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+/* ==========================================================================
    Two Column Layout (via Section Metadata)
    ========================================================================== */
 
@@ -1314,10 +2290,39 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
   justify-content: flex-start;
 }
 
+/* Banner-right: text on LEFT, image on RIGHT (mirror of banner-left) */
+main > .section.bg-product.banner-right > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+main > .section.bg-product.banner-right > div > h2,
+main > .section.bg-product.banner-right > div > p:not(:has(img)) {
+  width: 500px;
+  max-width: 100%;
+}
+
+main > .section.bg-product.banner-right > div > p:has(img),
+main > .section.bg-product.banner-right > div > p:has(picture) {
+  position: absolute;
+  right: 0;
+  bottom: -37px;
+  width: 55vw;
+  max-width: 990px;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
 /* Large desktop: slightly larger percentage */
 @media (width >= 1400px) {
   main > .section.bg-product.banner-left > div > p:has(img),
-  main > .section.bg-product.banner-left > div > p:has(picture) {
+  main > .section.bg-product.banner-left > div > p:has(picture),
+  main > .section.bg-product.banner-right > div > p:has(img),
+  main > .section.bg-product.banner-right > div > p:has(picture) {
     width: 60vw;
     max-width: 990px;
   }
@@ -1326,7 +2331,9 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
 /* Medium desktop: balanced size */
 @media (width >= 1200px) and (width < 1400px) {
   main > .section.bg-product.banner-left > div > p:has(img),
-  main > .section.bg-product.banner-left > div > p:has(picture) {
+  main > .section.bg-product.banner-left > div > p:has(picture),
+  main > .section.bg-product.banner-right > div > p:has(img),
+  main > .section.bg-product.banner-right > div > p:has(picture) {
     width: 55vw;
   }
 }
@@ -1350,12 +2357,14 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
   }
 
   main > .section.bg-product.banner-left > div > h2,
-  main > .section.bg-product.banner-left > div > p:not(:has(img)) {
+  main > .section.bg-product.banner-left > div > p:not(:has(img)),
+  main > .section.bg-product.banner-right > div > h2,
+  main > .section.bg-product.banner-right > div > p:not(:has(img)) {
     width: 100%;
     max-width: 100%;
   }
 
-  /* Image below text, still anchored to left viewport edge */
+  /* Image below text, still anchored to viewport edge */
   main > .section.bg-product.banner-left > div > p:has(img),
   main > .section.bg-product.banner-left > div > p:has(picture) {
     position: relative;
@@ -1369,22 +2378,40 @@ main > .section.bg-product.banner-left > div > p:has(picture) {
     justify-content: flex-start;
   }
 
+  main > .section.bg-product.banner-right > div > p:has(img),
+  main > .section.bg-product.banner-right > div > p:has(picture) {
+    position: relative;
+    right: calc(-1 * var(--spacing-m));
+    bottom: auto;
+    width: 70vw;
+    max-width: none;
+    order: 1;
+    margin-top: var(--spacing-l);
+    margin-bottom: 0;
+    justify-content: flex-end;
+  }
+
   main > .section.bg-product.banner-left > div > p > img,
-  main > .section.bg-product.banner-left > div > p picture img {
+  main > .section.bg-product.banner-left > div > p picture img,
+  main > .section.bg-product.banner-right > div > p > img,
+  main > .section.bg-product.banner-right > div > p picture img {
     max-height: 500px;
   }
 }
 
 /* Text content spacing */
-main > .section.bg-product.banner-left > div > h2 {
+main > .section.bg-product.banner-left > div > h2,
+main > .section.bg-product.banner-right > div > h2 {
   margin: 0 0 var(--spacing-m);
 }
 
-main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(a)) {
+main > .section.bg-product.banner-left > div > p:not(:has(img)):not(:has(a)),
+main > .section.bg-product.banner-right > div > p:not(:has(img)):not(:has(a)) {
   margin: 0 0 var(--spacing-m);
 }
 
-main > .section.bg-product.banner-left > div > p:has(a):not(:has(img)) {
+main > .section.bg-product.banner-left > div > p:has(a):not(:has(img)),
+main > .section.bg-product.banner-right > div > p:has(a):not(:has(img)) {
   margin: var(--spacing-m) 0 0;
 }
 
@@ -1846,8 +2873,17 @@ main > .section.products .cards > ul > li p {
   padding: 0 var(--spacing-m);
 }
 
-/* Hide Learn More link - original doesn't show it as separate link */
-main > .section.products .cards > ul > li a {
+/* Card link wrapper - make it fill the card */
+main > .section.products .cards > ul > li a.cards-card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hide "Learn More" link text - the whole card is clickable */
+main > .section.products .cards > ul > li .cards-link-text {
   display: none;
 }
 
@@ -2489,6 +3525,63 @@ main > .section.starburst::before {
     height: 60px;
     top: -30px;
   }
+}
+
+/* ==========================================================================
+   Sources Section (Academic references, collapsible)
+   ========================================================================== */
+
+main > .section.sources {
+  background: var(--color-white);
+  padding: var(--spacing-l) 0;
+  margin: 0;
+}
+
+main > .section.sources h4 {
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-deep-blue);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-s) 0;
+  border-top: 1px solid var(--color-deep-blue);
+  margin: 0;
+}
+
+main > .section.sources h4::after {
+  content: '+';
+  font-size: 24px;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+main > .section.sources h4.open::after {
+  content: '−';
+}
+
+main > .section.sources ul {
+  display: none;
+  list-style: disc;
+  padding: var(--spacing-s) var(--spacing-m) var(--spacing-m) var(--spacing-l);
+  margin: 0;
+}
+
+main > .section.sources h4.open + ul {
+  display: block;
+}
+
+main > .section.sources li {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: var(--spacing-xs);
+}
+
+main > .section.sources li em {
+  font-style: italic;
 }
 
 /* ==========================================================================

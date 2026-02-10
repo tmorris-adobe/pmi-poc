@@ -225,6 +225,14 @@ function initScrollAnimations(main) {
     const ctaSections = main.querySelectorAll('.section.gradient-cta');
     ctaSections.forEach((section) => sectionAnimObserver.observe(section));
   }, 100);
+
+  // Sources section - collapsible toggle
+  const sourcesSections = main.querySelectorAll('.section.sources h4');
+  sourcesSections.forEach((heading) => {
+    heading.addEventListener('click', () => {
+      heading.classList.toggle('open');
+    });
+  });
 }
 
 /**

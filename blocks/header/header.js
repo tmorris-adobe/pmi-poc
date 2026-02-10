@@ -55,6 +55,15 @@ function createFallbackHeader(block) {
     <li><a href="/ca/patient/">Patient</a></li>
     <li><a href="/ca/health-care-professionals/">HCP</a></li>
   </ul>`;
+
+  // Mark active nav link based on current page URL
+  linksDiv.querySelectorAll('li').forEach((li) => {
+    const a = li.querySelector('a');
+    if (a && currentPath.includes(a.getAttribute('href').replace(/\/$/, ''))) {
+      li.classList.add('active');
+    }
+  });
+
   topRight.appendChild(linksDiv);
 
   topContainer.appendChild(topRight);
@@ -176,6 +185,15 @@ export default async function decorate(block) {
         }
         ul.appendChild(newLi);
       });
+      // Mark active nav link based on current page URL
+      const path = window.location.pathname;
+      ul.querySelectorAll('li').forEach((li) => {
+        const a = li.querySelector('a');
+        if (a && path.includes(new URL(a.href, window.location).pathname.replace(/\/$/, ''))) {
+          li.classList.add('active');
+        }
+      });
+
       linksDiv.appendChild(ul);
       topRight.appendChild(linksDiv);
     }
