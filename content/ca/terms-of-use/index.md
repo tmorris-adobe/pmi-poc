@@ -1,5 +1,11 @@
 # Terms of Use
 
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | hero-legal |
+
+---
+
 *Last Updated: August 28, 2024*
 
 #### 1. Scope and Consent

@@ -1,5 +1,11 @@
 # Conditions d'utilisation
 
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | hero-legal |
+
+---
+
 *Dernière mise à jour: 28 août 2024*
 
 #### 1. Champ d'application et consentement

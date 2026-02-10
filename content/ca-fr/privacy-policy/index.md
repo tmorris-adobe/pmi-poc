@@ -1,5 +1,11 @@
 # Avis de confidentialité
 
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | hero-legal |
+
+---
+
 Nous prenons la confidentialité très au sérieux. Le présent avis vous indique qui nous sommes, quels renseignements nous recueillons vous concernant et ce que nous en faisons. Nous n'utiliserons les renseignements vous concernant que conformément aux lois applicables en matière de protection des données. Pour plus de renseignements, cliquez sur le lien « Pour en savoir plus » présent dans chaque section.
 
 Veuillez également lire nos conditions d'utilisation se rapportant au service que vous souhaitez obtenir. Vous y trouverez plus de renseignements sur la façon dont nous menons nos activités, y compris sur toute restriction d'admissibilité qui pourrait s'appliquer.

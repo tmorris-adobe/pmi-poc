@@ -1,5 +1,11 @@
 # Privacy Policy
 
+| Section Metadata |  |
+| ---------------- | ---------- |
+| style            | hero-legal |
+
+---
+
 We take privacy seriously. This notice tells you who we are, what information about you we collect, and what we do with it. We will use information about you only in accordance with applicable data protection laws. Click on "find out more" in each section for further information.
 
 Please also read our terms of use relating to the service you are interested in. They provide more information about the way we do business, and any restrictions on eligibility that may apply.
