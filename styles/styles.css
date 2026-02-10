@@ -779,28 +779,51 @@ main .section.gateway-footer img {
 
 /* ==========================================================================
    Legal Content Pages (Terms of Use, Privacy Policy)
+   Scoped to pages containing a hero-legal section
    ========================================================================== */
 
-/* Hero-Legal section - no margin for seamless gradient */
+/* Hero-Legal banner - blue gradient with centered white title */
 main > .section.hero-legal-container {
+  margin: 0;
+  background: var(--bg-gradient-hero);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 200px 0 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+main > .section.hero-legal-container > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+main > .section.hero-legal-container h1 {
+  color: #fff;
+  font-family: var(--heading-font-family);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
   margin: 0;
 }
 
-/* Legal content area styling */
-.legal-content,
-main > .section:has(> div > p:first-child > em) {
+/* Legal content area styling - scoped to pages with hero-legal */
+body:has(.hero-legal-container) main > .section:not(.hero-legal-container):not(:last-child) {
   padding: var(--spacing-xl) 0;
 }
 
-.legal-content > div,
-main > .section:has(> div > p:first-child > em) > div {
+body:has(.hero-legal-container) main > .section:not(.hero-legal-container):not(:last-child) > div {
   max-width: 780px;
   margin: 0 auto;
   padding: 0 var(--spacing-m);
 }
 
 /* Legal page h4 - section headings */
-main h4 {
+body:has(.hero-legal-container) main h4 {
   font-family: var(--heading-font-family);
   font-size: var(--heading-font-size-m);
   font-weight: 400;
@@ -810,12 +833,12 @@ main h4 {
   line-height: 1;
 }
 
-main h4:first-of-type {
+body:has(.hero-legal-container) main h4:first-of-type {
   margin-top: var(--spacing-l);
 }
 
 /* Legal page body text */
-main p {
+body:has(.hero-legal-container) main p {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   font-weight: 400;
@@ -825,29 +848,29 @@ main p {
 }
 
 /* Italic text (Last Updated date) */
-main p em {
+body:has(.hero-legal-container) main p em {
   font-style: italic;
   color: var(--color-dark-blue);
 }
 
 /* Legal page lists */
-main ul,
-main ol {
+body:has(.hero-legal-container) main ul,
+body:has(.hero-legal-container) main ol {
   margin-left: 30px;
   padding-left: var(--spacing-m);
   margin-bottom: var(--spacing-m);
   color: var(--color-dark-blue);
 }
 
-main ul {
+body:has(.hero-legal-container) main ul {
   list-style-type: disc;
 }
 
-main ol {
+body:has(.hero-legal-container) main ol {
   list-style-type: decimal;
 }
 
-main li {
+body:has(.hero-legal-container) main li {
   font-family: var(--heading-font-family);
   font-size: var(--body-font-size-s);
   color: var(--color-dark-blue);
@@ -856,8 +879,19 @@ main li {
 }
 
 /* Strong text in legal content */
-main strong {
+body:has(.hero-legal-container) main strong {
   font-weight: 600;
+}
+
+/* Mobile responsive for hero-legal */
+@media (width < 900px) {
+  main > .section.hero-legal-container {
+    padding: 120px 0 100px;
+  }
+
+  main > .section.hero-legal-container h1 {
+    font-size: 40px;
+  }
 }
 
 /* ==========================================================================
