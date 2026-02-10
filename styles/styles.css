@@ -832,7 +832,7 @@ body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child) {
   z-index: 1;
 }
 
-/* Beveled corner shape - diagonal cut at top right matching original SVG */
+/* Beveled corner shape - diagonal cut at top right matching original SVG (inline data URI) */
 body:has(.hero-legal) main > .section:not(.hero-legal):not(:last-child)::before {
   content: '';
   display: block;
