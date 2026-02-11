@@ -241,7 +241,7 @@ function decorateProductHero(main) {
     const orderBtn = document.createElement('a');
     orderBtn.href = 'https://www.auroramedical.com/pages/patients';
     orderBtn.className = 'order-button';
-    orderBtn.innerHTML = `<span>${isFrench ? 'Commander Luo' : 'Order Luo'}</span><span class="order-arrow">→</span>`;
+    orderBtn.textContent = isFrench ? 'Commander Luo' : 'Order Luo';
     orderBtn.addEventListener('click', (e) => {
       const hasActive = dosageRow.querySelector('.dosage-card.active');
       if (!hasActive) {
