@@ -358,6 +358,127 @@ function decorateFeatureCards(main) {
 }
 
 /**
+ * Bottles image for the dosing section on product pages.
+ * The original site shows 3 bottles (all dosage strengths) beside the dosing text.
+ */
+const BOTTLES_IMAGE = 'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Luo_New_Bottle_Vanilla_Three_Line-1.png';
+
+/**
+ * Product bottle images for the "Find Your Luo" product cards.
+ * Maps card title keywords to individual product bottle images.
+ */
+const PRODUCT_CARD_IMAGES = {
+  'vanilla mint': 'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Luo_New_FOP_Bottle_Vanilla_Mint_5mg.png',
+  'vanille menthe': 'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Luo_New_FOP_Bottle_Vanilla_Mint_5mg.png',
+  'tropical fruit': 'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Luo_New_FOP_Bottle_Tropical_Fruit_75mg.png',
+  'fruits tropicaux': 'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Luo_New_FOP_Bottle_Tropical_Fruit_75mg.png',
+};
+
+/**
+ * Decorates the dosing section on product pages by adding a bottles image
+ * to the right of the text content, and enhancing the "Find Your Luo" product cards
+ * with individual product bottle images.
+ * @param {Element} main The main element
+ */
+function decorateDosingSection(main) {
+  if (!main.querySelector('.section.product-hero')) return;
+
+  // The dosing section is the first .cards-container after .features (not .steps)
+  const featuresSection = main.querySelector('.section.features');
+  if (!featuresSection) return;
+
+  let dosingSection = featuresSection.nextElementSibling;
+  while (dosingSection && !dosingSection.classList.contains('cards-container')) {
+    dosingSection = dosingSection.nextElementSibling;
+  }
+  if (!dosingSection || dosingSection.classList.contains('steps')) return;
+
+  const textWrapper = dosingSection.querySelector('.default-content-wrapper');
+  if (!textWrapper) return;
+
+  // Only add if not already decorated
+  if (dosingSection.querySelector('.dosing-bottles')) return;
+
+  // Create bottles image container
+  const bottlesDiv = document.createElement('div');
+  bottlesDiv.className = 'dosing-bottles';
+  const bottlesImg = document.createElement('img');
+  bottlesImg.src = BOTTLES_IMAGE;
+  bottlesImg.alt = 'Luo CBD lozenges bottles';
+  bottlesImg.loading = 'eager';
+  bottlesDiv.appendChild(bottlesImg);
+
+  // Insert bottles image after the text wrapper (CSS will position as right column)
+  textWrapper.after(bottlesDiv);
+
+  // Add a layout class to the section for CSS targeting
+  dosingSection.classList.add('dosing-layout');
+
+  // Decorate "Find Your Luo" product cards with bottle images
+  const cardsWrapper = dosingSection.querySelector('.cards-wrapper');
+  if (!cardsWrapper) return;
+
+  // Add class for CSS targeting
+  cardsWrapper.classList.add('find-your-luo');
+
+  cardsWrapper.querySelectorAll('.cards li').forEach((li) => {
+    const body = li.querySelector('.cards-card-body') || li;
+    const strong = body.querySelector('strong');
+    if (!strong) return;
+
+    const titleText = strong.textContent.trim();
+    const paragraph = strong.closest('p');
+    if (!paragraph) return;
+
+    // Get description and link from the paragraph
+    const link = paragraph.closest('a') || paragraph.querySelector('a');
+    const fullText = paragraph.textContent;
+    const descText = fullText
+      .replace(titleText, '')
+      .replace(/\s*(Learn More|En savoir plus)\s*$/i, '')
+      .trim();
+    const linkHref = link ? link.href : '#';
+    const isFrench = window.location.pathname.includes('/ca-fr/');
+    const linkText = isFrench ? 'En savoir plus' : 'Learn More';
+
+    // Find matching product image
+    const titleLower = titleText.toLowerCase();
+    const imgKey = Object.keys(PRODUCT_CARD_IMAGES).find((key) => titleLower.includes(key));
+    const imgSrc = imgKey ? PRODUCT_CARD_IMAGES[imgKey] : null;
+
+    // Clear body and rebuild with image + title + description
+    body.textContent = '';
+
+    if (imgSrc) {
+      const imgDiv = document.createElement('div');
+      imgDiv.className = 'product-card-image';
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = titleText;
+      img.loading = 'eager';
+      imgDiv.appendChild(img);
+      body.appendChild(imgDiv);
+    }
+
+    const titleEl = document.createElement('h4');
+    titleEl.className = 'product-card-title';
+    titleEl.textContent = titleText;
+    body.appendChild(titleEl);
+
+    const descEl = document.createElement('p');
+    descEl.className = 'product-card-desc';
+    descEl.textContent = descText;
+    body.appendChild(descEl);
+
+    // Wrap entire card in a link if one existed
+    if (link && link.tagName === 'A') {
+      // The entire li is already wrapped in the link by the cards block
+      // Just ensure the link wraps properly
+    }
+  });
+}
+
+/**
  * Decorates step cards in the "steps" section by extracting leading numbers
  * from bold titles and creating styled number + title elements.
  * @param {Element} main The main element
@@ -586,6 +707,7 @@ async function loadLazy(doc) {
   // Post-block-load decorations (run after block JS has processed the DOM)
   decorateProductHero(main);
   decorateFeatureCards(main);
+  decorateDosingSection(main);
   decorateStepCards(main);
   decorateFaqAccordion(main);
 

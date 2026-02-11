@@ -3984,8 +3984,53 @@ body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-contai
   padding: 100px 0 80px;
 }
 
-/* Dosing section text wrapper - constrain to left half like original */
-body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper {
+/* Dosing section two-column layout: text left, bottles right */
+body:has(.product-hero) main > .section.dosing-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 100px 40px 0;
+}
+
+/* Text wrapper spans left column */
+body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  max-width: 530px;
+  margin-left: 53px;
+  margin-right: auto;
+}
+
+/* Bottles image spans right column, overlapping both rows */
+body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0;
+}
+
+body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Cards wrapper spans both columns below */
+body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px 53px 80px;
+  width: 100%;
+}
+
+/* Dosing section text wrapper - fallback for non-dosing-layout */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps):not(.dosing-layout) > .default-content-wrapper {
   max-width: 530px;
   margin-left: 93px;
   margin-right: auto;
@@ -4000,15 +4045,144 @@ body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-contai
   font-family: var(--heading-font-family);
 }
 
-/* Dosing section H2 horizontal rule (separator after heading) */
+/* H2 strong text (product name) in teal like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper h2 strong {
+  color: var(--color-teal-text, #01cfc9);
+}
+
+/* Dosing section H2 horizontal rule — teal like original */
 body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper h2::after {
   content: '';
   display: block;
   width: 147px;
   height: 2px;
-  background: var(--color-deep-blue);
+  background: var(--color-teal-text, #01cfc9);
   margin-top: 21px;
   margin-bottom: 21px;
+}
+
+/* Mobile: stack columns */
+@media (width < 900px) {
+  body:has(.product-hero) main > .section.dosing-layout {
+    grid-template-columns: 1fr;
+    padding: 60px 20px 0;
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper {
+    margin-left: 0;
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 400px;
+    margin: 30px auto;
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 40px 0 60px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   "Find Your Luo" sub-section within dosing section
+   Centered heading with teal underline, product cards with bottle images
+   -------------------------------------------------------------------------- */
+
+/* "Find Your Luo" heading - centered, deep blue, teal underline */
+body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper h3 {
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  text-align: center;
+  margin: 60px 0 20px;
+}
+
+body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper h3::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-teal-text, #01cfc9);
+  margin: 20px auto 0;
+}
+
+/* Find Your Luo cards - two-column centered layout */
+body:has(.product-hero) .find-your-luo .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body:has(.product-hero) .find-your-luo .cards > ul > li {
+  background: linear-gradient(180deg, rgba(255 255 255 / 80%) 0%, rgba(245 240 235 / 50%) 100%);
+  border: none;
+  border-radius: 0;
+  padding: 60px 40px;
+  text-align: center;
+  aspect-ratio: unset;
+}
+
+/* Subtle vertical divider between cards */
+body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
+  border-right: 1px solid rgba(0 10 119 / 10%);
+}
+
+/* Product card bottle image */
+body:has(.product-hero) .find-your-luo .product-card-image {
+  margin-bottom: 30px;
+}
+
+body:has(.product-hero) .find-your-luo .product-card-image img {
+  max-width: 220px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Product card title */
+body:has(.product-hero) .find-your-luo .product-card-title {
+  font-size: 20px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin: 0 0 15px;
+}
+
+/* Product card description */
+body:has(.product-hero) .find-your-luo .product-card-desc {
+  font-size: 16px;
+  font-family: var(--heading-font-family);
+  color: var(--color-deep-blue);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Card link wrapper — no underline */
+body:has(.product-hero) .find-your-luo .cards > ul > li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (width < 768px) {
+  body:has(.product-hero) .find-your-luo .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
+    border-right: none;
+    border-bottom: 1px solid rgba(0 10 119 / 10%);
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper h3 {
+    font-size: 32px;
+  }
 }
 
 /* Quality section (plain section after cards-container) - left-aligned like original */
