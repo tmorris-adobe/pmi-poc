@@ -171,8 +171,8 @@ function decorateProductHero(main) {
       const img = document.createElement('img');
       img.src = src;
       img.alt = currentImg ? currentImg.alt : '';
+      img.loading = 'eager';
       if (i === 0) img.classList.add('active');
-      if (i > 0) img.loading = 'lazy';
       carousel.appendChild(img);
     });
     leftCol.appendChild(carousel);
