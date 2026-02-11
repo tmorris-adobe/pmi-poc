@@ -4107,38 +4107,109 @@ main > .section.product-hero h1 {
   text-align: left;
 }
 
-/* Dosage cards list */
-main > .section.product-hero ul {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  list-style: none;
-  padding: 0;
+/* Dosage selector container */
+.dosage-selector {
   margin: 0 0 30px;
 }
 
-main > .section.product-hero ul li {
-  border: 1px solid #d0ccc4;
-  border-radius: 6px;
-  padding: 16px 24px;
-  min-width: 120px;
+.dosage-label {
+  font-size: 16px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+.dosage-row {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 20px;
+}
+
+.dosage-card {
+  border: 2px solid rgb(128 136 228);
+  border-radius: 3px;
+  padding: 19px 10px;
+  min-width: 138px;
   text-align: center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  cursor: default;
+  cursor: pointer;
+  position: relative;
+  background: var(--color-white);
+  transition: border-color 0.2s ease;
 }
 
-main > .section.product-hero ul li:hover {
+.dosage-card:hover {
   border-color: var(--color-deep-blue);
-  box-shadow: 0 2px 8px rgb(0 10 119 / 10%);
 }
 
-main > .section.product-hero ul li strong {
-  display: block;
+.dosage-card.active {
+  border-color: var(--color-deep-blue);
+}
+
+.dosage-card.active::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-deep-blue);
+  border-radius: 3px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.dosage-mg {
   font-size: 22px;
   font-family: var(--heading-font-family);
   font-weight: 700;
   color: var(--color-deep-blue);
   margin-bottom: 4px;
+}
+
+.dosage-desc {
+  font-size: 13px;
+  color: var(--color-deep-blue);
+  opacity: 0.7;
+}
+
+/* Order Luo button */
+.order-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 19px 25px;
+  background: rgb(1 207 201);
+  color: var(--color-white);
+  font-size: 23px;
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 0;
+  transition: background 0.2s ease;
+  margin: 0 0 10px;
+  position: relative;
+}
+
+.order-button:hover {
+  background: rgb(0 185 180);
+  color: var(--color-white);
+}
+
+.order-arrow {
+  position: absolute;
+  right: 20px;
+  font-size: 28px;
+}
+
+.dosage-error {
+  font-size: 13px;
+  color: #c62828;
+  margin-top: 4px;
 }
 
 /* "Don't have a medical document?" callout */

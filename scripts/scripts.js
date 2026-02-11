@@ -136,6 +136,86 @@ function decorateProductHero(main) {
 
   heroGrid.append(leftCol, rightCol);
   wrapper.appendChild(heroGrid);
+
+  // Transform dosage list into interactive selector cards
+  const dosageUl = rightCol.querySelector('ul');
+  if (dosageUl) {
+    const dosageContainer = document.createElement('div');
+    dosageContainer.className = 'dosage-selector';
+
+    // Find and preserve the "Select Your Dosage" label from markdown
+    const selectLabelP = [...rightCol.querySelectorAll('p')].find(
+      (p) => p.querySelector('strong') && (p.textContent.includes('Select') || p.textContent.includes('lectionnez')),
+    );
+    if (selectLabelP) {
+      const label = document.createElement('div');
+      label.className = 'dosage-label';
+      label.textContent = selectLabelP.textContent.trim();
+      dosageContainer.appendChild(label);
+    }
+
+    const dosageRow = document.createElement('div');
+    dosageRow.className = 'dosage-row';
+
+    dosageUl.querySelectorAll('li').forEach((li) => {
+      const card = document.createElement('div');
+      card.className = 'dosage-card';
+
+      const strong = li.querySelector('strong');
+      const mg = strong ? strong.textContent.trim() : '';
+      const desc = li.textContent.replace(mg, '').replace('—', '').trim();
+
+      const mgEl = document.createElement('div');
+      mgEl.className = 'dosage-mg';
+      mgEl.textContent = mg;
+
+      const descEl = document.createElement('div');
+      descEl.className = 'dosage-desc';
+      descEl.textContent = desc;
+
+      card.append(mgEl, descEl);
+      card.addEventListener('click', () => {
+        dosageRow.querySelectorAll('.dosage-card').forEach((c) => c.classList.remove('active'));
+        card.classList.add('active');
+        const orderBtn = dosageContainer.querySelector('.order-button');
+        if (orderBtn) orderBtn.classList.add('enabled');
+        const errorMsg = dosageContainer.querySelector('.dosage-error');
+        if (errorMsg) errorMsg.style.display = 'none';
+      });
+
+      dosageRow.appendChild(card);
+    });
+
+    dosageContainer.appendChild(dosageRow);
+
+    // Add Order button — detect language from URL path
+    const isFrench = window.location.pathname.includes('/ca-fr/');
+    const orderBtn = document.createElement('a');
+    orderBtn.href = 'https://www.auroramedical.com/pages/patients';
+    orderBtn.className = 'order-button';
+    orderBtn.innerHTML = `<span>${isFrench ? 'Commander Luo' : 'Order Luo'}</span><span class="order-arrow">→</span>`;
+    orderBtn.addEventListener('click', (e) => {
+      const hasActive = dosageRow.querySelector('.dosage-card.active');
+      if (!hasActive) {
+        e.preventDefault();
+        const errorMsg = dosageContainer.querySelector('.dosage-error');
+        if (errorMsg) errorMsg.style.display = 'block';
+      }
+    });
+    dosageContainer.appendChild(orderBtn);
+
+    // Add error message
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'dosage-error';
+    errorMsg.textContent = isFrench ? 'Sélectionnez votre dosage.' : 'Select your dosage first.';
+    errorMsg.style.display = 'none';
+    dosageContainer.appendChild(errorMsg);
+
+    // Replace the label paragraph and UL with the new selector
+    if (selectLabelP) selectLabelP.replaceWith(dosageContainer);
+    else dosageUl.before(dosageContainer);
+    dosageUl.remove();
+  }
 }
 
 /**
