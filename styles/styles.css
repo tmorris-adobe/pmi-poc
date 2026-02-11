@@ -3193,6 +3193,67 @@ main > .section.features .cards > ul > li:not(:has(strong)) picture {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Features on Product Pages — gradient background, white text, no borders
+   Scoped to pages with a .product-hero section
+   -------------------------------------------------------------------------- */
+body:has(.product-hero) main > .section.bg-even.features {
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center top;
+  padding: 110px 0 130px;
+}
+
+body:has(.product-hero) main > .section.features h3 {
+  font-size: 45px;
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+body:has(.product-hero) main > .section.features h3 strong {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+body:has(.product-hero) main > .section.features .cards > ul {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+body:has(.product-hero) main > .section.features .cards > ul > li {
+  background: transparent;
+  border: none;
+  padding: 0 20px;
+  aspect-ratio: auto;
+}
+
+body:has(.product-hero) main > .section.features .cards > ul > li strong {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+body:has(.product-hero) main > .section.features .cards > ul > li p {
+  color: var(--color-white);
+  font-size: 16px;
+}
+
+@media (width < 1024px) {
+  body:has(.product-hero) main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 768px) {
+  body:has(.product-hero) main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.product-hero) main > .section.features h3 {
+    font-size: 32px;
+  }
+}
+
 /* ==========================================================================
    FAQ Section Styles
    ========================================================================== */
@@ -3839,6 +3900,69 @@ main > .section.faq-index > div > ul > li a:hover::after {
 }
 
 /* ==========================================================================
+   Product Page Content Background
+   On original site, sections after features have a subtle gradient bg image
+   ========================================================================== */
+
+body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.faq-accordion):not(.gradient-cta):not(.metadata-container) {
+  background-image: url('/styles/backgrounds/big-gradient-bg.png');
+  background-size: cover;
+  background-position: center top;
+}
+
+/* Product page H2s - match original at 64px */
+body:has(.product-hero) main > .section h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 1.05;
+}
+
+body:has(.product-hero) main > .section h2 strong {
+  font-weight: 700;
+}
+
+/* Product page H3s - match original at 45px */
+body:has(.product-hero) main > .section h3 {
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+}
+
+/* Middle content sections - generous padding like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) {
+  padding: 100px 0 80px;
+}
+
+/* Quality section (plain section after cards-container) */
+body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) {
+  padding: 80px 40px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-deep-blue);
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
+@media (width < 768px) {
+  body:has(.product-hero) main > .section h2 {
+    font-size: 36px;
+  }
+
+  body:has(.product-hero) main > .section h3 {
+    font-size: 28px;
+  }
+}
+
+/* ==========================================================================
    Product Hero Section (product detail pages)
    ========================================================================== */
 
@@ -3851,11 +3975,11 @@ main > .section.product-hero {
 }
 
 main > .section.product-hero h1 {
-  font-size: 72px;
+  font-size: 90px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-deep-blue);
-  line-height: 1.05;
+  line-height: 1;
   margin: 0 0 16px;
 }
 
@@ -4019,44 +4143,56 @@ main > .section.steps .cards > ul > li {
   flex-direction: column;
 }
 
-/* Step number circle */
+/* Step number - large teal like original */
 main > .section.steps .cards > ul > li .step-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--color-deep-blue);
-  font-size: 20px;
+  font-size: 64px;
   font-family: var(--heading-font-family);
   font-weight: 700;
-  color: var(--color-deep-blue);
-  margin-bottom: 16px;
-  flex-shrink: 0;
+  color: var(--color-teal-text);
+  line-height: 1.2;
+  margin-bottom: 12px;
 }
 
 /* Step title */
 main > .section.steps .cards > ul > li .step-title {
-  font-size: 20px;
+  font-size: 32px;
   font-family: var(--heading-font-family);
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-deep-blue);
-  margin: 0 0 10px;
+  margin: 0 0 16px;
 }
 
 /* Step description */
 main > .section.steps .cards > ul > li .step-desc {
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.2;
   color: var(--color-deep-blue);
   margin: 0;
 }
 
-/* "Get started" button */
+/* "Get started" button - teal background like original */
 main > .section.steps .button-container {
   text-align: center;
   margin-top: 40px;
+}
+
+main > .section.steps .button-container a {
+  background: var(--color-teal-text);
+  color: var(--color-white);
+  border: none;
+  padding: 19px 60px 19px 25px;
+  font-size: 23px;
+  font-weight: 500;
+  border-radius: 0;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+main > .section.steps .button-container a:hover {
+  opacity: 0.9;
+  background: var(--color-teal-text);
+  color: var(--color-white);
 }
 
 @media (width < 900px) {
@@ -4080,26 +4216,27 @@ main > .section.steps .button-container {
    ========================================================================== */
 
 main > .section.faq-accordion {
-  background: linear-gradient(135deg, #00b4d8 0%, #2962ff 50%, #00b4d8 100%);
-  background-size: 200% 200%;
-  padding: 80px 40px 100px;
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center top;
+  padding: 73px 40px 94px;
   text-align: center;
   color: var(--color-white);
 }
 
 /* "FAQ" label */
 main > .section.faq-accordion h5 {
-  font-size: 20px;
+  font-size: 24px;
   font-family: var(--heading-font-family);
   font-weight: 700;
   color: var(--color-white);
   margin: 0 0 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: none;
+  letter-spacing: 0.1px;
 }
 
 main > .section.faq-accordion h2 {
-  font-size: 52px;
+  font-size: 64px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-white);
@@ -4126,10 +4263,10 @@ main > .section.faq-accordion summary {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 16px;
-  font-size: 22px;
+  padding: 30px 16px;
+  font-size: 32px;
   font-family: var(--heading-font-family);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-white);
   cursor: pointer;
   list-style: none;
@@ -4172,18 +4309,20 @@ main > .section.faq-accordion .button-container {
 main > .section.faq-accordion .button-container a {
   color: var(--color-deep-blue);
   background: var(--color-white);
-  border: 2px solid var(--color-white);
-  padding: 14px 32px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: 600;
+  border: none;
+  padding: 19px 60px 19px 25px;
+  border-radius: 0;
+  font-size: 23px;
+  font-weight: 500;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  display: inline-block;
+  transition: opacity 0.2s ease;
 }
 
 main > .section.faq-accordion .button-container a:hover {
-  background: transparent;
-  color: var(--color-white);
+  opacity: 0.9;
+  background: var(--color-white);
+  color: var(--color-deep-blue);
 }
 
 @media (width < 768px) {
