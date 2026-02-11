@@ -99,6 +99,46 @@ function fixAnchorLinks(main) {
 }
 
 /**
+ * Decorates product hero sections into a two-column layout:
+ * image on the left, text content on the right.
+ * @param {Element} main The main element
+ */
+function decorateProductHero(main) {
+  const heroSection = main.querySelector('.section.product-hero');
+  if (!heroSection) return;
+
+  const wrapper = heroSection.querySelector('.default-content-wrapper');
+  if (!wrapper) return;
+
+  // Find the product image (first img in the wrapper)
+  const imgParagraph = wrapper.querySelector('p > picture');
+  if (!imgParagraph) return;
+
+  const imgContainer = imgParagraph.closest('p');
+
+  // Create two-column structure
+  const heroGrid = document.createElement('div');
+  heroGrid.className = 'product-hero-grid';
+
+  const leftCol = document.createElement('div');
+  leftCol.className = 'product-hero-image';
+
+  const rightCol = document.createElement('div');
+  rightCol.className = 'product-hero-content';
+
+  // Move image to left column
+  leftCol.appendChild(imgContainer);
+
+  // Move all remaining children to right column
+  while (wrapper.firstChild) {
+    rightCol.appendChild(wrapper.firstChild);
+  }
+
+  heroGrid.append(leftCol, rightCol);
+  wrapper.appendChild(heroGrid);
+}
+
+/**
  * Decorates step cards in the "steps" section by extracting leading numbers
  * from bold titles and creating styled number + title elements.
  * @param {Element} main The main element
@@ -325,6 +365,7 @@ async function loadLazy(doc) {
   await loadSections(main);
 
   // Post-block-load decorations (run after block JS has processed the DOM)
+  decorateProductHero(main);
   decorateStepCards(main);
   decorateFaqAccordion(main);
 

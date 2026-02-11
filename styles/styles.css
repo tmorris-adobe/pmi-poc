@@ -4029,10 +4029,42 @@ body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-c
 
 main > .section.product-hero {
   background: var(--color-white);
-  padding: 140px 40px 60px;
+  padding: 80px 0 40px;
   text-align: center;
-  max-width: 800px;
+  max-width: none;
+  margin: 0;
+}
+
+/* Two-column hero grid */
+.product-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1320px;
   margin: 0 auto;
+  gap: 0;
+}
+
+.product-hero-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-hero-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+.product-hero-image img {
+  width: 100%;
+  max-width: 588px;
+  height: auto;
+  display: block;
+}
+
+.product-hero-content {
+  padding: 0 40px 0 20px;
+  text-align: center;
 }
 
 main > .section.product-hero h1 {
@@ -4041,11 +4073,11 @@ main > .section.product-hero h1 {
   font-weight: 400;
   color: var(--color-deep-blue);
   line-height: 1;
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 
 /* Subtitle line: "Vanilla mint flavor | 30 Lozenges | Flexible dosing" */
-main > .section.product-hero > div > p:first-of-type {
+.product-hero-content > p:first-of-type {
   font-size: 15px;
   font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
@@ -4055,7 +4087,7 @@ main > .section.product-hero > div > p:first-of-type {
 }
 
 /* Description paragraph */
-main > .section.product-hero > div > p:nth-of-type(2) {
+.product-hero-content > p:nth-of-type(2) {
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-deep-blue);
@@ -4064,7 +4096,7 @@ main > .section.product-hero > div > p:nth-of-type(2) {
 }
 
 /* "Select Your Dosage" label */
-main > .section.product-hero > div > p:nth-of-type(3) {
+.product-hero-content > p:nth-of-type(3) {
   font-size: 14px;
   font-family: var(--heading-font-family);
   font-weight: 700;
@@ -4072,6 +4104,7 @@ main > .section.product-hero > div > p:nth-of-type(3) {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 0 16px;
+  text-align: left;
 }
 
 /* Dosage cards list */
@@ -4129,8 +4162,20 @@ main > .section.product-hero h5 + p a {
 }
 
 @media (width < 768px) {
+  .product-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-hero-image {
+    max-height: 400px;
+  }
+
+  .product-hero-content {
+    padding: 20px;
+  }
+
   main > .section.product-hero {
-    padding: 120px 20px 40px;
+    padding: 80px 0 40px;
   }
 
   main > .section.product-hero h1 {

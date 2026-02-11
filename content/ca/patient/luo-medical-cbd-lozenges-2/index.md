@@ -1,5 +1,7 @@
 # Luo medical CBD lozenges
 
+![Luo CBD Tropical Fruit Lozenges](https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1344-1.png)
+
 Tropical fruit flavor | 30 Lozenges | Flexible dosing
 
 Luo CBD lozenges are an easy and convenient way to use medical cannabis – ideal for people who prefer a discreet tablet that dissolves in the mouth.
