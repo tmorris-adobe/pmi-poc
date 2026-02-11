@@ -4215,10 +4215,11 @@ body:has(.product-hero) .find-your-luo .cards > ul > li a {
 
 /* ==========================================================================
    Quality Standards Section — two-column: masked image left, text right
-   Matches original .copy-masked-image-section layout
+   Matches original .copy-masked-image-section > .container layout
+   Original: image fills left 50%, text centered vertically in right 50%
    ========================================================================== */
 body:has(.product-hero) main > .section.quality-standards {
-  padding: 80px max(40px, calc((100% - 1240px) / 2));
+  padding: 0 max(80px, calc((100% - 1280px) / 2)) 0 80px;
   text-align: left;
   max-width: none;
   margin: 0;
@@ -4229,9 +4230,10 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   align-items: center;
-  gap: 0 40px;
+  gap: 0 0;
   max-width: none;
   margin: 0;
+  padding: 0;
 }
 
 /* Image paragraph — column 1, spans all rows */
@@ -4240,12 +4242,11 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
   grid-row: 1 / span 3;
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child picture {
   display: block;
-  max-width: 350px;
   width: 100%;
 }
 
@@ -4259,8 +4260,14 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
 body:has(.product-hero) main > .section.quality-standards h2 {
   grid-column: 2;
   grid-row: 1;
-  margin: 0 0 0;
+  margin: 0;
+  padding-left: 60px;
   align-self: end;
+}
+
+/* "standards" bold text in teal like original */
+body:has(.product-hero) main > .section.quality-standards h2 strong {
+  color: var(--color-teal-text, #01cfc9);
 }
 
 /* Remove the h2::after pseudo since we have a real <hr> now */
@@ -4275,7 +4282,7 @@ body:has(.product-hero) main > .section.quality-standards hr {
   border: none;
   border-top: 1px solid var(--color-deep-blue);
   width: 147px;
-  margin: 21px 0;
+  margin: 21px 0 21px 60px;
 }
 
 /* Text paragraph — column 2, row 3 */
@@ -4288,6 +4295,7 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
   font-family: var(--heading-font-family);
   max-width: 530px;
   margin: 0;
+  padding-left: 60px;
   align-self: start;
 }
 
