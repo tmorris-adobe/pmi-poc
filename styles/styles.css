@@ -4006,7 +4006,7 @@ body:has(.product-hero) main > .section.dosing-layout {
   align-items: start;
   max-width: none;
   margin: 0;
-  padding: 100px max(40px, calc((100% - 1240px) / 2)) 0;
+  padding: 145px max(40px, calc((100% - 1240px) / 2)) 90px;
 }
 
 /* Text wrapper spans left column */
@@ -4080,7 +4080,7 @@ body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-contai
 @media (width < 900px) {
   body:has(.product-hero) main > .section.dosing-layout {
     grid-template-columns: 1fr;
-    padding: 60px 20px 0;
+    padding: 80px 20px 60px;
   }
 
   body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper {
@@ -4231,7 +4231,7 @@ body:has(.product-hero) .find-your-luo .cards > ul > li a {
    Original: image fills left 50%, text centered vertically in right 50%
    ========================================================================== */
 body:has(.product-hero) main > .section.quality-standards {
-  padding: 0 max(80px, calc((100% - 1280px) / 2)) 0 80px;
+  padding: 0 max(80px, calc((100% - 1280px) / 2)) 160px 80px;
   text-align: left;
   max-width: none;
   margin: 0;
