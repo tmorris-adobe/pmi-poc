@@ -4066,21 +4066,25 @@ main > .section.product-hero {
 /* Product image carousel */
 .product-image-carousel {
   position: relative;
-  overflow: hidden;
   width: 100%;
   max-width: 588px;
 }
 
-.product-image-track {
-  display: flex;
-  transition: transform 600ms ease;
-}
-
-.product-image-track img {
+.product-image-carousel img {
   width: 100%;
   max-width: 588px;
   height: auto;
-  flex-shrink: 0;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.product-image-carousel img.active {
+  opacity: 1;
+  position: relative;
 }
 
 .product-hero-content {

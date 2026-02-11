@@ -107,20 +107,30 @@ function fixAnchorLinks(main) {
 
 // Image sets per product — each dosage maps to a different product shot
 const PRODUCT_IMAGES = {
-  'Group-1343-1.png': [ // Vanilla Mint
+  'vanilla mint': [ // Vanilla Mint (EN + FR)
     'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1343-1.png',
     'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Frame-1371-1.png',
     'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1345.png',
   ],
-  'Group-1344-1.png': [ // Tropical Fruit
+  'vanille menthe': [ // Vanilla Mint FR alt text
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1343-1.png',
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Frame-1371-1.png',
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1345.png',
+  ],
+  'tropical fruit': [ // Tropical Fruit (EN + FR)
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1344-1.png',
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1346.png',
+  ],
+  'fruits tropicaux': [ // Tropical Fruit FR alt text
     'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1344-1.png',
     'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1346.png',
   ],
 };
 
-function getProductImages(currentSrc) {
-  const filename = currentSrc.split('/').pop();
-  return PRODUCT_IMAGES[filename] || [currentSrc];
+function getProductImages(altText) {
+  const alt = (altText || '').toLowerCase();
+  const match = Object.keys(PRODUCT_IMAGES).find((key) => alt.includes(key));
+  return match ? PRODUCT_IMAGES[match] : null;
 }
 
 function decorateProductHero(main) {
@@ -146,27 +156,25 @@ function decorateProductHero(main) {
   const rightCol = document.createElement('div');
   rightCol.className = 'product-hero-content';
 
-  // Build image carousel from dosage-specific images
+  // Build image carousel from dosage-specific images (match by alt text)
   const currentImg = imgContainer.querySelector('img');
-  const currentSrc = currentImg ? currentImg.src : '';
-  const pageImages = getProductImages(currentSrc);
+  const altText = currentImg ? currentImg.alt : '';
+  const pageImages = getProductImages(altText);
 
   // Remove original image from wrapper so it doesn't end up in rightCol
   imgContainer.remove();
 
-  if (pageImages.length > 1) {
+  if (pageImages && pageImages.length > 1) {
     const carousel = document.createElement('div');
     carousel.className = 'product-image-carousel';
-    const track = document.createElement('div');
-    track.className = 'product-image-track';
     pageImages.forEach((src, i) => {
       const img = document.createElement('img');
       img.src = src;
       img.alt = currentImg ? currentImg.alt : '';
+      if (i === 0) img.classList.add('active');
       if (i > 0) img.loading = 'lazy';
-      track.appendChild(img);
+      carousel.appendChild(img);
     });
-    carousel.appendChild(track);
     leftCol.appendChild(carousel);
   } else {
     leftCol.appendChild(imgContainer);
@@ -200,7 +208,7 @@ function decorateProductHero(main) {
     const dosageRow = document.createElement('div');
     dosageRow.className = 'dosage-row';
 
-    const imageTrack = leftCol.querySelector('.product-image-track');
+    const carouselImages = leftCol.querySelectorAll('.product-image-carousel img');
 
     dosageUl.querySelectorAll('li').forEach((li, index) => {
       const card = document.createElement('div');
@@ -226,10 +234,10 @@ function decorateProductHero(main) {
         if (orderBtn) orderBtn.classList.add('enabled');
         const errorMsg = dosageContainer.querySelector('.dosage-error');
         if (errorMsg) errorMsg.style.display = 'none';
-        // Slide image carousel to match dosage index
-        if (imageTrack) {
-          imageTrack.style.transform = `translateX(-${index * 100}%)`;
-        }
+        // Crossfade carousel to match dosage index
+        carouselImages.forEach((img, i) => {
+          img.classList.toggle('active', i === index);
+        });
       });
 
       dosageRow.appendChild(card);
