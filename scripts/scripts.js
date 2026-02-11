@@ -290,6 +290,74 @@ function decorateProductHero(main) {
 }
 
 /**
+ * Icon mapping for feature cards in the "Why choose Luo?" section.
+ * Maps feature title keywords (EN + FR) to icon URLs from the original site.
+ */
+const FEATURE_ICONS = {
+  ease: 'https://www.luomedical.com/ca/wp-content/uploads/2024/07/icon1-1.svg',
+  simplicité: 'https://www.luomedical.com/ca/wp-content/uploads/2024/07/icon1-1.svg',
+  quality: 'https://www.luomedical.com/ca/wp-content/uploads/2024/07/icon2-1.svg',
+  qualité: 'https://www.luomedical.com/ca/wp-content/uploads/2024/07/icon2-1.svg',
+  reliability: 'https://www.luomedical.com/ca/wp-content/uploads/2024/07/icon3-1.svg',
+  fiabilité: 'https://www.luomedical.com/ca/wp-content/uploads/2024/07/icon3-1.svg',
+  confidence: 'https://www.luomedical.com/ca/wp-content/uploads/2024/09/Luo_Icons_Healthcare_Provider.png',
+  confiance: 'https://www.luomedical.com/ca/wp-content/uploads/2024/09/Luo_Icons_Healthcare_Provider.png',
+};
+
+/**
+ * Decorates feature cards in the "features" section on product pages
+ * by adding icons and separating the title from the description text.
+ * @param {Element} main The main element
+ */
+function decorateFeatureCards(main) {
+  const featuresSection = main.querySelector('.section.features');
+  if (!featuresSection) return;
+
+  // Only apply on product pages
+  if (!main.querySelector('.section.product-hero')) return;
+
+  featuresSection.querySelectorAll('.cards li').forEach((li) => {
+    const body = li.querySelector('.cards-card-body') || li;
+    const strong = body.querySelector('strong');
+    if (!strong) return;
+
+    const title = strong.textContent.trim();
+    const paragraph = strong.closest('p');
+    if (!paragraph) return;
+
+    // Get description text (everything after the strong tag)
+    const descText = paragraph.textContent.replace(title, '').trim();
+
+    // Find matching icon by checking if title contains a known keyword
+    const titleLower = title.toLowerCase();
+    const iconKey = Object.keys(FEATURE_ICONS).find((key) => titleLower.includes(key));
+    const iconSrc = iconKey ? FEATURE_ICONS[iconKey] : null;
+
+    // Clear body and rebuild with icon + title + description
+    body.textContent = '';
+
+    if (iconSrc) {
+      const icon = document.createElement('img');
+      icon.src = iconSrc;
+      icon.alt = title;
+      icon.className = 'feature-icon';
+      icon.loading = 'eager';
+      body.appendChild(icon);
+    }
+
+    const titleEl = document.createElement('h4');
+    titleEl.className = 'feature-title';
+    titleEl.textContent = title;
+    body.appendChild(titleEl);
+
+    const descEl = document.createElement('p');
+    descEl.className = 'feature-desc';
+    descEl.textContent = descText;
+    body.appendChild(descEl);
+  });
+}
+
+/**
  * Decorates step cards in the "steps" section by extracting leading numbers
  * from bold titles and creating styled number + title elements.
  * @param {Element} main The main element
@@ -517,6 +585,7 @@ async function loadLazy(doc) {
 
   // Post-block-load decorations (run after block JS has processed the DOM)
   decorateProductHero(main);
+  decorateFeatureCards(main);
   decorateStepCards(main);
   decorateFaqAccordion(main);
 

@@ -3240,6 +3240,34 @@ body:has(.product-hero) main > .section.features .cards > ul > li {
   aspect-ratio: auto;
 }
 
+/* Feature icons */
+body:has(.product-hero) main > .section.features .cards > ul > li .feature-icon {
+  display: block;
+  width: 55px;
+  height: 57px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+/* Feature title (h4) */
+body:has(.product-hero) main > .section.features .cards > ul > li .feature-title {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--heading-font-family);
+  color: var(--color-white);
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+/* Feature description */
+body:has(.product-hero) main > .section.features .cards > ul > li .feature-desc {
+  color: var(--color-white);
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Fallback for strong (before JS runs) */
 body:has(.product-hero) main > .section.features .cards > ul > li strong {
   font-size: 32px;
   font-weight: 400;
