@@ -4228,18 +4228,17 @@ body:has(.product-hero) main > .section.quality-standards {
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  align-items: center;
-  gap: 0 0;
+  grid-template-rows: 1fr auto auto auto 1fr;
+  gap: 0;
   max-width: none;
   margin: 0;
   padding: 0;
 }
 
-/* Image paragraph — column 1, spans all rows */
+/* Image paragraph — column 1, spans all 5 rows */
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child {
   grid-column: 1;
-  grid-row: 1 / span 3;
+  grid-row: 1 / -1;
   margin: 0;
   display: flex;
   justify-content: flex-end;
@@ -4256,13 +4255,12 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
   display: block;
 }
 
-/* H2 heading — column 2, row 1 */
+/* H2 heading — column 2, row 2 */
 body:has(.product-hero) main > .section.quality-standards h2 {
   grid-column: 2;
-  grid-row: 1;
+  grid-row: 2;
   margin: 0;
   padding-left: 60px;
-  align-self: end;
 }
 
 /* "standards" bold text in teal like original */
@@ -4275,20 +4273,20 @@ body:has(.product-hero) main > .section.quality-standards h2::after {
   display: none;
 }
 
-/* HR separator — column 2, row 2 */
+/* HR separator — column 2, row 3 */
 body:has(.product-hero) main > .section.quality-standards hr {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 3;
   border: none;
   border-top: 1px solid var(--color-deep-blue);
   width: 147px;
   margin: 21px 0 21px 60px;
 }
 
-/* Text paragraph — column 2, row 3 */
+/* Text paragraph — column 2, row 4 */
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:last-of-type {
   grid-column: 2;
-  grid-row: 3;
+  grid-row: 4;
   font-size: 23px;
   line-height: 1.2;
   color: var(--color-deep-blue);
@@ -4296,7 +4294,6 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
   max-width: 530px;
   margin: 0;
   padding-left: 60px;
-  align-self: start;
 }
 
 @media (width < 768px) {
