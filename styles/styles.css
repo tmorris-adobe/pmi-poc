@@ -3790,6 +3790,7 @@ main > .section.gradient-cta {
   background-size: cover;
   background-position: 50% 0%;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
   padding: 60px 0 0;
   min-height: 660px;
@@ -3952,10 +3953,21 @@ body:has(.product-hero) main > .section {
   margin: 0;
 }
 
-body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.faq-accordion):not(.gradient-cta):not(.metadata-container) {
-  background-image: url('/styles/backgrounds/big-gradient-bg.png');
-  background-size: cover;
-  background-position: center top;
+/* Continuous gradient background on main — covers dosing through steps sections.
+   Hero and features sections have their own opaque backgrounds that cover this.
+   FAQ and CTA also have their own opaque backgrounds.
+   This prevents visible seams between adjacent sections sharing the same gradient. */
+body:has(.product-hero) main {
+  background: url('/styles/backgrounds/big-gradient-bg.png') center top / cover no-repeat;
+}
+
+/* Override bg-cream on product pages — let the main gradient show through */
+body:has(.product-hero) main > .section.bg-cream {
+  background: transparent;
+}
+
+body:has(.product-hero) main > .section.bg-cream::before {
+  display: none;
 }
 
 /* Product page H2s - match original at 64px */
@@ -4228,14 +4240,14 @@ body:has(.product-hero) main > .section.quality-standards {
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr auto auto auto 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
   gap: 0;
   max-width: none;
   margin: 0;
   padding: 0;
 }
 
-/* Image paragraph — column 1, spans all 5 rows */
+/* Image paragraph — column 1, spans all rows */
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child {
   grid-column: 1;
   grid-row: 1 / -1;
@@ -4261,6 +4273,7 @@ body:has(.product-hero) main > .section.quality-standards h2 {
   grid-row: 2;
   margin: 0;
   padding-left: 60px;
+  padding-bottom: 21px;
 }
 
 /* "standards" bold text in teal like original */
@@ -4268,25 +4281,19 @@ body:has(.product-hero) main > .section.quality-standards h2 strong {
   color: var(--color-teal-text, #01cfc9);
 }
 
-/* Remove the h2::after pseudo since we have a real <hr> now */
+/* Decorative line after heading (replaces <hr> which causes section splits in EDS) */
 body:has(.product-hero) main > .section.quality-standards h2::after {
-  display: none;
-}
-
-/* HR separator — column 2, row 3 */
-body:has(.product-hero) main > .section.quality-standards hr {
-  grid-column: 2;
-  grid-row: 3;
-  border: none;
-  border-top: 1px solid var(--color-deep-blue);
+  content: '';
+  display: block;
   width: 147px;
-  margin: 21px 0 21px 60px;
+  border-top: 1px solid var(--color-deep-blue);
+  margin-top: 21px;
 }
 
-/* Text paragraph — column 2, row 4 */
+/* Text paragraph — column 2, row 3 */
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:last-of-type {
   grid-column: 2;
-  grid-row: 4;
+  grid-row: 3;
   font-size: 23px;
   line-height: 1.2;
   color: var(--color-deep-blue);
@@ -4772,6 +4779,7 @@ main > .section.faq-accordion {
   background: url('/styles/backgrounds/footer-gradient-background.jpg');
   background-size: cover;
   background-position: center top;
+  background-attachment: fixed;
   padding: 73px 40px 94px;
   text-align: center;
   color: var(--color-white);
