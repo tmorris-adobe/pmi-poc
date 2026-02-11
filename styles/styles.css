@@ -4004,14 +4004,15 @@ body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper
   margin-right: auto;
 }
 
-/* Bottles image spans right column, overlapping both rows */
+/* Bottles image in right column, row 1 only */
 body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles {
   grid-column: 2;
-  grid-row: 1 / 3;
+  grid-row: 1;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: 0;
+  overflow: hidden;
 }
 
 body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles img {
@@ -4023,9 +4024,9 @@ body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles img {
 body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
   grid-column: 1 / -1;
   grid-row: 2;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 40px 53px 80px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -4092,25 +4093,27 @@ body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-contai
    -------------------------------------------------------------------------- */
 
 /* "Find Your Luo" heading - centered, deep blue, teal underline */
-body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper h3 {
+body:has(.product-hero) .find-your-luo > h3 {
   font-size: 45px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-deep-blue);
   text-align: center;
-  margin: 60px 0 20px;
+  margin: 0 0 var(--spacing-l);
+  padding-bottom: 20px;
+  position: relative;
 }
 
-body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper h3::after {
+body:has(.product-hero) .find-your-luo > h3::after {
   content: '';
   display: block;
-  width: 147px;
-  height: 2px;
-  background: var(--color-teal-text, #01cfc9);
+  width: 184px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
   margin: 20px auto 0;
 }
 
-/* Find Your Luo cards - two-column centered layout */
+/* Find Your Luo cards - match .section.products styling from patient landing page */
 body:has(.product-hero) .find-your-luo .cards > ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -4121,26 +4124,34 @@ body:has(.product-hero) .find-your-luo .cards > ul {
 }
 
 body:has(.product-hero) .find-your-luo .cards > ul > li {
-  background: linear-gradient(180deg, rgba(255 255 255 / 80%) 0%, rgba(245 240 235 / 50%) 100%);
+  background: transparent;
   border: none;
   border-radius: 0;
-  padding: 60px 40px;
+  padding: 109px 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   aspect-ratio: unset;
 }
 
-/* Subtle vertical divider between cards */
+/* Vertical dividers between cards */
 body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
-  border-right: 1px solid rgba(0 10 119 / 10%);
+  border-right: 1px solid #eee8da;
+}
+
+body:has(.product-hero) .find-your-luo .cards > ul > li:last-child {
+  border-left: 1px solid #eee8da;
 }
 
 /* Product card bottle image */
 body:has(.product-hero) .find-your-luo .product-card-image {
-  margin-bottom: 30px;
+  margin-bottom: var(--spacing-m);
 }
 
 body:has(.product-hero) .find-your-luo .product-card-image img {
-  max-width: 220px;
+  width: 268px;
+  max-width: 100%;
   height: auto;
   margin: 0 auto;
   display: block;
@@ -4148,24 +4159,30 @@ body:has(.product-hero) .find-your-luo .product-card-image img {
 
 /* Product card title */
 body:has(.product-hero) .find-your-luo .product-card-title {
+  display: block;
   font-size: 20px;
   font-family: var(--heading-font-family);
   font-weight: 700;
   color: var(--color-deep-blue);
-  margin: 0 0 15px;
+  margin-bottom: var(--spacing-s);
 }
 
 /* Product card description */
 body:has(.product-hero) .find-your-luo .product-card-desc {
-  font-size: 16px;
+  font-size: var(--body-font-size-s);
   font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
+  max-width: 380px;
+  padding: 0 var(--spacing-m);
 }
 
-/* Card link wrapper — no underline */
+/* Card link wrapper — make it fill and no underline */
 body:has(.product-hero) .find-your-luo .cards > ul > li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
   color: inherit;
 }
@@ -4175,12 +4192,21 @@ body:has(.product-hero) .find-your-luo .cards > ul > li a {
     grid-template-columns: 1fr;
   }
 
-  body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
-    border-right: none;
-    border-bottom: 1px solid rgba(0 10 119 / 10%);
+  body:has(.product-hero) .find-your-luo .cards > ul > li {
+    padding: 60px var(--spacing-m);
   }
 
-  body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper h3 {
+  body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
+    border-right: none;
+    border-bottom: 1px solid #eee8da;
+  }
+
+  body:has(.product-hero) .find-your-luo .cards > ul > li:last-child {
+    border-left: none;
+    border-top: 1px solid #eee8da;
+  }
+
+  body:has(.product-hero) .find-your-luo > h3 {
     font-size: 32px;
   }
 }

@@ -421,6 +421,13 @@ function decorateDosingSection(main) {
   // Add class for CSS targeting
   cardsWrapper.classList.add('find-your-luo');
 
+  // Move the "Find Your Luo" h3 from text wrapper into cards wrapper
+  // so it spans full width and is centered above both product cards
+  const findH3 = textWrapper.querySelector('h3');
+  if (findH3) {
+    cardsWrapper.prepend(findH3);
+  }
+
   cardsWrapper.querySelectorAll('.cards li').forEach((li) => {
     const body = li.querySelector('.cards-card-body') || li;
     const strong = body.querySelector('strong');
