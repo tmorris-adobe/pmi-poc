@@ -99,6 +99,85 @@ function fixAnchorLinks(main) {
 }
 
 /**
+ * Decorates step cards in the "steps" section by extracting leading numbers
+ * from bold titles and creating styled number + title elements.
+ * @param {Element} main The main element
+ */
+function decorateStepCards(main) {
+  main.querySelectorAll('.section.steps .cards li').forEach((li) => {
+    // Cards block wraps content in .cards-card-body > p > strong
+    const strong = li.querySelector('.cards-card-body strong') || li.querySelector('strong');
+    if (!strong) return;
+
+    const text = strong.textContent;
+    const match = text.match(/^(\d+)\.\s*(.*)/);
+    if (!match) return;
+
+    const [, num, title] = match;
+    const paragraph = strong.closest('p');
+    const descText = paragraph ? paragraph.textContent.replace(text, '').trim() : '';
+
+    // Create step number circle
+    const numEl = document.createElement('div');
+    numEl.className = 'step-number';
+    numEl.textContent = num;
+
+    // Create step title
+    const titleEl = document.createElement('div');
+    titleEl.className = 'step-title';
+    titleEl.textContent = title;
+
+    // Create step description
+    const descEl = document.createElement('p');
+    descEl.className = 'step-desc';
+    descEl.textContent = descText;
+
+    // Clear the li completely and rebuild
+    li.textContent = '';
+    li.className = '';
+    li.append(numEl, titleEl, descEl);
+  });
+}
+
+/**
+ * Decorates FAQ accordion sections by converting bulleted lists into
+ * details/summary accordion elements.
+ * @param {Element} main The main element
+ */
+function decorateFaqAccordion(main) {
+  main.querySelectorAll('.section.faq-accordion').forEach((section) => {
+    const ul = section.querySelector('ul');
+    if (!ul) return;
+
+    const accordion = document.createElement('div');
+    accordion.className = 'faq-accordion-list';
+
+    ul.querySelectorAll('li').forEach((li) => {
+      const strong = li.querySelector('strong');
+      if (!strong) return;
+
+      const question = strong.textContent;
+      // Get answer text: everything after the strong tag
+      const fullText = li.textContent;
+      const answer = fullText.replace(question, '').trim();
+
+      const details = document.createElement('details');
+      const summary = document.createElement('summary');
+      summary.textContent = question;
+
+      const answerEl = document.createElement('div');
+      answerEl.className = 'faq-answer';
+      answerEl.textContent = answer;
+
+      details.append(summary, answerEl);
+      accordion.append(details);
+    });
+
+    ul.replaceWith(accordion);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -244,6 +323,10 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+
+  // Post-block-load decorations (run after block JS has processed the DOM)
+  decorateStepCards(main);
+  decorateFaqAccordion(main);
 
   // Initialize scroll animations
   initScrollAnimations(main);

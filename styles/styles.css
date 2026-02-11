@@ -3762,6 +3762,446 @@ main > .section.gradient-cta.section-animated h2 {
 }
 
 /* ==========================================================================
+   FAQ Index Section (medical-cannabis-guide landing page)
+   ========================================================================== */
+
+main > .section.faq-index {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 140px 40px 80px;
+  text-align: center;
+}
+
+main > .section.faq-index h1 {
+  font-size: 72px;
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  color: var(--color-deep-blue);
+  line-height: 1.05;
+  margin: 0 0 40px;
+}
+
+main > .section.faq-index > div > ul {
+  list-style: none;
+  padding: 0;
+  margin: 40px auto 0;
+  max-width: 700px;
+  text-align: left;
+}
+
+main > .section.faq-index > div > ul > li {
+  border-bottom: 1px solid #eee8da;
+  padding: 0;
+}
+
+main > .section.faq-index > div > ul > li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 10px;
+  color: var(--color-deep-blue);
+  text-decoration: none;
+  font-size: 18px;
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+main > .section.faq-index > div > ul > li a::after {
+  content: '\2192';
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-left: 16px;
+  transition: transform 0.2s ease;
+}
+
+main > .section.faq-index > div > ul > li a:hover {
+  color: var(--color-teal);
+}
+
+main > .section.faq-index > div > ul > li a:hover::after {
+  transform: translateX(4px);
+}
+
+@media (width < 768px) {
+  main > .section.faq-index {
+    padding: 120px 20px 60px;
+  }
+
+  main > .section.faq-index h1 {
+    font-size: 42px;
+  }
+
+  main > .section.faq-index > div > ul > li a {
+    font-size: 16px;
+    padding: 18px 6px;
+  }
+}
+
+/* ==========================================================================
+   Product Hero Section (product detail pages)
+   ========================================================================== */
+
+main > .section.product-hero {
+  background: var(--color-white);
+  padding: 140px 40px 60px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+main > .section.product-hero h1 {
+  font-size: 72px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 1.05;
+  margin: 0 0 16px;
+}
+
+/* Subtitle line: "Vanilla mint flavor | 30 Lozenges | Flexible dosing" */
+main > .section.product-hero > div > p:first-of-type {
+  font-size: 15px;
+  font-family: var(--heading-font-family);
+  color: var(--color-deep-blue);
+  letter-spacing: 0.5px;
+  margin: 0 0 24px;
+  opacity: 0.7;
+}
+
+/* Description paragraph */
+main > .section.product-hero > div > p:nth-of-type(2) {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-deep-blue);
+  max-width: 520px;
+  margin: 0 auto 30px;
+}
+
+/* "Select Your Dosage" label */
+main > .section.product-hero > div > p:nth-of-type(3) {
+  font-size: 14px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+}
+
+/* Dosage cards list */
+main > .section.product-hero ul {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+main > .section.product-hero ul li {
+  border: 1px solid #d0ccc4;
+  border-radius: 6px;
+  padding: 16px 24px;
+  min-width: 120px;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+
+main > .section.product-hero ul li:hover {
+  border-color: var(--color-deep-blue);
+  box-shadow: 0 2px 8px rgb(0 10 119 / 10%);
+}
+
+main > .section.product-hero ul li strong {
+  display: block;
+  font-size: 22px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin-bottom: 4px;
+}
+
+/* "Don't have a medical document?" callout */
+main > .section.product-hero h5 {
+  font-size: 16px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin: 30px 0 8px;
+}
+
+main > .section.product-hero h5 + p {
+  font-size: 14px;
+  color: var(--color-deep-blue);
+  margin: 0;
+}
+
+main > .section.product-hero h5 + p a {
+  color: var(--color-teal);
+  text-decoration: underline;
+}
+
+@media (width < 768px) {
+  main > .section.product-hero {
+    padding: 120px 20px 40px;
+  }
+
+  main > .section.product-hero h1 {
+    font-size: 42px;
+  }
+
+  main > .section.product-hero ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  main > .section.product-hero ul li {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ==========================================================================
+   Steps Section (ordering steps on product pages)
+   ========================================================================== */
+
+main > .section.steps {
+  text-align: center;
+}
+
+main > .section.steps > div:first-child {
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+main > .section.steps h2 {
+  font-size: 52px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin: 0 0 12px;
+}
+
+main > .section.steps > div:first-child > p {
+  font-size: 16px;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+}
+
+/* Horizontal rule after intro text */
+main > .section.steps > div:first-child > p + hr,
+main > .section.steps > div:first-child hr {
+  border: none;
+  border-top: 1px solid var(--color-deep-blue);
+  width: 184px;
+  margin: 0 auto;
+}
+
+/* Step cards grid */
+main > .section.steps .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+main > .section.steps .cards > ul > li {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 30px 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Step number circle */
+main > .section.steps .cards > ul > li .step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--color-deep-blue);
+  font-size: 20px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+/* Step title */
+main > .section.steps .cards > ul > li .step-title {
+  font-size: 20px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin: 0 0 10px;
+}
+
+/* Step description */
+main > .section.steps .cards > ul > li .step-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-deep-blue);
+  margin: 0;
+}
+
+/* "Get started" button */
+main > .section.steps .button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+@media (width < 900px) {
+  main > .section.steps .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  main > .section.steps .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  main > .section.steps h2 {
+    font-size: 36px;
+  }
+}
+
+/* ==========================================================================
+   FAQ Accordion Section (product page FAQ with gradient background)
+   ========================================================================== */
+
+main > .section.faq-accordion {
+  background: linear-gradient(135deg, #00b4d8 0%, #2962ff 50%, #00b4d8 100%);
+  background-size: 200% 200%;
+  padding: 80px 40px 100px;
+  text-align: center;
+  color: var(--color-white);
+}
+
+/* "FAQ" label */
+main > .section.faq-accordion h5 {
+  font-size: 20px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+main > .section.faq-accordion h2 {
+  font-size: 52px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-white);
+  margin: 0 0 40px;
+  line-height: 1.1;
+}
+
+/* Accordion container */
+main > .section.faq-accordion .faq-accordion-list {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+main > .section.faq-accordion details {
+  border-bottom: 1px solid rgb(255 255 255 / 30%);
+}
+
+main > .section.faq-accordion details:first-child {
+  border-top: 1px solid rgb(255 255 255 / 30%);
+}
+
+main > .section.faq-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px;
+  font-size: 22px;
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  color: var(--color-white);
+  cursor: pointer;
+  list-style: none;
+  transition: opacity 0.2s ease;
+}
+
+main > .section.faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+main > .section.faq-accordion summary::after {
+  content: '+';
+  font-size: 28px;
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-left: 16px;
+  transition: transform 0.3s ease;
+}
+
+main > .section.faq-accordion details[open] summary::after {
+  content: '\2212';
+}
+
+main > .section.faq-accordion summary:hover {
+  opacity: 0.8;
+}
+
+main > .section.faq-accordion details .faq-answer {
+  padding: 0 16px 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 90%);
+}
+
+/* "View all FAQs" link */
+main > .section.faq-accordion .button-container {
+  margin-top: 30px;
+}
+
+main > .section.faq-accordion .button-container a {
+  color: var(--color-deep-blue);
+  background: var(--color-white);
+  border: 2px solid var(--color-white);
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+main > .section.faq-accordion .button-container a:hover {
+  background: transparent;
+  color: var(--color-white);
+}
+
+@media (width < 768px) {
+  main > .section.faq-accordion {
+    padding: 60px 20px 80px;
+  }
+
+  main > .section.faq-accordion h2 {
+    font-size: 36px;
+  }
+
+  main > .section.faq-accordion summary {
+    font-size: 18px;
+    padding: 20px 10px;
+  }
+}
+
+/* ==========================================================================
    Footer Mark Decoration
    ========================================================================== */
 
