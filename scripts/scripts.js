@@ -103,6 +103,25 @@ function fixAnchorLinks(main) {
  * image on the left, text content on the right.
  * @param {Element} main The main element
  */
+
+// Image sets per product — each dosage maps to a different product shot
+const PRODUCT_IMAGES = {
+  'Group-1343-1.png': [ // Vanilla Mint
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1343-1.png',
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Frame-1371-1.png',
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1345.png',
+  ],
+  'Group-1344-1.png': [ // Tropical Fruit
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1344-1.png',
+    'https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1346.png',
+  ],
+};
+
+function getProductImages(currentSrc) {
+  const filename = currentSrc.split('/').pop();
+  return PRODUCT_IMAGES[filename] || [currentSrc];
+}
+
 function decorateProductHero(main) {
   const heroSection = main.querySelector('.section.product-hero');
   if (!heroSection) return;
@@ -126,8 +145,31 @@ function decorateProductHero(main) {
   const rightCol = document.createElement('div');
   rightCol.className = 'product-hero-content';
 
-  // Move image to left column
-  leftCol.appendChild(imgContainer);
+  // Build image carousel from dosage-specific images
+  const currentImg = imgContainer.querySelector('img');
+  const currentSrc = currentImg ? currentImg.src : '';
+  const pageImages = getProductImages(currentSrc);
+
+  // Remove original image from wrapper so it doesn't end up in rightCol
+  imgContainer.remove();
+
+  if (pageImages.length > 1) {
+    const carousel = document.createElement('div');
+    carousel.className = 'product-image-carousel';
+    const track = document.createElement('div');
+    track.className = 'product-image-track';
+    pageImages.forEach((src, i) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = currentImg ? currentImg.alt : '';
+      if (i > 0) img.loading = 'lazy';
+      track.appendChild(img);
+    });
+    carousel.appendChild(track);
+    leftCol.appendChild(carousel);
+  } else {
+    leftCol.appendChild(imgContainer);
+  }
 
   // Move all remaining children to right column
   while (wrapper.firstChild) {
@@ -157,7 +199,9 @@ function decorateProductHero(main) {
     const dosageRow = document.createElement('div');
     dosageRow.className = 'dosage-row';
 
-    dosageUl.querySelectorAll('li').forEach((li) => {
+    const imageTrack = leftCol.querySelector('.product-image-track');
+
+    dosageUl.querySelectorAll('li').forEach((li, index) => {
       const card = document.createElement('div');
       card.className = 'dosage-card';
 
@@ -181,6 +225,10 @@ function decorateProductHero(main) {
         if (orderBtn) orderBtn.classList.add('enabled');
         const errorMsg = dosageContainer.querySelector('.dosage-error');
         if (errorMsg) errorMsg.style.display = 'none';
+        // Slide image carousel to match dosage index
+        if (imageTrack) {
+          imageTrack.style.transform = `translateX(-${index * 100}%)`;
+        }
       });
 
       dosageRow.appendChild(card);

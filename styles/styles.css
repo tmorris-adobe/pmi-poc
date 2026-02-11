@@ -4062,6 +4062,26 @@ main > .section.product-hero {
   display: block;
 }
 
+/* Product image carousel */
+.product-image-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 588px;
+}
+
+.product-image-track {
+  display: flex;
+  transition: transform 600ms ease;
+}
+
+.product-image-track img {
+  width: 100%;
+  max-width: 588px;
+  height: auto;
+  flex-shrink: 0;
+}
+
 .product-hero-content {
   padding: 0 40px 0 20px;
   text-align: center;
@@ -4206,9 +4226,10 @@ a.order-button::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(1 207 201);
+  background-color: rgb(0 190 185);
   color: var(--color-white);
   font-size: 20px;
+  border-right: 1px solid rgba(255 255 255 / 30%);
   transform: translateX(-100%);
   transition: transform 600ms ease;
 }
@@ -4224,6 +4245,7 @@ a.order-button:hover::before {
 }
 
 a.order-button:hover .order-arrow {
+  transform: translateX(80px) translateY(-50%);
   opacity: 0;
 }
 
@@ -4233,7 +4255,7 @@ a.order-button:hover .order-arrow {
   top: 50%;
   transform: translateY(-50%);
   font-size: 28px;
-  transition: opacity 400ms ease;
+  transition: transform 600ms ease, opacity 400ms ease;
 }
 
 .dosage-error {
