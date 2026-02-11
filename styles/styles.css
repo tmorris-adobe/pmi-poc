@@ -4200,6 +4200,7 @@ main > .section.product-hero h1 {
 a.order-button {
   display: block;
   width: 100%;
+  box-sizing: border-box;
   padding: 19px 60px 19px 25px;
   background: rgb(1 207 201);
   color: var(--color-white);
