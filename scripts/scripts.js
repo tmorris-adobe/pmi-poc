@@ -167,14 +167,16 @@ function decorateProductHero(main) {
   if (pageImages && pageImages.length > 1) {
     const carousel = document.createElement('div');
     carousel.className = 'product-image-carousel';
-    pageImages.forEach((src, i) => {
+    const track = document.createElement('div');
+    track.className = 'product-image-track';
+    pageImages.forEach((src) => {
       const img = document.createElement('img');
       img.src = src;
       img.alt = currentImg ? currentImg.alt : '';
       img.loading = 'eager';
-      if (i === 0) img.classList.add('active');
-      carousel.appendChild(img);
+      track.appendChild(img);
     });
+    carousel.appendChild(track);
     leftCol.appendChild(carousel);
   } else {
     leftCol.appendChild(imgContainer);
@@ -208,7 +210,9 @@ function decorateProductHero(main) {
     const dosageRow = document.createElement('div');
     dosageRow.className = 'dosage-row';
 
-    const carouselImages = leftCol.querySelectorAll('.product-image-carousel img');
+    const imageTrack = leftCol.querySelector('.product-image-track');
+    const trackImages = leftCol.querySelectorAll('.product-image-track img');
+    let currentSlide = 0;
 
     dosageUl.querySelectorAll('li').forEach((li, index) => {
       const card = document.createElement('div');
@@ -234,10 +238,15 @@ function decorateProductHero(main) {
         if (orderBtn) orderBtn.classList.add('enabled');
         const errorMsg = dosageContainer.querySelector('.dosage-error');
         if (errorMsg) errorMsg.style.display = 'none';
-        // Crossfade carousel to match dosage index
-        carouselImages.forEach((img, i) => {
-          img.classList.toggle('active', i === index);
-        });
+        // Slide track + fade out the outgoing image
+        if (imageTrack && index !== currentSlide) {
+          trackImages[currentSlide].classList.add('leaving');
+          imageTrack.style.transform = `translateX(-${index * 100}%)`;
+          setTimeout(() => {
+            trackImages[currentSlide].classList.remove('leaving');
+            currentSlide = index;
+          }, 500);
+        }
       });
 
       dosageRow.appendChild(card);
