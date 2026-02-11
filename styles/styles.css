@@ -4213,35 +4213,82 @@ body:has(.product-hero) .find-your-luo .cards > ul > li a {
   }
 }
 
-/* Quality section (plain section after cards-container) - left-aligned like original */
-body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) {
-  padding: 80px 0;
+/* ==========================================================================
+   Quality Standards Section — two-column: masked image left, text right
+   Matches original .copy-masked-image-section layout
+   ========================================================================== */
+body:has(.product-hero) main > .section.quality-standards {
+  padding: 80px max(40px, calc((100% - 1240px) / 2));
   text-align: left;
   max-width: none;
   margin: 0;
 }
 
-body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) > .default-content-wrapper {
-  max-width: 530px;
-  margin-left: 93px;
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+  gap: 0 40px;
+  max-width: none;
+  margin: 0;
 }
 
-body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) h2::after {
-  content: '';
+/* Image paragraph — column 1, spans all rows */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child picture {
   display: block;
-  width: 147px;
-  height: 2px;
-  background: var(--color-deep-blue);
-  margin-top: 21px;
-  margin-bottom: 21px;
+  max-width: 350px;
+  width: 100%;
 }
 
-body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) p {
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* H2 heading — column 2, row 1 */
+body:has(.product-hero) main > .section.quality-standards h2 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0 0 0;
+  align-self: end;
+}
+
+/* Remove the h2::after pseudo since we have a real <hr> now */
+body:has(.product-hero) main > .section.quality-standards h2::after {
+  display: none;
+}
+
+/* HR separator — column 2, row 2 */
+body:has(.product-hero) main > .section.quality-standards hr {
+  grid-column: 2;
+  grid-row: 2;
+  border: none;
+  border-top: 1px solid var(--color-deep-blue);
+  width: 147px;
+  margin: 21px 0;
+}
+
+/* Text paragraph — column 2, row 3 */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:last-of-type {
+  grid-column: 2;
+  grid-row: 3;
   font-size: 23px;
   line-height: 1.2;
   color: var(--color-deep-blue);
+  font-family: var(--heading-font-family);
   max-width: 530px;
-  margin: 0 0 20px;
+  margin: 0;
+  align-self: start;
 }
 
 @media (width < 768px) {
