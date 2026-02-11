@@ -4073,7 +4073,7 @@ main > .section.product-hero {
 
 .product-image-track {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.7s ease;
 }
 
 .product-image-track img {
@@ -4082,7 +4082,7 @@ main > .section.product-hero {
   height: auto;
   flex-shrink: 0;
   opacity: 1;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.6s ease;
 }
 
 .product-image-track img.leaving {

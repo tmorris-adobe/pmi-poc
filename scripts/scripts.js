@@ -238,14 +238,19 @@ function decorateProductHero(main) {
         if (orderBtn) orderBtn.classList.add('enabled');
         const errorMsg = dosageContainer.querySelector('.dosage-error');
         if (errorMsg) errorMsg.style.display = 'none';
-        // Slide track + fade out the outgoing image
+        // Fade out first, then slide to new image
         if (imageTrack && index !== currentSlide) {
-          trackImages[currentSlide].classList.add('leaving');
-          imageTrack.style.transform = `translateX(-${index * 100}%)`;
+          const prev = currentSlide;
+          trackImages[prev].classList.add('leaving');
+          // Delay the slide so fade is mostly done before new image arrives
           setTimeout(() => {
-            trackImages[currentSlide].classList.remove('leaving');
+            imageTrack.style.transform = `translateX(-${index * 100}%)`;
+          }, 300);
+          // Clean up after both transitions complete
+          setTimeout(() => {
+            trackImages[prev].classList.remove('leaving');
             currentSlide = index;
-          }, 500);
+          }, 1000);
         }
       });
 
