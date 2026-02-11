@@ -4615,19 +4615,28 @@ main > .section.steps > div:first-child > p:last-child::after {
 main > .section.steps .cards > ul {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 40px;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 main > .section.steps .cards > ul > li {
-  background: var(--color-white);
-  border-radius: 12px;
-  padding: 30px 24px;
+  background: transparent;
+  border-radius: 0;
+  padding: 40px 40px 30px;
   text-align: left;
   display: flex;
   flex-direction: column;
+  position: relative;
+  /* Notched shape: top-left and bottom-right corners cut 30px */
+  clip-path: polygon(
+    30px 0, 100% 0, 100% calc(100% - 30px),
+    calc(100% - 30px) calc(100% - 30px), calc(100% - 30px) 100%,
+    0 100%, 0 30px, 30px 30px
+  );
+  /* 1px deep blue border that follows the clipped shape */
+  box-shadow: inset 0 0 0 1px var(--color-deep-blue);
 }
 
 /* Step number - large teal like original */
