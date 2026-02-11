@@ -3208,6 +3208,18 @@ body:has(.product-hero) main > .section.features h3 {
   font-size: 45px;
   font-weight: 400;
   color: var(--color-white);
+  line-height: 54px;
+  margin-bottom: 20px;
+}
+
+/* Horizontal rule separator after "Why choose Luo?" heading */
+body:has(.product-hero) main > .section.features h3::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-white);
+  margin-top: 20px;
 }
 
 body:has(.product-hero) main > .section.features h3 strong {
@@ -3231,11 +3243,13 @@ body:has(.product-hero) main > .section.features .cards > ul > li strong {
   font-size: 32px;
   font-weight: 400;
   color: var(--color-white);
+  line-height: 1;
 }
 
 body:has(.product-hero) main > .section.features .cards > ul > li p {
   color: var(--color-white);
-  font-size: 16px;
+  font-size: 23px;
+  line-height: 1.2;
 }
 
 @media (width < 1024px) {
@@ -3904,6 +3918,11 @@ main > .section.faq-index > div > ul > li a:hover::after {
    On original site, sections after features have a subtle gradient bg image
    ========================================================================== */
 
+/* Remove default section margins on product pages - sections flow seamlessly */
+body:has(.product-hero) main > .section {
+  margin: 0;
+}
+
 body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.faq-accordion):not(.gradient-cta):not(.metadata-container) {
   background-image: url('/styles/backgrounds/big-gradient-bg.png');
   background-size: cover;
@@ -3936,20 +3955,62 @@ body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-contai
   padding: 100px 0 80px;
 }
 
-/* Quality section (plain section after cards-container) */
+/* Dosing section text wrapper - constrain to left half like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper {
+  max-width: 530px;
+  margin-left: 93px;
+  margin-right: auto;
+}
+
+/* Dosing section paragraphs - 23px like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper p {
+  font-size: 23px;
+  line-height: 1.2;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+  font-family: var(--heading-font-family);
+}
+
+/* Dosing section H2 horizontal rule (separator after heading) */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin-top: 21px;
+  margin-bottom: 21px;
+}
+
+/* Quality section (plain section after cards-container) - left-aligned like original */
 body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) {
-  padding: 80px 40px;
-  text-align: center;
-  max-width: 900px;
-  margin: 0 auto;
+  padding: 80px 0;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+}
+
+body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) > .default-content-wrapper {
+  max-width: 530px;
+  margin-left: 93px;
+}
+
+body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin-top: 21px;
+  margin-bottom: 21px;
 }
 
 body:has(.product-hero) main > .section.bg-even.features ~ .section:not(.cards-container):not(.bg-cream):not(.faq-accordion):not(.gradient-cta):not(.metadata-container):not(.bg-even):not(.product-hero) p {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 23px;
+  line-height: 1.2;
   color: var(--color-deep-blue);
-  max-width: 700px;
-  margin: 20px auto 0;
+  max-width: 530px;
+  margin: 0 0 20px;
 }
 
 @media (width < 768px) {
@@ -4094,34 +4155,47 @@ main > .section.product-hero h5 + p a {
 
 main > .section.steps {
   text-align: center;
+  padding: 0 0 119px;
 }
 
 main > .section.steps > div:first-child {
   max-width: 700px;
-  margin: 0 auto 40px;
+  margin: 0 auto 50px;
 }
 
 main > .section.steps h2 {
-  font-size: 52px;
+  font-size: 64px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-deep-blue);
-  margin: 0 0 12px;
+  margin: 0 0 20px;
+  line-height: 1;
 }
 
 main > .section.steps > div:first-child > p {
-  font-size: 16px;
+  font-size: 23px;
+  line-height: 1.5;
   color: var(--color-deep-blue);
-  margin: 0 0 20px;
+  margin: 0 0 30px;
 }
 
-/* Horizontal rule after intro text */
+/* Horizontal rule after intro text or generated via CSS */
 main > .section.steps > div:first-child > p + hr,
 main > .section.steps > div:first-child hr {
   border: none;
   border-top: 1px solid var(--color-deep-blue);
   width: 184px;
   margin: 0 auto;
+}
+
+/* Auto-generated separator after subtext if no hr present */
+main > .section.steps > div:first-child > p:last-child::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin: 30px auto 0;
 }
 
 /* Step cards grid */
@@ -4149,8 +4223,8 @@ main > .section.steps .cards > ul > li .step-number {
   font-family: var(--heading-font-family);
   font-weight: 700;
   color: var(--color-teal-text);
-  line-height: 1.2;
-  margin-bottom: 12px;
+  line-height: 96px;
+  margin-bottom: 40px;
 }
 
 /* Step title */
@@ -4159,6 +4233,7 @@ main > .section.steps .cards > ul > li .step-title {
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-deep-blue);
+  line-height: 1;
   margin: 0 0 16px;
 }
 
@@ -4167,7 +4242,7 @@ main > .section.steps .cards > ul > li .step-desc {
   font-size: 16px;
   line-height: 1.2;
   color: var(--color-deep-blue);
-  margin: 0;
+  margin: 0 0 20px;
 }
 
 /* "Get started" button - teal background like original */
@@ -4187,6 +4262,10 @@ main > .section.steps .button-container a {
   text-decoration: none;
   display: inline-block;
   transition: opacity 0.2s ease;
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 21px) 50%;
+  background-size: 19px 16px;
 }
 
 main > .section.steps .button-container a:hover {
@@ -4230,18 +4309,19 @@ main > .section.faq-accordion h5 {
   font-family: var(--heading-font-family);
   font-weight: 700;
   color: var(--color-white);
-  margin: 0 0 8px;
+  margin: 0 0 12px;
   text-transform: none;
   letter-spacing: 0.1px;
 }
 
-main > .section.faq-accordion h2 {
+main > .section.faq-accordion h2,
+body:has(.product-hero) main > .section.faq-accordion h2 {
   font-size: 64px;
   font-family: var(--heading-font-family);
   font-weight: 400;
   color: var(--color-white);
-  margin: 0 0 40px;
-  line-height: 1.1;
+  margin: 0 0 80px;
+  line-height: 1;
 }
 
 /* Accordion container */
@@ -4317,6 +4397,10 @@ main > .section.faq-accordion .button-container a {
   text-decoration: none;
   display: inline-block;
   transition: opacity 0.2s ease;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 21px) 50%;
+  background-size: 19px 16px;
 }
 
 main > .section.faq-accordion .button-container a:hover {
