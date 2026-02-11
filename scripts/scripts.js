@@ -1,3 +1,4 @@
+// Updated: product hero decoration, dosage cards, image carousel, order button
 import {
   buildBlock,
   loadHeader,
