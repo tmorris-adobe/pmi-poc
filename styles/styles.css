@@ -3980,19 +3980,21 @@ body:has(.product-hero) main > .section h3 {
 }
 
 /* Middle content sections - generous padding like original */
-body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) {
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps):not(.dosing-layout) {
   padding: 100px 0 80px;
 }
 
 /* Dosing section two-column layout: text left, bottles right */
+/* Section is full-width so background gradient extends to viewport edges.
+   Content is centered via responsive padding-inline. */
 body:has(.product-hero) main > .section.dosing-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   align-items: start;
-  max-width: 1320px;
-  margin: 0 auto;
-  padding: 100px 40px 0;
+  max-width: none;
+  margin: 0;
+  padding: 100px max(40px, calc((100% - 1240px) / 2)) 0;
 }
 
 /* Text wrapper spans left column */
