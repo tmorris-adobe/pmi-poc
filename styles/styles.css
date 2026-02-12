@@ -3871,7 +3871,7 @@ main > .section.gradient-cta.section-animated h2 {
    ========================================================================== */
 
 main > .section.faq-index {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 140px 40px 80px;
   text-align: center;
@@ -3883,52 +3883,97 @@ main > .section.faq-index h1 {
   font-weight: 500;
   color: var(--color-deep-blue);
   line-height: 1.05;
-  margin: 0 0 40px;
+  margin: 0 0 20px;
 }
 
-main > .section.faq-index > div > ul {
+/* Subtitle paragraph */
+main > .section.faq-index > div > p {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--color-deep-blue);
+  margin: 0 auto 40px;
+  max-width: 600px;
+}
+
+/* FAQ cards grid */
+main > .section.faq-index .cards.faq-cards > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px 24px;
   list-style: none;
   padding: 0;
-  margin: 40px auto 0;
-  max-width: 700px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Individual card */
+main > .section.faq-index .cards.faq-cards > ul > li {
+  background: #f2eee3;
+  border-radius: 0 30px 0 30px;
+  border: none;
+  padding: 0;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  min-height: 350px;
+}
+
+main > .section.faq-index .cards.faq-cards > ul > li:hover {
+  box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
+}
+
+/* Card link wrapper */
+main > .section.faq-index .cards.faq-cards .cards-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 45px 28px 40px;
+}
+
+/* Card body */
+main > .section.faq-index .cards.faq-cards .cards-card-body {
+  margin: 0;
+}
+
+/* Category badge */
+main > .section.faq-index .cards.faq-cards .cards-card-body p strong {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-white);
+  background: var(--color-deep-blue);
+  padding: 14px 18px;
+  border-radius: 5px;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+/* Title text */
+main > .section.faq-index .cards.faq-cards .cards-card-body p .cards-link-text {
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--heading-font-family);
+  color: var(--color-deep-blue);
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+
+/* Excerpt paragraph */
+main > .section.faq-index .cards.faq-cards .cards-card-body p {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--color-deep-blue);
   text-align: left;
 }
 
-main > .section.faq-index > div > ul > li {
-  border-bottom: 1px solid #eee8da;
-  padding: 0;
+/* Responsive */
+@media (width < 900px) {
+  main > .section.faq-index .cards.faq-cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-main > .section.faq-index > div > ul > li a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 22px 10px;
-  color: var(--color-deep-blue);
-  text-decoration: none;
-  font-size: 18px;
-  font-family: var(--heading-font-family);
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-main > .section.faq-index > div > ul > li a::after {
-  content: '\2192';
-  font-size: 20px;
-  flex-shrink: 0;
-  margin-left: 16px;
-  transition: transform 0.2s ease;
-}
-
-main > .section.faq-index > div > ul > li a:hover {
-  color: var(--color-teal);
-}
-
-main > .section.faq-index > div > ul > li a:hover::after {
-  transform: translateX(4px);
-}
-
-@media (width < 768px) {
+@media (width < 600px) {
   main > .section.faq-index {
     padding: 120px 20px 60px;
   }
@@ -3937,9 +3982,8 @@ main > .section.faq-index > div > ul > li a:hover::after {
     font-size: 42px;
   }
 
-  main > .section.faq-index > div > ul > li a {
-    font-size: 16px;
-    padding: 18px 6px;
+  main > .section.faq-index .cards.faq-cards > ul {
+    grid-template-columns: 1fr;
   }
 }
 
