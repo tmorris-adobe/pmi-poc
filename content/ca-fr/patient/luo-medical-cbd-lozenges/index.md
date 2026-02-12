@@ -1,5 +1,7 @@
 # Pastilles de CBD médicinal Luo
 
+![Pastilles de CBD Luo Vanille Menthe](https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1343-1.png)
+
 Saveur menthe-vanille | 30 pastilles | Souplesse posologique
 
 Luo : des pastilles orales discrètes, et faciles à transporter et à utiliser.

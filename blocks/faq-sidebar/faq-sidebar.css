@@ -74,11 +74,11 @@
 @media (min-width: 900px) {
   main > .section.faq-detail {
     display: grid;
-    grid-template-columns: 380px 1fr;
+    grid-template-columns: 420px 1fr;
     gap: 0 40px;
-    max-width: 1200px;
+    max-width: 1320px;
     margin: 0 auto;
-    padding: 160px 40px 60px;
+    padding: 160px 80px 60px;
     align-items: start;
   }
 

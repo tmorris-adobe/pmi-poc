@@ -1,6 +1,7 @@
 /*
  * Luo Medical Design System
  * Migrated from https://www.luomedical.com/
+ * Updated: product-hero, faq-accordion, steps, dosage cards, image carousel, order button
  */
 
 :root {
@@ -2203,6 +2204,29 @@ main > .section.faq-detail > .default-content-wrapper:last-of-type > p:last-of-t
   text-decoration: underline;
 }
 
+/* Native HTML table styling in FAQ content */
+main > .section.faq-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--color-deep-blue);
+}
+
+main > .section.faq-detail table thead tr {
+  background: #eae2d1;
+  font-weight: 700;
+}
+
+main > .section.faq-detail table th,
+main > .section.faq-detail table td {
+  padding: 13px 10px;
+  border: 2px solid #f4f0e8;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+}
+
 /* Table block styling (type-of-medical-cannabis / preparation-de-cannabis-medicinal) */
 main > .section.faq-detail [class$="-wrapper"]:has(.block) {
   max-width: 740px;
@@ -3170,6 +3194,109 @@ main > .section.features .cards > ul > li:not(:has(strong)) picture {
   }
 }
 
+/* --------------------------------------------------------------------------
+   Features on Product Pages — gradient background, white text, no borders
+   Scoped to pages with a .product-hero section
+   -------------------------------------------------------------------------- */
+body:has(.product-hero) main > .section.bg-even.features {
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center top;
+  padding: 110px 0 130px;
+}
+
+body:has(.product-hero) main > .section.features h3 {
+  font-size: 45px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 54px;
+  margin-bottom: 20px;
+}
+
+/* Horizontal rule separator after "Why choose Luo?" heading */
+body:has(.product-hero) main > .section.features h3::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-white);
+  margin-top: 20px;
+}
+
+body:has(.product-hero) main > .section.features h3 strong {
+  color: var(--color-white);
+  font-weight: 700;
+}
+
+body:has(.product-hero) main > .section.features .cards > ul {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+body:has(.product-hero) main > .section.features .cards > ul > li {
+  background: transparent;
+  border: none;
+  padding: 0 20px;
+  aspect-ratio: auto;
+}
+
+/* Feature icons */
+body:has(.product-hero) main > .section.features .cards > ul > li .feature-icon {
+  display: block;
+  width: 55px;
+  height: 57px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+/* Feature title (h4) */
+body:has(.product-hero) main > .section.features .cards > ul > li .feature-title {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--heading-font-family);
+  color: var(--color-white);
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+/* Feature description */
+body:has(.product-hero) main > .section.features .cards > ul > li .feature-desc {
+  color: var(--color-white);
+  font-size: 23px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Fallback for strong (before JS runs) */
+body:has(.product-hero) main > .section.features .cards > ul > li strong {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+body:has(.product-hero) main > .section.features .cards > ul > li p {
+  color: var(--color-white);
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+@media (width < 1024px) {
+  body:has(.product-hero) main > .section.features .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 768px) {
+  body:has(.product-hero) main > .section.features .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.product-hero) main > .section.features h3 {
+    font-size: 32px;
+  }
+}
+
 /* ==========================================================================
    FAQ Section Styles
    ========================================================================== */
@@ -3663,6 +3790,7 @@ main > .section.gradient-cta {
   background-size: cover;
   background-position: 50% 0%;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   margin: 0;
   padding: 60px 0 0;
   min-height: 660px;
@@ -3735,6 +3863,1244 @@ main > .section.gradient-cta.section-animated h2 {
 
   main > .section.gradient-cta h2 {
     font-size: 83px;
+  }
+}
+
+/* ==========================================================================
+   FAQ Index Section (medical-cannabis-guide landing page)
+   ========================================================================== */
+
+main > .section.faq-index {
+  background: #f7f3ed;
+  padding: 200px 20px 60px;
+  text-align: center;
+}
+
+main > .section.faq-index h1 {
+  font-size: 96px;
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  color: var(--color-deep-blue);
+  line-height: 96px;
+  margin: 5px auto 20px;
+  max-width: 924px;
+}
+
+/* Subtitle paragraph */
+main > .section.faq-index > div > p {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--color-deep-blue);
+  margin: 10px auto 40px;
+  max-width: 510px;
+}
+
+/* FAQ cards grid */
+main > .section.faq-index .cards.faq-cards > ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px 24px;
+  list-style: none;
+  padding: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Individual card */
+main > .section.faq-index .cards.faq-cards > ul > li {
+  background: #f2eee3;
+  border-radius: 0 30px 0 30px;
+  border: none;
+  padding: 45px 28px 40px;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+  min-height: 380px;
+}
+
+main > .section.faq-index .cards.faq-cards > ul > li:hover {
+  box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
+}
+
+/* Category badge */
+main > .section.faq-index .cards.faq-cards .cards-card-body p strong:first-child {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-white);
+  background: var(--color-deep-blue);
+  padding: 14px 18px;
+  border-radius: 5px;
+  margin-bottom: 24px;
+}
+
+/* Title text */
+main > .section.faq-index .cards.faq-cards .cards-card-body p .cards-link-text {
+  display: block;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 32px;
+  margin-bottom: 16px;
+}
+
+/* Excerpt paragraph */
+main > .section.faq-index .cards.faq-cards .cards-card-body p {
+  font-size: 16px;
+  line-height: 22.4px;
+  color: var(--color-deep-blue);
+  text-align: left;
+}
+
+/* Responsive */
+@media (width < 900px) {
+  main > .section.faq-index {
+    padding: 120px 20px 60px;
+  }
+
+  main > .section.faq-index h1 {
+    font-size: 64px;
+    line-height: 1.05;
+  }
+
+  main > .section.faq-index .cards.faq-cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  main > .section.faq-index {
+    padding: 100px 20px 60px;
+  }
+
+  main > .section.faq-index h1 {
+    font-size: 42px;
+  }
+
+  main > .section.faq-index .cards.faq-cards > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Product Page Content Background
+   On original site, sections after features have a subtle gradient bg image
+   ========================================================================== */
+
+/* Remove default section margins on product pages - sections flow seamlessly */
+body:has(.product-hero) main > .section {
+  margin: 0;
+}
+
+/* Continuous gradient background on main — covers dosing through steps sections.
+   Hero and features sections have their own opaque backgrounds that cover this.
+   FAQ and CTA also have their own opaque backgrounds.
+   This prevents visible seams between adjacent sections sharing the same gradient. */
+body:has(.product-hero) main {
+  background: url('/styles/backgrounds/big-gradient-bg.png') center top / cover no-repeat;
+}
+
+/* Override bg-cream on product pages — let the main gradient show through */
+body:has(.product-hero) main > .section.bg-cream {
+  background: transparent;
+}
+
+body:has(.product-hero) main > .section.bg-cream::before {
+  display: none;
+}
+
+/* Product page H2s - match original at 64px */
+body:has(.product-hero) main > .section h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 1.05;
+}
+
+body:has(.product-hero) main > .section h2 strong {
+  font-weight: 700;
+}
+
+/* Product page H3s - match original at 45px */
+body:has(.product-hero) main > .section h3 {
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+}
+
+/* Middle content sections - generous padding like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps):not(.dosing-layout) {
+  padding: 100px 0 80px;
+}
+
+/* Dosing section two-column layout: text left, bottles right */
+/* Section is full-width so background gradient extends to viewport edges.
+   Content is centered via responsive padding-inline. */
+body:has(.product-hero) main > .section.dosing-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  max-width: none;
+  margin: 0;
+  padding: 145px max(40px, calc((100% - 1240px) / 2)) 90px;
+}
+
+/* Text wrapper spans left column */
+body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper {
+  grid-column: 1;
+  grid-row: 1;
+  max-width: 530px;
+  margin-left: 53px;
+  margin-right: auto;
+}
+
+/* Bottles image in right column, row 1 only */
+body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0;
+  overflow: hidden;
+}
+
+body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Cards wrapper spans both columns below */
+body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  max-width: none;
+  margin: 0;
+  padding: 60px 0 0;
+  width: 100%;
+}
+
+/* Product card bottle images - match patient page styling */
+body:has(.product-hero) main > .section.dosing-layout .cards > ul > li img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+/* Dosing section text wrapper - fallback for non-dosing-layout */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps):not(.dosing-layout) > .default-content-wrapper {
+  max-width: 530px;
+  margin-left: 93px;
+  margin-right: auto;
+}
+
+/* Dosing section paragraphs - 23px like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper p {
+  font-size: 23px;
+  line-height: 1.2;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+  font-family: var(--heading-font-family);
+}
+
+/* H2 strong text (product name) in teal like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper h2 strong {
+  color: var(--color-teal-text, #01cfc9);
+}
+
+/* Dosing section H2 horizontal rule — teal like original */
+body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps) > .default-content-wrapper h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-teal-text, #01cfc9);
+  margin-top: 21px;
+  margin-bottom: 21px;
+}
+
+/* Mobile: stack columns */
+@media (width < 900px) {
+  body:has(.product-hero) main > .section.dosing-layout {
+    grid-template-columns: 1fr;
+    padding: 80px 20px 60px;
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .default-content-wrapper {
+    margin-left: 0;
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .dosing-bottles {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 400px;
+    margin: 30px auto;
+  }
+
+  body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 40px 0 60px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   "Find Your Luo" sub-section within dosing section
+   Centered heading with teal underline, product cards with bottle images
+   -------------------------------------------------------------------------- */
+
+/* "Find Your Luo" heading - centered, deep blue, teal underline */
+body:has(.product-hero) .find-your-luo > h3 {
+  font-size: 45px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  text-align: center;
+  margin: 0 0 var(--spacing-l);
+  padding-bottom: 20px;
+  position: relative;
+}
+
+body:has(.product-hero) .find-your-luo > h3::after {
+  content: '';
+  display: block;
+  width: 184px;
+  height: 1px;
+  background-color: var(--color-deep-blue);
+  margin: 20px auto 0;
+}
+
+/* Find Your Luo cards - match .section.products styling from patient landing page */
+body:has(.product-hero) .find-your-luo .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body:has(.product-hero) .find-your-luo .cards > ul > li {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 109px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  aspect-ratio: unset;
+}
+
+/* Vertical dividers between cards */
+body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
+  border-right: 1px solid #eee8da;
+}
+
+body:has(.product-hero) .find-your-luo .cards > ul > li:last-child {
+  border-left: 1px solid #eee8da;
+}
+
+/* Product card bottle image */
+body:has(.product-hero) .find-your-luo .product-card-image {
+  margin-bottom: var(--spacing-m);
+}
+
+body:has(.product-hero) .find-your-luo .product-card-image img {
+  width: 268px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Product card title */
+body:has(.product-hero) .find-your-luo .product-card-title {
+  display: block;
+  font-size: 20px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin-bottom: var(--spacing-s);
+}
+
+/* Product card description */
+body:has(.product-hero) .find-your-luo .product-card-desc {
+  font-size: var(--body-font-size-s);
+  font-family: var(--heading-font-family);
+  color: var(--color-deep-blue);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 380px;
+  padding: 0 var(--spacing-m);
+}
+
+/* Card link wrapper — make it fill and no underline */
+body:has(.product-hero) .find-your-luo .cards > ul > li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (width < 768px) {
+  body:has(.product-hero) .find-your-luo .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  body:has(.product-hero) .find-your-luo .cards > ul > li {
+    padding: 60px var(--spacing-m);
+  }
+
+  body:has(.product-hero) .find-your-luo .cards > ul > li:first-child {
+    border-right: none;
+    border-bottom: 1px solid #eee8da;
+  }
+
+  body:has(.product-hero) .find-your-luo .cards > ul > li:last-child {
+    border-left: none;
+    border-top: 1px solid #eee8da;
+  }
+
+  body:has(.product-hero) .find-your-luo > h3 {
+    font-size: 32px;
+  }
+}
+
+/* ==========================================================================
+   Quality Standards Section — two-column: masked image left, text right
+   Matches original .copy-masked-image-section > .container layout
+   Original: image fills left 50%, text centered vertically in right 50%
+   ========================================================================== */
+body:has(.product-hero) main > .section.quality-standards {
+  padding: 0 80px;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+  position: relative;
+}
+
+/* Grid layout: image left, text right vertically centered */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
+  column-gap: 80px;
+  max-width: 1415px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Image paragraph — column 1, spans all rows, drives section height via aspect-ratio */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  margin: 0;
+  position: relative;
+  aspect-ratio: 627.5 / 851;
+}
+
+/* Starburst decoration on quality image — matches original luo-symbol positioning */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: -36px;
+  width: 72px;
+  height: 72px;
+  background-image: url('/icons/luo-symbol.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+}
+
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  display: block;
+}
+
+/* H2 heading — column 2, vertically centered */
+body:has(.product-hero) main > .section.quality-standards h2 {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 0;
+  padding-left: 50px;
+  padding-bottom: 21px;
+}
+
+/* "standards" bold text in teal like original */
+body:has(.product-hero) main > .section.quality-standards h2 strong {
+  color: var(--color-teal-text, #01cfc9);
+}
+
+/* Decorative line after heading (replaces <hr> which causes section splits in EDS) */
+body:has(.product-hero) main > .section.quality-standards h2::after {
+  content: '';
+  display: block;
+  width: 147px;
+  border-top: 1px solid var(--color-deep-blue);
+  margin-top: 21px;
+}
+
+/* Text paragraph — column 2, below heading */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:last-of-type {
+  grid-column: 2;
+  grid-row: 3;
+  font-size: 23px;
+  line-height: 1.2;
+  color: var(--color-deep-blue);
+  font-family: var(--heading-font-family);
+  max-width: 530px;
+  margin: 0;
+  padding-left: 50px;
+}
+
+@media (width < 768px) {
+  body:has(.product-hero) main > .section h2 {
+    font-size: 36px;
+  }
+
+  body:has(.product-hero) main > .section h3 {
+    font-size: 28px;
+  }
+
+  /* Quality standards: single-column stack on mobile */
+  body:has(.product-hero) main > .section.quality-standards {
+    padding: 70px 0;
+  }
+
+  body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 0 20px;
+  }
+
+  body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child {
+    grid-column: 1;
+    grid-row: auto;
+    aspect-ratio: auto;
+  }
+
+  body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child::before {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  body:has(.product-hero) main > .section.quality-standards h2 {
+    grid-column: 1;
+    grid-row: auto;
+    font-size: 32px;
+    line-height: 32px;
+    padding-left: 0;
+    padding-top: 30px;
+  }
+
+  body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:last-of-type {
+    grid-column: 1;
+    grid-row: auto;
+    padding-left: 0;
+    max-width: none;
+  }
+}
+
+/* ==========================================================================
+   Product Hero Section (product detail pages)
+   ========================================================================== */
+
+main > .section.product-hero {
+  background: var(--color-white);
+  padding: 80px 0 80px;
+  text-align: center;
+  max-width: none;
+  margin: 0;
+}
+
+/* Two-column hero grid */
+.product-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1320px;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.product-hero-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-hero-image p {
+  margin: 0;
+  line-height: 0;
+}
+
+.product-hero-image img {
+  width: 100%;
+  max-width: 588px;
+  height: auto;
+  display: block;
+}
+
+/* Product image carousel */
+.product-image-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 588px;
+}
+
+.product-image-track {
+  display: flex;
+  transition: transform 0.7s ease;
+}
+
+.product-image-track img {
+  width: 100%;
+  max-width: 588px;
+  height: auto;
+  flex-shrink: 0;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.product-image-track img.leaving {
+  opacity: 0;
+}
+
+.product-hero-content {
+  padding: 0 40px 0 20px;
+  text-align: center;
+}
+
+main > .section.product-hero h1 {
+  font-size: 90px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 1;
+  margin: 0 0 20px;
+}
+
+/* Subtitle line: "Vanilla mint flavor | 30 Lozenges | Flexible dosing" */
+.product-hero-content > p:first-of-type {
+  font-size: 15px;
+  font-family: var(--heading-font-family);
+  color: var(--color-deep-blue);
+  letter-spacing: 0.5px;
+  margin: 0 0 24px;
+  opacity: 0.7;
+}
+
+/* Description paragraph */
+.product-hero-content > p:nth-of-type(2) {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-deep-blue);
+  max-width: 520px;
+  margin: 0 auto 30px;
+}
+
+/* "Select Your Dosage" label */
+.product-hero-content > p:nth-of-type(3) {
+  font-size: 14px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+/* Dosage selector container */
+.dosage-selector {
+  margin: 0 0 30px;
+}
+
+.dosage-label {
+  font-size: 16px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin: 0 0 16px;
+  text-align: left;
+}
+
+.dosage-row {
+  display: flex;
+  gap: 16px;
+  margin: 0 0 20px;
+}
+
+.dosage-card {
+  border: 2px solid rgb(128 136 228);
+  border-radius: 3px;
+  padding: 19px 10px;
+  min-width: 138px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  background: var(--color-white);
+  transition: border-color 0.2s ease;
+}
+
+.dosage-card:hover {
+  border-color: var(--color-deep-blue);
+}
+
+.dosage-card.active {
+  border-color: var(--color-deep-blue);
+}
+
+.dosage-card.active::after {
+  content: '';
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-deep-blue);
+  border-radius: 3px;
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+}
+
+.dosage-mg {
+  font-size: 22px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin-bottom: 4px;
+}
+
+.dosage-desc {
+  font-size: 13px;
+  color: var(--color-deep-blue);
+  opacity: 0.7;
+}
+
+/* Order Luo button */
+a.order-button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 19px 60px 19px 25px;
+  background: rgb(1 207 201);
+  color: var(--color-white);
+  font-size: 23px;
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 0;
+  margin: 0 0 10px;
+  position: relative;
+  /* Visible overflow allows ::before arrow panel to appear outside the button */
+  overflow: visible;
+  /* Button shifts right on hover - synced with arrow panel */
+  transition: margin-left 400ms ease-out;
+}
+
+/* Hidden arrow panel - positioned outside the button to the left */
+a.order-button::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: rgb(0 190 185);
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+/* Right arrow on button */
+a.order-button::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+a.order-button:hover {
+  margin-left: 35px;
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+a.order-button:hover::before {
+  opacity: 1;
+}
+
+a.order-button:hover::after {
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+.dosage-error {
+  font-size: 13px;
+  color: #c62828;
+  margin-top: 4px;
+}
+
+/* "Don't have a medical document?" callout */
+main > .section.product-hero h5 {
+  font-size: 16px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-deep-blue);
+  margin: 30px 0 8px;
+}
+
+main > .section.product-hero h5 + p {
+  font-size: 14px;
+  color: var(--color-deep-blue);
+  margin: 0;
+}
+
+main > .section.product-hero h5 + p a {
+  color: var(--color-teal);
+  text-decoration: underline;
+}
+
+@media (width < 768px) {
+  .product-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-hero-image {
+    max-height: 400px;
+  }
+
+  .product-hero-content {
+    padding: 20px;
+  }
+
+  main > .section.product-hero {
+    padding: 80px 0 40px;
+  }
+
+  main > .section.product-hero h1 {
+    font-size: 42px;
+  }
+
+  main > .section.product-hero ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  main > .section.product-hero ul li {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ==========================================================================
+   Steps Section (ordering steps on product pages)
+   ========================================================================== */
+
+main > .section.steps {
+  text-align: center;
+  padding: 60px 0 119px;
+}
+
+main > .section.steps > div:first-child {
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+main > .section.steps h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+  line-height: 1;
+}
+
+main > .section.steps > div:first-child > p {
+  font-size: 23px;
+  line-height: 1.5;
+  color: var(--color-deep-blue);
+  margin: 0 0 30px;
+}
+
+/* Horizontal rule after intro text or generated via CSS */
+main > .section.steps > div:first-child > p + hr,
+main > .section.steps > div:first-child hr {
+  border: none;
+  border-top: 1px solid var(--color-deep-blue);
+  width: 184px;
+  margin: 0 auto;
+}
+
+/* Auto-generated separator after subtext if no hr present */
+main > .section.steps > div:first-child > p:last-child::after {
+  content: '';
+  display: block;
+  width: 147px;
+  height: 2px;
+  background: var(--color-deep-blue);
+  margin: 30px auto 0;
+}
+
+/* Step cards grid */
+main > .section.steps .cards > ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+main > .section.steps .cards > ul > li {
+  background: transparent;
+  border-radius: 0;
+  padding: 40px 40px 30px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* Notched shape: top-left and bottom-right corners cut 30px */
+  clip-path: polygon(
+    30px 0, 100% 0, 100% calc(100% - 30px),
+    calc(100% - 30px) calc(100% - 30px), calc(100% - 30px) 100%,
+    0 100%, 0 30px, 30px 30px
+  );
+  /* 1px deep blue border that follows the clipped shape */
+  box-shadow: inset 0 0 0 1px var(--color-deep-blue);
+}
+
+/* Step number - large teal like original */
+main > .section.steps .cards > ul > li .step-number {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-teal-text);
+  line-height: 96px;
+  margin-bottom: 40px;
+}
+
+/* Step title */
+main > .section.steps .cards > ul > li .step-title {
+  font-size: 32px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-deep-blue);
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+/* Step description */
+main > .section.steps .cards > ul > li .step-desc {
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color-deep-blue);
+  margin: 0 0 20px;
+}
+
+/* "Get started" button - teal background like original */
+main > .section.steps .button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+main > .section.steps .button-container a {
+  position: relative;
+  display: inline-block;
+  background-color: var(--color-teal-text);
+  color: var(--color-white);
+  border: none;
+  padding: 19px 60px 19px 25px;
+  font-size: 23px;
+  font-weight: 500;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  overflow: visible;
+  white-space: normal;
+  transition: margin-left 400ms ease-out;
+}
+
+/* Hidden arrow panel - slides in from left */
+main > .section.steps .button-container a::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-teal-text);
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+/* Arrow on right side of button */
+main > .section.steps .button-container a::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+/* Hover - button shifts right, left panel appears, right arrow exits */
+main > .section.steps .button-container a:hover {
+  margin-left: 35px;
+  background-color: var(--color-teal-text);
+  color: var(--color-white);
+}
+
+main > .section.steps .button-container a:hover::before {
+  opacity: 1;
+}
+
+main > .section.steps .button-container a:hover::after {
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+@media (width < 900px) {
+  main > .section.steps .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 600px) {
+  main > .section.steps .cards > ul {
+    grid-template-columns: 1fr;
+  }
+
+  main > .section.steps h2 {
+    font-size: 36px;
+  }
+}
+
+/* ==========================================================================
+   FAQ Accordion Section (product page FAQ with gradient background)
+   ========================================================================== */
+
+main > .section.faq-accordion {
+  background: url('/styles/backgrounds/footer-gradient-background.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  padding: 73px 40px 94px;
+  text-align: center;
+  color: var(--color-white);
+}
+
+/* "FAQ" label */
+main > .section.faq-accordion h5 {
+  font-size: 24px;
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0 0 12px;
+  text-transform: none;
+  letter-spacing: 0.1px;
+}
+
+main > .section.faq-accordion h2,
+body:has(.product-hero) main > .section.faq-accordion h2 {
+  font-size: 64px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-white);
+  margin: 0 0 80px;
+  line-height: 1;
+}
+
+/* Accordion container */
+main > .section.faq-accordion .faq-accordion-list {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  text-align: left;
+}
+
+main > .section.faq-accordion details {
+  border-bottom: 1px solid rgb(255 255 255 / 30%);
+}
+
+main > .section.faq-accordion details:first-child {
+  border-top: 1px solid rgb(255 255 255 / 30%);
+}
+
+main > .section.faq-accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 16px;
+  font-size: 32px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  color: var(--color-white);
+  cursor: pointer;
+  list-style: none;
+  transition: opacity 0.2s ease;
+}
+
+main > .section.faq-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+main > .section.faq-accordion summary::after {
+  content: '+';
+  font-size: 28px;
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-left: 16px;
+  transition: transform 0.3s ease;
+}
+
+main > .section.faq-accordion details[open] summary::after {
+  content: '\2212';
+}
+
+main > .section.faq-accordion summary:hover {
+  opacity: 0.8;
+}
+
+main > .section.faq-accordion details .faq-answer {
+  padding: 0 16px 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 90%);
+}
+
+/* "View all FAQs" link */
+main > .section.faq-accordion .button-container {
+  margin-top: 30px;
+}
+
+main > .section.faq-accordion .button-container a {
+  position: relative;
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  border: none;
+  padding: 19px 60px 19px 25px;
+  font-size: 23px;
+  font-weight: 500;
+  border-radius: 0;
+  text-decoration: none;
+  font-family: var(--heading-font-family);
+  overflow: visible;
+  white-space: normal;
+  transition: margin-left 400ms ease-out;
+}
+
+/* Hidden arrow panel - slides in from left */
+main > .section.faq-accordion .button-container a::before {
+  content: "";
+  position: absolute;
+  left: -70px;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  background-color: var(--color-white);
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+/* Arrow on right side of button */
+main > .section.faq-accordion .button-container a::after {
+  content: "";
+  position: absolute;
+  right: 21px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 19px;
+  height: 16px;
+  background-image: url('/icons/arrow-right-blue.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 19px 16px;
+  transition: transform 400ms ease-out, opacity 400ms ease-out;
+}
+
+/* Hover - button shifts right, left panel appears, right arrow exits */
+main > .section.faq-accordion .button-container a:hover {
+  margin-left: 35px;
+  background-color: var(--color-white);
+  color: var(--color-deep-blue);
+  text-decoration: none;
+}
+
+main > .section.faq-accordion .button-container a:hover::before {
+  opacity: 1;
+}
+
+main > .section.faq-accordion .button-container a:hover::after {
+  transform: translateY(-50%) translateX(40px);
+  opacity: 0;
+}
+
+@media (width < 768px) {
+  main > .section.faq-accordion {
+    padding: 60px 20px 80px;
+  }
+
+  main > .section.faq-accordion h2 {
+    font-size: 36px;
+  }
+
+  main > .section.faq-accordion summary {
+    font-size: 18px;
+    padding: 20px 10px;
   }
 }
 

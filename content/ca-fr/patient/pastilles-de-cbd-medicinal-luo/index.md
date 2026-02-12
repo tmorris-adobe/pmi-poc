@@ -1,5 +1,7 @@
 # Pastilles de CBD médicinal Luo
 
+![Pastilles de CBD Luo Fruits Tropicaux](https://www.luomedical.com/ca/wp-content/uploads/2025/05/Group-1344-1.png)
+
 Saveur Fruits Tropicaux | 30 pastilles | Souplesse posologique
 
 Luo : des pastilles orales discrètes, et faciles à transporter et à utiliser.
