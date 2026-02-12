@@ -4044,6 +4044,12 @@ body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
   width: 100%;
 }
 
+/* Product card bottle images - match patient page styling */
+body:has(.product-hero) main > .section.dosing-layout .cards > ul > li img {
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
 /* Dosing section text wrapper - fallback for non-dosing-layout */
 body:has(.product-hero) main > .section.bg-even.features ~ .section.cards-container:not(.steps):not(.dosing-layout) > .default-content-wrapper {
   max-width: 530px;
