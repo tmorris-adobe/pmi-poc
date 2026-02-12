@@ -4244,10 +4244,10 @@ body:has(.product-hero) main > .section.quality-standards {
   position: relative;
 }
 
-/* Grid layout: image left (50%), text right (50%) vertically centered */
+/* Grid layout: image left (45%), text right (55%) vertically centered */
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 45% 1fr;
   grid-template-rows: 1fr auto auto 1fr;
   gap: 0;
   max-width: 1415px;
