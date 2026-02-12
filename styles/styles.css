@@ -3871,28 +3871,30 @@ main > .section.gradient-cta.section-animated h2 {
    ========================================================================== */
 
 main > .section.faq-index {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 140px 40px 80px;
+  padding: 140px 80px 80px;
   text-align: center;
+  background: #f7f3ed;
 }
 
 main > .section.faq-index h1 {
-  font-size: 72px;
+  font-size: 96px;
   font-family: var(--heading-font-family);
   font-weight: 500;
   color: var(--color-deep-blue);
-  line-height: 1.05;
-  margin: 0 0 20px;
+  line-height: 1;
+  margin: 0 auto 20px;
+  max-width: 924px;
 }
 
 /* Subtitle paragraph */
 main > .section.faq-index > div > p {
   font-size: 16px;
-  line-height: 22.4px;
+  line-height: 25.44px;
   color: var(--color-deep-blue);
-  margin: 0 auto 40px;
-  max-width: 600px;
+  margin: 10px auto 40px;
+  max-width: 510px;
 }
 
 /* FAQ cards grid */
@@ -3943,7 +3945,7 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p strong {
   background: var(--color-deep-blue);
   padding: 14px 18px;
   border-radius: 5px;
-  margin-bottom: 24px;
+  margin-bottom: 60px;
   line-height: 1;
 }
 
@@ -3968,6 +3970,15 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p {
 
 /* Responsive */
 @media (width < 900px) {
+  main > .section.faq-index {
+    padding: 120px 40px 60px;
+  }
+
+  main > .section.faq-index h1 {
+    font-size: 64px;
+    line-height: 1.05;
+  }
+
   main > .section.faq-index .cards.faq-cards > ul {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3975,11 +3986,15 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p {
 
 @media (width < 600px) {
   main > .section.faq-index {
-    padding: 120px 20px 60px;
+    padding: 100px 20px 60px;
   }
 
   main > .section.faq-index h1 {
     font-size: 42px;
+  }
+
+  main > .section.faq-index .cards.faq-cards .cards-card-body p strong {
+    margin-bottom: 30px;
   }
 
   main > .section.faq-index .cards.faq-cards > ul {
