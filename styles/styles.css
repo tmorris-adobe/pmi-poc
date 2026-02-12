@@ -4040,7 +4040,7 @@ body:has(.product-hero) main > .section.dosing-layout > .cards-wrapper {
   grid-row: 2;
   max-width: none;
   margin: 0;
-  padding: 0;
+  padding: 60px 0 0;
   width: 100%;
 }
 
@@ -4627,7 +4627,7 @@ main > .section.product-hero h5 + p a {
 
 main > .section.steps {
   text-align: center;
-  padding: 0 0 119px;
+  padding: 60px 0 119px;
 }
 
 main > .section.steps > div:first-child {
