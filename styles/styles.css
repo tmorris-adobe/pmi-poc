@@ -4237,19 +4237,19 @@ body:has(.product-hero) .find-your-luo .cards > ul > li a {
    Original: image fills left 50%, text centered vertically in right 50%
    ========================================================================== */
 body:has(.product-hero) main > .section.quality-standards {
-  padding: 0 80px 0 0;
+  padding: 0 80px;
   text-align: left;
   max-width: none;
   margin: 0;
   position: relative;
 }
 
-/* Grid layout: image left (45%), text right (55%) vertically centered */
+/* Grid layout: image left, text right vertically centered */
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper {
   display: grid;
-  grid-template-columns: 45% 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto auto 1fr;
-  gap: 0;
+  column-gap: 80px;
   max-width: 1415px;
   margin: 0 auto;
   padding: 0;
