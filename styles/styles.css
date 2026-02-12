@@ -3871,11 +3871,9 @@ main > .section.gradient-cta.section-animated h2 {
    ========================================================================== */
 
 main > .section.faq-index {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 140px 80px 80px;
-  text-align: center;
   background: #f7f3ed;
+  padding: 200px 20px 60px;
+  text-align: center;
 }
 
 main > .section.faq-index h1 {
@@ -3883,15 +3881,15 @@ main > .section.faq-index h1 {
   font-family: var(--heading-font-family);
   font-weight: 500;
   color: var(--color-deep-blue);
-  line-height: 1;
-  margin: 0 auto 20px;
+  line-height: 96px;
+  margin: 5px auto 20px;
   max-width: 924px;
 }
 
 /* Subtitle paragraph */
 main > .section.faq-index > div > p {
   font-size: 16px;
-  line-height: 25.44px;
+  line-height: 22.4px;
   color: var(--color-deep-blue);
   margin: 10px auto 40px;
   max-width: 510px;
@@ -3913,40 +3911,28 @@ main > .section.faq-index .cards.faq-cards > ul > li {
   background: #f2eee3;
   border-radius: 0 30px 0 30px;
   border: none;
-  padding: 0;
+  padding: 45px 28px 40px;
   transition: box-shadow 0.2s ease;
   cursor: pointer;
-  min-height: 350px;
+  min-height: 380px;
 }
 
 main > .section.faq-index .cards.faq-cards > ul > li:hover {
   box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
 }
 
-/* Card link wrapper */
-main > .section.faq-index .cards.faq-cards .cards-card-link {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding: 45px 28px 40px;
-}
-
-/* Card body */
-main > .section.faq-index .cards.faq-cards .cards-card-body {
-  margin: 0;
-}
-
 /* Category badge */
-main > .section.faq-index .cards.faq-cards .cards-card-body p strong {
+main > .section.faq-index .cards.faq-cards .cards-card-body p strong:first-child {
   display: inline-block;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   color: var(--color-white);
   background: var(--color-deep-blue);
   padding: 14px 18px;
   border-radius: 5px;
-  margin-bottom: 60px;
-  line-height: 1;
+  margin-bottom: 24px;
 }
 
 /* Title text */
@@ -3954,7 +3940,6 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p .cards-link-text {
   display: block;
   font-size: 32px;
   font-weight: 400;
-  font-family: var(--heading-font-family);
   color: var(--color-deep-blue);
   line-height: 32px;
   margin-bottom: 16px;
@@ -3971,7 +3956,7 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p {
 /* Responsive */
 @media (width < 900px) {
   main > .section.faq-index {
-    padding: 120px 40px 60px;
+    padding: 120px 20px 60px;
   }
 
   main > .section.faq-index h1 {
@@ -3991,10 +3976,6 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p {
 
   main > .section.faq-index h1 {
     font-size: 42px;
-  }
-
-  main > .section.faq-index .cards.faq-cards .cards-card-body p strong {
-    margin-bottom: 30px;
   }
 
   main > .section.faq-index .cards.faq-cards > ul {
