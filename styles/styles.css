@@ -4260,6 +4260,22 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
   margin: 0;
   display: flex;
   justify-content: flex-end;
+  position: relative;
+}
+
+/* Starburst decoration on quality image — matches original site's luo-symbol */
+body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child::before {
+  content: '';
+  position: absolute;
+  top: -36px;
+  right: -36px;
+  width: 72px;
+  height: 72px;
+  background-image: url('/icons/luo-symbol.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
 }
 
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child picture {
@@ -4269,7 +4285,10 @@ body:has(.product-hero) main > .section.quality-standards > .default-content-wra
 
 body:has(.product-hero) main > .section.quality-standards > .default-content-wrapper > p:first-child img {
   width: 100%;
+  max-height: 475px;
   height: auto;
+  object-fit: contain;
+  object-position: left top;
   display: block;
 }
 
