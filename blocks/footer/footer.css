@@ -1,6 +1,6 @@
 /* ==========================================================================
    Footer Styles - Matching Original Site Layout
-   Structure: Nav links → <hr> → Copyright + Legal → Trademark → Language
+   Single row: Copyright (left) | Nav links (center) | Legal links (right)
    ========================================================================== */
 
 footer {
@@ -32,12 +32,29 @@ footer .footer p {
 }
 
 /* ==========================================================================
-   Nav Links Row - Left aligned (Patient, HCP)
+   Main Footer Row - 3 Column Grid
+   Copyright (left) | Nav links (center) | Legal links (right)
    ========================================================================== */
 
+footer .footer .footer-main-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Copyright on left */
+footer .footer .footer-copyright {
+  font-size: 15px;
+  color: var(--color-deep-blue, #000a77);
+  justify-self: start;
+}
+
+/* Nav links in center */
 footer .footer .footer-nav-links {
   display: flex;
   gap: 24px;
+  justify-self: center;
 }
 
 footer .footer .footer-nav-links a {
@@ -58,36 +75,12 @@ footer .footer .footer-nav-links a:hover {
   text-decoration: underline;
 }
 
-/* ==========================================================================
-   Separator
-   ========================================================================== */
-
-footer .footer hr {
-  border: none;
-  border-top: 1px solid var(--color-deep-blue, #000a77);
-  opacity: 0.2;
-  margin: 20px 0;
-}
-
-/* ==========================================================================
-   Copyright + Legal Row - Copyright left, Legal links right
-   ========================================================================== */
-
-footer .footer .footer-legal-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-footer .footer .footer-copyright {
-  font-size: 15px;
-  color: var(--color-deep-blue, #000a77);
-}
-
+/* Legal links on right */
 footer .footer .footer-legal-links {
   display: flex;
   gap: 24px;
   align-items: center;
+  justify-self: end;
 }
 
 footer .footer .footer-legal-links a,
@@ -155,17 +148,23 @@ footer .footer > div > .section:last-child a:hover {
     padding: 0 20px;
   }
 
-  footer .footer .footer-legal-row {
+  footer .footer .footer-main-row {
+    display: flex;
     flex-direction: column;
     gap: 16px;
     align-items: center;
   }
 
   footer .footer .footer-nav-links {
-    justify-content: center;
+    order: 1;
+  }
+
+  footer .footer .footer-copyright {
+    order: 2;
   }
 
   footer .footer .footer-legal-links {
+    order: 3;
     flex-wrap: wrap;
     justify-content: center;
   }
