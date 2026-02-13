@@ -1281,6 +1281,14 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
 
 /* Tablet: bottles stack below text content, clipped at section bottom */
 @media (width >= 768px) and (width < 1200px) {
+  /* Give hero its own gradient so it covers the full section height */
+  body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+    background: var(--bg-gradient-hero);
+    background-size: 100% 100%;
+    background-position: right top;
+    background-repeat: no-repeat;
+  }
+
   main > .section.hero-patient {
     padding-bottom: 0;
   }
@@ -1324,6 +1332,14 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
 
 /* Tablet and mobile */
 @media (width < 768px) {
+  /* Give hero its own gradient at mobile too */
+  body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+    background: var(--bg-gradient-hero);
+    background-size: 100% 100%;
+    background-position: right top;
+    background-repeat: no-repeat;
+  }
+
   main > .section.hero-patient {
     min-height: auto;
     padding: var(--spacing-xl) 0;
