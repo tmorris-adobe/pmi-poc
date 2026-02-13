@@ -3073,12 +3073,13 @@ main > .section.features .cards > ul {
 }
 
 /* Individual feature card - beveled corners (upper-right & lower-left) */
+/* The li background acts as the border; ::before provides the inner fill */
 main > .section.features .cards > ul > li {
-  background: var(--background-color);
+  background: var(--color-deep-blue);
   border: none;
   border-radius: 0;
   clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
-  box-shadow: inset 0 0 0 2px var(--color-deep-blue);
+  box-shadow: none;
   padding: var(--spacing-l);
   position: relative;
   overflow: hidden;
@@ -3088,6 +3089,22 @@ main > .section.features .cards > ul > li {
   justify-content: flex-start;
   align-self: stretch;
   aspect-ratio: 1.1;
+}
+
+/* Inner fill - creates the border effect along the beveled clip-path */
+main > .section.features .cards > ul > li::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: var(--background-color);
+  clip-path: inherit;
+  z-index: 0;
+}
+
+/* Ensure card content sits above the ::before fill */
+main > .section.features .cards > ul > li > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Feature icons */
