@@ -4036,13 +4036,14 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p strong:first-child
   align-self: flex-start;
 }
 
-/* Title text */
+/* Title text - 30px with slight tightening to match degular-display line breaks */
 main > .section.faq-index .cards.faq-cards .cards-card-body p .cards-link-text {
   display: block;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 400;
   color: var(--color-deep-blue);
   line-height: 32px;
+  letter-spacing: -0.3px;
   margin-bottom: 16px;
 }
 
