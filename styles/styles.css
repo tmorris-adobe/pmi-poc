@@ -3072,11 +3072,14 @@ main > .section.features .cards > ul {
   margin: 0;
 }
 
-/* Individual feature card - simple rounded corners */
+/* Individual feature card - beveled corners (upper-right & lower-left) */
+/* The li background acts as the border; ::before provides the inner fill */
 main > .section.features .cards > ul > li {
-  background: var(--background-color);
-  border: 2px solid var(--color-deep-blue);
-  border-radius: var(--border-radius-l);
+  background: var(--color-deep-blue);
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  box-shadow: none;
   padding: var(--spacing-l);
   position: relative;
   overflow: hidden;
@@ -3086,6 +3089,22 @@ main > .section.features .cards > ul > li {
   justify-content: flex-start;
   align-self: stretch;
   aspect-ratio: 1.1;
+}
+
+/* Inner fill - creates the border effect along the beveled clip-path */
+main > .section.features .cards > ul > li::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: var(--background-color);
+  clip-path: inherit;
+  z-index: 0;
+}
+
+/* Ensure card content sits above the ::before fill */
+main > .section.features .cards > ul > li > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Feature icons */
@@ -3121,7 +3140,9 @@ main > .section.features .cards > ul > li p {
 main > .section.features .cards > ul > li:not(:has(strong)) {
   padding: 0;
   border: none;
-  border-radius: var(--border-radius-l);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  box-shadow: none;
   overflow: hidden;
   align-self: stretch;
   aspect-ratio: 1.1;
@@ -3149,7 +3170,7 @@ main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image im
   margin: 0;
   object-fit: cover;
   object-position: center 25%;
-  border-radius: var(--border-radius-l);
+  border-radius: 0;
   display: block;
   /* Hover zoom effect */
   transition: transform 0.4s ease-out;
