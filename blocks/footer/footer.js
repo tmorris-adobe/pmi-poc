@@ -15,18 +15,18 @@ const FOOTER_LINKS = {
 
 /**
  * Parse a single row containing all footer content (copyright, nav, legal)
- * and restructure it into 3-column layout
+ * and restructure into: nav links row, <hr>, copyright + legal row
+ * matching original site layout
  * @param {Element} row The row element containing pipe-separated content
  */
 function decorateCombinedRow(row) {
   const paragraph = row?.querySelector('p');
   if (!paragraph) return;
 
+  const wrapper = paragraph.closest('.default-content-wrapper') || paragraph.parentElement;
+
   const text = paragraph.textContent.trim();
   const parts = text.split('|').map((p) => p.trim()).filter((p) => p);
-
-  // Clear the paragraph
-  paragraph.textContent = '';
 
   // Find copyright (starts with ©), nav links (Patient, HCP), and legal links
   const copyrightPart = parts.find((p) => p.startsWith('©') && p.includes('Luo'));
@@ -37,25 +37,30 @@ function decorateCombinedRow(row) {
     p === 'Cookie Preferences'
   );
 
-  // Left: Copyright
-  const copyrightSpan = document.createElement('span');
-  copyrightSpan.className = 'footer-copyright';
-  copyrightSpan.textContent = copyrightPart || '© Luo 2026';
-
-  // Center: Nav links
-  const navSpan = document.createElement('span');
-  navSpan.className = 'footer-nav-links';
+  // Build nav links row
+  const navRow = document.createElement('p');
+  navRow.className = 'footer-nav-links';
   navParts.forEach((part) => {
     const href = FOOTER_LINKS[part];
     if (href) {
       const link = document.createElement('a');
       link.href = href;
       link.textContent = part;
-      navSpan.appendChild(link);
+      navRow.appendChild(link);
     }
   });
 
-  // Right: Legal links
+  // Build separator
+  const hr = document.createElement('hr');
+
+  // Build copyright + legal row
+  const legalRow = document.createElement('p');
+  legalRow.className = 'footer-legal-row';
+
+  const copyrightSpan = document.createElement('span');
+  copyrightSpan.className = 'footer-copyright';
+  copyrightSpan.textContent = copyrightPart || '© Luo 2026';
+
   const legalSpan = document.createElement('span');
   legalSpan.className = 'footer-legal-links';
   legalParts.forEach((part) => {
@@ -73,9 +78,14 @@ function decorateCombinedRow(row) {
     }
   });
 
-  paragraph.appendChild(copyrightSpan);
-  paragraph.appendChild(navSpan);
-  paragraph.appendChild(legalSpan);
+  legalRow.appendChild(copyrightSpan);
+  legalRow.appendChild(legalSpan);
+
+  // Replace original paragraph with new structure
+  wrapper.textContent = '';
+  wrapper.appendChild(navRow);
+  wrapper.appendChild(hr);
+  wrapper.appendChild(legalRow);
 }
 
 /**
