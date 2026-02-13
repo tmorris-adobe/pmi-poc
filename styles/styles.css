@@ -1069,7 +1069,7 @@ main > .section.hero-patient {
   justify-content: flex-start;
   text-align: left;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding-top: 160px;
   padding-bottom: 200px;
   z-index: 1;
