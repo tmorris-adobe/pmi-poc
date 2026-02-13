@@ -1,6 +1,8 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
+/* Updated: 2026-02-13 - Issue #13 footer layout fix */
+
 /**
  * Link configurations for footer
  */
@@ -15,7 +17,8 @@ const FOOTER_LINKS = {
 
 /**
  * Parse a single row containing all footer content (copyright, nav, legal)
- * and restructure it into 3-column layout
+ * and restructure into a single 3-column row:
+ * Copyright (left) | Nav links (center) | Legal links (right)
  * @param {Element} row The row element containing pipe-separated content
  */
 function decorateCombinedRow(row) {
@@ -27,6 +30,7 @@ function decorateCombinedRow(row) {
 
   // Clear the paragraph
   paragraph.textContent = '';
+  paragraph.className = 'footer-main-row';
 
   // Find copyright (starts with ©), nav links (Patient, HCP), and legal links
   const copyrightPart = parts.find((p) => p.startsWith('©') && p.includes('Luo'));

@@ -431,6 +431,10 @@ main > .section {
   margin: 40px 0;
 }
 
+main > .section:last-child {
+  margin: 0;
+}
+
 /* Hero + Hero-Gateway seamless connection */
 main > .section.hero-container {
   margin: 0;
@@ -3792,7 +3796,7 @@ main > .section.gradient-cta {
   background-repeat: no-repeat;
   background-attachment: fixed;
   margin: 0;
-  padding: 60px 0 0;
+  padding: 24px 0 0;
   min-height: 660px;
   display: flex;
   align-items: center;
