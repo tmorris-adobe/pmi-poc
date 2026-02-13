@@ -7,7 +7,7 @@ footer {
   background-color: #fff;
   color: var(--color-deep-blue, #000a77);
   font-family: var(--body-font-family);
-  padding: 14px 0;
+  padding: 22px 0 10px;
 }
 
 footer .footer > div {
@@ -39,7 +39,7 @@ footer .footer p {
 footer .footer .footer-main-row {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  align-items: baseline;
   gap: 40px;
   line-height: 1;
 }
@@ -108,7 +108,7 @@ footer .footer .footer-legal-links button:hover {
 
 footer .footer > div > .section:nth-last-child(2) {
   text-align: center;
-  padding-top: 18px;
+  padding-top: 30px;
 }
 
 footer .footer > div > .section:nth-last-child(2) p {
