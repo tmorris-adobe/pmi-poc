@@ -3988,40 +3988,52 @@ main > .section.faq-index > div > p {
 main > .section.faq-index .cards.faq-cards > ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 45px 24px;
+  gap: 45px 30px;
   list-style: none;
   padding: 0;
-  max-width: 1100px;
+  max-width: 1230px;
   margin: 0 auto;
 }
 
-/* Individual card */
+/* Individual card - beveled corners (top-right & bottom-left, 30px cut) */
 main > .section.faq-index .cards.faq-cards > ul > li {
   background: #f2eee3;
-  border-radius: 0 30px 0 30px;
   border: none;
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 30px) 0,
+    100% 30px,
+    100% 100%,
+    30px 100%,
+    0 calc(100% - 30px)
+  );
   padding: 45px 28px 40px;
-  transition: box-shadow 0.2s ease;
+  box-sizing: border-box;
+  transition: filter 0.2s ease;
   cursor: pointer;
-  min-height: 380px;
+  min-height: 381px;
+  display: flex;
+  flex-direction: column;
 }
 
 main > .section.faq-index .cards.faq-cards > ul > li:hover {
-  box-shadow: 0 4px 20px rgb(0 0 0 / 8%);
+  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 8%));
 }
 
-/* Category badge */
+/* Category badge - auto margin pushes content down */
 main > .section.faq-index .cards.faq-cards .cards-card-body p strong:first-child {
   display: inline-block;
   font-size: 0.75rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: none;
+  letter-spacing: 0.1px;
   color: var(--color-white);
   background: var(--color-deep-blue);
   padding: 14px 18px;
   border-radius: 5px;
-  margin-bottom: 24px;
+  margin-bottom: auto;
+  align-self: flex-start;
 }
 
 /* Title text */
@@ -4034,12 +4046,30 @@ main > .section.faq-index .cards.faq-cards .cards-card-body p .cards-link-text {
   margin-bottom: 16px;
 }
 
-/* Excerpt paragraph */
+/* Card link and body fill available space */
+main > .section.faq-index .cards.faq-cards > ul > li a {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+main > .section.faq-index .cards.faq-cards .cards-card-body {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card paragraph uses flex column so tag stays at top, content at bottom */
 main > .section.faq-index .cards.faq-cards .cards-card-body p {
   font-size: 16px;
   line-height: 22.4px;
   color: var(--color-deep-blue);
   text-align: left;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 /* Responsive */
