@@ -1272,22 +1272,73 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
   }
 }
 
-@media (width >= 900px) and (width < 1200px) {
+/* Desktop: allow bottles to overflow section for gradient effect */
+@media (width >= 1200px) {
+  main > .section.hero-patient {
+    overflow: visible;
+  }
+}
+
+/* Tablet: bottles stack below text content, clipped at section bottom */
+@media (width >= 768px) and (width < 1200px) {
+  /* Give hero its own gradient so it covers the full section height.
+     Layer a CSS gradient on top to reinforce color where the image fades to white. */
+  body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+    background:
+      linear-gradient(to bottom, transparent 20%, rgba(0, 190, 170, 0.7) 80%),
+      var(--bg-gradient-hero) left top / cover no-repeat;
+  }
+
+  main > .section.hero-patient {
+    padding-bottom: 0;
+  }
+
+  main > .section.hero-patient > div {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    padding: 0 40px;
+    align-items: flex-start;
+  }
+
   main > .section.hero-patient h1 {
-    font-size: 100px;
+    font-size: 80px;
+  }
+
+  main > .section.hero-patient .hero-image,
+  main > .section.hero-patient > div > p:has(img) {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    margin: var(--spacing-xl) 0 0;
+    display: flex;
+    justify-content: center;
+    align-self: center;
   }
 
   main > .section.hero-patient .hero-image img,
   main > .section.hero-patient > div > p:has(img) img {
-    height: 57%;
+    position: relative;
     top: auto;
-    bottom: 0;
+    right: auto;
     transform: none;
+    height: auto;
+    width: 42vw;
+    max-width: 500px;
   }
 }
 
 /* Tablet and mobile */
 @media (width < 768px) {
+  /* Give hero its own gradient at mobile too */
+  body:has(.hero-patient) main > .section.bg-hero.hero-patient {
+    background:
+      linear-gradient(to bottom, transparent 20%, rgba(0, 190, 170, 0.7) 80%),
+      var(--bg-gradient-hero) left top / cover no-repeat;
+  }
+
   main > .section.hero-patient {
     min-height: auto;
     padding: var(--spacing-xl) 0;
@@ -1317,6 +1368,19 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
     right: auto;
     max-width: 100%;
     margin: var(--spacing-l) auto 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  main > .section.hero-patient .hero-image img,
+  main > .section.hero-patient > div > p:has(img) img {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    height: auto;
+    width: 65%;
+    max-width: 300px;
   }
 }
 
