@@ -3072,11 +3072,13 @@ main > .section.features .cards > ul {
   margin: 0;
 }
 
-/* Individual feature card - simple rounded corners */
+/* Individual feature card - beveled corners (upper-right & lower-left) */
 main > .section.features .cards > ul > li {
   background: var(--background-color);
-  border: 2px solid var(--color-deep-blue);
-  border-radius: var(--border-radius-l);
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  box-shadow: inset 0 0 0 2px var(--color-deep-blue);
   padding: var(--spacing-l);
   position: relative;
   overflow: hidden;
@@ -3121,7 +3123,9 @@ main > .section.features .cards > ul > li p {
 main > .section.features .cards > ul > li:not(:has(strong)) {
   padding: 0;
   border: none;
-  border-radius: var(--border-radius-l);
+  border-radius: 0;
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 30px 100%, 0 calc(100% - 30px));
+  box-shadow: none;
   overflow: hidden;
   align-self: stretch;
   aspect-ratio: 1.1;
@@ -3149,7 +3153,7 @@ main > .section.features .cards > ul > li:not(:has(strong)) .cards-card-image im
   margin: 0;
   object-fit: cover;
   object-position: center 25%;
-  border-radius: var(--border-radius-l);
+  border-radius: 0;
   display: block;
   /* Hover zoom effect */
   transition: transform 0.4s ease-out;
