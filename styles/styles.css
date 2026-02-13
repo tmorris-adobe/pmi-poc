@@ -431,6 +431,10 @@ main > .section {
   margin: 40px 0;
 }
 
+main > .section:last-child {
+  margin: 0;
+}
+
 /* Hero + Hero-Gateway seamless connection */
 main > .section.hero-container {
   margin: 0;
