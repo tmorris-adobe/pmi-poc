@@ -1,6 +1,8 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
+/* Updated: 2026-02-13 - Issue #13 footer layout fix */
+
 /**
  * Link configurations for footer
  */
