@@ -2213,7 +2213,14 @@ body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li
    FAQ Detail Pages
    ========================================================================== */
 
-/* FAQ header divider - thin line below top nav bar, content-width only (FAQ pages only) */
+/* FAQ header - align header content with page body (80px inset) */
+body:has(.faq-detail) header .header-top-container,
+body:has(.faq-detail) header .header-bottom-container {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+/* FAQ header divider - thin line below top nav bar, content-width only */
 body:has(.faq-detail) header .header-top-container {
   position: relative;
 }
