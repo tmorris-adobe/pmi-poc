@@ -1281,12 +1281,12 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
 
 /* Tablet: bottles stack below text content, clipped at section bottom */
 @media (width >= 768px) and (width < 1200px) {
-  /* Give hero its own gradient so it covers the full section height */
+  /* Give hero its own gradient so it covers the full section height.
+     Layer a CSS gradient on top to reinforce color where the image fades to white. */
   body:has(.hero-patient) main > .section.bg-hero.hero-patient {
-    background: var(--bg-gradient-hero);
-    background-size: cover;
-    background-position: left top;
-    background-repeat: no-repeat;
+    background:
+      linear-gradient(to bottom, transparent 20%, rgba(0, 190, 170, 0.7) 80%),
+      var(--bg-gradient-hero) left top / cover no-repeat;
   }
 
   main > .section.hero-patient {
@@ -1334,10 +1334,9 @@ main > .section.hero-patient > div > p:has(a):not(:has(img)) {
 @media (width < 768px) {
   /* Give hero its own gradient at mobile too */
   body:has(.hero-patient) main > .section.bg-hero.hero-patient {
-    background: var(--bg-gradient-hero);
-    background-size: cover;
-    background-position: left top;
-    background-repeat: no-repeat;
+    background:
+      linear-gradient(to bottom, transparent 20%, rgba(0, 190, 170, 0.7) 80%),
+      var(--bg-gradient-hero) left top / cover no-repeat;
   }
 
   main > .section.hero-patient {
