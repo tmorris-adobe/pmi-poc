@@ -2728,9 +2728,18 @@ main > .section.bg-product.banner-right > div > p picture img {
   width: 100%;
   height: auto;
   max-width: none;
-  max-height: 832px;
   object-fit: contain;
   object-position: left bottom;
+}
+
+/* Desktop: constrain image height to prevent overflow beyond section */
+@media (width >= 1200px) {
+  main > .section.bg-product.banner-left > div > p > img,
+  main > .section.bg-product.banner-right > div > p > img,
+  main > .section.bg-product.banner-left > div > p picture img,
+  main > .section.bg-product.banner-right > div > p picture img {
+    max-height: 832px;
+  }
 }
 
 /* Mobile: smaller image, still anchored to left edge */
@@ -2754,7 +2763,7 @@ main > .section.bg-product.banner-right > div > p picture img {
 main > .section.bg-product.banner-left > div > p:has(img),
 main > .section.bg-product.banner-left > div > p:has(picture) {
   opacity: 0;
-  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transform: translate(-15rem, 0) rotate(-5deg);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
@@ -5431,7 +5440,7 @@ main > .section.footer-mark {
 @keyframes anim-product-slide {
   from {
     opacity: 0;
-    transform: var(--anim-base-transform, none) translate(-15rem, -2rem) rotate(-5deg);
+    transform: var(--anim-base-transform, none) translate(-15rem, 0) rotate(-5deg);
   }
   to {
     opacity: 1;
@@ -5566,7 +5575,7 @@ main > .section.footer-mark {
 /* Product slide - slides in from left with rotation */
 .animate-product-slide {
   opacity: 0;
-  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transform: translate(-15rem, 0) rotate(-5deg);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
