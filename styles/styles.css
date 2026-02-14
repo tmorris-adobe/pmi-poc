@@ -2739,15 +2739,7 @@ main > .section.bg-product.banner-right > div > p picture img {
   object-position: left bottom;
 }
 
-/* Desktop: constrain image height to prevent overflow beyond section */
-@media (width >= 1200px) {
-  main > .section.bg-product.banner-left > div > p > img,
-  main > .section.bg-product.banner-right > div > p > img,
-  main > .section.bg-product.banner-left > div > p picture img,
-  main > .section.bg-product.banner-right > div > p picture img {
-    max-height: 832px;
-  }
-}
+/* Desktop: no max-height needed — the section's overflow: hidden clips the image naturally */
 
 /* Mobile: smaller image, still anchored to left edge */
 @media (width < 768px) {
