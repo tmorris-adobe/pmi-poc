@@ -1858,6 +1858,7 @@ body:has(.hero-hcp) main > .section.features h3 {
   color: var(--color-white);
   font-weight: 400;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 body:has(.hero-hcp) main > .section.features h3 strong {
