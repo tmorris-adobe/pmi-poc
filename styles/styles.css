@@ -3849,10 +3849,14 @@ main > .section.sources {
   margin: 0;
 }
 
+main > .section.sources > .default-content-wrapper {
+  max-width: 700px;
+}
+
 main > .section.sources h4 {
   font-family: var(--heading-font-family);
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 32px;
+  font-weight: 400;
   color: var(--color-deep-blue);
   cursor: pointer;
   display: flex;
@@ -3886,8 +3890,8 @@ main > .section.sources h4.open + ul {
 }
 
 main > .section.sources li {
-  font-size: 13px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.5;
   color: #444;
   margin-bottom: var(--spacing-xs);
 }
