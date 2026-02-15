@@ -2142,24 +2142,36 @@ body:has(.hero-hcp) main > .section.faq-cards-section {
 body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 45px 24px;
+  gap: 45px 30px;
   list-style: none;
   padding: 0;
-  max-width: 1100px;
+  max-width: 1230px;
   margin: 0 auto;
 }
 
 body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li {
   background: #f2eee3;
-  border-radius: 0 30px 0 30px;
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 30px) 0,
+    100% 30px,
+    100% 100%,
+    30px 100%,
+    0 calc(100% - 30px)
+  );
   padding: 45px 28px 40px;
-  transition: box-shadow 0.2s ease;
+  box-sizing: border-box;
+  transition: filter 0.2s ease;
   cursor: pointer;
-  min-height: 380px;
+  min-height: 381px;
+  display: flex;
+  flex-direction: column;
 }
 
 body:has(.hero-hcp) main > .section.faq-cards-section .cards.faq-cards > ul > li:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 8%));
 }
 
 /* Category tag - first bold text */
