@@ -1694,6 +1694,7 @@ body:has(.hero-hcp) main > .section.mission p {
   line-height: 1.2;
   color: var(--color-deep-blue);
   font-family: var(--heading-font-family);
+  max-width: 422px;
 }
 
 /* "find out more" link in text */
@@ -1709,8 +1710,9 @@ body:has(.hero-hcp) main > .section.mission p a:hover {
 
 /* Cards block - 2x2 grid of outlined tiles with staggered right column */
 body:has(.hero-hcp) main > .section.mission .cards > ul {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 313px));
   gap: 30px;
+  justify-content: end;
 }
 
 /* Stagger: offset right column tiles down */
@@ -1736,7 +1738,7 @@ body:has(.hero-hcp) main > .section.mission .cards > ul > li {
     0 calc(100% - 30px)
   );
   padding: 0;
-  height: 375px;
+  height: 345px;
   box-sizing: border-box;
   position: relative;
 }
@@ -1745,7 +1747,7 @@ body:has(.hero-hcp) main > .section.mission .cards > ul > li {
 body:has(.hero-hcp) main > .section.mission .cards > ul > li::before {
   content: '';
   position: absolute;
-  inset: 2px;
+  inset: 1px;
   background: var(--background-color);
   clip-path: inherit;
   z-index: 0;
