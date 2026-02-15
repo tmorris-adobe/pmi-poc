@@ -449,7 +449,7 @@ main > .section.hero-container {
 body:has(.hero-patient) {
   background-color: var(--color-white);
   background-image: var(--bg-gradient-hero);
-  background-size: 100% 3100px;
+  background-size: 100% 3800px;
   background-position: right top;
   background-repeat: no-repeat;
 }
@@ -1032,10 +1032,10 @@ main > .section.bg-cream {
 main > .section.bg-cream::before {
   content: '';
   position: absolute;
-  top: -50px;
+  top: -150px;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 150px;
   background: linear-gradient(to bottom, transparent 0%, #f5f0e8 70%);
   pointer-events: none;
   z-index: 10;
