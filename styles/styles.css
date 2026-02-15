@@ -1858,6 +1858,7 @@ body:has(.hero-hcp) main > .section.features h3 {
   color: var(--color-white);
   font-weight: 400;
   margin-bottom: 20px;
+  white-space: nowrap;
 }
 
 body:has(.hero-hcp) main > .section.features h3 strong {
@@ -1879,25 +1880,51 @@ body:has(.hero-hcp) main > .section.features h3::after {
   margin-top: 21px;
 }
 
-/* Narrow heading area */
+/* Narrow heading area - left-aligned with cards */
 body:has(.hero-hcp) main > .section.features .default-content-wrapper {
   max-width: 700px;
-  margin-bottom: 40px;
+  margin: 0 auto 40px 0;
 }
 
-/* Thin border on beveled card edges */
-body:has(.hero-hcp) main > .section.features .cards > ul > li::before {
-  inset: 1px;
-}
-
-/* Convert white SVG icons to teal on white card background */
-body:has(.hero-hcp) main > .section.features .cards > ul > li img {
-  filter: brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(1200%) hue-rotate(138deg) brightness(96%) contrast(101%);
-}
-
-/* 4-column grid for features */
+/* 4-column grid for features - no borders, items on gradient */
 body:has(.hero-hcp) main > .section.features .cards > ul {
   grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+/* Remove beveled card styling - transparent, no borders */
+body:has(.hero-hcp) main > .section.features .cards > ul > li {
+  background: transparent;
+  clip-path: none;
+  border: none;
+  padding: 0 20px;
+  aspect-ratio: auto;
+}
+
+/* Remove border pseudo-element */
+body:has(.hero-hcp) main > .section.features .cards > ul > li::before {
+  display: none;
+}
+
+/* White icons */
+body:has(.hero-hcp) main > .section.features .cards > ul > li img {
+  filter: brightness(0) invert(1);
+}
+
+/* White card titles */
+body:has(.hero-hcp) main > .section.features .cards > ul > li strong {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--color-white);
+  font-family: var(--heading-font-family);
+}
+
+/* White card descriptions */
+body:has(.hero-hcp) main > .section.features .cards > ul > li p {
+  color: var(--color-white);
+  font-size: 23px;
+  font-family: var(--heading-font-family);
+  line-height: 1.2;
 }
 
 @media (width < 1024px) {
