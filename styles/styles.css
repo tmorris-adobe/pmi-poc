@@ -3879,14 +3879,17 @@ main > .section.sources h4.open::after {
 }
 
 main > .section.sources ul {
-  display: none;
   list-style: disc;
-  padding: var(--spacing-s) 0 var(--spacing-m) var(--spacing-l);
+  padding: 0 0 0 var(--spacing-l);
   margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease;
 }
 
 main > .section.sources h4.open + ul {
-  display: block;
+  max-height: 2000px;
+  padding: var(--spacing-s) 0 var(--spacing-m) var(--spacing-l);
 }
 
 main > .section.sources li {
