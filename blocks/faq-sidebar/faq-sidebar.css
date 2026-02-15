@@ -85,7 +85,7 @@
   /* sidebar in column 1, spanning all rows */
   main > .section.faq-detail > .faq-sidebar-wrapper {
     grid-column: 1;
-    grid-row: 1 / -1;
+    grid-row: 1 / span 99;
     position: sticky;
     top: 20px;
     max-width: none;
