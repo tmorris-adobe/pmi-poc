@@ -1867,6 +1867,11 @@ body:has(.hero-hcp) main > .section.features .default-content-wrapper {
   margin-bottom: 40px;
 }
 
+/* Thicker border on beveled card edges */
+body:has(.hero-hcp) main > .section.features .cards > ul > li::before {
+  inset: 2px;
+}
+
 /* Convert white SVG icons to teal on white card background */
 body:has(.hero-hcp) main > .section.features .cards > ul > li img {
   filter: brightness(0) saturate(100%) invert(73%) sepia(40%) saturate(1200%) hue-rotate(138deg) brightness(96%) contrast(101%);
