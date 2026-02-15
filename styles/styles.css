@@ -1879,10 +1879,10 @@ body:has(.hero-hcp) main > .section.features h3::after {
   margin-top: 21px;
 }
 
-/* Narrow heading area */
+/* Narrow heading area - left-aligned with cards */
 body:has(.hero-hcp) main > .section.features .default-content-wrapper {
   max-width: 700px;
-  margin-bottom: 40px;
+  margin: 0 auto 40px 0;
 }
 
 /* 4-column grid for features - no borders, items on gradient */
