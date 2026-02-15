@@ -449,7 +449,7 @@ main > .section.hero-container {
 body:has(.hero-patient) {
   background-color: var(--color-white);
   background-image: var(--bg-gradient-hero);
-  background-size: 100% 3100px;
+  background-size: 100% 3800px;
   background-position: right top;
   background-repeat: no-repeat;
 }
@@ -1032,10 +1032,10 @@ main > .section.bg-cream {
 main > .section.bg-cream::before {
   content: '';
   position: absolute;
-  top: -50px;
+  top: -150px;
   left: 0;
   right: 0;
-  height: 50px;
+  height: 150px;
   background: linear-gradient(to bottom, transparent 0%, #f5f0e8 70%);
   pointer-events: none;
   z-index: 10;
@@ -2721,17 +2721,23 @@ main > .section.bg-product.banner-right > div > p > a:hover::after {
 }
 
 /* Banner image - large, aligned to bottom-left */
+main > .section.bg-product.banner-left > div > p picture,
+main > .section.bg-product.banner-right > div > p picture {
+  display: block;
+  width: 100%;
+}
+
 main > .section.bg-product.banner-left > div > p > img,
 main > .section.bg-product.banner-right > div > p > img,
 main > .section.bg-product.banner-left > div > p picture img,
 main > .section.bg-product.banner-right > div > p picture img {
+  display: block;
   width: 100%;
   height: auto;
   max-width: none;
-  max-height: 832px;
-  object-fit: contain;
-  object-position: left bottom;
 }
+
+/* Desktop: no max-height needed — the section's overflow: hidden clips the image naturally */
 
 /* Mobile: smaller image, still anchored to left edge */
 @media (width < 768px) {
@@ -2754,14 +2760,14 @@ main > .section.bg-product.banner-right > div > p picture img {
 main > .section.bg-product.banner-left > div > p:has(img),
 main > .section.bg-product.banner-left > div > p:has(picture) {
   opacity: 0;
-  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transform: translate(-15rem, 0) rotate(-5deg);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 main > .section.bg-product.banner-left.section-animated > div > p:has(img),
 main > .section.bg-product.banner-left.section-animated > div > p:has(picture) {
   opacity: 1;
-  transform: translate(0, 0) rotate(0deg);
+  transform: none;
 }
 
 /* Title - bounces up from below */
@@ -5431,11 +5437,11 @@ main > .section.footer-mark {
 @keyframes anim-product-slide {
   from {
     opacity: 0;
-    transform: var(--anim-base-transform, none) translate(-15rem, -2rem) rotate(-5deg);
+    transform: var(--anim-base-transform, none) translate(-15rem, 0) rotate(-5deg);
   }
   to {
     opacity: 1;
-    transform: var(--anim-base-transform, none) translate(0, 0) rotate(0deg);
+    transform: var(--anim-base-transform, none);
   }
 }
 
@@ -5566,13 +5572,13 @@ main > .section.footer-mark {
 /* Product slide - slides in from left with rotation */
 .animate-product-slide {
   opacity: 0;
-  transform: translate(-15rem, -2rem) rotate(-5deg);
+  transform: translate(-15rem, 0) rotate(-5deg);
   transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 .animate-product-slide.animate-visible {
   opacity: 1;
-  transform: translate(0, 0) rotate(0deg);
+  transform: none;
 }
 
 /* Title bounce - rises from below with overshoot */
