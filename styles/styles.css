@@ -1621,7 +1621,7 @@ body:has(.hero-hcp) main > .section.mission {
   max-width: none;
   min-height: auto;
   overflow: visible;
-  padding: 160px 90px 209px;
+  padding: 160px max(90px, calc((100% - 1255px) / 2)) 209px;
   background: var(--color-white) url('/styles/backgrounds/big-gradient-bg.png') center top / cover no-repeat;
   display: grid;
   grid-template-columns: 5fr 7fr;
@@ -1849,7 +1849,7 @@ body:has(.hero-hcp) main > .section.bg-even.features {
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
-  padding: 110px 0 130px;
+  padding: 110px max(24px, calc((100% - 1255px) / 2)) 130px;
 }
 
 /* Features h3 "Why patients choose Luo?" - white on gradient */
@@ -1885,9 +1885,9 @@ body:has(.hero-hcp) main > .section.features .default-content-wrapper {
   margin-bottom: 40px;
 }
 
-/* Thicker border on beveled card edges */
+/* Thin border on beveled card edges */
 body:has(.hero-hcp) main > .section.features .cards > ul > li::before {
-  inset: 2px;
+  inset: 1px;
 }
 
 /* Convert white SVG icons to teal on white card background */
